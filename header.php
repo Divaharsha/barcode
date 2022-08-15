@@ -219,20 +219,88 @@ $res_logo = $db->getResult();
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-bullseye"></i>
-                        <span>Dealer Goldsmith Master</span>
-                        <i class="fa fa-angle-right pull-right"></i>
+                        <span>Master</span>
+                        <i class="fa fa-angle-down pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="add-goldsmithmaster.php"><i class="fa fa-plus"></i> Add Goldsmith Master</a></li>
-                        <li><a href="goldsmithmasters.php"><i class="fa fa-sliders"></i> Manage Goldsmith Master </a></li>
+                        <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-user"></i>
+                                    <span>Dealer Goldsmith Master</span>
+                                    <i class="fa fa-angle-right pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                  <li><a href="add-goldsmithmaster.php"><i class="fa fa-plus"></i> Add Goldsmith Master</a></li>
+                                  <li><a href="goldsmithmasters.php"><i class="fa fa-sliders"></i> Manage Goldsmith Master </a></li>
+                                </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="openingmaster.php">
+                                <i class="fa fa-opera"></i>
+                                <span>Opening Master</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="treeview">
-                    <a href="dailytransactions.php">
-                        <i class="fa fa-bullseye"></i>
-                        <span>Daily Transaction</span>
+                    <a href="#">
+                    <i class="fa fa-arrow-down"></i>             
+                               <span>Transaction</span>
+                        <i class="fa fa-angle-down pull-right"></i>
                     </a>
+                      
+                    <ul class="treeview-menu">
+                            <li class="treeview">
+                                <a href="dailytransactions.php">
+                                    <i class="fa fa-calendar"></i>
+                                    <span>Daily Transaction</span>
+                                </a>
+                           </li>
+                           <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-bullseye"></i>
+                                    <span>Suspense Account</span>
+                                </a>
+                           </li>
+
+                    </ul>
                 </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-clipboard"></i>           
+                        <span>Reports</span>
+                        <i class="fa fa-angle-down pull-right"></i>
+                    </a>
+                      
+                    <ul class="treeview-menu">
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-bullseye"></i>
+                                    <span>Transaction Register</span>
+                                </a>
+                           </li>
+                           <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-bullseye"></i>
+                                    <span>Dealer Ledger Report</span>
+                                </a>
+                           </li>
+                           <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-bullseye"></i>
+                                    <span>Areawise Ledger Report</span>
+                                </a>
+                           </li>
+                           <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-bullseye"></i>
+                                    <span>Stock Report</span>
+                                </a>
+                           </li>
+
+                    </ul>
+                </li>
+                
                 
                 <li class="treeview">
                     <a href="#">

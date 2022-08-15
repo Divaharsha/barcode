@@ -24,7 +24,7 @@ if (isset($_POST['btnAdd'])) {
 
         if ( !empty($name))
         {
-                $sql = "INSERT INTO users (name) VALUES('$name')";
+                $sql = "INSERT INTO dealers (name) VALUES('$name')";
                 $db->sql($sql);
                 $users_result = $db->getResult();
                 if (!empty($users_result)) {
@@ -33,10 +33,10 @@ if (isset($_POST['btnAdd'])) {
                     $users_result = 1;
                 }
                 if ($users_result == 1) {
-                    $sql = "SELECT id FROM users ORDER BY id DESC LIMIT 1";
+                    $sql = "SELECT id FROM dealers ORDER BY id DESC LIMIT 1";
                     $db->sql($sql);
                     $res = $db->getResult();
-                    $user_id = $res[0]['id'];
+                    $dealer_id = $res[0]['id'];
                     for ($i = 0; $i < count($_POST['date']); $i++) {
     
                         $date = $db->escapeString($fn->xss_clean($_POST['date'][$i]));
@@ -50,18 +50,18 @@ if (isset($_POST['btnAdd'])) {
                         $gst = $db->escapeString($fn->xss_clean($_POST['gst'][$i]));
                         $amount = $db->escapeString($fn->xss_clean($_POST['amount'][$i]));
                         $mc = $db->escapeString($fn->xss_clean($_POST['mc'][$i]));
-                        $sql = "INSERT INTO daily_transaction_variant (user_id,date,type,category,weight,stone_weight,wastage,touch,rate,gst,amount,mc) VALUES('$user_id','$date','$type','$category','$weight','$stone_weight','$wastage','$touch','$rate','$gst','$amount','$mc')";
+                        $sql = "INSERT INTO daily_transaction (dealer_id,date,type,category,weight,stone_weight,wastage,touch,rate,gst,amount,mc) VALUES('$dealer_id','$date','$type','$category','$weight','$stone_weight','$wastage','$touch','$rate','$gst','$amount','$mc')";
                         $db->sql($sql);
-                        $daily_transaction_variant = $db->getResult();
+                        $daily_transaction_result = $db->getResult();
                     }
-                    if (!empty($daily_transaction_variant)) {
-                        $daily_transaction_variant = 0;
+                    if (!empty($daily_transaction_result)) {
+                        $daily_transaction_result = 0;
                     } else {
-                        $daily_transaction_variant = 1;
+                        $daily_transaction_result = 1;
                     }
                     $error['add_menu'] = "<section class='content-header'>
                                                     <span class='label label-success'>Daily Transaction Added Successfully</span>
-                                                    <h4><small><a  href='dailytransaction_variants.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Daily Transactions</a></small></h4>
+                                                    <h4><small><a  href='dailytransactions.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Daily Transactions</a></small></h4>
                                                      </section>";
                 } else {
                     $error['add_menu'] = " <span class='label label-danger'>Failed</span>";
@@ -169,7 +169,7 @@ if (isset($_POST['btnAdd'])) {
                                         <div class="col-md-2">
                                             <div class="form-group packate_div">
                                                 <label for="exampleInputEmail1">Touch</label> 
-                                                <input type="text" class="form-control" name="touch[]" required />
+                                                <input type="number" class="form-control" name="touch[]" required />
                                             </div>
                                         </div>
                                 </div>
@@ -207,7 +207,7 @@ if (isset($_POST['btnAdd'])) {
                                 </div>
                             </div>
                         </div>
-                        <hr>
+                        <br>
                     </div><!-- /.box-body -->
                     <div class="box-footer">
                         <input type="submit" class="btn-primary btn" value="Add" name="btnAdd" />&nbsp;
@@ -269,7 +269,7 @@ if (isset($_POST['btnAdd'])) {
                                                             $db->sql($sql);
                                                             $result = $db->getResult();
                                                             foreach ($result as $value) {
-                                                            ?><option value="<?= $value['category'] ?>"><?= $value['category'] ?></option><?php } ?></select></div></div></div>' +'<div class="col-md-2"><div class="form-group"><label for="weight">Weight</label>' + '<input type="number" class="form-control" name="weight[]"></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="stone_weight">Stone Weight</label>' + '<input type="number" class="form-control" name="stone_weight[]"></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="wastage">Wastage</label>' + '<input type="number" class="form-control" name="wastage[]" ></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="touch">Touch</label>' + '<input type="number" class="form-control" name="touch[]"></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="rate">Rate</label>' + '<input type="number" class="form-control" name="rate[]" ></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="gst">GST</label>' + '<input type="number" class="form-control" name="gst[]"  ></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="amount">Amount</label>' + '<input type="number" class="form-control" name="amount[]" ></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="mc">MC</label>' + '<input type="number" class="form-control" name="mc[]"></div></div>' + '<div class="col-md-1" style="display: grid;"><label>Remove</label><a class="remove text-danger" style="cursor: pointer;"><i class="fa fa-times fa-2x"></i></a></div>'+'</div><hr>'); //add input box
+                                                            ?><option value="<?= $value['category'] ?>"><?= $value['category'] ?></option><?php } ?></select></div></div></div>' +'<div class="col-md-2"><div class="form-group"><label for="weight">Weight</label>' + '<input type="number" class="form-control" name="weight[]"></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="stone_weight">Stone Weight</label>' + '<input type="number" class="form-control" name="stone_weight[]"></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="wastage">Wastage</label>' + '<input type="number" class="form-control" name="wastage[]" ></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="touch">Touch</label>' + '<input type="number" class="form-control" name="touch[]"></div></div>'+'<div class="row"><div class="col-md-2"><div class="form-group"><label for="rate">Rate</label>' + '<input type="number" class="form-control" name="rate[]" ></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="gst">GST</label>' + '<input type="number" class="form-control" name="gst[]"  ></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="amount">Amount</label>' + '<input type="number" class="form-control" name="amount[]" ></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="mc">MC</label>' + '<input type="number" class="form-control" name="mc[]"></div></div></div>' + '<div class="col-md-1" style="display: grid;"><label>Remove</label><a class="remove text-danger" style="cursor: pointer;"><i class="fa fa-times fa-2x"></i></a></div>'+'</div><hr>'); //add input box
             } else {
                 alert('You Reached the limits')
             }

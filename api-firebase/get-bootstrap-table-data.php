@@ -158,7 +158,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'dealers') {
 
     foreach ($res as $row) {
 
-        $operate= '<a href="edit-daily_transaction_variant.php?id=' . $row['id'] . '" ><i class="fa fa-edit" ></i>Edit</a>';
+        $operate= '<a href="edit-dailytransaction.php?id=' . $row['id'] . '" ><i class="fa fa-edit" ></i>Edit</a>';
         $operate .= '<a href="view-daily_transaction.php?id=' . $row['id'] . '" class="btn btn-primary btn-xs" style="margin-left:5px;!important">View</a>';
         $tempRow['id'] = $row['id'];
         $tempRow['name'] = $row['name'];

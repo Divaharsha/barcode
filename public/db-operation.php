@@ -21,6 +21,42 @@ if (isset($config['system_timezone']) && isset($config['system_timezone_gmt'])) 
     date_default_timezone_set('Asia/Kolkata');
     $db->sql("SET `time_zone` = '+05:30'");
 }
+
+//transaction row delete
+
+if (isset($_POST['delete_variant'])) {
+    $v_id = $db->escapeString(($_POST['id']));
+    $sql = "DELETE FROM daily_transaction WHERE id = $v_id";
+    $db->sql($sql);
+    $result = $db->getResult();
+    if ($result) {
+        echo 1;
+    } else {
+        echo 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function checkadmin($auth_username)
 {
     $db = new Database();

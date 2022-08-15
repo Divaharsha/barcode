@@ -4,7 +4,7 @@
         <small><a href="home.php"><i class="fa fa-home"></i> Home</a></small>
     </h1>
     <ol class="breadcrumb">
-        <a class="btn btn-block btn-default" href="add-dailytransaction_variants.php"><i class="fa fa-plus-square"></i> Add New Daily Transaction</a>
+        <a class="btn btn-block btn-default" href="add-dailytransactions.php"><i class="fa fa-plus-square"></i> Add New Daily Transaction</a>
     </ol>
 
     
