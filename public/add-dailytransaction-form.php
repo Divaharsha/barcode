@@ -39,6 +39,7 @@ if (isset($_POST['btnAdd'])) {
                     $dealer_id = $res[0]['id'];
                     for ($i = 0; $i < count($_POST['date']); $i++) {
     
+                        $purity = $db->escapeString($fn->xss_clean($_POST['purity'][$i]));
                         $date = $db->escapeString($fn->xss_clean($_POST['date'][$i]));
                         $type = $db->escapeString($fn->xss_clean($_POST['type'][$i]));
                         $category = $db->escapeString($fn->xss_clean($_POST['category'][$i])); 
@@ -50,7 +51,7 @@ if (isset($_POST['btnAdd'])) {
                         $gst = $db->escapeString($fn->xss_clean($_POST['gst'][$i]));
                         $amount = $db->escapeString($fn->xss_clean($_POST['amount'][$i]));
                         $mc = $db->escapeString($fn->xss_clean($_POST['mc'][$i]));
-                        $sql = "INSERT INTO daily_transaction (dealer_id,date,type,category,weight,stone_weight,wastage,touch,rate,gst,amount,mc) VALUES('$dealer_id','$date','$type','$category','$weight','$stone_weight','$wastage','$touch','$rate','$gst','$amount','$mc')";
+                        $sql = "INSERT INTO daily_transaction (dealer_id,date,type,category,weight,stone_weight,wastage,touch,rate,gst,amount,mc,purity) VALUES('$dealer_id','$date','$type','$category','$weight','$stone_weight','$wastage','$touch','$rate','$gst','$amount','$mc','$purity')";
                         $db->sql($sql);
                         $daily_transaction_result = $db->getResult();
                     }
@@ -98,7 +99,16 @@ if (isset($_POST['btnAdd'])) {
                             <div class="form-group">
                                 <div class='col-md-3'>
                                     <label for="exampleInputEmail1"> Name</label> <i class="text-danger asterik">*</i><?php echo isset($error['name']) ? $error['name'] : ''; ?>
-                                    <input type="text" class="form-control" name="name" required>
+                                    <select id='name' name="name" class='form-control' required>
+                                        <?php
+                                        $sql = "SELECT * FROM `goldsmith_master`";
+                                        $db->sql($sql);
+                                        $result = $db->getResult();
+                                        foreach ($result as $value) {
+                                        ?>
+                                            <option value='<?= $value['name'] ?>'><?= $value['name'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                                
                             </div>
@@ -151,7 +161,7 @@ if (isset($_POST['btnAdd'])) {
                                         <div class="col-md-2">
                                             <div class="form-group packate_div">
                                                 <label for="exampleInputEmail1">Weight</label> 
-                                                <input type="number" class="form-control" name="weight[]" required />
+                                                <input type="number" class="form-control weight" name="weight[]" id = "weight" required />
                                             </div>
                                         </div>
                                         <div class="col-md-2">
@@ -170,6 +180,14 @@ if (isset($_POST['btnAdd'])) {
                                             <div class="form-group packate_div">
                                                 <label for="exampleInputEmail1">Touch</label> 
                                                 <input type="number" class="form-control" name="touch[]" required />
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Purity(gram)</label>
+                                                <input type="number" class="form-control" value="0" name="purity[]" id="purity" readonly />
                                             </div>
                                         </div>
                                 </div>
@@ -259,7 +277,8 @@ if (isset($_POST['btnAdd'])) {
             e.preventDefault();
             if (x < max_fields) {
                 x++;
-                $(wrapper).append('<div class="row">' + '<div class="row"><div class="col-md-3"><div class="form-group"><label for="date">Date</label>' + '<input type="date" class="form-control" name="date[]" ></div></div>' +'<div class="col-md-3"><div class="form-group"><label for="type">Type</label>' + '<select id=type name="type[]" class=form-control><option value="none">Select</option><?php
+                $(wrapper).append($("#packate_div").html());
+                //$(wrapper).append('<div class="row">' + '<div class="row"><div class="col-md-3"><div class="form-group"><label for="date">Date</label>' + '<input type="date" class="form-control" name="date[]" ></div></div>' +'<div class="col-md-3"><div class="form-group"><label for="type">Type</label>' + '<select id=type name="type[]" class=form-control><option value="none">Select</option><?php
                                                             $sql = "SELECT * FROM `types`";
                                                             $db->sql($sql);
                                                             $result = $db->getResult();
@@ -280,6 +299,21 @@ if (isset($_POST['btnAdd'])) {
             $(this).closest('.row').remove();
             x--;
         })
+        $('#name').select2({
+        width: 'element',
+        placeholder: 'Type in name to search',
+
     });
+    });
+
 </script>
+<!-- <script>
+    $(document).on('input', '.weight', function(){
+        let weight = $('#weight').val();
+        $('#purity').val(weight);
+
+
+    });
+</script> -->
+
 <?php $db->disconnect(); ?>

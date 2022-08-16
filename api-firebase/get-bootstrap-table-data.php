@@ -365,6 +365,73 @@ if (isset($_GET['table']) && $_GET['table'] == 'system-users') {
     print_r(json_encode($bulkData));
 }
 
+if (isset($_GET['table']) && $_GET['table'] == 'daily_transaction') {
+
+    $offset = 0;
+    $limit = 10;
+    $where = '';
+    $sort = 'id';
+    $order = 'DESC';
+    if (isset($_GET['offset']))
+        $offset = $db->escapeString($_GET['offset']);
+    if (isset($_GET['limit']))
+        $limit = $db->escapeString($_GET['limit']);
+    if (isset($_GET['sort']))
+        $sort = $db->escapeString($_GET['sort']);
+    if (isset($_GET['order']))
+        $order = $db->escapeString($_GET['order']);
+
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
+        $search = $db->escapeString($_GET['search']);
+        $where .= "WHERE name like '%" . $search . "%'";
+    }
+    if (isset($_GET['sort'])){
+        $sort = $db->escapeString($_GET['sort']);
+    }
+    if (isset($_GET['order'])){
+        $order = $db->escapeString($_GET['order']);
+    }
+    $sql = "SELECT COUNT(`id`) as total FROM `daily_transaction` ";
+    $db->sql($sql);
+    $res = $db->getResult();
+    foreach ($res as $row)
+        $total = $row['total'];
+   
+    $sql = "SELECT * FROM daily_transaction " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+    $db->sql($sql);
+    $res = $db->getResult();
+
+    $bulkData = array();
+    $bulkData['total'] = $total;
+    
+    $rows = array();
+    $tempRow = array();
+
+    foreach ($res as $row) {
+
+        $operate= '<a href="edit-dailytransaction.php?id=' . $row['id'] . '" ><i class="fa fa-edit" ></i>Edit</a>';
+        $operate .= '<a href="view-daily_transaction.php?id=' . $row['id'] . '" class="btn btn-primary btn-xs" style="margin-left:5px;!important">View</a>';
+        $tempRow['id'] = $row['id'];
+        $tempRow['dealer_id'] = $row['dealer_id'];
+        $tempRow['date'] = $row['date'];
+        $tempRow['type'] = $row['type'];
+        $tempRow['category'] = $row['category'];
+        $tempRow['weight'] = $row['weight'];
+        $tempRow['stone_weight'] = $row['stone_weight'];
+        $tempRow['wastage'] = $row['wastage'];
+        $tempRow['touch'] = $row['touch'];
+        $tempRow['rate'] = $row['rate'];
+        $tempRow['gst'] = $row['gst'];
+        $tempRow['amount'] = $row['amount'];
+        $tempRow['mc'] = $row['mc'];
+        $tempRow['purity'] = $row['purity'];
+        $tempRow['operate'] = $operate;
+        $rows[] = $tempRow;
+    }
+    $bulkData['rows'] = $rows;
+    print_r(json_encode($bulkData));
+}
+
 
 
 $db->disconnect();

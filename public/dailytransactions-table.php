@@ -18,15 +18,27 @@
                 <div class="box">
                     <!-- /.box-header -->
                     <div class="box-body table-responsive">
-                        <table id='users_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=dealers" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="false" data-export-types='["txt","excel"]' data-export-options='{
+                        <table id='users_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=daily_transaction" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="false" data-export-types='["txt","excel"]' data-export-options='{
                             "fileName": "students-list-<?= date('d-m-Y') ?>",
                             "ignoreColumn": ["operate"] 
                         }'>
                             <thead>
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
-                                    <th data-field="name" data-sortable="true">Name</th>
-                                    <th data-field="operate" data-events="actionEvents">Action</th>
+                                    <th data-field="dealer_id" data-sortable="true">Dealer Id</th>
+                                    <th data-field="date" data-sortable="true">Date</th>
+                                    <th data-field="type" data-sortable="true">Type</th>
+                                    <th data-field="category" data-sortable="true">Category</th>
+                                    <th data-field="weight" data-sortable="true">Weight</th>
+                                    <th data-field="stone_weight" data-sortable="true">Stone Weight</th>
+                                    <th data-field="wastage" data-sortable="true">Wastage</th>
+                                    <th data-field="touch" data-sortable="true">Touch</th>
+                                    <th data-field="rate" data-sortable="true">Rate</th>
+                                    <th data-field="gst" data-sortable="true">Gst</th>
+                                    <th data-field="amount" data-sortable="true">Amount</th>
+                                    <th data-field="mc" data-sortable="true">MC</th>
+                                    <th data-field="purity" data-sortable="true">Purity</th>
+                                    <!-- <th data-field="operate" data-events="actionEvents">Action</th> -->
                                 </tr>
                             </thead>
                         </table>

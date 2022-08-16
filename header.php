@@ -274,13 +274,13 @@ $res_logo = $db->getResult();
                       
                     <ul class="treeview-menu">
                             <li class="treeview">
-                                <a href="#">
+                                <a href="transactionregister.php">
                                     <i class="fa fa-bullseye"></i>
                                     <span>Transaction Register</span>
                                 </a>
                            </li>
                            <li class="treeview">
-                                <a href="#">
+                                <a href="dealerledgerreport.php">
                                     <i class="fa fa-bullseye"></i>
                                     <span>Dealer Ledger Report</span>
                                 </a>
@@ -302,7 +302,7 @@ $res_logo = $db->getResult();
                 </li>
                 
                 
-                <li class="treeview">
+                <!-- <li class="treeview">
                     <a href="#">
                         <i class="fa fa-wrench"></i>
                         <span>System</span>
@@ -325,7 +325,7 @@ $res_logo = $db->getResult();
                         <li><a href="purchase-code.php"><i class="fa fa-check"></i> System Registration </a></li>
 
                     </ul>
-                </li>
+                </li> -->
         
                 <?php
                 if ($role == 'admin' || $role == 'super admin') {
