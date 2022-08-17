@@ -72,9 +72,6 @@ if (isset($_POST['btnAdd'])) {
         <div class="col-md-12">
             <!-- general form elements -->
             <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Add Dealer Goldsmith Master</h3>
-                </div>
                 <div class="box-header">
                     <?php echo isset($error['cancelable']) ? '<span class="label label-danger">Till status is required.</span>' : ''; ?>
                 </div>

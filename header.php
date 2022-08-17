@@ -223,16 +223,12 @@ $res_logo = $db->getResult();
                         <i class="fa fa-angle-down pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
+
                         <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-user"></i>
-                                    <span>Dealer Goldsmith Master</span>
-                                    <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                  <li><a href="add-goldsmithmaster.php"><i class="fa fa-plus"></i> Add Goldsmith Master</a></li>
-                                  <li><a href="goldsmithmasters.php"><i class="fa fa-sliders"></i> Manage Goldsmith Master </a></li>
-                                </ul>
+                            <a href="goldsmithmasters.php">
+                                <i class="fa fa-user"></i>
+                                <span>Dealer Goldsmith Master</span>
+                            </a>
                         </li>
                         <li class="treeview">
                             <a href="openingmaster.php">
