@@ -25,7 +25,7 @@
                             <thead>
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
-                                    <th data-field="dealer_id" data-sortable="true">Dealer Id</th>
+                                    <th data-field="goldsmith_master_id" data-sortable="true">Goldsmith Master Id</th>
                                     <th data-field="date" data-sortable="true">Date</th>
                                     <th data-field="type" data-sortable="true">Type</th>
                                     <th data-field="category" data-sortable="true">Category</th>
@@ -38,7 +38,7 @@
                                     <th data-field="amount" data-sortable="true">Amount</th>
                                     <th data-field="mc" data-sortable="true">MC</th>
                                     <th data-field="purity" data-sortable="true">Purity</th>
-                                    <!-- <th data-field="operate" data-events="actionEvents">Action</th> -->
+                                    <th data-field="operate" data-events="actionEvents">Action</th>
                                 </tr>
                             </thead>
                         </table>

@@ -15,16 +15,11 @@ $res_cur = $db->getResult();
 if (isset($_POST['btnAdd'])) {
         $error = array();
         $name = $db->escapeString($fn->xss_clean($_POST['name']));
-
-        
-        if (empty($name)) {
-            $error['name'] = " <span class='label label-danger'>Required!</span>";
-        }
        
 
         if ( !empty($name))
         {
-                $sql = "INSERT INTO dealers (name) VALUES('$name')";
+                $sql = "SELECT * FROM `goldsmith_master` WHERE `name` = '$name'";
                 $db->sql($sql);
                 $users_result = $db->getResult();
                 if (!empty($users_result)) {
@@ -33,10 +28,9 @@ if (isset($_POST['btnAdd'])) {
                     $users_result = 1;
                 }
                 if ($users_result == 1) {
-                    $sql = "SELECT id FROM dealers ORDER BY id DESC LIMIT 1";
+                    $sql = "SELECT id FROM goldsmith_master ORDER BY id DESC LIMIT 1";
                     $db->sql($sql);
                     $res = $db->getResult();
-                    $dealer_id = $res[0]['id'];
                     for ($i = 0; $i < count($_POST['date']); $i++) {
     
                         $purity = $db->escapeString($fn->xss_clean($_POST['purity'][$i]));
@@ -51,7 +45,7 @@ if (isset($_POST['btnAdd'])) {
                         $gst = $db->escapeString($fn->xss_clean($_POST['gst'][$i]));
                         $amount = $db->escapeString($fn->xss_clean($_POST['amount'][$i]));
                         $mc = $db->escapeString($fn->xss_clean($_POST['mc'][$i]));
-                        $sql = "INSERT INTO daily_transaction (dealer_id,date,type,category,weight,stone_weight,wastage,touch,rate,gst,amount,mc,purity) VALUES('$dealer_id','$date','$type','$category','$weight','$stone_weight','$wastage','$touch','$rate','$gst','$amount','$mc','$purity')";
+                        $sql = "INSERT INTO daily_transaction (goldsmith_master_id,date,type,category,weight,stone_weight,wastage,touch,rate,gst,amount,mc,purity) VALUES('$name','$date','$type','$category','$weight','$stone_weight','$wastage','$touch','$rate','$gst','$amount','$mc','$purity')";
                         $db->sql($sql);
                         $daily_transaction_result = $db->getResult();
                     }
@@ -106,7 +100,7 @@ if (isset($_POST['btnAdd'])) {
                                         $result = $db->getResult();
                                         foreach ($result as $value) {
                                         ?>
-                                            <option value='<?= $value['name'] ?>'><?= $value['name'] ?></option>
+                                            <option value='<?= $value['id'] ?>'><?= $value['name'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -232,6 +226,114 @@ if (isset($_POST['btnAdd'])) {
                         <input type="reset" class="btn-danger btn" value="Clear" id="btnClear" />
                     </div>
                 </form>
+                <div class="hide" style="padding-left:15px;" id="add_packate_div"  >
+                            <div class="row">
+                                <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Date</label> 
+                                                <input type="date" class="form-control" name="date[]" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Type</label> 
+                                                <select id='type' name="type[]" class='form-control' required>
+                                                <option value="none">Select</option>
+                                                            <?php
+                                                            $sql = "SELECT * FROM `types`";
+                                                            $db->sql($sql);
+
+                                                            $result = $db->getResult();
+                                                            foreach ($result as $value) {
+                                                            ?>
+                                                                <option value='<?= $value['type'] ?>'><?= $value['type'] ?></option>
+                                                            <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Category</label> 
+                                                <select id='category' name="category[]" class='form-control' required>
+                                                            <?php
+                                                            $sql = "SELECT * FROM `brand`";
+                                                            $db->sql($sql);
+
+                                                            $result = $db->getResult();
+                                                            foreach ($result as $value) {
+                                                            ?>
+                                                                <option value='<?= $value['category'] ?>'><?= $value['category'] ?></option>
+                                                            <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Weight</label> 
+                                                <input type="number" class="form-control weight" name="weight[]" id = "weight" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Stone Weight</label> 
+                                                <input type="number" class="form-control" name="stone_weight[]" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Wastage</label>
+                                                <input type="number" class="form-control" name="wastage[]" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Touch</label> 
+                                                <input type="number" class="form-control" name="touch[]" required />
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Purity(gram)</label>
+                                                <input type="number" class="form-control" value="0" name="purity[]" id="purity" readonly />
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Rate</label>
+                                                <input type="number" class="form-control" name="rate[]" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1"> GST</label> 
+                                                <input type="number" class="form-control" name="gst[]" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Amount</label> 
+                                                <input type="number" class="form-control" name="amount[]" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">MC</label> 
+                                                <input type="number" class="form-control" name="mc[]" required />
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-md-1" style="display: grid;">
+                                    <label>Remove</label>
+                                    <a class="remove text-danger" style="cursor: pointer;"><i class="fa fa-times fa-2x"></i></a></div>
+                            </div>
+                        </div>
             </div>
             <!-- /.box -->
         </div>
@@ -277,18 +379,7 @@ if (isset($_POST['btnAdd'])) {
             e.preventDefault();
             if (x < max_fields) {
                 x++;
-                $(wrapper).append($("#packate_div").html());
-                //$(wrapper).append('<div class="row">' + '<div class="row"><div class="col-md-3"><div class="form-group"><label for="date">Date</label>' + '<input type="date" class="form-control" name="date[]" ></div></div>' +'<div class="col-md-3"><div class="form-group"><label for="type">Type</label>' + '<select id=type name="type[]" class=form-control><option value="none">Select</option><?php
-                                                            $sql = "SELECT * FROM `types`";
-                                                            $db->sql($sql);
-                                                            $result = $db->getResult();
-                                                            foreach ($result as $value) {
-                                                            ?><option value="<?= $value['type'] ?>"><?= $value['type'] ?></option><?php } ?></select></div></div>'+ '<div class="col-md-3"><div class="form-group"><label for="type">Category</label>' + '<select id=category name="category[]" class=form-control><?php
-                                                            $sql = "SELECT * FROM `brand`";
-                                                            $db->sql($sql);
-                                                            $result = $db->getResult();
-                                                            foreach ($result as $value) {
-                                                            ?><option value="<?= $value['category'] ?>"><?= $value['category'] ?></option><?php } ?></select></div></div></div>' +'<div class="col-md-2"><div class="form-group"><label for="weight">Weight</label>' + '<input type="number" class="form-control" name="weight[]"></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="stone_weight">Stone Weight</label>' + '<input type="number" class="form-control" name="stone_weight[]"></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="wastage">Wastage</label>' + '<input type="number" class="form-control" name="wastage[]" ></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="touch">Touch</label>' + '<input type="number" class="form-control" name="touch[]"></div></div>'+'<div class="row"><div class="col-md-2"><div class="form-group"><label for="rate">Rate</label>' + '<input type="number" class="form-control" name="rate[]" ></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="gst">GST</label>' + '<input type="number" class="form-control" name="gst[]"  ></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="amount">Amount</label>' + '<input type="number" class="form-control" name="amount[]" ></div></div>'+'<div class="col-md-2"><div class="form-group"><label for="mc">MC</label>' + '<input type="number" class="form-control" name="mc[]"></div></div></div>' + '<div class="col-md-1" style="display: grid;"><label>Remove</label><a class="remove text-danger" style="cursor: pointer;"><i class="fa fa-times fa-2x"></i></a></div>'+'</div><hr>'); //add input box
+                $(wrapper).append($("#add_packate_div").html());
             } else {
                 alert('You Reached the limits')
             }

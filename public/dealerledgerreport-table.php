@@ -23,24 +23,33 @@
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <h4 class="box-title">Choose Type</h4>
-                            <select id='sundry' name="sundry" class='form-control' required>
-                                <option value='Debit'>Debit</option>
-                                <option value='Credit'>Credit</option>
+                            <h4 class="box-title">Filter by Name </h4>
+                            <select id='name' name="name" class='form-control' required>
+                                        <?php
+                                        $sql = "SELECT * FROM `goldsmith_master`";
+                                        $db->sql($sql);
+                                        $result = $db->getResult();
+                                        foreach ($result as $value) {
+                                        ?>
+                                            <option value='<?= $value['name'] ?>'><?= $value['name'] ?></option>
+                                        <?php } ?>
                             </select>
                         </div>
 
                     </div>
                     <div class="box-body table-responsive">
-                        <table id='users_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=dealers" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="false" data-export-types='["txt","excel"]' data-export-options='{
+                        <table id='users_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=dealerledger" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="false" data-export-types='["txt","excel"]' data-export-options='{
                             "fileName": "students-list-<?= date('d-m-Y') ?>",
                             "ignoreColumn": ["operate"] 
                         }'>
                             <thead>
                                 <tr>
                                     <th data-field="name" data-sortable="true">Name</th>
-                                    <th data-field="pure" data-sortable="true">Pure</th>
-                                    <th data-field="cash" data-sortable="true">Cash</th>
+                                    <th data-field="sundry" data-sortable="true">Type</th>
+                                    <th data-field="open_debit" data-sortable="true">Open Debit</th>
+                                    <th data-field="open_credit" data-sortable="true">Open Credit</th>
+                                    <th data-field="pure_debit" data-sortable="true">Pure Debit</th>
+                                    <th data-field="pure_credit" data-sortable="true">Pure Credit</th>
                                 </tr>
                             </thead>
                         </table>
@@ -66,12 +75,20 @@
         placeholder: 'Type in name to search',
 
     });
+    $('#sundry').on('change', function() {
+        $('#users_table').bootstrapTable('refresh');
+    });
+    $('#name').on('change', function() {
+        $('#users_table').bootstrapTable('refresh');
+    });
 
     function queryParams(p) {
         return {
             "category_id": $('#category_id').val(),
             "seller_id": $('#seller_id').val(),
             "community": $('#community').val(),
+            "sundry": $('#sundry').val(),
+            "name": $('#name').val(),
             limit: p.limit,
             sort: p.sort,
             order: p.order,

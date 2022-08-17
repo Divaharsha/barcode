@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2022 at 08:02 AM
+-- Generation Time: Aug 18, 2022 at 01:30 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -78,7 +78,7 @@ INSERT INTO `brand` (`id`, `category`) VALUES
 
 CREATE TABLE `daily_transaction` (
   `id` int(11) NOT NULL,
-  `dealer_id` int(11) DEFAULT NULL,
+  `goldsmith_master_id` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `type` text DEFAULT NULL,
   `category` text DEFAULT NULL,
@@ -97,9 +97,10 @@ CREATE TABLE `daily_transaction` (
 -- Dumping data for table `daily_transaction`
 --
 
-INSERT INTO `daily_transaction` (`id`, `dealer_id`, `date`, `type`, `category`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`) VALUES
-(1, 3, '2022-09-02', 'Credit Sales', '916 KDM', 5, 5, 5, 5, 5, 6, 7, 7, 0),
-(2, 3, '2022-08-11', 'Credit Sales', '916 KDM', 5, 5, 5, 5, 54, 43, 32, 2, 0);
+INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `category`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`) VALUES
+(1, 1, '2022-09-02', 'Metal Receipt', '916 KDM', 5, 5, 5, 5, 5, 6, 9, 9, 0),
+(2, 2, '2022-08-11', 'Credit Sales', '916 KDM', 5, 5, 5, 5, 54, 43, 32, 2, 0),
+(3, 3, '2022-08-12', 'Cash Credit', 'Katcha', 23, 45, 76, 90, 4, 46, 44, 66, 0);
 
 -- --------------------------------------------------------
 
@@ -119,7 +120,8 @@ CREATE TABLE `dealers` (
 INSERT INTO `dealers` (`id`, `name`) VALUES
 (1, 'divakar'),
 (2, 'Divakar'),
-(3, 'Divakar');
+(3, 'Divakar'),
+(4, 'Sanjay');
 
 -- --------------------------------------------------------
 
@@ -176,7 +178,7 @@ INSERT INTO `goldsmith_master` (`id`, `name`, `sundry`, `open_debit`, `open_cred
 (1, 'Divakar', 'Sundry Debitors', 600, 789, 56, 'India', '2/42, Chennai', 7358830000, 34567, 3, 78),
 (2, 'Sanjay', 'Sundry Creditors', 600, 789, 56, 'India', 'Karur', 9876570000, 34567, 3, 78),
 (3, 'prasad', 'Sundry Creditors', 50, 50, 500, 'kumbakonam', 'fdfdfd', 8778630000, 34, 34, 34),
-(4, 'Prasad', 'Sundry Creditors', 0, 0, 0, '', '', 0, 0, 0, 0);
+(4, 'karthi', 'Sundry Creditors', 0, 0, 0, '', '', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -395,13 +397,13 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `daily_transaction`
 --
 ALTER TABLE `daily_transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `dealers`
 --
 ALTER TABLE `dealers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `faq`

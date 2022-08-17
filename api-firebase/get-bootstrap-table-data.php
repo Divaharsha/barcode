@@ -383,7 +383,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'daily_transaction') {
 
     if (isset($_GET['search']) && !empty($_GET['search'])) {
         $search = $db->escapeString($_GET['search']);
-        $where .= "WHERE name like '%" . $search . "%'";
+        $where .= "WHERE type like '%" . $search . "%' OR category like '%" . $search . "%'";
     }
     if (isset($_GET['sort'])){
         $sort = $db->escapeString($_GET['sort']);
@@ -412,7 +412,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'daily_transaction') {
         $operate= '<a href="edit-dailytransaction.php?id=' . $row['id'] . '" ><i class="fa fa-edit" ></i>Edit</a>';
         $operate .= '<a href="view-daily_transaction.php?id=' . $row['id'] . '" class="btn btn-primary btn-xs" style="margin-left:5px;!important">View</a>';
         $tempRow['id'] = $row['id'];
-        $tempRow['dealer_id'] = $row['dealer_id'];
+        $tempRow['goldsmith_master_id'] = $row['goldsmith_master_id'];
         $tempRow['date'] = $row['date'];
         $tempRow['type'] = $row['type'];
         $tempRow['category'] = $row['category'];
@@ -432,6 +432,134 @@ if (isset($_GET['table']) && $_GET['table'] == 'daily_transaction') {
     print_r(json_encode($bulkData));
 }
 
+
+//transactionregister table goes here
+if (isset($_GET['table']) && $_GET['table'] == 'transactionregister') {
+
+    $offset = 0;
+    $limit = 10;
+    $where = '';
+    $sort = 'id';
+    $order = 'DESC';
+
+    if (isset($_GET['type']) && $_GET['type'] != '') {
+        $type = $db->escapeString($fn->xss_clean($_GET['type']));
+        $where .= " AND type = '$type' ";
+    }
+    if (isset($_GET['name']) && $_GET['name'] != '') {
+        $name = $db->escapeString($fn->xss_clean($_GET['name']));
+        $where .= " AND name = '$name' ";
+    }
+
+    if (isset($_GET['offset']))
+        $offset = $db->escapeString($_GET['offset']);
+    if (isset($_GET['limit']))
+        $limit = $db->escapeString($_GET['limit']);
+    if (isset($_GET['sort']))
+        $sort = $db->escapeString($_GET['sort']);
+    if (isset($_GET['order']))
+        $order = $db->escapeString($_GET['order']);
+
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
+        $search = $db->escapeString($_GET['search']);
+        $where .= "WHERE type like '%" . $search . "%' OR category like '%" . $search . "%'";
+    }
+    if (isset($_GET['sort'])){
+        $sort = $db->escapeString($_GET['sort']);
+    }
+    if (isset($_GET['order'])){
+        $order = $db->escapeString($_GET['order']);
+    }
+    $sql = "SELECT COUNT(`id`) as total FROM `daily_transaction` ";
+    $db->sql($sql);
+    $res = $db->getResult();
+    foreach ($res as $row)
+        $total = $row['total'];
+   
+    $sql = "SELECT * FROM daily_transaction,goldsmith_master WHERE daily_transaction.dealer_id= goldsmith_master.id" ;
+    $db->sql($sql);
+    $res = $db->getResult();
+
+    $bulkData = array();
+    $bulkData['total'] = $total;
+    
+    $rows = array();
+    $tempRow = array();
+
+    foreach ($res as $row) {
+
+    
+        $tempRow['id'] = $row['id'];
+        $tempRow['name'] = $row['name'];
+        $tempRow['date'] = $row['date'];
+        $tempRow['type'] = $row['type'];
+        $tempRow['category'] = $row['category'];
+        $tempRow['weight'] = $row['weight'];
+        $tempRow['stone_weight'] = $row['stone_weight'];
+        $tempRow['wastage'] = $row['wastage'];
+        $tempRow['touch'] = $row['touch'];
+        $tempRow['rate'] = $row['rate'];
+        $tempRow['gst'] = $row['gst'];
+        $tempRow['amount'] = $row['amount'];
+        $tempRow['mc'] = $row['mc'];
+        $tempRow['purity'] = $row['purity'];
+        $rows[] = $tempRow;
+    }
+    $bulkData['rows'] = $rows;
+    print_r(json_encode($bulkData));
+}
+
+if (isset($_GET['table']) && $_GET['table'] == 'dealerledger') {
+
+    $offset = 0;
+    $limit = 10;
+    $where = '';
+    $sort = 'id';
+    $order = 'DESC';
+    
+    if (isset($_GET['sundry']) && $_GET['sundry'] != '') {
+        $sundry = $db->escapeString($fn->xss_clean($_GET['sundry']));
+        $where .= " AND sundry = '$sundry' ";
+    }
+    if (isset($_GET['name']) && $_GET['name'] != '') {
+        $name = $db->escapeString($fn->xss_clean($_GET['name']));
+        $where .= " AND name = '$name' ";
+    }
+     
+
+
+   
+    $sql = "SELECT COUNT(`id`) as total FROM `goldsmith_master`";
+    $db->sql($sql);
+    $res = $db->getResult();
+    foreach ($res as $row)
+        $total = $row['total'];
+   
+    $sql = "SELECT * FROM goldsmith_master";
+    $db->sql($sql);
+    $res = $db->getResult();
+
+    $bulkData = array();
+    $bulkData['total'] = $total;
+    
+    $rows = array();
+    $tempRow = array();
+
+    foreach ($res as $row) {
+
+        
+       
+        $tempRow['name'] = $row['name'];
+        $tempRow['sundry'] = $row['sundry'];
+        $tempRow['open_debit'] = $row['open_debit'];
+        $tempRow['open_credit'] = $row['open_credit'];
+        $tempRow['pure_debit'] = $row['pure_debit'];
+        $tempRow['pure_credit'] = $row['pure_credit'];
+        $rows[] = $tempRow;
+    }
+    $bulkData['rows'] = $rows;
+    print_r(json_encode($bulkData));
+}
 
 
 $db->disconnect();
