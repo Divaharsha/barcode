@@ -18,6 +18,7 @@ if ($currentTime > $_SESSION['timeout']) {
     header("location:index.php");
 }
 
+
 // destroy previous session timeout and create new one
 unset($_SESSION['timeout']);
 $_SESSION['timeout'] = $currentTime + $expired;
