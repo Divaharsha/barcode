@@ -15,14 +15,15 @@
                     <div class="box-header">
                         <div class="form-group col-md-3">
                             <h4 class="box-title">Filter by Name </h4>
-                            <select id='name' name="name" class='form-control' required>
+                            <select id='gm_id' name="gm_id" class='form-control' required>
+                            <option value=''>Any</option>
                                         <?php
                                         $sql = "SELECT * FROM `goldsmith_master`";
                                         $db->sql($sql);
                                         $result = $db->getResult();
                                         foreach ($result as $value) {
                                         ?>
-                                            <option value='<?= $value['name'] ?>'><?= $value['name'] ?></option>
+                                            <option value='<?= $value['id'] ?>'><?= $value['name'] ?></option>
                                         <?php } ?>
                             </select>
                         </div>
@@ -59,7 +60,7 @@
                             <select id='place' name="place" class='form-control' required>
                                 <option value=''>Any</option>
                                         <?php
-                                        $sql = "SELECT * FROM `goldsmith_master` GROUP BY `place`";
+                                        $sql = "SELECT * FROM `goldsmith_master` WHERE place != '' GROUP BY `place`";
                                         $db->sql($sql);
                                         $result = $db->getResult();
                                         foreach ($result as $value) {
@@ -70,16 +71,16 @@
                         </div>
                         <div class="form-group col-md-3">
                             <h4 class="box-title">From Date </h4>
-                            <input type="date" class="form-control" name="fromdate" />
+                            <input type="date" class="form-control" name="fromdate" id="fromdate" />
                         </div>
                         <div class="form-group col-md-3">
                             <h4 class="box-title">To Date </h4>
-                            <input type="date" class="form-control" name="todate" />
+                            <input type="date" class="form-control" name="todate" id="todate" />
                         </div>
 
                     </div>
                     <div class="box-body table-responsive">
-                        <table id='users_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=transactionregister" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="false" data-export-types='["txt","excel"]' data-export-options='{
+                        <table id='users_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=transactionregister" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="true" data-export-types='["txt","excel"]' data-export-options='{
                             "fileName": "students-list-<?= date('d-m-Y') ?>",
                             "ignoreColumn": ["operate"] 
                         }'>
@@ -111,13 +112,7 @@
     </section>
 
 <script>
-    $('#seller_id').on('change', function() {
-        $('#products_table').bootstrapTable('refresh');
-    });
-    $('#community').on('change', function() {
-        $('#users_table').bootstrapTable('refresh');
-    });
-    $('#name').select2({
+    $('#gm_id').select2({
         width: 'element',
         placeholder: 'Type in name to search',
 
@@ -125,17 +120,30 @@
     $('#type').on('change', function() {
         $('#users_table').bootstrapTable('refresh');
     });
-    $('#name').on('change', function() {
+    $('#gm_id').on('change', function() {
+        $('#users_table').bootstrapTable('refresh');
+    });
+    $('#particular').on('change', function() {
+        $('#users_table').bootstrapTable('refresh');
+    });
+    $('#place').on('change', function() {
+        $('#users_table').bootstrapTable('refresh');
+    });
+    $('#fromdate').on('change', function() {
+        $('#users_table').bootstrapTable('refresh');
+    });
+    $('#todate').on('change', function() {
         $('#users_table').bootstrapTable('refresh');
     });
 
     function queryParams(p) {
         return {
-            "category_id": $('#category_id').val(),
-            "seller_id": $('#seller_id').val(),
-            "community": $('#community').val(),
             "type": $('#type').val(),
-            "name": $('#name').val(),
+            "place": $('#place').val(),
+            "gm_id": $('#gm_id').val(),
+            "particular": $('#particular').val(),
+            "fromdate": $('#fromdate').val(),
+            "todate": $('#todate').val(),
             limit: p.limit,
             sort: p.sort,
             order: p.order,

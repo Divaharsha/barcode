@@ -410,7 +410,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'daily_transaction') {
     foreach ($res as $row) {
 
         $operate= '<a href="edit-dailytransaction.php?id=' . $row['id'] . '" ><i class="fa fa-edit" ></i>Edit</a>';
-        $operate .= '<a href="view-daily_transaction.php?id=' . $row['id'] . '" class="btn btn-primary btn-xs" style="margin-left:5px;!important">View</a>';
+        //$operate .= '<a href="view-daily_transaction.php?id=' . $row['id'] . '" class="btn btn-primary btn-xs" style="margin-left:5px;!important">View</a>';
         $tempRow['id'] = $row['id'];
         $tempRow['goldsmith_master_id'] = $row['goldsmith_master_id'];
         $tempRow['date'] = $row['date'];
@@ -446,9 +446,22 @@ if (isset($_GET['table']) && $_GET['table'] == 'transactionregister') {
         $type = $db->escapeString($fn->xss_clean($_GET['type']));
         $where .= " AND type = '$type' ";
     }
-    if (isset($_GET['name']) && $_GET['name'] != '') {
-        $name = $db->escapeString($fn->xss_clean($_GET['name']));
-        $where .= " AND name = '$name' ";
+    if (isset($_GET['gm_id']) && $_GET['gm_id'] != '') {
+        $gm_id = $db->escapeString($fn->xss_clean($_GET['gm_id']));
+        $where .= " AND dt.goldsmith_master_id	 = $gm_id";
+    }
+    if (isset($_GET['particular']) && $_GET['particular'] != '') {
+        $particular = $db->escapeString($fn->xss_clean($_GET['particular']));
+        $where .= " AND dt.category	 = '$particular'";
+    }
+    if (isset($_GET['place']) && $_GET['place'] != '') {
+        $place = $db->escapeString($fn->xss_clean($_GET['place']));
+        $where .= " AND gm.place = '$place'";
+    }
+    if ((isset($_GET['fromdate']) && $_GET['fromdate'] != '') && (isset($_GET['todate']) && $_GET['todate'] != '')) {
+        $fromdate = $db->escapeString($fn->xss_clean($_GET['fromdate']));
+        $todate = $db->escapeString($fn->xss_clean($_GET['todate']));
+        $where .= " AND date >= '$fromdate' and date < '$todate'";
     }
 
     if (isset($_GET['offset']))
@@ -470,13 +483,13 @@ if (isset($_GET['table']) && $_GET['table'] == 'transactionregister') {
     if (isset($_GET['order'])){
         $order = $db->escapeString($_GET['order']);
     }
-    $sql = "SELECT COUNT(`id`) as total FROM `daily_transaction` ";
+    $sql = "SELECT COUNT(*) as total FROM `daily_transaction` dt,`goldsmith_master` gm WHERE dt.goldsmith_master_id	 = gm.id" . $where;
     $db->sql($sql);
     $res = $db->getResult();
     foreach ($res as $row)
         $total = $row['total'];
    
-    $sql = "SELECT * FROM daily_transaction,goldsmith_master WHERE daily_transaction.dealer_id= goldsmith_master.id" ;
+    $sql = "SELECT *,dt.id AS id FROM daily_transaction dt,goldsmith_master gm WHERE dt.goldsmith_master_id	 = gm.id" . $where;
     $db->sql($sql);
     $res = $db->getResult();
 
@@ -519,23 +532,23 @@ if (isset($_GET['table']) && $_GET['table'] == 'dealerledger') {
     
     if (isset($_GET['sundry']) && $_GET['sundry'] != '') {
         $sundry = $db->escapeString($fn->xss_clean($_GET['sundry']));
-        $where .= " AND sundry = '$sundry' ";
+        $where .= "WHERE sundry = '$sundry' ";
     }
-    if (isset($_GET['name']) && $_GET['name'] != '') {
-        $name = $db->escapeString($fn->xss_clean($_GET['name']));
-        $where .= " AND name = '$name' ";
-    }
+    // if (isset($_GET['name']) && $_GET['name'] != '') {
+    //     $name = $db->escapeString($fn->xss_clean($_GET['name']));
+    //     $where .= " AND name = '$name' ";
+    // }
      
 
 
    
-    $sql = "SELECT COUNT(`id`) as total FROM `goldsmith_master`";
+    $sql = "SELECT COUNT(`id`) as total FROM `goldsmith_master` "  . $where;
     $db->sql($sql);
     $res = $db->getResult();
     foreach ($res as $row)
         $total = $row['total'];
    
-    $sql = "SELECT * FROM goldsmith_master";
+    $sql = "SELECT * FROM goldsmith_master "  . $where;
     $db->sql($sql);
     $res = $db->getResult();
 

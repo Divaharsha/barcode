@@ -27,12 +27,23 @@ if (isset($_POST['btnEdit'])) {
 
     if ( !empty($name))
     {
-			
-             $sql_query = "UPDATE dealers SET name='$name' WHERE id =  $ID";
-			 $db->sql($sql_query);
-			 $res = $db->getResult();
+        $date = $db->escapeString($fn->xss_clean($_POST['date']));
+        $type = $db->escapeString($fn->xss_clean($_POST['type']));
+        $category = $db->escapeString($fn->xss_clean($_POST['category'])); 
+        $weight = $db->escapeString($fn->xss_clean($_POST['weight']));
+        $stone_weight = $db->escapeString($fn->xss_clean($_POST['stone_weight']));
+        $wastage = $db->escapeString($fn->xss_clean($_POST['wastage']));
+        $touch = $db->escapeString($fn->xss_clean($_POST['touch']));
+        $rate = $db->escapeString($fn->xss_clean($_POST['rate']));
+        $gst = $db->escapeString($fn->xss_clean($_POST['gst']));
+        $amount = $db->escapeString($fn->xss_clean($_POST['amount']));
+        $mc = $db->escapeString($fn->xss_clean($_POST['mc']));
+        $purity = $db->escapeString($fn->xss_clean($_POST['purity']));
+        $sql = "UPDATE `daily_transaction` SET `date` = '$date', `type` = '$type', `category` = '$category', `weight` = '$weight', `stone_weight` = '$stone_weight', `wastage` = '$wastage', `touch` = '$touch', `rate` = '$rate', `gst` = '$gst', `amount` = '$amount', `mc` = '$mc', `purity` = '$purity' WHERE `daily_transaction`.`id` = $ID";
+        $db->sql($sql);
+        $update_result = $db->getResult();
              $update_result = $db->getResult();
-			if (!empty($update_result)) {
+			if (!empty($res)) {
 				$update_result = 0;
 			} else {
 				$update_result = 1;
@@ -40,44 +51,6 @@ if (isset($_POST['btnEdit'])) {
 
 			// check update result
 			if ($update_result == 1) {
-				for ($i = 0; $i < count($_POST['date']); $i++) {
-					$dealer_id = $db->escapeString(($_POST['daily_transaction_id'][$i]));
-                    $date = $db->escapeString($fn->xss_clean($_POST['date'][$i]));
-                    $type = $db->escapeString($fn->xss_clean($_POST['type'][$i]));
-                    $category = $db->escapeString($fn->xss_clean($_POST['category'][$i])); 
-                    $weight = $db->escapeString($fn->xss_clean($_POST['weight'][$i]));
-                    $stone_weight = $db->escapeString($fn->xss_clean($_POST['stone_weight'][$i]));
-                    $wastage = $db->escapeString($fn->xss_clean($_POST['wastage'][$i]));
-                    $touch = $db->escapeString($fn->xss_clean($_POST['touch'][$i]));
-                    $rate = $db->escapeString($fn->xss_clean($_POST['rate'][$i]));
-                    $gst = $db->escapeString($fn->xss_clean($_POST['gst'][$i]));
-                    $amount = $db->escapeString($fn->xss_clean($_POST['amount'][$i]));
-                    $mc = $db->escapeString($fn->xss_clean($_POST['mc'][$i]));
-					$sql = "UPDATE daily_transaction SET date='$date', type='$type', category='$category', weight='$weight', stone_weight='$stone_weight', wastage='$wastage', touch='$touch', rate='$rate', gst='$gst', amount='$amount', mc='$mc' WHERE id = $dealer_id";
-					$db->sql($sql);
-
-				}
-				if (
-					isset($_POST['insert_date']) && isset($_POST['insert_type']) && isset($_POST['insert_category']) && isset($_POST['insert_weight']) && isset($_POST['insert_stone_weight']) && isset($_POST['insert_wastage']) && isset($_POST['insert_touch']) && isset($_POST['insert_rate']) && isset($_POST['insert_gst']) && isset($_POST['insert_amount']) && isset($_POST['insert_mc'])
-				) {
-					for ($i = 0; $i < count($_POST['insert_date']); $i++) {
-						$date = $db->escapeString($fn->xss_clean($_POST['insert_date'][$i]));
-                        $type = $db->escapeString($fn->xss_clean($_POST['insert_type'][$i]));
-                        $category = $db->escapeString($fn->xss_clean($_POST['insert_category'][$i]));
-                        $weight = $db->escapeString($fn->xss_clean($_POST['insert_weight'][$i]));
-                        $stone_weight = $db->escapeString($fn->xss_clean($_POST['insert_stone_weight'][$i]));
-                        $wastage = $db->escapeString($fn->xss_clean($_POST['insert_wastage'][$i]));
-                        $touch = $db->escapeString($fn->xss_clean($_POST['insert_touch'][$i]));
-                        $rate = $db->escapeString($fn->xss_clean($_POST['insert_rate'][$i]));
-                        $gst = $db->escapeString($fn->xss_clean($_POST['insert_gst'][$i]));
-                        $amount = $db->escapeString($fn->xss_clean($_POST['insert_amount'][$i]));
-                        $mc = $db->escapeString($fn->xss_clean($_POST['insert_mc'][$i]));
-                        $sql = "INSERT INTO daily_transactions (dealer_id,date, type, category, weight, stone_weight, wastage, touch, rate, gst, amount, mc) VALUES ('$ID','$date', '$type', '$category', '$weight', '$stone_weight', '$wastage', '$touch', '$rate', '$gst', '$amount', '$mc')";
-
-					}
-
-				}
-
 			    $error['update_transaction'] = " <section class='content-header'><span class='label label-success'>Daily Transactions updated Successfully</span></section>";
 			} else {
 				$error['update_transaction'] = " <span class='label label-danger'>Failed to update</span>";
@@ -89,13 +62,10 @@ if (isset($_POST['btnEdit'])) {
 // create array variable to store previous data
 $data = array();
 
-$sql_query = "SELECT * FROM dealers WHERE id ='$ID'";
+
+$sql_query = "SELECT * FROM daily_transaction dt,goldsmith_master gm WHERE dt.id = '$ID'";
 $db->sql($sql_query);
 $res = $db->getResult();
-
-$sql_query = "SELECT * FROM daily_transaction WHERE dealer_id ='$ID'";
-$db->sql($sql_query);
-$resslot = $db->getResult();
 
 if (isset($_POST['btnCancel'])) { ?>
 	<script>
@@ -128,31 +98,23 @@ if (isset($_POST['btnCancel'])) { ?>
 							    <div class="form-group">
                                     <div class="col-md-4">
 										<label for="exampleInputEmail1">Name</label><?php echo isset($error['name']) ? $error['name'] : ''; ?>
-										<input type="text" class="form-control" name="name" value="<?php echo $res[0]['name']; ?>">
+										<input type="text" class="form-control" name="name" value="<?php echo $res[0]['name'] ?>" readonly>
 									 </div>
 								</div>
 						   </div>
 						   <hr>
-						 <div id="variations">
-							<?php
-							$i=0;
-							foreach ($resslot as $row) {
-								?>
-								<div  id="packate_div">
-									<div style="padding-left:20px;" class="row">
-									<input type="hidden" class="form-control" name="daily_transaction_id[]" id="daily_transaction_id" value='<?= $row['id']; ?>'>
-                                        <div class="row">
+                           <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group packate_div">
                                                     <label for="exampleInputEmail1"> Date</label> <i class="text-danger asterik">*</i>
-                                                    <input type="text" class="form-control" name="date[]" value="<?php echo $row['date'] ?>"/>
+                                                    <input type="date" class="form-control" name="date" value="<?php echo $res[0]['date'] ?>"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group packate_div">
                                                     <label for="exampleInputEmail1">Type</label> 
-                                                    <select id='type' name="type[]" class='form-control' required>
-                                                    <option value="none">Select</option>
+                                                    <select id='type' name="type" class='form-control' required>
+                                                    <option value="">Select</option>
                                                                 <?php
                                                                 $sql = "SELECT * FROM `types`";
                                                                 $db->sql($sql);
@@ -160,7 +122,7 @@ if (isset($_POST['btnCancel'])) { ?>
                                                                 $result = $db->getResult();
                                                                 foreach ($result as $value) {
                                                                 ?>
-                                                                    <option value='<?= $value['type'] ?>' <?=$row['type'] == $value['type'] ? ' selected="selected"' : '';?>><?= $value['type'] ?></option>
+                                                                    <option value='<?= $value['type'] ?>' <?=$res[0]['type'] == $value['type'] ? ' selected="selected"' : '';?>><?= $value['type'] ?></option>
                                                                 <?php } ?>
                                                     </select>
                                                 </div>
@@ -168,7 +130,7 @@ if (isset($_POST['btnCancel'])) { ?>
                                             <div class="col-md-3">
                                                 <div class="form-group packate_div">
                                                     <label for="exampleInputEmail1">Category</label> 
-                                                    <select id='category' name="category[]" class='form-control' required>
+                                                    <select id='category' name="category" class='form-control' required>
                                                                 <?php
                                                                 $sql = "SELECT * FROM `brand`";
                                                                 $db->sql($sql);
@@ -176,7 +138,7 @@ if (isset($_POST['btnCancel'])) { ?>
                                                                 $result = $db->getResult();
                                                                 foreach ($result as $value) {
                                                                 ?>
-                                                                    <option value='<?= $value['category'] ?>' <?=$row['category'] == $value['category'] ? ' selected="selected"' : '';?>><?= $value['category'] ?></option>
+                                                                    <option value='<?= $value['category'] ?>' <?=$res[0]['category'] == $value['category'] ? ' selected="selected"' : '';?>><?= $value['category'] ?></option>
                                                                 <?php } ?>
                                                     </select>
                                                 </div>
@@ -186,70 +148,62 @@ if (isset($_POST['btnCancel'])) { ?>
                                                 <div class="col-md-2">
                                                     <div class="form-group packate_div">
                                                         <label for="exampleInputEmail1">Weight</label> 
-                                                        <input type="number" class="form-control" name="weight[]" value="<?php echo $row['weight'] ?>" />
+                                                        <input type="number" class="form-control" name="weight" value="<?php echo $res[0]['weight'] ?>" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group packate_div">
                                                         <label for="exampleInputEmail1">Stone Weight</label> 
-                                                        <input type="number" class="form-control" name="stone_weight[]" value="<?php echo $row['stone_weight'] ?>"  />
+                                                        <input type="number" class="form-control" name="stone_weight" value="<?php echo $res[0]['stone_weight'] ?>"  />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group packate_div">
                                                         <label for="exampleInputEmail1">Wastage</label>
-                                                        <input type="number" class="form-control" name="wastage[]" value="<?php echo $row['wastage'] ?>" />
+                                                        <input type="number" class="form-control" name="wastage" value="<?php echo $res[0]['wastage'] ?>" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group packate_div">
                                                         <label for="exampleInputEmail1">Touch</label> 
-                                                        <input type="number" class="form-control" name="touch[]" value="<?php echo $row['touch'] ?>"  />
+                                                        <input type="number" class="form-control" name="touch" value="<?php echo $res[0]['touch'] ?>"  />
                                                     </div>
                                                 </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group packate_div">
+                                                    <label for="exampleInputEmail1">Purity(gram)</label>
+                                                    <input type="number" class="form-control" value="<?php echo $res[0]['purity'] ?>" name="purity" id="purity" readonly />
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                                     <div class="col-md-2">
                                                         <div class="form-group packate_div">
                                                             <label for="exampleInputEmail1">Rate</label>
-                                                            <input type="number" class="form-control" name="rate[]" value="<?php echo $row['rate'] ?>" />
+                                                            <input type="number" class="form-control" name="rate" value="<?php echo $res[0]['rate'] ?>" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group packate_div">
                                                             <label for="exampleInputEmail1"> GST</label> 
-                                                            <input type="number" class="form-control" name="gst[]" value="<?php echo $row['gst'] ?>" />
+                                                            <input type="number" class="form-control" name="gst" value="<?php echo $res[0]['gst'] ?>" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group packate_div">
                                                             <label for="exampleInputEmail1">Amount</label> 
-                                                            <input type="number" class="form-control" name="amount[]" value="<?php echo $row['amount'] ?>" />
+                                                            <input type="number" class="form-control" name="amount" value="<?php echo $row['amount'] ?>" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group packate_div">
                                                             <label for="exampleInputEmail1">MC</label> 
-                                                            <input type="number" class="form-control" name="mc[]" value="<?php echo $row['mc'] ?>" />
+                                                            <input type="number" class="form-control" name="mc" value="<?php echo $row['mc'] ?>" />
                                                         </div>
                                                     </div>
                                         </div>
-
-										<?php if ($i == 0) { ?>
-												<div class='col-md-1'>
-													<label>Variation</label>
-													<a id="add_packate_variation" title='Add variation of product' style='cursor: pointer;'><i class="fa fa-plus-square-o fa-2x"></i></a>
-												</div>
-											<?php } else { ?>
-												<div class="col-md-1" style="display: grid;">
-													<label>Remove</label>
-													<a class="remove_variation text-danger" data-id="data_delete" title="Remove variation of product" style="cursor: pointer;"><i class="fa fa-times fa-2x"></i></a>
-												</div>
-											<?php } ?>
-									</div>
-									<?php $i++; } ?> 
-								</div>
-                            </div>
                         </div>   
 	
                             </div><!-- /.box-body -->

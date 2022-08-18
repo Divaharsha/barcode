@@ -78,9 +78,6 @@ if (isset($_POST['btnAdd'])) {
         <div class="col-md-12">
             <!-- general form elements -->
             <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Add Daily Transaction</h3>
-                </div>
                 <div class="box-header">
                     <?php echo isset($error['cancelable']) ? '<span class="label label-danger">Till status is required.</span>' : ''; ?>
                 </div>
@@ -121,7 +118,7 @@ if (isset($_POST['btnAdd'])) {
                                             <div class="form-group packate_div">
                                                 <label for="exampleInputEmail1">Type</label> 
                                                 <select id='type' name="type[]" class='form-control' required>
-                                                <option value="none">Select</option>
+                                                <option value="">Select</option>
                                                             <?php
                                                             $sql = "SELECT * FROM `types`";
                                                             $db->sql($sql);

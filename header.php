@@ -252,12 +252,12 @@ $res_logo = $db->getResult();
                                     <span>Daily Transaction</span>
                                 </a>
                            </li>
-                           <li class="treeview">
+                           <!-- <li class="treeview">
                                 <a href="#">
                                     <i class="fa fa-bullseye"></i>
                                     <span>Suspense Account</span>
                                 </a>
-                           </li>
+                           </li> -->
 
                     </ul>
                 </li>
@@ -281,7 +281,7 @@ $res_logo = $db->getResult();
                                     <span>Dealer Ledger Report</span>
                                 </a>
                            </li>
-                           <li class="treeview">
+                           <!-- <li class="treeview">
                                 <a href="#">
                                     <i class="fa fa-bullseye"></i>
                                     <span>Areawise Ledger Report</span>
@@ -292,7 +292,7 @@ $res_logo = $db->getResult();
                                     <i class="fa fa-bullseye"></i>
                                     <span>Stock Report</span>
                                 </a>
-                           </li>
+                           </li> -->
 
                     </ul>
                 </li>
@@ -326,18 +326,18 @@ $res_logo = $db->getResult();
                 <?php
                 if ($role == 'admin' || $role == 'super admin') {
                 ?>
-                    <li class="treeview">
+                    <!-- <li class="treeview">
                         <a href="system-users.php">
                             <i class="fa fa-users" class="active"></i> <span>System Users</span>
                         </a>
-                    </li>
+                    </li> -->
                 <?php }
                 $query = "SELECT version FROM updates ORDER BY id DESC LIMIT 1";
                 $db->sql($query);
                 $result = $db->getResult();
                 if (!empty($result)) {
                 ?>
-                    <center><a href="home.php" class="label label-success"><?= $result[0]['version'] ?></a></center>
+                    <!-- <center><a href="home.php" class="label label-success"><?= $result[0]['version'] ?></a></center> -->
                 <?php } ?>
             </ul>
             </section>

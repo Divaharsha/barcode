@@ -22,19 +22,6 @@
                                 <option value='Sundry Creditors'>Sundry Creditors</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-3">
-                            <h4 class="box-title">Filter by Name </h4>
-                            <select id='name' name="name" class='form-control' required>
-                                        <?php
-                                        $sql = "SELECT * FROM `goldsmith_master`";
-                                        $db->sql($sql);
-                                        $result = $db->getResult();
-                                        foreach ($result as $value) {
-                                        ?>
-                                            <option value='<?= $value['name'] ?>'><?= $value['name'] ?></option>
-                                        <?php } ?>
-                            </select>
-                        </div>
 
                     </div>
                     <div class="box-body table-responsive">
