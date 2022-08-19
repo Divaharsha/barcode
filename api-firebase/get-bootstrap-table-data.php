@@ -114,13 +114,17 @@ if (isset($_GET['table']) && $_GET['table'] == 'goldsmith_master') {
 }
 
 //daily transaction table goes here
-if (isset($_GET['table']) && $_GET['table'] == 'dealers') {
+if (isset($_GET['table']) && $_GET['table'] == 'suspense_account') {
 
     $offset = 0;
     $limit = 10;
     $where = '';
     $sort = 'id';
     $order = 'DESC';
+    if (isset($_GET['type']) && $_GET['type'] != '') {
+        $type = $db->escapeString($fn->xss_clean($_GET['type']));
+        $where .= " AND type = '$type' ";
+    }
     if (isset($_GET['offset']))
         $offset = $db->escapeString($_GET['offset']);
     if (isset($_GET['limit']))
@@ -132,7 +136,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'dealers') {
 
     if (isset($_GET['search']) && !empty($_GET['search'])) {
         $search = $db->escapeString($_GET['search']);
-        $where .= "WHERE name like '%" . $search . "%'";
+        $where .= "WHERE type like '%" . $search . "%' OR name like '%" . $search . "%'";
     }
     if (isset($_GET['sort'])){
         $sort = $db->escapeString($_GET['sort']);
@@ -140,13 +144,13 @@ if (isset($_GET['table']) && $_GET['table'] == 'dealers') {
     if (isset($_GET['order'])){
         $order = $db->escapeString($_GET['order']);
     }
-    $sql = "SELECT COUNT(`id`) as total FROM `dealers` ";
+    $sql = "SELECT COUNT(`id`) as total FROM `suspense_account` ";
     $db->sql($sql);
     $res = $db->getResult();
     foreach ($res as $row)
         $total = $row['total'];
    
-    $sql = "SELECT * FROM dealers " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+    $sql = "SELECT * FROM suspense_account" . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
     $db->sql($sql);
     $res = $db->getResult();
 
@@ -158,10 +162,14 @@ if (isset($_GET['table']) && $_GET['table'] == 'dealers') {
 
     foreach ($res as $row) {
 
-        $operate= '<a href="edit-dailytransaction.php?id=' . $row['id'] . '" ><i class="fa fa-edit" ></i>Edit</a>';
-        $operate .= '<a href="view-daily_transaction.php?id=' . $row['id'] . '" class="btn btn-primary btn-xs" style="margin-left:5px;!important">View</a>';
+        $operate= '<a href="id=' . $row['id'] . '" ><i class="fa fa-edit" ></i>Edit</a>';
+        // $operate .= '<a href="view-daily_transaction.php?id=' . $row['id'] . '" class="btn btn-primary btn-xs" style="margin-left:5px;!important">View</a>';
         $tempRow['id'] = $row['id'];
         $tempRow['name'] = $row['name'];
+        $tempRow['type'] = $row['type'];
+        $tempRow['inward'] = $row['inward'];
+        $tempRow['outward'] = $row['outward'];
+        $tempRow['total'] = $row['total'];
         $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
     }

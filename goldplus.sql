@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2022 at 10:20 AM
+-- Generation Time: Aug 20, 2022 at 01:26 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -100,26 +100,6 @@ CREATE TABLE `daily_transaction` (
 INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `category`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`) VALUES
 (1, 3, '2022-08-17', NULL, '916 KDM', 5, 6, 7, 5, 7, 6, 0, 0, 0),
 (2, 3, '2022-08-23', 'Credit Sales', '916 KDM', 5, 5, 6, 67, 12, 7, 0, 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `dealers`
---
-
-CREATE TABLE `dealers` (
-  `id` int(11) NOT NULL,
-  `name` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `dealers`
---
-
-INSERT INTO `dealers` (`id`, `name`) VALUES
-(1, 'divakar'),
-(2, 'Divakar'),
-(3, 'Divakar');
 
 -- --------------------------------------------------------
 
@@ -239,6 +219,28 @@ INSERT INTO `settings` (`id`, `variable`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `suspense_account`
+--
+
+CREATE TABLE `suspense_account` (
+  `id` int(11) NOT NULL,
+  `name` text DEFAULT NULL,
+  `type` text DEFAULT NULL,
+  `inward` int(11) DEFAULT NULL,
+  `outward` int(11) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `suspense_account`
+--
+
+INSERT INTO `suspense_account` (`id`, `name`, `type`, `inward`, `outward`, `total`) VALUES
+(1, 'hello', 'Cash', 78, 89, 11);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `taxes`
 --
 
@@ -322,12 +324,6 @@ ALTER TABLE `daily_transaction`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `dealers`
---
-ALTER TABLE `dealers`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `faq`
 --
 ALTER TABLE `faq`
@@ -355,6 +351,12 @@ ALTER TABLE `openingmaster`
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `suspense_account`
+--
+ALTER TABLE `suspense_account`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -395,12 +397,6 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `daily_transaction`
 --
 ALTER TABLE `daily_transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `dealers`
---
-ALTER TABLE `dealers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -432,6 +428,12 @@ ALTER TABLE `openingmaster`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
+-- AUTO_INCREMENT for table `suspense_account`
+--
+ALTER TABLE `suspense_account`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `taxes`

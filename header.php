@@ -252,12 +252,13 @@ $res_logo = $db->getResult();
                                     <span>Daily Transaction</span>
                                 </a>
                            </li>
-                           <!-- <li class="treeview">
-                                <a href="#">
+                           
+                           <li class="treeview">
+                                <a href="suspense.php">
                                     <i class="fa fa-bullseye"></i>
                                     <span>Suspense Account</span>
                                 </a>
-                           </li> -->
+                           </li>
 
                     </ul>
                 </li>
