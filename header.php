@@ -282,18 +282,18 @@ $res_logo = $db->getResult();
                                     <span>Dealer Ledger Report</span>
                                 </a>
                            </li>
-                           <!-- <li class="treeview">
-                                <a href="#">
+                            <li class="treeview">
+                                <a href="areawiseledgerreport.php">
                                     <i class="fa fa-bullseye"></i>
                                     <span>Areawise Ledger Report</span>
                                 </a>
                            </li>
                            <li class="treeview">
-                                <a href="#">
+                                <a href="stockreport.php">
                                     <i class="fa fa-bullseye"></i>
                                     <span>Stock Report</span>
                                 </a>
-                           </li> -->
+                           </li> 
 
                     </ul>
                 </li>

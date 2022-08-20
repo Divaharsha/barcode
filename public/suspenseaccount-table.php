@@ -20,7 +20,6 @@
                             <div class="form-group col-md-3">
                                 <h4 class="box-title">Filter by Type </h4>
                                 <select id='type' name="type" class='form-control'>
-                                        <option value="">ALL</option>
                                         <option value="Weight">Weight</option>
                                         <option value="Cash">Cash</option>
                                 </select>
@@ -36,11 +35,8 @@
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
                                     <th data-field="name" data-sortable="true">Name</th>
-                                    <th data-field="type" data-sortable="true">Type</th>
-                                    <th data-field="inward" data-sortable="true">Inward</th>
-                                    <th data-field="outward" data-sortable="true">Outward</th>
                                     <th data-field="total" data-sortable="true">Total</th>
-                                    <th data-field="operate" data-events="actionEvents">Action</th>
+                                    <!-- <th data-field="operate" data-events="actionEvents">Action</th> -->
              
                                 </tr>
                             </thead>

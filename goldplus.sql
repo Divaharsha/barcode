@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2022 at 01:26 AM
+-- Generation Time: Aug 21, 2022 at 01:05 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -226,17 +226,36 @@ CREATE TABLE `suspense_account` (
   `id` int(11) NOT NULL,
   `name` text DEFAULT NULL,
   `type` text DEFAULT NULL,
-  `inward` int(11) DEFAULT NULL,
-  `outward` int(11) DEFAULT NULL,
-  `total` int(11) DEFAULT NULL
+  `method` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `suspense_account`
 --
 
-INSERT INTO `suspense_account` (`id`, `name`, `type`, `inward`, `outward`, `total`) VALUES
-(1, 'hello', 'Cash', 78, 89, 11);
+INSERT INTO `suspense_account` (`id`, `name`, `type`, `method`) VALUES
+(2, 'Divakar A', 'Weight', 'Inward');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suspense_account_variant`
+--
+
+CREATE TABLE `suspense_account_variant` (
+  `id` int(11) NOT NULL,
+  `suspense_account_id` int(11) DEFAULT NULL,
+  `name` varchar(200) DEFAULT NULL,
+  `weight` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `suspense_account_variant`
+--
+
+INSERT INTO `suspense_account_variant` (`id`, `suspense_account_id`, `name`, `weight`) VALUES
+(1, 2, 'D', 45),
+(2, 2, 'D', 78);
 
 -- --------------------------------------------------------
 
@@ -360,6 +379,12 @@ ALTER TABLE `suspense_account`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `suspense_account_variant`
+--
+ALTER TABLE `suspense_account_variant`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `taxes`
 --
 ALTER TABLE `taxes`
@@ -433,7 +458,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `suspense_account`
 --
 ALTER TABLE `suspense_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `suspense_account_variant`
+--
+ALTER TABLE `suspense_account_variant`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `taxes`
