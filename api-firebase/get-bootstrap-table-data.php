@@ -123,7 +123,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'suspense_account') {
     $order = 'DESC';
     if (isset($_GET['type']) && $_GET['type'] != '') {
         $type = $db->escapeString($fn->xss_clean($_GET['type']));
-        $where .= " AND type = '$type' ";
+        $where .= " WHERE type = '$type' ";
     }
     if (isset($_GET['offset']))
         $offset = $db->escapeString($_GET['offset']);
@@ -150,7 +150,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'suspense_account') {
     foreach ($res as $row)
         $total = $row['total'];
    
-    $sql = "SELECT * FROM suspense_account" . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+    $sql = "SELECT * FROM suspense_account $where ORDER BY $sort $order LIMIT $offset,$limit";
     $db->sql($sql);
     $res = $db->getResult();
 
@@ -161,15 +161,49 @@ if (isset($_GET['table']) && $_GET['table'] == 'suspense_account') {
     $tempRow = array();
 
     foreach ($res as $row) {
+        $id = $row['id'];
+        if($type == 'Weight'){
+            $sql = "SELECT SUM(weight) AS inwardtotal FROM suspense_account_variant WHERE suspense_account_id = '$id' AND method = 'Inward'";
+            $db->sql($sql);
+            $invardres = $db->getResult();
+            $num = $db->numRows($invardres);
+            if($num > 0) {
+                $invtotal = $invardres[0]['inwardtotal'];
+    
+            }
+            else{
+                $invtotal = 0;
+                
+            }
+            $sql = "SELECT SUM(weight) AS outwardtotal FROM suspense_account_variant WHERE suspense_account_id = '$id' AND method = 'Outward'";
+            $db->sql($sql);
+            $outvardres = $db->getResult();
+            $num = $db->numRows($outvardres);
+            if($num > 0) {
+                $outvtotal = $outvardres[0]['outwardtotal'];
+    
+            }
+            else{
+                $outvtotal = 0;
+                
+            }
+                        
 
-        // $operate= '<a href="id=' . $row['id'] . '" ><i class="fa fa-edit" ></i>Edit</a>';
-        // $operate .= '<a href="view-daily_transaction.php?id=' . $row['id'] . '" class="btn btn-primary btn-xs" style="margin-left:5px;!important">View</a>';
+        }
+        else{
+            $sql = "SELECT * FROM suspense_account_cash WHERE suspense_account_id = '$id'";
+            $db->sql($sql);
+            $res = $db->getResult();
+            $invtotal = $res[0]['inward'];
+            $outvtotal = $res[0]['outward'];
+
+        }
+        $total = $invtotal - $outvtotal;
+
+
         $tempRow['id'] = $row['id'];
-        $tempRow['name'] = $row['name'];
-        // $tempRow['type'] = $row['type'];
-        // $tempRow['inward'] = $row['inward'];
-        // $tempRow['outward'] = $row['outward'];
-        $tempRow['total'] = $row['total'];
+        $tempRow['name'] = $row['holder_name'];
+        $tempRow['total'] = $total;
         // $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
     }

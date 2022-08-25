@@ -3,9 +3,6 @@
         Suspense Account/
         <small><a href="home.php"><i class="fa fa-home"></i> Home</a></small>
     </h1>
-    <ol class="breadcrumb">
-        <a class="btn btn-block btn-default" href="add-suspense.php"><i class="fa fa-plus-square"></i> Add New Suspense Account</a>
-    </ol>
 
     
 </section>
@@ -23,6 +20,14 @@
                                         <option value="Weight">Weight</option>
                                         <option value="Cash">Cash</option>
                                 </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <h4 class="box-title"> </h4>
+                                <a class="btn btn-block btn-primary" href="add-suspense.php"><i class="fa fa-plus-square"></i> Add Weight</a>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <h4 class="box-title"> </h4>
+                                <a class="btn btn-block btn-success" href="add-suspense-cash.php"><i class="fa fa-money"></i>  Add Cash</a>
                             </div>
                     </div>
                     <!-- /.box-header -->
@@ -56,10 +61,13 @@
     $('#total').on('change', function() {
         $('#users_table').bootstrapTable('refresh');
     });
+    $('#type').on('change', function() {
+        $('#users_table').bootstrapTable('refresh');
+    });
 
     function queryParams(p) {
         return {
-            "total": $('#total').val(),
+            "type": $('#type').val(),
             limit: p.limit,
             sort: p.sort,
             order: p.order,

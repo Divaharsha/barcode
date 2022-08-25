@@ -14,12 +14,13 @@ $res_cur = $db->getResult();
 
 if (isset($_POST['btnAdd'])) {
         $error = array();
-        $name = $db->escapeString($fn->xss_clean($_POST['name']));
+        $holder_name = $db->escapeString($fn->xss_clean($_POST['holder_name']));
         $type= $db->escapeString($fn->xss_clean($_POST['type']));
         $method= $db->escapeString($fn->xss_clean($_POST['method']));
+        $suspense_account_id = $db->escapeString($fn->xss_clean($_POST['sus_id']));
 
-        if (empty($name)) {
-            $error['name'] = " <span class='label label-danger'>Required!</span>";
+        if (empty($holder_name)) {
+            $error['holder_name'] = " <span class='label label-danger'>Required!</span>";
         }
         if (empty($type)) {
             $error['type'] = " <span class='label label-danger'>Required!</span>";
@@ -29,49 +30,58 @@ if (isset($_POST['btnAdd'])) {
         }
        
 
-        if ( !empty($name) && !empty($type) && !empty($method))
+        if ( !empty($holder_name) && !empty($type) && !empty($method))
         {
-                $sql = "INSERT INTO suspense_account (name,type,method) VALUES ('$name','$type','$method')";
+            if(empty($suspense_account_id)){
+                $sql = "INSERT INTO suspense_account (holder_name,type) VALUES ('$holder_name','$type')";
                 $db->sql($sql);
                 $users_result = $db->getResult();
-                if (!empty($users_result)) {
-                    $users_result = 0;
-                } else {
-                    $users_result = 1;
-                }
-                if ($users_result == 1) {
-                    $sql = "SELECT id FROM suspense_account ORDER BY id DESC LIMIT 1";
-                    $db->sql($sql);
-                    $res = $db->getResult();
-                    $suspense_account_id = $res[0]['id'];
-                    for ($i = 0; $i < count($_POST['weight']); $i++) {
+                $sql = "SELECT * FROM suspense_account ORDER BY id DESC LIMIT 1";
+                $db->sql($sql);
+                $sus_res = $db->getResult();
+                $suspense_account_id = $sus_res[0]['id'];
 
-                            $name1 = $db->escapeString($fn->xss_clean($_POST['name'][$i]));
-                            $weight = $db->escapeString($fn->xss_clean($_POST['weight'][$i]));                    
-                            $sql = "INSERT INTO suspense_account_variant (suspense_account_id,name,weight) VALUES('$suspense_account_id','$name','$weight')";
-                            $db->sql($sql);
-                            $suspense_result = $db->getResult();
-                    }
-                    if (!empty($suspense_result)) {
-                        $suspense_result = 0;
-                    } else {
-                        $suspense_result = 1;
-                    }
-                    $error['add_menu'] = "<section class='content-header'>
-                                                    <span class='label label-success'>Suspense Account Added Successfully</span>
-                                                    <h4><small><a  href='suspense.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Suspense Account</a></small></h4>
-                                                     </section>";
-                }
-                else {
-                        $error['add_menu'] = " <span class='label label-danger'>Failed</span>";
-                    }
-                
             }
-        }
+            if(isset($_POST['weight'])){
+                for ($i = 0; $i < count($_POST['weight']); $i++) {
+
+                    $name = $db->escapeString($fn->xss_clean($_POST['name'][$i]));
+                    $weight = $db->escapeString($fn->xss_clean($_POST['weight'][$i]));  
+                    $sus_var_id = $db->escapeString($fn->xss_clean($_POST['sus_var_id'][$i]));      
+                    $sql = "UPDATE suspense_account_variant SET name='$name',weight='$weight' WHERE id =  $sus_var_id";                
+                    $db->sql($sql);
+                    $suspense_result = $db->getResult();
+                }
+
+            }
+
+            if (
+                isset($_POST['insert_name']) && isset($_POST['insert_weight'])){
+                for ($i = 0; $i < count($_POST['insert_name']); $i++) {
+                    $name = $db->escapeString($fn->xss_clean($_POST['insert_name'][$i]));
+                    $weight = $db->escapeString($fn->xss_clean($_POST['insert_weight'][$i]));
+                    $sql = "INSERT INTO suspense_account_variant (suspense_account_id,name,weight,method) VALUES('$suspense_account_id','$name','$weight','$method')";
+                    $db->sql($sql);
+
+                }
+
+            }
+
+            if (!empty($suspense_result)) {
+                $suspense_result = 0;
+            } else {
+                $suspense_result = 1;
+            }
+            $error['add_menu'] = "<section class='content-header'>
+                                            <span class='label label-success'>Suspense Account Added Successfully</span>
+                                            <h4><small><a  href='suspense.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Suspense Account</a></small></h4>
+                                            </section>";
+                }
+            }
             
 ?>
 <section class="content-header">
-    <h1>Add New Suspense Account</h1>
+    <h1>Add Weight</h1>
     <?php echo isset($error['add_menu']) ? $error['add_menu'] : ''; ?>
     <ol class="breadcrumb">
         <li><a href="home.php"><i class="fa fa-home"></i> Home</a></li>
@@ -86,83 +96,143 @@ if (isset($_POST['btnAdd'])) {
                 <div class="box-header">
                     <?php echo isset($error['cancelable']) ? '<span class="label label-danger">Till status is required.</span>' : ''; ?>
                 </div>
-
-                <!-- /.box-header -->
-                <!-- form start -->
-                <form id='add_suspense_form' method="post" enctype="multipart/form-data">
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="form-group col-md-4">
-                                    <label style="margin-right:10px;" class="control-label">Type</label>
-                                        <div id="type" class="btn-group">
-                                            <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="type" value="Weight" checked> Weight
-                                            </label>
-                                            <label class="btn btn-info" data-toggle-class="btn-danger" data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="type" value="Cash"> Cash
-                                            </label>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
+                <form id='add_sus_form' method="post" enctype="multipart/form-data">
+                <div class="box-body">
                         <div class="row">
                             <div class="form-group">
                                 <div class='col-md-4'>
-                                        <input type="text"  id="name" name="name" placeholder="Enter Name" class="form-control" required>
+                                        <input type="text"  id="name" name="susname" placeholder="Enter Name" class="form-control" required>
                                 </div>
-                                <div class="col-md-1">
-                                   
-                                    <input type="submit" class="btn-primary btn" value="View" name="btnView" />&nbsp;
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <?php if(isset($_POST['btnView'])){ 
-                            ?>
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="form-group col-md-4">
-                                    <label style="margin-right:10px;" class="control-label">Method</label>
-                                       <div id="method">
-                                            <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                <div class='col-md-4'>
+                                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                                 <input type="radio" name="method" value="Inward" checked> Inward
                                             </label>
                                             <label class="btn btn-info" data-toggle-class="btn-danger" data-toggle-passive-class="btn-default">
                                                 <input type="radio" name="method" value="Outward"> Outward
                                             </label>
-                                        </div>
                                 </div>
                             </div>
                         </div>
                         <br>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-1">
+                                   
+                                   <input type="submit" class="btn-primary btn" value="View" name="btnView" />&nbsp;
+                               </div>
+                            </div>
 
+                        </div>
+                        <br>
+                </form>
 
-                        <div  id="packate_div"  >
-                            <div class="row">
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form id='add_suspense_form' method="post" enctype="multipart/form-data">
+
+                        <?php if(isset($_POST['btnView'])){ 
+                            $susname = $db->escapeString($fn->xss_clean($_POST['susname']));
+                            $method = $db->escapeString($fn->xss_clean($_POST['method']));
+                            $type= 'Weight';
+                            $sql_query = "SELECT * FROM suspense_account WHERE holder_name = '$susname' AND type = 'Weight'";
+                            $db->sql($sql_query);
+                            $ressus = $db->getResult();
+                            $num = $db->numRows($ressus);
+                            $ID = "";
+                            if($num > 0){
+                                $ID = $ressus[0]['id'];
+                                $sql_query = "SELECT * FROM suspense_account_variant WHERE suspense_account_id =" . $ID;
+                                $db->sql($sql_query);
+                                $ressusvari = $db->getResult();
+
+                            }
+
+                            ?>
+                            <input type="hidden" name="type" value="<?php echo $type?>">
+                            <input type="hidden" name="sus_id" value="<?php echo $ID?>">
+                            <input type="hidden" name="method" value="<?php echo $method?>">
+                            
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group packate_div">
+                                    <label for="exampleInputEmail1">Suspense Account Name</label> 
+                                    <input type="text" class="form-control" name="holder_name" value="<?php echo $susname?>" readonly/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group packate_div">
+                                    <label for="exampleInputEmail1">Method</label> 
+                                    <input type="text" class="form-control" name="method" value="<?php echo $method?>" readonly/>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <?php
+                        if($num > 0){
+                            $i=0;
+                            foreach ($ressusvari as $row) {?>
+                                <div  id="packate_div"  >
+                                <input type="hidden" class="form-control" name="sus_var_id[]" id="sus_var_id" value='<?= $row['id']; ?>' />
+        
+                                    <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group packate_div">
                                                 <label for="exampleInputEmail1">Name</label> 
-                                                <input type="text" class="form-control" name="name[]"  />
+                                                <input type="text" class="form-control" name="name[]" value="<?php echo $row['name'] ?>"  />
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group packate_div">
                                                 <label for="exampleInputEmail1">Weight</label> 
-                                                <input type="number" onblur="findTotal()" class="weight form-control"  name="weight[]" />
+                                                <input type="number" onblur="findTotal()" class="weight form-control" value="<?php echo $row['weight'] ?>"  name="weight[]" />
                                             </div>
                                         </div>
-                                    
+                                        <?php if ($i == 0) { ?>
+                                            <div class="col-md-1">
+                                                <label>Variation</label>
+                                                <a class="add_packate_variation" title="Add variation of product" style="cursor: pointer;"><i class="fa fa-plus-square-o fa-2x"></i></a>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="col-md-1" style="display: grid;">
+                                                <label>Remove</label>
+                                                <a class="remove_variation text-danger" data-id="data_delete" title="Remove variation of product" style="cursor: pointer;"><i class="fa fa-times fa-2x"></i></a>
+                                            </div>
+                                        <?php } ?>                                
+                                    </div>
+                                     <?php $i++; } ?>   
+                                </div>
+                        <?php
+                        }else{
+                            ?>
+                                <div id="add_pckate_div"  >
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Name</label> 
+                                                <input type="text" class="form-control" name="insert_name[]" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group packate_div">
+                                                <label for="exampleInputEmail1">Weight</label> 
+                                                <input type="number" onblur="findTotal()" class="weight form-control" id="weight" name="insert_weight[]"/>
+                                            </div>
+                                        </div>
                                         <div class="col-md-1">
-                                            <label>Variation</label>
-                                            <a class="add_packate_variation" title="Add variation of product" style="cursor: pointer;"><i class="fa fa-plus-square-o fa-2x"></i></a>
+                                                <label>Variation</label>
+                                                <a class="add_packate_variation" title="Add variation of product" style="cursor: pointer;"><i class="fa fa-plus-square-o fa-2x"></i></a>
+                                            </div>
+
+                                    </div>
+                                </div>
+                            <?php
+                        }
+                        ?>
+
+
+                        <div id="variations">
                                         </div>
-                                        <div id="variations">
-                                        </div>
-                             </div>
-                        </div>
+
                         <div class="row">
                                 <div class="col-md-3">
                                             <div class="form-group">
@@ -171,9 +241,8 @@ if (isset($_POST['btnAdd'])) {
                                             </div>
 
                                 </div>
-                            </div>
-                        <br>
                         </div>
+                        <br>
                         <div class="box-footer">
                             <input type="submit" class="btn-primary btn" value="Save" name="btnAdd" />&nbsp;
                             <input type="reset" class="btn-danger btn" value="Clear" id="btnClear" />
@@ -185,13 +254,13 @@ if (isset($_POST['btnAdd'])) {
                                         <div class="col-md-3">
                                             <div class="form-group packate_div">
                                                 <label for="exampleInputEmail1">Name</label> 
-                                                <input type="text" class="form-control" name="name[]" />
+                                                <input type="text" class="form-control" name="insert_name[]" />
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group packate_div">
                                                 <label for="exampleInputEmail1">Weight</label> 
-                                                <input type="number" onblur="findTotal()" class="weight form-control" id="weight" name="weight[]"/>
+                                                <input type="number" onblur="findTotal()" class="weight form-control" id="weight" name="insert_weight[]"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1" style="display: grid;">
@@ -233,7 +302,7 @@ if (isset($_POST['btnAdd'])) {
 <script>
     $(document).ready(function () {
         var max_fields = 8;
-        var wrapper = $("#packate_div");
+        var wrapper = $("#variations");
         var add_button = $(".add_packate_variation");
 
         var x = 1;
