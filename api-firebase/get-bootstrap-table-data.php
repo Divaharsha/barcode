@@ -162,6 +162,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'suspense_account') {
 
     foreach ($res as $row) {
         $id = $row['id'];
+        $operate = ' <a href="edit-suspense.php?name=' . $row['holder_name'] . '"><i class="fa fa-edit"></i>Edit</a>';
+        
         if($type == 'Weight'){
             $sql = "SELECT SUM(weight) AS inwardtotal FROM suspense_account_variant WHERE suspense_account_id = '$id' AND method = 'Inward'";
             $db->sql($sql);
@@ -204,7 +206,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'suspense_account') {
         $tempRow['id'] = $row['id'];
         $tempRow['name'] = $row['holder_name'];
         $tempRow['total'] = $total;
-        // $tempRow['operate'] = $operate;
+        $tempRow['finaltotal'] = $total;
+        $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
     }
     $bulkData['rows'] = $rows;

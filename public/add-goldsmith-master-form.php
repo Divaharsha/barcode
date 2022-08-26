@@ -13,6 +13,7 @@ $db->sql($sql_query);
 $res_cur = $db->getResult();
 
 if (isset($_POST['btnAdd'])) {
+    if ($permissions['goldsmithmaster']['create'] == 1) {
         $error = array();
         $name = $db->escapeString($fn->xss_clean($_POST['name']));
         $sundry = $db->escapeString($fn->xss_clean($_POST['sundry']));
@@ -58,6 +59,11 @@ if (isset($_POST['btnAdd'])) {
 
 
         }
+    }else{
+        $error['check_permission'] = " <section class='content-header'><span class='label label-danger'>You have no permission to create gold smith master</span></section>";
+
+    }
+
 ?>
 <section class="content-header">
     <h1>Add Dealer Goldsmith Master</h1>
@@ -70,6 +76,9 @@ if (isset($_POST['btnAdd'])) {
 <section class="content">
     <div class="row">
         <div class="col-md-12">
+        <?php if ($permissions['goldsmithmaster']['create'] == 0) { ?>
+                <div class="alert alert-danger">You have no permission to create goldsmith master.</div>
+            <?php } ?>
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
@@ -160,6 +169,7 @@ if (isset($_POST['btnAdd'])) {
                     </div>
                 </form>
             </div>
+            <?php echo isset($error['check_permission']) ? $error['check_permission'] : ''; ?>
             <!-- /.box -->
         </div>
     </div>

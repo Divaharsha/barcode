@@ -38,7 +38,7 @@ if ($_SESSION['role'] == 'editor') {
 }
 ?>
 <section class="content-header">
-    <h1>Create admin or editor /<small><a href="home.php"><i class="fa fa-home"></i> Home</a></small></h1>
+    <h1>Create admin <small><a href="home.php"><i class="fa fa-home"></i> Home</a></small></h1>
 
 </section>
 <!-- Main content -->
@@ -49,7 +49,7 @@ if ($_SESSION['role'] == 'editor') {
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Add Admin / Editor</h3>
+                    <h3 class="box-title">Add Admin </h3>
 
                 </div><!-- /.box-header -->
                 <!-- form start -->
@@ -77,7 +77,6 @@ if ($_SESSION['role'] == 'editor') {
                             <select name="role" class="form-control">
                                 <option value="">---Select---</option>
                                 <option value="admin">Admin</option>
-                                <option value="editor">Editor</option>
                             </select>
                         </div>
 
@@ -132,108 +131,123 @@ if ($_SESSION['role'] == 'editor') {
                     </tr>
                     <tr>
                         <td>Dealer Gold Smith Master</td>
-                        <td><input type="checkbox" id="create-order-button" class="js-switch" checked>
-                            <input type="hidden" id="is-create-order" name="is-create-order" value="1">
+                        <td><input type="checkbox" id="create-goldsmithmaster-button" class="js-switch" checked>
+                            <input type="hidden" id="is-create-goldsmithmaster" name="is-create-goldsmithmaster" value="1">
                         </td>
-                        <td><input type="checkbox" id="read-order-button" class="js-switch" checked>
-                            <input type="hidden" id="is-read-order" name="is-read-order" value="1">
+                        <td><input type="checkbox" id="read-goldsmithmaster-button" class="js-switch" checked>
+                            <input type="hidden" id="is-read-goldsmithmaster" name="is-read-goldsmithmaster" value="1">
                         </td>
-                        <td><input type="checkbox" id="update-order-button" class="js-switch" checked>
-                            <input type="hidden" id="is-update-order" name="is-update-order" value="1">
+                        <td><input type="checkbox" id="update-goldsmithmaster-button" class="js-switch" checked>
+                            <input type="hidden" id="is-update-goldsmithmaster" name="is-update-goldsmithmaster" value="1">
                         </td>
-                        <td><input type="checkbox" id="delete-order-button" class="js-switch" checked>
-                            <input type="hidden" id="is-delete-order" name="is-delete-order" value="1">
+                        <td><input type="checkbox" id="delete-goldsmithmaster-button" class="js-switch" checked>
+                            <input type="hidden" id="is-delete-goldsmithmaster" name="is-delete-goldsmithmaster" value="1">
                         </td>
                     </tr>
                     <tr>
                         <td>Opening Master</td>
-                        <td><input type="checkbox" id="create-category-button" class="js-switch" checked>
-                            <input type="hidden" id="is-create-category" name="is-create-category" value="1">
+                        <td><input type="checkbox" id="create-openmaster-button" class="js-switch" checked>
+                            <input type="hidden" id="is-create-openmaster" name="is-create-openmaster" value="1">
                         </td>
-                        <td><input type="checkbox" id="read-category-button" class="js-switch" checked>
-                            <input type="hidden" id="is-read-category" name="is-read-category" value="1">
+                        <td><input type="checkbox" id="read-openmaster-button" class="js-switch" checked>
+                            <input type="hidden" id="is-read-openmaster" name="is-read-openmaster" value="1">
                         </td>
-                        <td><input type="checkbox" id="update-category-button" class="js-switch" checked>
-                            <input type="hidden" id="is-update-category" name="is-update-category" value="1">
+                        <td><input type="checkbox" id="update-openmaster-button" class="js-switch" checked>
+                            <input type="hidden" id="is-update-openmaster" name="is-update-openmaster" value="1">
                         </td>
-                        <td><input type="checkbox" id="delete-category-button" class="js-switch" checked>
-                            <input type="hidden" id="is-delete-category" name="is-delete-category" value="1">
+                        <td><input type="checkbox" id="delete-openmaster-button" class="js-switch" checked>
+                            <input type="hidden" id="is-delete-openmaster" name="is-delete-openmaster" value="1">
                         </td>
                     </tr>
                     <tr>
                         <td>Daily transaction</td>
-                        <td><input type="checkbox" id="create-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-create-seller" name="is-create-seller" value="1">
+                        <td><input type="checkbox" id="create-dailytransaction-button" class="js-switch" checked>
+                            <input type="hidden" id="is-create-dailytransaction" name="is-create-dailytransaction" value="1">
                         </td>
-                        <td><input type="checkbox" id="read-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-read-seller" name="is-read-seller" value="1">
+                        <td><input type="checkbox" id="read-dailytransaction-button" class="js-switch" checked>
+                            <input type="hidden" id="is-read-dailytransaction" name="is-read-dailytransaction" value="1">
                         </td>
-                        <td><input type="checkbox" id="update-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-update-seller" name="is-update-seller" value="1">
+                        <td><input type="checkbox" id="update-dailytransaction-button" class="js-switch" checked>
+                            <input type="hidden" id="is-update-dailytransaction" name="is-update-dailytransaction" value="1">
                         </td>
-                        <td><input type="checkbox" id="delete-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-delete-seller" name="is-delete-seller" value="1">
+                        <td><input type="checkbox" id="delete-dailytransaction-button" class="js-switch" checked>
+                            <input type="hidden" id="is-delete-dailytransaction" name="is-delete-dailytransaction" value="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Suspense Account</td>
+                        <td><input type="checkbox" id="create-suspenseaccount-button" class="js-switch" checked>
+                            <input type="hidden" id="is-create-suspenseaccount" name="is-create-suspenseaccount" value="1">
+                        </td>
+                        <td><input type="checkbox" id="read-suspenseaccount-button" class="js-switch" checked>
+                            <input type="hidden" id="is-read-suspenseaccount" name="is-read-suspenseaccount" value="1">
+                        </td>
+                        <td><input type="checkbox" id="update-suspenseaccount-button" class="js-switch" checked>
+                            <input type="hidden" id="is-update-suspenseaccount" name="is-update-suspenseaccount" value="1">
+                        </td>
+                        <td><input type="checkbox" id="delete-suspenseaccount-button" class="js-switch" checked>
+                            <input type="hidden" id="is-delete-suspenseaccount" name="is-delete-suspenseaccount" value="1">
                         </td>
                     </tr>
  
                     <tr>
                         <td>Transaction Register</td>
-                        <td><input type="checkbox" id="create-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-create-seller" name="is-create-seller" value="1">
+                        <td><input type="checkbox" id="create-transactionregister-button" class="js-switch" checked>
+                            <input type="hidden" id="is-create-transactionregister" name="is-create-transactionregister" value="1">
                         </td>
-                        <td><input type="checkbox" id="read-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-read-seller" name="is-read-seller" value="1">
+                        <td><input type="checkbox" id="read-transactionregister-button" class="js-switch" checked>
+                            <input type="hidden" id="is-read-transactionregister" name="is-read-transactionregister" value="1">
                         </td>
-                        <td><input type="checkbox" id="update-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-update-seller" name="is-update-seller" value="1">
+                        <td><input type="checkbox" id="update-transactionregister-button" class="js-switch" checked>
+                            <input type="hidden" id="is-update-transactionregister" name="is-update-transactionregister" value="1">
                         </td>
-                        <td><input type="checkbox" id="delete-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-delete-seller" name="is-delete-seller" value="1">
+                        <td><input type="checkbox" id="delete-transactionregister-button" class="js-switch" checked>
+                            <input type="hidden" id="is-delete-transactionregister" name="is-delete-transactionregister" value="1">
                         </td>
                     </tr>
                     <tr>
                         <td>Dealer Ledger Report</td>
-                        <td><input type="checkbox" id="create-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-create-seller" name="is-create-seller" value="1">
+                        <td><input type="checkbox" id="create-dealerreport-button" class="js-switch" checked>
+                            <input type="hidden" id="is-create-dealerreport" name="is-create-dealerreport" value="1">
                         </td>
-                        <td><input type="checkbox" id="read-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-read-seller" name="is-read-seller" value="1">
+                        <td><input type="checkbox" id="read-dealerreport-button" class="js-switch" checked>
+                            <input type="hidden" id="is-read-dealerreport" name="is-read-dealerreport" value="1">
                         </td>
-                        <td><input type="checkbox" id="update-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-update-seller" name="is-update-seller" value="1">
+                        <td><input type="checkbox" id="update-dealerreport-button" class="js-switch" checked>
+                            <input type="hidden" id="is-update-dealerreport" name="is-update-dealerreport" value="1">
                         </td>
-                        <td><input type="checkbox" id="delete-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-delete-seller" name="is-delete-seller" value="1">
+                        <td><input type="checkbox" id="delete-dealerreport-button" class="js-switch" checked>
+                            <input type="hidden" id="is-delete-dealerreport" name="is-delete-dealerreport" value="1">
                         </td>
                     </tr>
                     <tr>
                         <td>Areawise Ledger Report</td>
-                        <td><input type="checkbox" id="create-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-create-seller" name="is-create-seller" value="1">
+                        <td><input type="checkbox" id="create-areawisereport-button" class="js-switch" checked>
+                            <input type="hidden" id="is-create-areawisereport" name="is-create-areawisereport" value="1">
                         </td>
-                        <td><input type="checkbox" id="read-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-read-seller" name="is-read-seller" value="1">
+                        <td><input type="checkbox" id="read-areawisereport-button" class="js-switch" checked>
+                            <input type="hidden" id="is-read-areawisereport" name="is-read-areawisereport" value="1">
                         </td>
-                        <td><input type="checkbox" id="update-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-update-seller" name="is-update-seller" value="1">
+                        <td><input type="checkbox" id="update-areawisereport-button" class="js-switch" checked>
+                            <input type="hidden" id="is-update-areawisereport" name="is-update-areawisereport" value="1">
                         </td>
-                        <td><input type="checkbox" id="delete-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-delete-seller" name="is-delete-seller" value="1">
+                        <td><input type="checkbox" id="delete-areawisereport-button" class="js-switch" checked>
+                            <input type="hidden" id="is-delete-areawisereport" name="is-delete-areawisereport" value="1">
                         </td>
                     </tr>
                     <tr>
                         <td>Stock Report</td>
-                        <td><input type="checkbox" id="create-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-create-seller" name="is-create-seller" value="1">
+                        <td><input type="checkbox" id="create-stockreport-button" class="js-switch" checked>
+                            <input type="hidden" id="is-create-stockreport" name="is-create-stockreport" value="1">
                         </td>
-                        <td><input type="checkbox" id="read-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-read-seller" name="is-read-seller" value="1">
+                        <td><input type="checkbox" id="read-stockreport-button" class="js-switch" checked>
+                            <input type="hidden" id="is-read-stockreport" name="is-read-stockreport" value="1">
                         </td>
-                        <td><input type="checkbox" id="update-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-update-seller" name="is-update-seller" value="1">
+                        <td><input type="checkbox" id="update-stockreport-button" class="js-switch" checked>
+                            <input type="hidden" id="is-update-stockreport" name="is-update-stockreport" value="1">
                         </td>
-                        <td><input type="checkbox" id="delete-seller-button" class="js-switch" checked>
-                            <input type="hidden" id="is-delete-seller" name="is-delete-seller" value="1">
+                        <td><input type="checkbox" id="delete-stockreport-button" class="js-switch" checked>
+                            <input type="hidden" id="is-delete-stockreport" name="is-delete-stockreport" value="1">
                         </td>
                     </tr>
  
@@ -270,294 +284,129 @@ if ($_SESSION['role'] == 'editor') {
                                         <th>Delete</th>
                                     </tr>
                                     <tr>
-                                        <td>Orders</td>
-                                        <td><input type="checkbox" id="permission-create-order-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-order" name="permission-is-create-order" value="">
+                                        <td>Dealer Gold Smith Master</td>
+                                        <td><input type="checkbox" id="permission-create-goldsmithmaster-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-create-goldsmithmaster" name="permission-is-create-goldsmithmaster" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-read-order-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-order" name="permission-is-read-order" value="">
+                                        <td><input type="checkbox" id="permission-read-goldsmithmaster-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-read-goldsmithmaster" name="permission-is-read-goldsmithmaster" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-update-order-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-order" name="permission-is-update-order" value="">
+                                        <td><input type="checkbox" id="permission-update-goldsmithmaster-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-update-goldsmithmaster" name="permission-is-update-goldsmithmaster" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-delete-order-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-order" name="permission-is-delete-order" value="">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Categories</td>
-                                        <td><input type="checkbox" id="permission-create-category-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-category" name="permission-is-create-category" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-category-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-category" name="permission-is-read-category" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-update-category-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-category" name="permission-is-update-category" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-delete-category-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-category" name="permission-is-delete-category" value="">
+                                        <td><input type="checkbox" id="permission-delete-goldsmithmaster-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-delete-goldsmithmaster" name="permission-is-delete-goldsmithmaster" value="1">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Sellers</td>
-                                        <td><input type="checkbox" id="permission-create-seller-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-seller" name="permission-is-create-seller" value="">
+                                        <td>Opening Master</td>
+                                        <td><input type="checkbox" id="permission-create-openmaster-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-create-openmaster" name="permission-is-create-openmaster" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-read-seller-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-seller" name="permission-is-read-seller" value="">
+                                        <td><input type="checkbox" id="permission-read-openmaster-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-read-openmaster" name="permission-is-read-openmaster" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-update-seller-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-seller" name="permission-is-update-seller" value="">
+                                        <td><input type="checkbox" id="permission-update-openmaster-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-update-openmaster" name="permission-is-update-openmaster" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-delete-seller-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-seller" name="permission-is-delete-seller" value="">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Subcategories</td>
-                                        <td><input type="checkbox" id="permission-create-subcategory-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-subcategory" name="permission-is-create-subcategory" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-subcategory-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-subcategory" name="permission-is-read-subcategory" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-update-subcategory-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-subcategory" name="permission-is-update-subcategory" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-delete-subcategory-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-subcategory" name="permission-is-delete-subcategory" value="">
+                                        <td><input type="checkbox" id="permission-delete-openmaster-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-delete-openmaster" name="permission-is-delete-openmaster" value="1">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Products</td>
-                                        <td><input type="checkbox" id="permission-create-product-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-product" name="permission-is-create-product" value="">
+                                        <td>Daily transaction</td>
+                                        <td><input type="checkbox" id="permission-create-dailytransaction-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-create-dailytransaction" name="permission-is-create-dailytransaction" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-read-product-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-product" name="permission-is-read-product" value="">
+                                        <td><input type="checkbox" id="permission-read-dailytransaction-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-read-dailytransaction" name="permission-is-read-dailytransaction" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-update-product-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-product" name="permission-is-update-product" value="">
+                                        <td><input type="checkbox" id="permission-permission-update-dailytransaction-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-update-dailytransaction" name="permission-is-update-dailytransaction" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-delete-product-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-product" name="permission-is-delete-product" value="">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Products Order</td>
-                                        <td>-</td>
-                                        <td><input type="checkbox" id="permission-read-products-order-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-products-order" name="permission-is-read-products-order" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-update-products-order-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-products-order" name="permission-is-update-products-order" value="">
-                                        </td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Home Slider Images</td>
-                                        <td><input type="checkbox" id="permission-create-home-slider-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-home-slider" name="permission-is-create-home-slider" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-home-slider-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-home-slider" name="permission-is-read-home-slider" value="">
-                                        </td>
-                                        <td>-</td>
-                                        <td><input type="checkbox" id="permission-delete-home-slider-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-home-slider" name="permission-is-delete-home-slider" value="">
+                                        <td><input type="checkbox" id="permission-delete-dailytransaction-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-delete-dailytransaction" name="permission-is-delete-dailytransaction" value="1">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>New Offer Images</td>
-                                        <td><input type="checkbox" id="permission-create-new-offer-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-new-offer" name="permission-is-create-new-offer" value="">
+                                        <td>Suspense Account</td>
+                                        <td><input type="checkbox" id="permission-create-suspenseaccount-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-create-suspenseaccount" name="permission-is-create-suspenseaccount" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-read-new-offer-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-new-offer" name="permission-is-read-new-offer" value="">
+                                        <td><input type="checkbox" id="permission-read-suspenseaccount-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-read-suspenseaccount" name="permission-is-read-suspenseaccount" value="1">
                                         </td>
-                                        <td>-</td>
-                                        <td><input type="checkbox" id="permission-delete-new-offer-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-new-offer" name="permission-is-delete-new-offer" value="">
+                                        <td><input type="checkbox" id="permission-permission-update-suspenseaccount-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-update-suspenseaccount" name="permission-is-update-suspenseaccount" value="1">
+                                        </td>
+                                        <td><input type="checkbox" id="permission-delete-suspenseaccount-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-delete-suspenseaccount" name="permission-is-delete-suspenseaccount" value="1">
+                                        </td>
+                                    </tr>
+                
+                
+                                    <tr>
+                                        <td>Transaction Register</td>
+                                        <td><input type="checkbox" id="permission-create-transactionregister-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-create-transactionregister" name="permission-is-create-transactionregister" value="1">
+                                        </td>
+                                        <td><input type="checkbox" id="permission-read-transactionregister-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-read-transactionregister" name="permission-is-read-transactionregister" value="1">
+                                        </td>
+                                        <td><input type="checkbox" id="permission-update-transactionregister-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-update-transactionregister" name="permission-is-update-transactionregister" value="1">
+                                        </td>
+                                        <td><input type="checkbox" id="permission-delete-transactionregister-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-delete-transactionregister" name="permission-is-delete-transactionregister" value="1">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Promo Codes</td>
-                                        <td><input type="checkbox" id="permission-create-promo-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-promo" name="permission-is-create-promo" value="">
+                                        <td>Dealer Ledger Report</td>
+                                        <td><input type="checkbox" id="permission-create-dealerreport-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-create-dealerreport" name="permission-is-create-dealerreport" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-read-promo-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-promo" name="permission-is-read-promo" value="">
+                                        <td><input type="checkbox" id="permission-read-dealerreport-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-read-dealerreport" name="permission-is-read-dealerreport" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-update-promo-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-promo" name="permission-is-update-promo" value="">
+                                        <td><input type="checkbox" id="permission-update-dealerreport-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-update-dealerreport" name="permission-is-update-dealerreport" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-delete-promo-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-promo" name="permission-is-delete-promo" value="">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Featured Section</td>
-                                        <td><input type="checkbox" id="permission-create-featured-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-featured" name="permission-is-create-featured" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-featured-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-featured" name="permission-is-read-featured" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-update-featured-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-featured" name="permission-is-update-featured" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-delete-featured-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-featured" name="permission-is-delete-featured" value="">
+                                        <td><input type="checkbox" id="permission-delete-dealerreport-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-delete-dealerreport" name="permission-is-delete-dealerreport" value="1">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Customers</td>
-                                        <td>-
+                                        <td>Areawise Ledger Report</td>
+                                        <td><input type="checkbox" id="permission-create-areawisereport-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-create-areawisereport" name="permission-is-create-areawisereport" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-read-customers-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-customers" name="permission-is-read-customers" value="">
+                                        <td><input type="checkbox" id="permission-read-areawisereport-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-read-areawisereport" name="permission-is-read-areawisereport" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-update-customers-button" class="js-switch" checked>
-                                            <input type="hidden" id="permission-is-update-customers" name="permission-is-update-customers" value="1">
+                                        <td><input type="checkbox" id="permission-update-areawisereport-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-update-areawisereport" name="permission-is-update-areawisereport" value="1">
                                         </td>
-                                        <td>-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Payment Requests</td>
-                                        <td>-
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-payment-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-payment" name="permission-is-read-payment" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-update-payment-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-payment" name="permission-is-update-payment" value="">
-                                        </td>
-                                        <td>-
+                                        <td><input type="checkbox" id="permission-delete-areawisereport-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-delete-areawisereport" name="permission-is-delete-areawisereport" value="1">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Return Requests</td>
-                                        <td>-
-                                        <td><input type="checkbox" id="permission-read-return-button" class="js-switch" checked>
-                                            <input type="hidden" id="permission-is-read-return" name="permission-is-read-return" value="">
+                                        <td>Stock Report</td>
+                                        <td><input type="checkbox" id="permission-create-stockreport-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-create-stockreport" name="permission-is-create-stockreport" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-update-return-button" class="js-switch" checked>
-                                            <input type="hidden" id="permission-is-update-return" name="permission-is-update-return" value="">
+                                        <td><input type="checkbox" id="permission-read-stockreport-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-read-stockreport" name="permission-is-read-stockreport" value="1">
                                         </td>
-                                        <td><input type="checkbox" id="permission-delete-return-button" class="js-switch" checked>
-                                            <input type="hidden" id="permission-is-delete-return" name="permission-is-delete-return" value="">
+                                        <td><input type="checkbox" id="permission-update-stockreport-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-update-stockreport" name="permission-is-update-stockreport" value="1">
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Delivery Boys</td>
-                                        <td><input type="checkbox" id="permission-create-delivery-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-delivery" name="permission-is-create-delivery" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-delivery-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-delivery" name="permission-is-read-delivery" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-update-delivery-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-delivery" name="permission-is-update-delivery" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-delete-delivery-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-delivery" name="permission-is-delete-delivery" value="">
+                                        <td><input type="checkbox" id="permission-delete-stockreport-button" class="js-switch" checked>
+                                            <input type="hidden" id="permission-is-delete-stockreport" name="permission-is-delete-stockreport" value="1">
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Fund Transfers(Delivery Boys)</td>
-                                        <td>-
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-fund-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-fund" name="permission-is-read-fund" value="">
-                                        </td>
-                                        <td>-
-                                        </td>
-                                        <td>-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Notifications</td>
-                                        <td><input type="checkbox" id="permission-create-notification-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-notification" name="permission-is-create-notification" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-notification-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-notification" name="permission-is-read-notification" value="">
-                                        </td>
-                                        <td>-</td>
-                                        <td><input type="checkbox" id="permission-delete-notification-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-notification" name="permission-is-delete-notification" value="">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Transactions</td>
-                                        <td>-
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-transaction-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-transaction" name="permission-is-read-transaction" value="">
-                                        </td>
-                                        <td>-
-                                        </td>
-                                        <td>-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>System settings</td>
-                                        <td>-
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-settings-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-settings" name="permission-is-read-settings" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-update-settings-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-settings" name="permission-is-update-settings" value="">
-                                        </td>
-                                        <td>-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Locations</td>
-                                        <td><input type="checkbox" id="permission-create-location-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-location" name="permission-is-create-location" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-location-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-location" name="permission-is-read-location" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-update-location-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-location" name="permission-is-update-location" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-delete-location-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-location" name="permission-is-delete-location" value="">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Reports</td>
-                                        <td><input type="checkbox" id="permission-create-report-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-report" name="permission-is-create-report" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-report-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-report" name="permission-is-read-report" value="">
-                                        </td>
-                                        <td>-
-                                        </td>
-                                        <td>-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Faqs</td>
-                                        <td><input type="checkbox" id="permission-create-faq-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-create-faq" name="permission-is-create-faq" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-read-faq-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-read-faq" name="permission-is-read-faq" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-update-faq-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-update-faq" name="permission-is-update-faq" value="">
-                                        </td>
-                                        <td><input type="checkbox" id="permission-delete-faq-button" class="js-switch">
-                                            <input type="hidden" id="permission-is-delete-faq" name="permission-is-delete-faq" value="">
-                                        </td>
-                                    </tr>
+ 
+ 
 
                                 </table>
 
@@ -582,6 +431,7 @@ if ($_SESSION['role'] == 'editor') {
             </div>
         </div>
     </div>
+
 </section>
 
 
@@ -661,720 +511,344 @@ if ($_SESSION['role'] == 'editor') {
 </script>
 
 <script>
-    var changeCheckbox = document.querySelector('#create-order-button');
+    var changeCheckbox = document.querySelector('#create-goldsmithmaster-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         if ($(this).is(':checked')) {
-            $('#is-create-order').val(1);
+            $('#is-create-goldsmithmaster').val(1);
         } else {
-            $('#is-create-order').val(0);
+            $('#is-create-goldsmithmaster').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#read-order-button');
+    var changeCheckbox = document.querySelector('#read-goldsmithmaster-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         if ($(this).is(':checked')) {
-            $('#is-read-order').val(1);
+            $('#is-read-goldsmithmaster').val(1);
         } else {
-            $('#is-read-order').val(0);
+            $('#is-read-goldsmithmaster').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#update-order-button');
+    var changeCheckbox = document.querySelector('#update-goldsmithmaster-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         if ($(this).is(':checked')) {
-            $('#is-update-order').val(1);
+            $('#is-update-goldsmithmaster').val(1);
         } else {
-            $('#is-update-order').val(0);
+            $('#is-update-goldsmithmaster').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#delete-order-button');
+    var changeCheckbox = document.querySelector('#delete-goldsmithmaster-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-delete-order').val(1);
+            $('#is-delete-goldsmithmaster').val(1);
         } else {
-            $('#is-delete-order').val(0);
+            $('#is-delete-goldsmithmaster').val(0);
         }
     };
 </script>
 <script>
-    var changeCheckbox = document.querySelector('#create-category-button');
+    var changeCheckbox = document.querySelector('#create-openmaster-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-create-category').val(1);
+            $('#is-create-openmaster').val(1);
         } else {
-            $('#is-create-category').val(0);
+            $('#is-create-openmaster').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#read-category-button');
+    var changeCheckbox = document.querySelector('#read-openmaster-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-read-category').val(1);
+            $('#is-read-openmaster').val(1);
         } else {
-            $('#is-read-category').val(0);
+            $('#is-read-openmaster').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#update-category-button');
+    var changeCheckbox = document.querySelector('#update-openmaster-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-update-category').val(1);
+            $('#is-update-openmaster').val(1);
         } else {
-            $('#is-update-category').val(0);
+            $('#is-update-openmaster').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#delete-category-button');
+    var changeCheckbox = document.querySelector('#delete-openmaster-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-delete-category').val(1);
+            $('#is-delete-openmaster').val(1);
         } else {
-            $('#is-delete-category').val(0);
+            $('#is-delete-openmaster').val(0);
+        }
+    };
+</script>
+<script>
+    var changeCheckbox = document.querySelector('#create-dailytransaction-button');
+    var init = new Switchery(changeCheckbox);
+    changeCheckbox.onchange = function() {
+        // alert(changeCheckbox.checked);
+        if ($(this).is(':checked')) {
+            $('#is-create-dailytransaction').val(1);
+        } else {
+            $('#is-create-dailytransaction').val(0);
+        }
+    };
+    var changeCheckbox = document.querySelector('#read-dailytransaction-button');
+    var init = new Switchery(changeCheckbox);
+    changeCheckbox.onchange = function() {
+        // alert(changeCheckbox.checked);
+        if ($(this).is(':checked')) {
+            $('#is-read-dailytransaction').val(1);
+        } else {
+            $('#is-read-dailytransaction').val(0);
+        }
+    };
+    var changeCheckbox = document.querySelector('#update-dailytransaction-button');
+    var init = new Switchery(changeCheckbox);
+    changeCheckbox.onchange = function() {
+        // alert(changeCheckbox.checked);
+        if ($(this).is(':checked')) {
+            $('#is-update-dailytransaction').val(1);
+        } else {
+            $('#is-update-dailytransaction').val(0);
+        }
+    };
+    var changeCheckbox = document.querySelector('#delete-dailytransaction-button');
+    var init = new Switchery(changeCheckbox);
+    changeCheckbox.onchange = function() {
+        // alert(changeCheckbox.checked);
+        if ($(this).is(':checked')) {
+            $('#is-delete-dailytransaction').val(1);
+        } else {
+            $('#is-delete-dailytransaction').val(0);
         }
     };
     // var switchStatus = false;
 </script>
 <script>
-    var changeCheckbox = document.querySelector('#create-seller-button');
+    var changeCheckbox = document.querySelector('#create-suspenseaccount-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-create-seller').val(1);
+            $('#is-create-suspenseaccount').val(1);
         } else {
-            $('#is-create-seller').val(0);
+            $('#is-create-suspenseaccount').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#read-seller-button');
+    var changeCheckbox = document.querySelector('#read-suspenseaccount-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-read-seller').val(1);
+            $('#is-read-suspenseaccount').val(1);
         } else {
-            $('#is-read-seller').val(0);
+            $('#is-read-suspenseaccount').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#update-seller-button');
+    var changeCheckbox = document.querySelector('#update-suspenseaccount-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-update-seller').val(1);
+            $('#is-update-suspenseaccount').val(1);
         } else {
-            $('#is-update-seller').val(0);
+            $('#is-update-suspenseaccount').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#delete-seller-button');
+    var changeCheckbox = document.querySelector('#delete-suspenseaccount-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-delete-seller').val(1);
+            $('#is-delete-suspenseaccount').val(1);
         } else {
-            $('#is-delete-seller').val(0);
-        }
-    };
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#create-subcategory-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-create-subcategory').val(1);
-        } else {
-            $('#is-create-subcategory').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#read-subcategory-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-subcategory').val(1);
-        } else {
-            $('#is-read-subcategory').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#update-subcategory-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-update-subcategory').val(1);
-        } else {
-            $('#is-update-subcategory').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#delete-subcategory-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-delete-subcategory').val(1);
-        } else {
-            $('#is-delete-subcategory').val(0);
+            $('#is-delete-suspenseaccount').val(0);
         }
     };
     // var switchStatus = false;
 </script>
 <script>
-    var changeCheckbox = document.querySelector('#create-product-button');
+    var changeCheckbox = document.querySelector('#create-transactionregister-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-create-product').val(1);
+            $('#is-create-transactionregister').val(1);
         } else {
-            $('#is-create-product').val(0);
+            $('#is-create-transactionregister').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#read-product-button');
+    var changeCheckbox = document.querySelector('#read-transactionregister-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-read-product').val(1);
+            $('#is-read-transactionregister').val(1);
         } else {
-            $('#is-read-product').val(0);
+            $('#is-read-transactionregister').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#update-product-button');
+    var changeCheckbox = document.querySelector('#update-transactionregister-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-update-product').val(1);
+            $('#is-update-transactionregister').val(1);
         } else {
-            $('#is-update-product').val(0);
+            $('#is-update-transactionregister').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#delete-product-button');
+    var changeCheckbox = document.querySelector('#delete-transactionregister-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-delete-product').val(1);
+            $('#is-delete-transactionregister').val(1);
         } else {
-            $('#is-delete-product').val(0);
-        }
-    };
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#read-products-order-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-products-order').val(1);
-        } else {
-            $('#is-read-products-order').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#update-products-order-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-update-products-order').val(1);
-        } else {
-            $('#is-update-products-order').val(0);
-        }
-    };
-
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#create-home-slider-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-create-home-slider').val(1);
-        } else {
-            $('#is-create-home-slider').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#read-home-slider-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-home-slider').val(1);
-        } else {
-            $('#is-read-home-slider').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#delete-home-slider-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-delete-home-slider').val(1);
-        } else {
-            $('#is-delete-home-slider').val(0);
-        }
-    };
-
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#create-new-offer-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-create-new-offer').val(1);
-        } else {
-            $('#is-create-new-offer').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#read-new-offer-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-new-offer').val(1);
-        } else {
-            $('#is-read-new-offer').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#delete-new-offer-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-delete-new-offer').val(1);
-        } else {
-            $('#is-delete-new-offer').val(0);
-        }
-    };
-
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#create-promo-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-create-promo').val(1);
-        } else {
-            $('#is-create-promo').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#read-promo-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-promo').val(1);
-        } else {
-            $('#is-read-promo').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#update-promo-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-update-promo').val(1);
-        } else {
-            $('#is-update-promo').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#delete-promo-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-delete-promo').val(1);
-        } else {
-            $('#is-delete-promo').val(0);
+            $('#is-delete-transactionregister').val(0);
         }
     };
     // var switchStatus = false;
 </script>
 <script>
-    var changeCheckbox = document.querySelector('#create-featured-button');
+    var changeCheckbox = document.querySelector('#create-dealerreport-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-create-featured').val(1);
+            $('#is-create-dealerreport').val(1);
         } else {
-            $('#is-create-featured').val(0);
+            $('#is-create-dealerreport').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#read-featured-button');
+    var changeCheckbox = document.querySelector('#read-dealerreport-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-read-featured').val(1);
+            $('#is-read-dealerreport').val(1);
         } else {
-            $('#is-read-featured').val(0);
+            $('#is-read-dealerreport').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#update-featured-button');
+    var changeCheckbox = document.querySelector('#update-dealerreport-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-update-featured').val(1);
+            $('#is-update-dealerreport').val(1);
         } else {
-            $('#is-update-featured').val(0);
+            $('#is-update-dealerreport').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#delete-featured-button');
+    var changeCheckbox = document.querySelector('#delete-dealerreport-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-delete-featured').val(1);
+            $('#is-delete-dealerreport').val(1);
         } else {
-            $('#is-delete-featured').val(0);
-        }
-    };
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#read-customers-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-customers').val(1);
-        } else {
-            $('#is-read-customers').val(0);
+            $('#is-delete-dealerreport').val(0);
         }
     };
     // var switchStatus = false;
 </script>
 <script>
-    var changeCheckbox = document.querySelector('#update-customers-button');
+    var changeCheckbox = document.querySelector('#create-areawisereport-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-update-customers').val(1);
+            $('#is-create-areawisereport').val(1);
         } else {
-            $('#is-update-customers').val(0);
+            $('#is-create-areawisereport').val(0);
+        }
+    };
+    var changeCheckbox = document.querySelector('#read-areawisereport-button');
+    var init = new Switchery(changeCheckbox);
+    changeCheckbox.onchange = function() {
+        // alert(changeCheckbox.checked);
+        if ($(this).is(':checked')) {
+            $('#is-read-areawisereport').val(1);
+        } else {
+            $('#is-read-areawisereport').val(0);
+        }
+    };
+    var changeCheckbox = document.querySelector('#update-areawisereport-button');
+    var init = new Switchery(changeCheckbox);
+    changeCheckbox.onchange = function() {
+        // alert(changeCheckbox.checked);
+        if ($(this).is(':checked')) {
+            $('#is-update-areawisereport').val(1);
+        } else {
+            $('#is-update-areawisereport').val(0);
+        }
+    };
+    var changeCheckbox = document.querySelector('#delete-areawisereport-button');
+    var init = new Switchery(changeCheckbox);
+    changeCheckbox.onchange = function() {
+        // alert(changeCheckbox.checked);
+        if ($(this).is(':checked')) {
+            $('#is-delete-areawisereport').val(1);
+        } else {
+            $('#is-delete-areawisereport').val(0);
         }
     };
     // var switchStatus = false;
 </script>
 <script>
-    var changeCheckbox = document.querySelector('#read-payment-button');
+    var changeCheckbox = document.querySelector('#create-stockreport-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-read-payment').val(1);
+            $('#is-create-stockreport').val(1);
         } else {
-            $('#is-read-payment').val(0);
+            $('#is-create-stockreport').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#update-payment-button');
+    var changeCheckbox = document.querySelector('#read-stockreport-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-update-payment').val(1);
+            $('#is-read-stockreport').val(1);
         } else {
-            $('#is-update-payment').val(0);
+            $('#is-read-stockreport').val(0);
         }
     };
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#create-delivery-button');
+    var changeCheckbox = document.querySelector('#update-stockreport-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-create-delivery').val(1);
+            $('#is-update-stockreport').val(1);
         } else {
-            $('#is-create-delivery').val(0);
+            $('#is-update-stockreport').val(0);
         }
     };
-    var changeCheckbox = document.querySelector('#read-delivery-button');
+    var changeCheckbox = document.querySelector('#delete-stockreport-button');
     var init = new Switchery(changeCheckbox);
     changeCheckbox.onchange = function() {
         // alert(changeCheckbox.checked);
         if ($(this).is(':checked')) {
-            $('#is-read-delivery').val(1);
+            $('#is-delete-stockreport').val(1);
         } else {
-            $('#is-read-delivery').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#update-delivery-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-update-delivery').val(1);
-        } else {
-            $('#is-update-delivery').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#delete-delivery-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-delete-delivery').val(1);
-        } else {
-            $('#is-delete-delivery').val(0);
+            $('#is-delete-stockreport').val(0);
         }
     };
     // var switchStatus = false;
 </script>
-<script>
-    var changeCheckbox = document.querySelector('#read-return-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-return').val(1);
-        } else {
-            $('#is-read-return').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#update-return-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-update-return').val(1);
-        } else {
-            $('#is-update-return').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#delete-return-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-delete-return').val(1);
-        } else {
-            $('#is-delete-return').val(0);
-        }
-    };
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#create-notification-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-create-notification').val(1);
-        } else {
-            $('#is-create-notification').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#read-notification-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-notification').val(1);
-        } else {
-            $('#is-read-notification').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#delete-notification-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-delete-notification').val(1);
-        } else {
-            $('#is-delete-notification').val(0);
-        }
-    };
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#read-transaction-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-fund').val(1);
-        } else {
-            $('#is-read-fund').val(0);
-        }
-    };
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#read-fund-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-transaction').val(1);
-        } else {
-            $('#is-read-transaction').val(0);
-        }
-    };
-
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#read-settings-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-settings').val(1);
-        } else {
-            $('#is-read-settings').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#update-settings-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-update-settings').val(1);
-        } else {
-            $('#is-update-settings').val(0);
-        }
-    };
-
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#create-location-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-create-location').val(1);
-        } else {
-            $('#is-create-location').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#read-location-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-location').val(1);
-        } else {
-            $('#is-read-location').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#update-location-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-update-location').val(1);
-        } else {
-            $('#is-update-location').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#delete-location-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-delete-location').val(1);
-        } else {
-            $('#is-delete-location').val(0);
-        }
-    };
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#create-report-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-create-report').val(1);
-        } else {
-            $('#is-create-report').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#read-report-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-report').val(1);
-        } else {
-            $('#is-read-report').val(0);
-        }
-    };
-
-    // var switchStatus = false;
-</script>
-<script>
-    var changeCheckbox = document.querySelector('#create-faq-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-create-faq').val(1);
-        } else {
-            $('#is-create-faq').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#read-faq-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-read-faq').val(1);
-        } else {
-            $('#is-read-faq').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#update-faq-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-update-faq').val(1);
-        } else {
-            $('#is-update-faq').val(0);
-        }
-    };
-    var changeCheckbox = document.querySelector('#delete-faq-button');
-    var init = new Switchery(changeCheckbox);
-    changeCheckbox.onchange = function() {
-        // alert(changeCheckbox.checked);
-        if ($(this).is(':checked')) {
-            $('#is-delete-faq').val(1);
-        } else {
-            $('#is-delete-faq').val(0);
-        }
-    };
-    // var switchStatus = false;
-</script>
-<script>
-    // var changeCheckbox = document.querySelector('#permission-create-order-button');
-    // var init = new Switchery(changeCheckbox);
-    // $('.switchery').trigger('click');
-    // $('#permission-create-order-button').attr('checked', true);
-</script>
-<!-- removed  code goes here -->
 
 <script>
     window.actionEvents = {
@@ -1387,490 +861,242 @@ if ($_SESSION['role'] == 'editor') {
 
             $('#system_user_id').val(row.id);
 
-            if (permissions.orders.create == 1) {
+            if (permissions.goldsmithmaster.create == 1) {
                 // $('#permission-create-order-button').attr('checked', true);
-                $('#permission-create-order-button').prop('checked', true);
-                $('#permission-is-create-order').val(1);
+                $('#permission-create-goldsmithmaster-button').prop('checked', true);
+                $('#permission-is-create-goldsmithmaster').val(1);
             } else {
-                $('#permission-create-order-button').attr('checked', false);
-                $('#permission-is-create-order').val(0);
+                $('#permission-create-goldsmithmaster-button').attr('checked', false);
+                $('#permission-is-create-goldsmithmaster').val(0);
             }
-            if (permissions.orders.read == 1) {
-                $('#permission-read-order-button').attr('checked', true);
-                $('#permission-is-read-order').val(1);
+            if (permissions.goldsmithmaster.read == 1) {
+                $('#permission-read-goldsmithmaster-button').attr('checked', true);
+                $('#permission-is-read-goldsmithmaster').val(1);
             } else {
-                $('#permission-read-order-button').attr('checked', false);
-                $('#permission-is-read-order').val(0);
+                $('#permission-read-goldsmithmaster-button').attr('checked', false);
+                $('#permission-is-read-goldsmithmaster').val(0);
             }
-            if (permissions.orders.update == 1) {
-                $('#permission-update-order-button').attr('checked', true);
-                $('#permission-is-update-order').val(1);
+            if (permissions.goldsmithmaster.update == 1) {
+                $('#permission-update-goldsmithmaster-button').attr('checked', true);
+                $('#permission-is-update-goldsmithmaster').val(1);
             } else {
-                $('#permission-update-order-button').attr('checked', false);
-                $('#permission-is-update-order').val(0);
+                $('#permission-update-goldsmithmaster-button').attr('checked', false);
+                $('#permission-is-update-goldsmithmaster').val(0);
             }
-            if (permissions.orders.delete == 1) {
-                $('#permission-delete-order-button').attr('checked', true);
-                $('#permission-is-delete-order').val(1);
+            if (permissions.goldsmithmaster.delete == 1) {
+                $('#permission-delete-goldsmithmaster-button').attr('checked', true);
+                $('#permission-is-delete-goldsmithmaster').val(1);
             } else {
-                $('#permission-delete-order-button').attr('checked', false);
-                $('#permission-is-delete-order').val(0);
-            }
-
-            if (permissions.categories.create == 1) {
-                $('#permission-create-category-button').attr('checked', true);
-                $('#permission-is-create-category').val(1);
-            } else {
-                $('#permission-create-category-button').attr('checked', false);
-                $('#permission-is-create-category').val(0);
-            }
-            if (permissions.categories.read == 1) {
-                $('#permission-read-category-button').attr('checked', true);
-                $('#permission-is-read-category').val(1);
-            } else {
-                $('#permission-read-category-button').attr('checked', false);
-                $('#permission-is-read-category').val(0);
-            }
-            if (permissions.categories.update == 1) {
-                $('#permission-update-category-button').attr('checked', true);
-                $('#permission-is-update-category').val(1);
-            } else {
-                $('#permission-update-category-button').attr('checked', false);
-                $('#permission-is-update-category').val(0);
-            }
-            if (permissions.categories.delete == 1) {
-                $('#permission-delete-category-button').attr('checked', true);
-                $('#permission-is-delete-category').val(1);
-            } else {
-                $('#permission-delete-category-button').attr('checked', false);
-                $('#permission-is-delete-category').val(0);
-            }
-            if (permissions.sellers.create == 1) {
-                $('#permission-create-seller-button').attr('checked', true);
-                $('#permission-is-create-seller').val(1);
-            } else {
-                $('#permission-create-seller-button').attr('checked', false);
-                $('#permission-is-create-seller').val(0);
-            }
-            if (permissions.sellers.read == 1) {
-                $('#permission-read-seller-button').attr('checked', true);
-                $('#permission-is-read-seller').val(1);
-            } else {
-                $('#permission-read-seller-button').attr('checked', false);
-                $('#permission-is-read-seller').val(0);
-            }
-            if (permissions.sellers.update == 1) {
-                $('#permission-update-seller-button').attr('checked', true);
-                $('#permission-is-update-seller').val(1);
-            } else {
-                $('#permission-update-seller-button').attr('checked', false);
-                $('#permission-is-update-seller').val(0);
-            }
-            if (permissions.sellers.delete == 1) {
-                $('#permission-delete-seller-button').attr('checked', true);
-                $('#permission-is-delete-seller').val(1);
-            } else {
-                $('#permission-delete-seller-button').attr('checked', false);
-                $('#permission-is-delete-seller').val(0);
+                $('#permission-delete-goldsmithmaster-button').attr('checked', false);
+                $('#permission-is-delete-goldsmithmaster').val(0);
             }
 
-
-            if (permissions.subcategories.create == 1) {
-                $('#permission-create-subcategory-button').attr('checked', true);
-                $('#permission-is-create-subcategory').val(1);
+            if (permissions.openmaster.create == 1) {
+                $('#permission-create-openmaster-button').attr('checked', true);
+                $('#permission-is-create-openmaster').val(1);
             } else {
-                $('#permission-create-subcategory-button').attr('checked', false);
-                $('#permission-is-create-subcategory').val(0);
+                $('#permission-create-openmaster-button').attr('checked', false);
+                $('#permission-is-create-openmaster').val(0);
             }
-            if (permissions.subcategories.read == 1) {
-                $('#permission-read-subcategory-button').attr('checked', true);
-                $('#permission-is-read-subcategory').val(1);
+            if (permissions.openmaster.read == 1) {
+                $('#permission-read-openmaster-button').attr('checked', true);
+                $('#permission-is-read-openmaster').val(1);
             } else {
-                $('#permission-read-subcategory-button').attr('checked', false);
-                $('#permission-is-read-subcategory').val(0);
+                $('#permission-read-openmaster-button').attr('checked', false);
+                $('#permission-is-read-openmaster').val(0);
             }
-            if (permissions.subcategories.update == 1) {
-                $('#permission-update-subcategory-button').attr('checked', true);
-                $('#permission-is-update-subcategory').val(1);
+            if (permissions.openmaster.update == 1) {
+                $('#permission-update-openmaster-button').attr('checked', true);
+                $('#permission-is-update-openmaster').val(1);
             } else {
-                $('#permission-update-subcategory-button').attr('checked', false);
-                $('#permission-is-update-subcategory').val(0);
+                $('#permission-update-openmaster-button').attr('checked', false);
+                $('#permission-is-update-openmaster').val(0);
             }
-            if (permissions.subcategories.delete == 1) {
-                $('#permission-delete-subcategory-button').attr('checked', true);
-                $('#permission-is-delete-subcategory').val(1);
+            if (permissions.openmaster.delete == 1) {
+                $('#permission-delete-openmaster-button').attr('checked', true);
+                $('#permission-is-delete-openmaster').val(1);
             } else {
-                $('#permission-delete-subcategory-button').attr('checked', false);
-                $('#permission-is-delete-subcategory').val(0);
+                $('#permission-delete-openmaster-button').attr('checked', false);
+                $('#permission-is-delete-openmaster').val(0);
+            }
+            if (permissions.dailytransaction.create == 1) {
+                $('#permission-create-dailytransaction-button').attr('checked', true);
+                $('#permission-is-create-dailytransaction').val(1);
+            } else {
+                $('#permission-create-dailytransaction-button').attr('checked', false);
+                $('#permission-is-create-dailytransaction').val(0);
+            }
+            if (permissions.dailytransaction.read == 1) {
+                $('#permission-read-dailytransaction-button').attr('checked', true);
+                $('#permission-is-read-dailytransaction').val(1);
+            } else {
+                $('#permission-read-dailytransaction-button').attr('checked', false);
+                $('#permission-is-read-dailytransaction').val(0);
+            }
+            if (permissions.dailytransaction.update == 1) {
+                $('#permission-update-dailytransaction-button').attr('checked', true);
+                $('#permission-is-update-dailytransaction').val(1);
+            } else {
+                $('#permission-update-dailytransaction-button').attr('checked', false);
+                $('#permission-is-update-dailytransaction').val(0);
+            }
+            if (permissions.dailytransaction.delete == 1) {
+                $('#permission-delete-dailytransaction-button').attr('checked', true);
+                $('#permission-is-delete-dailytransaction').val(1);
+            } else {
+                $('#permission-delete-dailytransaction-button').attr('checked', false);
+                $('#permission-is-delete-dailytransaction').val(0);
             }
 
 
-            if (permissions.products.create == 1) {
-                $('#permission-create-product-button').attr('checked', true);
-                $('#permission-is-create-product').val(1);
+            if (permissions.suspenseaccount.create == 1) {
+                $('#permission-create-suspenseaccount-button').attr('checked', true);
+                $('#permission-is-create-suspenseaccount').val(1);
             } else {
-                $('#permission-create-product-button').attr('checked', false);
-                $('#permission-is-create-product').val(0);
+                $('#permission-create-suspenseaccount-button').attr('checked', false);
+                $('#permission-is-create-suspenseaccount').val(0);
             }
-            if (permissions.products.read == 1) {
-                $('#permission-read-product-button').attr('checked', true);
-                $('#permission-is-read-product').val(1);
+            if (permissions.suspenseaccount.read == 1) {
+                $('#permission-read-suspenseaccount-button').attr('checked', true);
+                $('#permission-is-read-suspenseaccount').val(1);
             } else {
-                $('#permission-read-product-button').attr('checked', false);
-                $('#permission-is-read-product').val(0);
+                $('#permission-read-suspenseaccount-button').attr('checked', false);
+                $('#permission-is-read-suspenseaccount').val(0);
             }
-            if (permissions.products.update == 1) {
-                $('#permission-update-product-button').attr('checked', true);
-                $('#permission-is-update-product').val(1);
+            if (permissions.suspenseaccount.update == 1) {
+                $('#permission-update-suspenseaccount-button').attr('checked', true);
+                $('#permission-is-update-suspenseaccount').val(1);
             } else {
-                $('#permission-update-product-button').attr('checked', false);
-                $('#permission-is-update-product').val(0);
+                $('#permission-update-suspenseaccount-button').attr('checked', false);
+                $('#permission-is-update-suspenseaccount').val(0);
             }
-            if (permissions.products.delete == 1) {
-                $('#permission-delete-product-button').attr('checked', true);
-                $('#permission-is-delete-product').val(1);
+            if (permissions.suspenseaccount.delete == 1) {
+                $('#permission-delete-suspenseaccount-button').attr('checked', true);
+                $('#permission-is-delete-suspenseaccount').val(1);
             } else {
-                $('#permission-delete-product-button').attr('checked', false);
-                $('#permission-is-delete-product').val(0);
+                $('#permission-delete-suspenseaccount-button').attr('checked', false);
+                $('#permission-is-delete-suspenseaccount').val(0);
+            }
+
+            if (permissions.transactionregister.create == 1) {
+                $('#permission-create-transactionregister-button').attr('checked', true);
+                $('#permission-is-create-transactionregister').val(1);
+            } else {
+                $('#permission-create-transactionregister-button').attr('checked', false);
+                $('#permission-is-create-transactionregister').val(0);
+            }
+            if (permissions.transactionregister.read == 1) {
+                $('#permission-read-transactionregister-button').attr('checked', true);
+                $('#permission-is-read-transactionregister').val(1);
+            } else {
+                $('#permission-read-transactionregister-button').attr('checked', false);
+                $('#permission-is-read-transactionregister').val(0);
+            }
+            if (permissions.transactionregister.update == 1) {
+                $('#permission-update-transactionregister-button').attr('checked', true);
+                $('#permission-is-update-transactionregister').val(1);
+            } else {
+                $('#permission-update-transactionregister-button').attr('checked', false);
+                $('#permission-is-update-transactionregister').val(0);
+            }
+            if (permissions.transactionregister.delete == 1) {
+                $('#permission-delete-transactionregister-button').attr('checked', true);
+                $('#permission-is-delete-transactionregister').val(1);
+            } else {
+                $('#permission-delete-transactionregister-button').attr('checked', false);
+                $('#permission-is-delete-transactionregister').val(0);
             }
 
 
-            if (permissions.products_order.read == 1) {
-                $('#permission-read-products-order-button').attr('checked', true);
-                $('#permission-is-read-products-order').val(1);
+            if (permissions.dealerreport.create == 1) {
+                $('#permission-create-dealerreport-button').attr('checked', true);
+                $('#permission-is-create-dealerreport').val(1);
             } else {
-                $('#permission-read-products-order-button').attr('checked', false);
-                $('#permission-is-read-products-order').val(0);
+                $('#permission-create-dealerreport-button').attr('checked', false);
+                $('#permission-is-create-dealerreport').val(0);
             }
-            if (permissions.products_order.update == 1) {
-                $('#permission-update-products-order-button').attr('checked', true);
-                $('#permission-is-update-products-order').val(1);
+            if (permissions.dealerreport.read == 1) {
+                $('#permission-read-dealerreport-button').attr('checked', true);
+                $('#permission-is-read-dealerreport').val(1);
             } else {
-                $('#permission-update-products-order-button').attr('checked', false);
-                $('#permission-is-update-products-order').val(0);
+                $('#permission-read-dealerreport-button').attr('checked', false);
+                $('#permission-is-read-dealerreport').val(0);
             }
-
-
-            if (permissions.home_sliders.create == 1) {
-                $('#permission-create-home-slider-button').attr('checked', true);
-                $('#permission-is-create-home-slider').val(1);
+            if (permissions.dealerreport.update == 1) {
+                $('#permission-update-dealerreport-button').attr('checked', true);
+                $('#permission-is-update-dealerreport').val(1);
             } else {
-                $('#permission-create-home-slider-button').attr('checked', false);
-                $('#permission-is-create-home-slider').val(0);
+                $('#permission-update-dealerreport-button').attr('checked', false);
+                $('#permission-is-update-dealerreport').val(0);
             }
-            if (permissions.home_sliders.read == 1) {
-                $('#permission-read-home-slider-button').attr('checked', true);
-                $('#permission-is-read-home-slider').val(1);
+            if (permissions.dealerreport.delete == 1) {
+                $('#permission-delete-dealerreport-button').attr('checked', true);
+                $('#permission-is-delete-dealerreport').val(1);
             } else {
-                $('#permission-read-home-slider-button').attr('checked', false);
-                $('#permission-is-read-home-slider').val(0);
-            }
-            if (permissions.home_sliders.delete == 1) {
-                $('#permission-delete-home-slider-button').attr('checked', true);
-                $('#permission-is-delete-home-slider').val(1);
-            } else {
-                $('#permission-delete-home-slider-button').attr('checked', false);
-                $('#permission-is-delete-home-slider').val(0);
+                $('#permission-delete-dealerreport-button').attr('checked', false);
+                $('#permission-is-delete-dealerreport').val(0);
             }
 
 
-            if (permissions.new_offers.create == 1) {
-                $('#permission-create-new-offer-button').attr('checked', true);
-                $('#permission-is-create-new-offer').val(1);
+            if (permissions.areawisereport.create == 1) {
+                $('#permission-create-areawisereport-button').attr('checked', true);
+                $('#permission-is-create-areawisereport').val(1);
             } else {
-                $('#permission-create-new-offer-button').attr('checked', false);
-                $('#permission-is-create-new-offer').val(0);
+                $('#permission-create-areawisereport-button').attr('checked', false);
+                $('#permission-is-create-areawisereport').val(0);
             }
-            if (permissions.new_offers.read == 1) {
-                $('#permission-read-new-offer-button').attr('checked', true);
-                $('#permission-is-read-new-offer').val(1);
+            if (permissions.areawisereport.read == 1) {
+                $('#permission-read-areawisereport-button').attr('checked', true);
+                $('#permission-is-read-areawisereport').val(1);
             } else {
-                $('#permission-read-new-offer-button').attr('checked', false);
-                $('#permission-is-read-new-offer').val(0);
+                $('#permission-read-areawisereport-button').attr('checked', false);
+                $('#permission-is-read-areawisereport').val(0);
             }
-            if (permissions.new_offers.delete == 1) {
-                $('#permission-delete-new-offer-button').attr('checked', true);
-                $('#permission-is-delete-new-offer').val(1);
+            if (permissions.areawisereport.update == 1) {
+                $('#permission-update-areawisereport-button').attr('checked', true);
+                $('#permission-is-update-areawisereport').val(1);
             } else {
-                $('#permission-delete-new-offer-button').attr('checked', false);
-                $('#permission-is-delete-new-offer').val(0);
+                $('#permission-update-areawisereport-button').attr('checked', false);
+                $('#permission-is-update-areawisereport').val(0);
             }
-
-            if (permissions.promo_codes.create == 1) {
-                $('#permission-create-promo-button').attr('checked', true);
-                $('#permission-is-create-promo').val(1);
+            if (permissions.areawisereport.delete == 1) {
+                $('#permission-delete-areawisereport-button').attr('checked', true);
+                $('#permission-is-delete-areawisereport').val(1);
             } else {
-                $('#permission-create-promo-button').attr('checked', false);
-                $('#permission-is-create-promo').val(0);
-            }
-            if (permissions.promo_codes.read == 1) {
-                $('#permission-read-promo-button').attr('checked', true);
-                $('#permission-is-read-promo').val(1);
-            } else {
-                $('#permission-read-promo-button').attr('checked', false);
-                $('#permission-is-read-promo').val(0);
-            }
-            if (permissions.promo_codes.update == 1) {
-                $('#permission-update-promo-button').attr('checked', true);
-                $('#permission-is-update-promo').val(1);
-            } else {
-                $('#permission-update-promo-button').attr('checked', false);
-                $('#permission-is-update-promo').val(0);
-            }
-            if (permissions.promo_codes.delete == 1) {
-                $('#permission-delete-promo-button').attr('checked', true);
-                $('#permission-is-delete-promo').val(1);
-            } else {
-                $('#permission-delete-promo-button').attr('checked', false);
-                $('#permission-is-delete-promo').val(0);
+                $('#permission-delete-areawisereport-button').attr('checked', false);
+                $('#permission-is-delete-areawisereport').val(0);
             }
 
-            if (permissions.featured.create == 1) {
-                $('#permission-create-featured-button').attr('checked', true);
-                $('#permission-is-create-featured').val(1);
+            if (permissions.stockreport.create == 1) {
+                $('#permission-create-stockreport-button').attr('checked', true);
+                $('#permission-is-create-stockreport').val(1);
             } else {
-                $('#permission-create-featured-button').attr('checked', false);
-                $('#permission-is-create-featured').val(0);
+                $('#permission-create-stockreport-button').attr('checked', false);
+                $('#permission-is-create-stockreport').val(0);
             }
-            if (permissions.featured.read == 1) {
-                $('#permission-read-featured-button').attr('checked', true);
-                $('#permission-is-read-featured').val(1);
+            if (permissions.stockreport.read == 1) {
+                $('#permission-read-stockreport-button').attr('checked', true);
+                $('#permission-is-read-stockreport').val(1);
             } else {
-                $('#permission-read-featured-button').attr('checked', false);
-                $('#permission-is-read-featured').val(0);
+                $('#permission-read-stockreport-button').attr('checked', false);
+                $('#permission-is-read-stockreport').val(0);
             }
-            if (permissions.featured.update == 1) {
-                $('#permission-update-featured-button').attr('checked', true);
-                $('#permission-is-update-featured').val(1);
+            if (permissions.stockreport.update == 1) {
+                $('#permission-update-stockreport-button').attr('checked', true);
+                $('#permission-is-update-stockreport').val(1);
             } else {
-                $('#permission-update-featured-button').attr('checked', false);
-                $('#permission-is-update-featured').val(0);
+                $('#permission-update-stockreport-button').attr('checked', false);
+                $('#permission-is-update-stockreport').val(0);
             }
-            if (permissions.featured.delete == 1) {
-                $('#permission-delete-featured-button').attr('checked', true);
-                $('#permission-is-delete-featured').val(1);
+            if (permissions.stockreport.delete == 1) {
+                $('#permission-delete-stockreport-button').attr('checked', true);
+                $('#permission-is-delete-stockreport').val(1);
             } else {
-                $('#permission-delete-featured-button').attr('checked', false);
-                $('#permission-is-delete-featured').val(0);
+                $('#permission-delete-stockreport-button').attr('checked', false);
+                $('#permission-is-delete-stockreport').val(0);
             }
 
 
-            if (permissions.customers.read == 1) {
-                $('#permission-read-customers-button').attr('checked', true);
-                $('#permission-is-read-customers').val(1);
-            } else {
-                $('#permission-read-customers-button').attr('checked', false);
-                $('#permission-is-read-customers').val(0);
-            }
-            if (permissions.customers.update == 1) {
-                $('#permission-update-customers-button').attr('checked', true);
-                $('#permission-is-update-customers').val(1);
-            } else {
-                $('#permission-update-customers-button').attr('checked', false);
-                $('#permission-is-update-customers').val(0);
-            }
-            if (permissions.payment.read == 1) {
-                $('#permission-read-payment-button').attr('checked', true);
-                $('#permission-is-read-payment').val(1);
-            } else {
-                $('#permission-read-payment-button').attr('checked', false);
-                $('#permission-is-read-payment').val(0);
-            }
-            if (permissions.payment.update == 1) {
-                $('#permission-update-payment-button').attr('checked', true);
-                $('#permission-is-update-payment').val(1);
-            } else {
-                $('#permission-update-payment-button').attr('checked', false);
-                $('#permission-is-update-payment').val(0);
-            }
-
-
-            if (permissions.delivery_boys.create == 1) {
-                $('#permission-create-delivery-button').attr('checked', true);
-                $('#permission-is-create-delivery').val(1);
-            } else {
-                $('#permission-create-delivery-button').attr('checked', false);
-                $('#permission-is-create-delivery').val(0);
-            }
-            if (permissions.delivery_boys.read == 1) {
-                $('#permission-read-delivery-button').attr('checked', true);
-                $('#permission-is-read-delivery').val(1);
-            } else {
-                $('#permission-read-delivery-button').attr('checked', false);
-                $('#permission-is-read-delivery').val(0);
-            }
-            if (permissions.delivery_boys.update == 1) {
-                $('#permission-update-delivery-button').attr('checked', true);
-                $('#permission-is-update-delivery').val(1);
-            } else {
-                $('#permission-update-delivery-button').attr('checked', false);
-                $('#permission-is-update-delivery').val(0);
-            }
-            if (permissions.delivery_boys.delete == 1) {
-                $('#permission-delete-delivery-button').attr('checked', true);
-                $('#permission-is-delete-delivery').val(1);
-            } else {
-                $('#permission-delete-delivery-button').attr('checked', false);
-                $('#permission-is-delete-delivery').val(0);
-            }
-
-
-            if (permissions.return_requests.read == 1) {
-                $('#permission-read-return-button').attr('checked', true);
-                $('#permission-is-read-return').val(1);
-            } else {
-                $('#permission-read-return-button').attr('checked', false);
-                $('#permission-is-read-return').val(0);
-            }
-            if (permissions.return_requests.update == 1) {
-                $('#permission-update-return-button').attr('checked', true);
-                $('#permission-is-update-return').val(1);
-            } else {
-                $('#permission-update-return-button').attr('checked', false);
-                $('#permission-is-update-return').val(0);
-            }
-            if (permissions.return_requests.delete == 1) {
-                $('#permission-delete-return-button').attr('checked', true);
-                $('#permission-is-delete-return').val(1);
-            } else {
-                $('#permission-delete-return-button').attr('checked', false);
-                $('#permission-is-delete-return').val(0);
-            }
-
-            if (permissions.notifications.create == 1) {
-                $('#permission-create-notification-button').attr('checked', true);
-                $('#permission-is-create-notification').val(1);
-            } else {
-                $('#permission-create-notification-button').attr('checked', false);
-                $('#permission-is-create-notification').val(0);
-            }
-            if (permissions.notifications.read == 1) {
-                $('#permission-read-notification-button').attr('checked', true);
-                $('#permission-is-read-notification').val(1);
-            } else {
-                $('#permission-read-notification-button').attr('checked', false);
-                $('#permission-is-read-notification').val(0);
-            }
-            if (permissions.notifications.delete == 1) {
-                $('#permission-delete-notification-button').attr('checked', true);
-                $('#permission-is-delete-notification').val(1);
-            } else {
-                $('#permission-delete-notification-button').attr('checked', false);
-                $('#permission-is-delete-notification').val(0);
-            }
-
-            if (permissions.transactions.read == 1) {
-                $('#permission-read-transaction-button').attr('checked', true);
-                $('#permission-is-read-transaction').val(1);
-            } else {
-                $('#permission-read-transaction-button').attr('checked', false);
-                $('#permission-is-read-transaction').val(0);
-            }
-            if (permissions.transactions.read == 1) {
-                $('#permission-read-fund-button').attr('checked', true);
-                $('#permission-is-read-transaction').val(1);
-            } else {
-                $('#permission-read-fund-button').attr('checked', false);
-                $('#permission-is-read-transaction').val(0);
-            }
-
-
-            if (permissions.settings.read == 1) {
-                $('#permission-read-settings-button').attr('checked', true);
-                $('#permission-is-read-settings').val(1);
-            } else {
-                $('#permission-read-settings-button').attr('checked', false);
-                $('#permission-is-read-settings').val(0);
-            }
-
-            if (permissions.settings.update == 1) {
-                $('#permission-update-settings-button').attr('checked', true);
-                $('#permission-is-update-settings').val(1);
-            } else {
-                $('#permission-update-settings-button').attr('checked', false);
-                $('#permission-is-update-settings').val(0);
-            }
-
-            if (permissions.locations.create == 1) {
-                $('#permission-create-location-button').attr('checked', true);
-                $('#permission-is-create-location').val(1);
-            } else {
-                $('#permission-create-location-button').attr('checked', false);
-                $('#permission-is-create-location').val(0);
-            }
-
-            if (permissions.locations.read == 1) {
-                $('#permission-read-location-button').attr('checked', true);
-                $('#permission-is-read-location').val(1);
-            } else {
-                $('#permission-read-location-button').attr('checked', false);
-                $('#permission-is-read-location').val(0);
-            }
-            if (permissions.locations.update == 1) {
-                $('#permission-update-location-button').attr('checked', true);
-                $('#permission-is-update-location').val(1);
-            } else {
-                $('#permission-update-location-button').attr('checked', false);
-                $('#permission-is-update-location').val(0);
-            }
-
-            if (permissions.locations.delete == 1) {
-                $('#permission-delete-location-button').attr('checked', true);
-                $('#permission-is-delete-location').val(1);
-            } else {
-                $('#permission-delete-location-button').attr('checked', false);
-                $('#permission-is-delete-location').val(0);
-            }
-
-            if (permissions.reports.create == 1) {
-                $('#permission-create-report-button').attr('checked', true);
-                $('#permission-is-create-report').val(1);
-            } else {
-                $('#permission-create-report-button').attr('checked', false);
-                $('#permission-is-create-report').val(0);
-            }
-
-            if (permissions.reports.read == 1) {
-                $('#permission-read-report-button').attr('checked', true);
-                $('#permission-is-read-report').val(1);
-            } else {
-                $('#permission-read-report-button').attr('checked', false);
-                $('#permission-is-read-report').val(0);
-            }
-
-
-            if (permissions.faqs.create == 1) {
-
-                $('#permission-create-faq-button').attr('checked', true);
-                $('#permission-is-create-faq').val(1);
-            } else {
-                $('#permission-create-faq-button').attr('checked', false);
-                $('#permission-is-create-faq').val(0);
-            }
-
-            if (permissions.faqs.read == 1) {
-                $('#permission-read-faq-button').attr('checked', true);
-                $('#permission-is-read-faq').val(1);
-            } else {
-                $('#permission-read-faq-button').attr('checked', false);
-                $('#permission-is-read-faq').val(0);
-            }
-
-            if (permissions.faqs.update == 1) {
-                $('#permission-update-faq-button').attr('checked', true);
-                $('#permission-is-update-faq').val(1);
-            } else {
-                $('#permission-update-faq-button').attr('checked', false);
-                $('#permission-is-update-faq').val(0);
-            }
-
-            if (permissions.faqs.delete == 1) {
-                $('#permission-delete-faq-button').attr('checked', true);
-                $('#permission-is-delete-faq').val(1);
-            } else {
-                $('#permission-delete-faq-button').attr('checked', false);
-                $('#permission-is-delete-faq').val(0);
-            }
         }
     }
     //   var changeCheckbox = document.querySelector('#permission-create-order-button');
@@ -1882,511 +1108,252 @@ if ($_SESSION['role'] == 'editor') {
     //         $('#permission-is-create-order').val(0);
     //     }
     // };
-    $('#permission-create-order-button').change(function() {
+    $('#permission-create-goldsmithmaster-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-create-order').val(1);
+            $('#permission-is-create-goldsmithmaster').val(1);
         } else {
-            $('#permission-is-create-order').val(0);
+            $('#permission-is-create-goldsmithmaster').val(0);
         }
     });
-    $('#permission-read-order-button').change(function() {
+    $('#permission-read-goldsmithmaster-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-read-order').val(1);
+            $('#permission-is-read-goldsmithmaster').val(1);
         } else {
-            $('#permission-is-read-order').val(0);
+            $('#permission-is-read-goldsmithmaster').val(0);
         }
     });
-    $('#permission-update-order-button').change(function() {
+    $('#permission-update-goldsmithmaster-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-update-order').val(1);
+            $('#permission-is-update-goldsmithmaster').val(1);
         } else {
-            $('#permission-is-update-order').val(0);
+            $('#permission-is-update-goldsmithmaster').val(0);
         }
     });
-    $('#permission-delete-order-button').change(function() {
+    $('#permission-delete-goldsmithmaster-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-delete-order').val(1);
+            $('#permission-is-delete-goldsmithmaster').val(1);
         } else {
-            $('#permission-is-delete-order').val(0);
-        }
-    });
-
-    $('#permission-create-category-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-create-category').val(1);
-        } else {
-            $('#permission-is-create-category').val(0);
-        }
-    });
-    $('#permission-read-category-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-category').val(1);
-        } else {
-            $('#permission-is-read-category').val(0);
-        }
-    });
-    $('#permission-update-category-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-update-category').val(1);
-        } else {
-            $('#permission-is-update-category').val(0);
-        }
-    });
-    $('#permission-delete-category-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-delete-category').val(1);
-        } else {
-            $('#permission-is-delete-category').val(0);
-        }
-    });
-    $('#permission-create-seller-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-create-seller').val(1);
-        } else {
-            $('#permission-is-create-seller').val(0);
-        }
-    });
-    $('#permission-read-seller-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-seller').val(1);
-        } else {
-            $('#permission-is-read-seller').val(0);
-        }
-    });
-    $('#permission-update-seller-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-update-seller').val(1);
-        } else {
-            $('#permission-is-update-seller').val(0);
-        }
-    });
-    $('#permission-delete-seller-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-delete-seller').val(1);
-        } else {
-            $('#permission-is-delete-seller').val(0);
-        }
-    });
-
-    $('#permission-create-subcategory-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-create-subcategory').val(1);
-        } else {
-            $('#permission-is-create-subcategory').val(0);
-        }
-    });
-    $('#permission-read-subcategory-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-subcategory').val(1);
-        } else {
-            $('#permission-is-read-subcategory').val(0);
-        }
-    });
-    $('#permission-update-subcategory-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-update-subcategory').val(1);
-        } else {
-            $('#permission-is-update-subcategory').val(0);
-        }
-    });
-    $('#permission-delete-subcategory-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-delete-subcategory').val(1);
-        } else {
-            $('#permission-is-delete-subcategory').val(0);
+            $('#permission-is-delete-goldsmithmaster').val(0);
         }
     });
 
 
-    $('#permission-create-product-button').change(function() {
+    $('#permission-create-openmaster-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-create-product').val(1);
+            $('#permission-is-create-openmaster').val(1);
         } else {
-            $('#permission-is-create-product').val(0);
+            $('#permission-is-create-openmaster').val(0);
         }
     });
-    $('#permission-read-product-button').change(function() {
+    $('#permission-read-openmaster-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-read-product').val(1);
+            $('#permission-is-read-openmaster').val(1);
         } else {
-            $('#permission-is-read-product').val(0);
+            $('#permission-is-read-openmaster').val(0);
         }
     });
-    $('#permission-update-product-button').change(function() {
+    $('#permission-update-openmaster-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-update-product').val(1);
+            $('#permission-is-update-openmaster').val(1);
         } else {
-            $('#permission-is-update-product').val(0);
+            $('#permission-is-update-openmaster').val(0);
         }
     });
-    $('#permission-delete-product-button').change(function() {
+    $('#permission-delete-openmaster-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-delete-product').val(1);
+            $('#permission-is-delete-openmaster').val(1);
         } else {
-            $('#permission-is-delete-product').val(0);
-        }
-    });
-
-
-    $('#permission-read-products-order-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-products-order').val(1);
-        } else {
-            $('#permission-is-read-products-order').val(0);
-        }
-    });
-    $('#permission-update-products-order-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-update-products-order').val(1);
-        } else {
-            $('#permission-is-update-products-order').val(0);
+            $('#permission-is-delete-openmaster').val(0);
         }
     });
 
 
-    $('#permission-create-home-slider-button').change(function() {
+    $('#permission-create-dailytransaction-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-create-home-slider').val(1);
+            $('#permission-is-create-dailytransaction').val(1);
         } else {
-            $('#permission-is-create-home-slider').val(0);
+            $('#permission-is-create-dailytransaction').val(0);
         }
     });
-    $('#permission-read-home-slider-button').change(function() {
+    $('#permission-read-dailytransaction-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-read-home-slider').val(1);
+            $('#permission-is-read-dailytransaction').val(1);
         } else {
-            $('#permission-is-read-home-slider').val(0);
+            $('#permission-is-read-dailytransaction').val(0);
         }
     });
-    $('#permission-update-home-slider-button').change(function() {
+    $('#permission-update-dailytransaction-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-update-home-slider').val(1);
+            $('#permission-is-update-dailytransaction').val(1);
         } else {
-            $('#permission-is-update-home-slider').val(0);
+            $('#permission-is-update-dailytransaction').val(0);
         }
     });
-    $('#permission-delete-home-slider-button').change(function() {
+    $('#permission-delete-dailytransaction-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-delete-home-slider').val(1);
+            $('#permission-is-delete-dailytransaction').val(1);
         } else {
-            $('#permission-is-delete-home-slider').val(0);
+            $('#permission-is-delete-dailytransaction').val(0);
+        }
+    });
+
+    $('#permission-create-suspenseaccount-button').change(function() {
+        if ($(this).is(':checked')) {
+            $('#permission-is-create-suspenseaccount').val(1);
+        } else {
+            $('#permission-is-create-suspenseaccount').val(0);
+        }
+    });
+    $('#permission-read-suspenseaccount-button').change(function() {
+        if ($(this).is(':checked')) {
+            $('#permission-is-read-suspenseaccount').val(1);
+        } else {
+            $('#permission-is-read-suspenseaccount').val(0);
+        }
+    });
+    $('#permission-update-suspenseaccount-button').change(function() {
+        if ($(this).is(':checked')) {
+            $('#permission-is-update-suspenseaccount').val(1);
+        } else {
+            $('#permission-is-update-suspenseaccount').val(0);
+        }
+    });
+    $('#permission-delete-suspenseaccount-button').change(function() {
+        if ($(this).is(':checked')) {
+            $('#permission-is-delete-suspenseaccount').val(1);
+        } else {
+            $('#permission-is-delete-suspenseaccount').val(0);
         }
     });
 
 
-    $('#permission-create-new-offer-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-create-new-offer').val(1);
-        } else {
-            $('#permission-is-create-new-offer').val(0);
-        }
-    });
-    $('#permission-read-new-offer-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-new-offer').val(1);
-        } else {
-            $('#permission-is-read-new-offer').val(0);
-        }
-    });
-    $('#permission-update-new-offer-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-update-new-offer').val(1);
-        } else {
-            $('#permission-is-update-new-offer').val(0);
-        }
-    });
-    $('#permission-delete-new-offer-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-delete-new-offer').val(1);
-        } else {
-            $('#permission-is-delete-new-offer').val(0);
-        }
-    });
 
-    $('#permission-create-promo-button').change(function() {
+    $('#permission-create-transactionregister-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-create-promo').val(1);
+            $('#permission-is-create-transactionregister').val(1);
         } else {
-            $('#permission-is-create-promo').val(0);
+            $('#permission-is-create-transactionregister').val(0);
         }
     });
-    $('#permission-read-promo-button').change(function() {
+    $('#permission-read-transactionregister-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-read-promo').val(1);
+            $('#permission-is-read-transactionregister').val(1);
         } else {
-            $('#permission-is-read-promo').val(0);
+            $('#permission-is-read-transactionregister').val(0);
         }
     });
-    $('#permission-update-promo-button').change(function() {
+    $('#permission-update-transactionregister-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-update-promo').val(1);
+            $('#permission-is-update-transactionregister').val(1);
         } else {
-            $('#permission-is-update-promo').val(0);
+            $('#permission-is-update-transactionregister').val(0);
         }
     });
-    $('#permission-delete-promo-button').change(function() {
+    $('#permission-delete-transactionregister-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-delete-promo').val(1);
+            $('#permission-is-delete-transactionregister').val(1);
         } else {
-            $('#permission-is-delete-promo').val(0);
+            $('#permission-is-delete-transactionregister').val(0);
         }
     });
 
 
-    $('#permission-create-featured-button').change(function() {
+    $('#permission-create-dealerreport-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-create-featured').val(1);
+            $('#permission-is-create-dealerreport').val(1);
         } else {
-            $('#permission-is-create-featured').val(0);
+            $('#permission-is-create-dealerreport').val(0);
         }
     });
-    $('#permission-read-featured-button').change(function() {
+    $('#permission-read-dealerreport-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-read-featured').val(1);
+            $('#permission-is-read-dealerreport').val(1);
         } else {
-            $('#permission-is-read-featured').val(0);
+            $('#permission-is-read-dealerreport').val(0);
         }
     });
-    $('#permission-update-featured-button').change(function() {
+    $('#permission-update-dealerreport-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-update-featured').val(1);
+            $('#permission-is-update-dealerreport').val(1);
         } else {
-            $('#permission-is-update-featured').val(0);
+            $('#permission-is-update-dealerreport').val(0);
         }
     });
-    $('#permission-delete-featured-button').change(function() {
+    $('#permission-delete-dealerreport-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-delete-featured').val(1);
+            $('#permission-is-delete-dealerreport').val(1);
         } else {
-            $('#permission-is-delete-featured').val(0);
-        }
-    });
-
-    $('#permission-read-customers-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-customers').val(1);
-        } else {
-            $('#permission-is-read-customers').val(0);
-        }
-    });
-    $('#permission-update-customers-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-update-customers').val(1);
-        } else {
-            $('#permission-is-update-customers').val(0);
-        }
-    });
-    $('#permission-read-payment-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-payment').val(1);
-        } else {
-            $('#permission-is-read-payment').val(0);
-        }
-    });
-
-    $('#permission-update-payment-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-update-payment').val(1);
-        } else {
-            $('#permission-is-update-payment').val(0);
+            $('#permission-is-delete-dealerreport').val(0);
         }
     });
 
 
-    $('#permission-create-delivery-button').change(function() {
+    $('#permission-create-areawisereport-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-create-delivery').val(1);
+            $('#permission-is-create-areawisereport').val(1);
         } else {
-            $('#permission-is-create-delivery').val(0);
+            $('#permission-is-create-areawisereport').val(0);
         }
     });
-    $('#permission-read-delivery-button').change(function() {
+    $('#permission-read-areawisereport-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-read-delivery').val(1);
+            $('#permission-is-read-areawisereport').val(1);
         } else {
-            $('#permission-is-read-delivery').val(0);
+            $('#permission-is-read-areawisereport').val(0);
         }
     });
-    $('#permission-update-delivery-button').change(function() {
+    $('#permission-update-areawisereport-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-update-delivery').val(1);
+            $('#permission-is-update-areawisereport').val(1);
         } else {
-            $('#permission-is-update-delivery').val(0);
+            $('#permission-is-update-areawisereport').val(0);
         }
     });
-    $('#permission-delete-delivery-button').change(function() {
+    $('#permission-delete-areawisereport-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-delete-delivery').val(1);
+            $('#permission-is-delete-areawisereport').val(1);
         } else {
-            $('#permission-is-delete-delivery').val(0);
-        }
-    });
-
-
-    $('#permission-read-return-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-return').val(1);
-        } else {
-            $('#permission-is-read-return').val(0);
-        }
-    });
-    $('#permission-update-return-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-update-return').val(1);
-        } else {
-            $('#permission-is-update-return').val(0);
-        }
-    });
-    $('#permission-delete-return-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-delete-return').val(1);
-        } else {
-            $('#permission-is-delete-return').val(0);
+            $('#permission-is-delete-areawisereport').val(0);
         }
     });
 
 
-    $('#permission-create-notification-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-create-notification').val(1);
-        } else {
-            $('#permission-is-create-notification').val(0);
-        }
-    });
-    $('#permission-read-notification-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-notification').val(1);
-        } else {
-            $('#permission-is-read-notification').val(0);
-        }
-    });
-    $('#permission-delete-notification-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-delete-notification').val(1);
-        } else {
-            $('#permission-is-delete-notification').val(0);
-        }
-    });
 
-    $('#permission-read-transaction-button').change(function() {
+    $('#permission-create-stockreport-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-read-transaction').val(1);
+            $('#permission-is-create-stockreport').val(1);
         } else {
-            $('#permission-is-read-transaction').val(0);
+            $('#permission-is-create-stockreport').val(0);
         }
     });
-    $('#permission-read-fund-button').change(function() {
+    $('#permission-read-stockreport-button').change(function() {
         if ($(this).is(':checked')) {
-            $('#permission-is-read-fund').val(1);
+            $('#permission-is-read-stockreport').val(1);
         } else {
-            $('#permission-is-read-fund').val(0);
+            $('#permission-is-read-stockreport').val(0);
+        }
+    });
+    $('#permission-update-stockreport-button').change(function() {
+        if ($(this).is(':checked')) {
+            $('#permission-is-update-stockreport').val(1);
+        } else {
+            $('#permission-is-update-stockreport').val(0);
+        }
+    });
+    $('#permission-delete-stockreport-button').change(function() {
+        if ($(this).is(':checked')) {
+            $('#permission-is-delete-stockreport').val(1);
+        } else {
+            $('#permission-is-delete-stockreport').val(0);
         }
     });
 
 
-    $('#permission-read-settings-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-settings').val(1);
-        } else {
-            $('#permission-is-read-settings').val(0);
-        }
-    });
-
-    $('#permission-update-settings-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-update-settings').val(1);
-        } else {
-            $('#permission-is-update-settings').val(0);
-        }
-    });
-
-    $('#permission-create-location-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-create-location').val(1);
-        } else {
-            $('#permission-is-create-location').val(0);
-        }
-    });
-
-    $('#permission-read-location-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-location').val(1);
-        } else {
-            $('#permission-is-read-location').val(0);
-        }
-    });
-    $('#permission-update-location-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-update-location').val(1);
-        } else {
-            $('#permission-is-update-location').val(0);
-        }
-    });
-
-    $('#permission-delete-location-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-delete-location').val(1);
-        } else {
-            $('#permission-is-delete-location').val(0);
-        }
-    });
-
-
-    $('#permission-create-report-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-create-report').val(1);
-        } else {
-            $('#permission-is-create-report').val(0);
-        }
-    });
-
-    $('#permission-read-report-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-report').val(1);
-        } else {
-            $('#permission-is-read-report').val(0);
-        }
-    });
-
-
-    $('#permission-create-faq-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-create-faq').val(1);
-        } else {
-            $('#permission-is-create-faq').val(0);
-        }
-    });
-
-    $('#permission-read-faq-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-read-faq').val(1);
-        } else {
-            $('#permission-is-read-faq').val(0);
-        }
-    });
-    $('#permission-update-faq-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-update-faq').val(1);
-        } else {
-            $('#permission-is-update-faq').val(0);
-        }
-    });
-
-    $('#permission-delete-faq-button').change(function() {
-        if ($(this).is(':checked')) {
-            $('#permission-is-delete-faq').val(1);
-        } else {
-            $('#permission-is-delete-faq').val(0);
-        }
-    });
 </script>
 <script>
     $(document).on('click', '.delete-system-user', function() {
         if (confirm('Are you sure? Want to delete system user.')) {
-
             id = $(this).data("id");
-
-            // image = $(this).data("image");
             $.ajax({
                 url: 'public/db-operation.php',
                 type: "get",

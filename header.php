@@ -297,11 +297,15 @@ $res_logo = $db->getResult();
 
 
                     </ul>
+                    <?php
+                if ($role == 'super admin') {
+                ?>
                     <li class="treeview">
-                                <a href="system-users.php">
-                                    <i class="fa fa-users" class="active"></i> <span>System Users</span>
-                                </a>
-                            </li>
+                        <a href="system-users.php">
+                            <i class="fa fa-users" class="active"></i> <span>System Users</span>
+                        </a>
+                    </li>
+                <?php }?>
                 </li>
                 
                 

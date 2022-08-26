@@ -6,7 +6,9 @@
 
     
 </section>
-    <!-- Main content -->
+<?php
+if ($permissions['suspenseaccount']['read'] == 1) {
+?>
     <section class="content">
         <!-- Main row -->
         <div class="row">
@@ -32,17 +34,17 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive">
-                        <table id='users_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=suspense_account" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="false" data-export-types='["txt","excel"]' data-export-options='{
+                        <table id='users_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=suspense_account" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-show-footer="true" data-footer-style="footerStyle" data-sort-name="id" data-sort-order="desc" data-show-export="false" data-export-types='["txt","excel"]' data-export-options='{
                             "fileName": "students-list-<?= date('d-m-Y') ?>",
                             "ignoreColumn": ["operate"] 
                         }'>
                             <thead>
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
-                                    <th data-field="name" data-sortable="true">Name</th>
-                                    <th data-field="total" data-sortable="true">Total</th>
-                                    <!-- <th data-field="operate" data-events="actionEvents">Action</th> -->
-             
+                                    
+                                    <th data-field="name" data-footer-formatter="priceFormatterlabel">Total</th>  
+                                    <th data-field="total" data-footer-formatter="priceFormatter">Total</th>     
+                                    <th data-field="operate" data-events="actionEvents">Action</th>       
                                 </tr>
                             </thead>
                         </table>
@@ -55,8 +57,11 @@
         </div>
         <!-- /.row (main row) -->
     </section>
-
+    <?php } else { ?>
+    <div class="alert alert-danger topmargin-sm" style="margin-top: 20px;">You have no permission to view suspense account.</div>
+<?php } ?>
 <script>
+
    
     $('#total').on('change', function() {
         $('#users_table').bootstrapTable('refresh');
@@ -74,5 +79,18 @@
             offset: p.offset,
             search: p.search
         };
+    }
+    function priceFormatter(data) {
+        var field = this.field
+        return '<span style="color:green;font-weight:bold;font-size:large;"> <?= $settings['currency'] ?> ' + data.map(function(row) {
+                return +row[field]
+            })
+            .reduce(function(sum, i) {
+                return sum + i
+            }, 0);
+    }
+    function priceFormatterlabel(data) {
+        var field = this.field
+        return '<span style="color:green;font-weight:bold;font-size:large;"> Total';
     }
 </script>

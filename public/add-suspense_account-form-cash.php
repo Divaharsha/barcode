@@ -13,6 +13,8 @@ $db->sql($sql_query);
 $res_cur = $db->getResult();
 
 if (isset($_POST['btnAdd'])) {
+
+    if ($permissions['suspenseaccount']['create'] == 1) {
         $error = array();
         $name = $db->escapeString($fn->xss_clean($_POST['name']));
         $inward= $db->escapeString($fn->xss_clean($_POST['inward']));
@@ -55,6 +57,8 @@ if (isset($_POST['btnAdd'])) {
                                             </section>";
                 }
             }
+    }
+
             
 ?>
 <section class="content-header">
@@ -68,6 +72,9 @@ if (isset($_POST['btnAdd'])) {
 <section class="content">
     <div class="row">
         <div class="col-md-10">
+        <?php if ($permissions['suspenseaccount']['create'] == 0) { ?>
+                <div class="alert alert-danger">You have no permission to create suspense account.</div>
+            <?php } ?>
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">

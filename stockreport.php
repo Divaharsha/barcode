@@ -65,6 +65,9 @@ $_SESSION['timeout'] = $currentTime + $expired;
                 </li>
             </ol>
         </section>
+<?php
+if ($permissions['stockreport']['read'] == 1) {
+?>
         <section class="content">
             <div class="row">
                 <div class="col-lg-4 col-xs-6">
@@ -164,6 +167,9 @@ $_SESSION['timeout'] = $currentTime + $expired;
             </div>
                 
         </section>
+        <?php } else { ?>
+    <div class="alert alert-danger topmargin-sm" style="margin-top: 20px;">You have no permission to view stock report.</div>
+<?php } ?>
     </div>
    
 </body>

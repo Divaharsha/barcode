@@ -14,6 +14,7 @@ if (isset($_GET['id'])) {
 }
 
 if (isset($_POST['btnUpdate'])) {
+    if ($permissions['goldsmithmaster']['update'] == 1) {
         $error = array();
         $name = $db->escapeString($fn->xss_clean($_POST['name']));
         $sundry = $db->escapeString($fn->xss_clean($_POST['sundry']));
@@ -53,6 +54,8 @@ if (isset($_POST['btnUpdate'])) {
                 }
 
         }
+    }
+    
 }
 
 $data = array();
@@ -75,7 +78,9 @@ $data = $row;
 <section class="content">
     <div class="row">
         <div class="col-md-12">
-            <!-- general form elements -->
+        <?php if ($permissions['goldsmithmaster']['update'] == 0) { ?>
+                <div class="alert alert-danger">You have no permission to update goldsmith master.</div>
+            <?php } ?>
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Edit Dealer Goldsmith Master</h3>

@@ -7,8 +7,11 @@
         <a class="btn btn-block btn-default" href="add-goldsmithmaster.php"><i class="fa fa-plus-square"></i> Add New Goldsmith Master</a>
     </ol>
 
-    
+
 </section>
+<?php
+if ($permissions['goldsmithmaster']['read'] == 1) {
+?>
     <!-- Main content -->
     <section class="content">
         <!-- Main row -->
@@ -50,7 +53,9 @@
         </div>
         <!-- /.row (main row) -->
     </section>
-
+    <?php } else { ?>
+    <div class="alert alert-danger topmargin-sm" style="margin-top: 20px;">You have no permission to view goldsmith masters.</div>
+<?php } ?>
 <script>
     $('#seller_id').on('change', function() {
         $('#products_table').bootstrapTable('refresh');

@@ -11,9 +11,14 @@ $sql_query = "SELECT value FROM settings WHERE variable = 'Currency'";
 $pincode_ids_exc = "";
 $db->sql($sql_query);
 $res_cur = $db->getResult();
-
+if (isset($_GET['name'])) {
+    $suspense_account_name = $db->escapeString($_GET['name']);
+} else {
+    return false;
+    exit(0);
+}
 if (isset($_POST['btnAdd'])) {
-    if ($permissions['suspenseaccount']['create'] == 1) {
+    if ($permissions['suspenseaccount']['update'] == 1) {
         $error = array();
         $holder_name = $db->escapeString($fn->xss_clean($_POST['holder_name']));
         $type= $db->escapeString($fn->xss_clean($_POST['type']));
@@ -84,7 +89,7 @@ if (isset($_POST['btnAdd'])) {
             
 ?>
 <section class="content-header">
-    <h1>Add Weight</h1>
+    <h1>Edit Weight</h1>
     <?php echo isset($error['add_menu']) ? $error['add_menu'] : ''; ?>
     <ol class="breadcrumb">
         <li><a href="home.php"><i class="fa fa-home"></i> Home</a></li>
@@ -94,7 +99,7 @@ if (isset($_POST['btnAdd'])) {
 <section class="content">
     <div class="row">
         <div class="col-md-10">
-        <?php if ($permissions['suspenseaccount']['create'] == 0) { ?>
+        <?php if ($permissions['suspenseaccount']['update'] == 0) { ?>
                 <div class="alert alert-danger">You have no permission to create suspense account.</div>
             <?php } ?>
             <!-- general form elements -->
@@ -107,7 +112,7 @@ if (isset($_POST['btnAdd'])) {
                         <div class="row">
                             <div class="form-group">
                                 <div class='col-md-4'>
-                                        <input type="text"  id="name" name="susname" placeholder="Enter Name" class="form-control" required>
+                                        <input type="text"  id="name" name="susname" placeholder="Enter Name" value="<?php echo $suspense_account_name?>" class="form-control" readonly required>
                                 </div>
                                 <div class='col-md-4'>
                                     <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">

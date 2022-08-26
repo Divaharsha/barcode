@@ -4,6 +4,9 @@
         <small><a href="home.php"><i class="fa fa-home"></i> Home</a></small>
     </h1>
 </section>
+<?php
+if ($permissions['transactionregister']['read'] == 1) {
+?>
     <!-- Main content -->
     <section class="content">
         <!-- Main row -->
@@ -110,7 +113,9 @@
         </div>
         <!-- /.row (main row) -->
     </section>
-
+    <?php } else { ?>
+    <div class="alert alert-danger topmargin-sm" style="margin-top: 20px;">You have no permission to view transaction register.</div>
+<?php } ?>
 <script>
     $('#gm_id').select2({
         width: 'element',

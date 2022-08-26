@@ -15,48 +15,52 @@ if (isset($_GET['id'])) {
 
 if (isset($_POST['btnEdit'])) {
 
-    $name = $db->escapeString($fn->xss_clean($_POST['name']));
-    $error = array();
-
+    if ($permissions['dailytransaction']['update'] == 1) {
+        $name = $db->escapeString($fn->xss_clean($_POST['name']));
+        $error = array();
     
-    if (empty($name)) {
-        $error['name'] = " <span class='label label-danger'>Required!</span>";
+        
+        if (empty($name)) {
+            $error['name'] = " <span class='label label-danger'>Required!</span>";
+        }
+    
+            
+    
+        if ( !empty($name))
+        {
+            $date = $db->escapeString($fn->xss_clean($_POST['date']));
+            $type = $db->escapeString($fn->xss_clean($_POST['type']));
+            $category = $db->escapeString($fn->xss_clean($_POST['category'])); 
+            $weight = $db->escapeString($fn->xss_clean($_POST['weight']));
+            $stone_weight = $db->escapeString($fn->xss_clean($_POST['stone_weight']));
+            $wastage = $db->escapeString($fn->xss_clean($_POST['wastage']));
+            $touch = $db->escapeString($fn->xss_clean($_POST['touch']));
+            $rate = $db->escapeString($fn->xss_clean($_POST['rate']));
+            $gst = $db->escapeString($fn->xss_clean($_POST['gst']));
+            $amount = $db->escapeString($fn->xss_clean($_POST['amount']));
+            $mc = $db->escapeString($fn->xss_clean($_POST['mc']));
+            $purity = $db->escapeString($fn->xss_clean($_POST['purity']));
+            $sql = "UPDATE `daily_transaction` SET `date` = '$date', `type` = '$type', `category` = '$category', `weight` = '$weight', `stone_weight` = '$stone_weight', `wastage` = '$wastage', `touch` = '$touch', `rate` = '$rate', `gst` = '$gst', `amount` = '$amount', `mc` = '$mc', `purity` = '$purity' WHERE `daily_transaction`.`id` = $ID";
+            $db->sql($sql);
+            $update_result = $db->getResult();
+                 $update_result = $db->getResult();
+                if (!empty($res)) {
+                    $update_result = 0;
+                } else {
+                    $update_result = 1;
+                }
+    
+                // check update result
+                if ($update_result == 1) {
+                    $error['update_transaction'] = " <section class='content-header'><span class='label label-success'>Daily Transactions updated Successfully</span></section>";
+                } else {
+                    $error['update_transaction'] = " <span class='label label-danger'>Failed to update</span>";
+                }
+            }
+
     }
 
-		
-
-    if ( !empty($name))
-    {
-        $date = $db->escapeString($fn->xss_clean($_POST['date']));
-        $type = $db->escapeString($fn->xss_clean($_POST['type']));
-        $category = $db->escapeString($fn->xss_clean($_POST['category'])); 
-        $weight = $db->escapeString($fn->xss_clean($_POST['weight']));
-        $stone_weight = $db->escapeString($fn->xss_clean($_POST['stone_weight']));
-        $wastage = $db->escapeString($fn->xss_clean($_POST['wastage']));
-        $touch = $db->escapeString($fn->xss_clean($_POST['touch']));
-        $rate = $db->escapeString($fn->xss_clean($_POST['rate']));
-        $gst = $db->escapeString($fn->xss_clean($_POST['gst']));
-        $amount = $db->escapeString($fn->xss_clean($_POST['amount']));
-        $mc = $db->escapeString($fn->xss_clean($_POST['mc']));
-        $purity = $db->escapeString($fn->xss_clean($_POST['purity']));
-        $sql = "UPDATE `daily_transaction` SET `date` = '$date', `type` = '$type', `category` = '$category', `weight` = '$weight', `stone_weight` = '$stone_weight', `wastage` = '$wastage', `touch` = '$touch', `rate` = '$rate', `gst` = '$gst', `amount` = '$amount', `mc` = '$mc', `purity` = '$purity' WHERE `daily_transaction`.`id` = $ID";
-        $db->sql($sql);
-        $update_result = $db->getResult();
-             $update_result = $db->getResult();
-			if (!empty($res)) {
-				$update_result = 0;
-			} else {
-				$update_result = 1;
-			}
-
-			// check update result
-			if ($update_result == 1) {
-			    $error['update_transaction'] = " <section class='content-header'><span class='label label-success'>Daily Transactions updated Successfully</span></section>";
-			} else {
-				$error['update_transaction'] = " <span class='label label-danger'>Failed to update</span>";
-			}
-		}
-	} 
+} 
 
 
 // create array variable to store previous data
@@ -85,7 +89,9 @@ if (isset($_POST['btnCancel'])) { ?>
 
 	<div class="row">
 		<div class="col-md-12">
-		
+        <?php if ($permissions['dailytransaction']['update'] == 0) { ?>
+                <div class="alert alert-danger">You have no permission to update daily transaction.</div>
+            <?php } ?>
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-header with-border">
