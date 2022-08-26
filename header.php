@@ -298,48 +298,6 @@ $res_logo = $db->getResult();
                     </ul>
                 </li>
                 
-                
-                <!-- <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-wrench"></i>
-                        <span>System</span>
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="settings.php"><i class="fa fa-cogs"></i> Store Settings </a></li>
-                        <li><a href="payment-methods-settings.php"><i class="fa fa-dollar"></i> Payment Methods </a></li>
-                        <li><a href="time-slots.php"><i class="fa fa-clock-o"></i> Time slots </a></li>
-                        <li><a href="notification-settings.php"><i class="fa fa-bell-o"></i> Notification Settings</a></li>
-                        <li><a href="units.php"><i class="fa fa-dot-circle-o"></i> Units</a></li>
-                        <li class="d-none"><a href="shiprocket-settings.php"><i class="fa fa-rocket"></i> Shiprocket</a></li>
-                        <li><a href="contact-us.php"><i class="fa fa-phone"></i> Contact Us </a></li>
-                        <li><a href="privacy-policy.php"><i class="fa fa-user-secret"></i> Privacy Policy </a></li>
-                        <li><a href="delivery-boy-privacy-policy.php"><i class="fa fa-exclamation-triangle"></i> Delivery Boy Privacy Policy </a></li>
-                        <li><a href="manager-app-privacy-policy.php"><i class="fa fa-lock"></i> Manager App Privacy Policy </a></li>
-                        <li><a href="seller-privacy-policy.php"><i class="fa fa-lock"></i> Seller Privacy Policy </a></li>
-                        <li><a href="api-key.php"><i class="fa fa-lock"></i> Secret Key </a></li>
-                        <li><a href="about-us.php"><i class="fa fa-info"></i> About Us </a></li>
-                        <li><a href="purchase-code.php"><i class="fa fa-check"></i> System Registration </a></li>
-
-                    </ul>
-                </li> -->
-        
-                <?php
-                if ($role == 'admin' || $role == 'super admin') {
-                ?>
-                    <!-- <li class="treeview">
-                        <a href="system-users.php">
-                            <i class="fa fa-users" class="active"></i> <span>System Users</span>
-                        </a>
-                    </li> -->
-                <?php }
-                $query = "SELECT version FROM updates ORDER BY id DESC LIMIT 1";
-                $db->sql($query);
-                $result = $db->getResult();
-                if (!empty($result)) {
-                ?>
-                    <!-- <center><a href="home.php" class="label label-success"><?= $result[0]['version'] ?></a></center> -->
-                <?php } ?>
             </ul>
             </section>
             <!-- /.sidebar -->

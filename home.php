@@ -50,9 +50,57 @@ $low_stock_limit = isset($config['low-stock-limit']) && (!empty($config['low-sto
         <section class="content">
             <div class="row">
                 
+                <div class="col-lg-4 col-xs-6">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3><?php                           
+                            $sql = "SELECT * FROM goldsmith_master";
+                            $db->sql($sql);
+                            $res = $db->getResult();
+                            $num = $db->numRows($res);
+                            echo $num; ?></h3>
+                            
+                            <p>GoldSmith Master</p>
+                        </div>
+                        <div class="icon"></div>
+                        <a href="goldsmithmasters.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
                 </div>
-               
+                <div class="col-lg-4 col-xs-6">
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h3><?php                           
+                            $sql = "SELECT * FROM daily_transaction";
+                            $db->sql($sql);
+                            $res = $db->getResult();
+                            $num = $db->numRows($res);
+                            echo $num; ?></h3>
+                            
+                            <p>Daily Transactions</p>
+                        </div>
+                        <div class="icon"></div>
+                        <a href="dailytransactions.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-xs-6">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <h3><?php                           
+                            $sql = "SELECT * FROM suspense_account";
+                            $db->sql($sql);
+                            $res = $db->getResult();
+                            $num = $db->numRows($res);
+                            echo $num; ?></h3>
+                            
+                            <p>Suspense Account</p>
+                        </div>
+                        <div class="icon"></div>
+                        <a href="suspense.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                
             </div>
+            
         </section>
     </div>
     <?php include "footer.php"; ?>
