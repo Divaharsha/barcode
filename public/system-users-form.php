@@ -131,7 +131,7 @@ if ($_SESSION['role'] == 'editor') {
                         <th>Delete</th>
                     </tr>
                     <tr>
-                        <td>Master</td>
+                        <td>Dealer Gold Smith Master</td>
                         <td><input type="checkbox" id="create-order-button" class="js-switch" checked>
                             <input type="hidden" id="is-create-order" name="is-create-order" value="1">
                         </td>
@@ -146,7 +146,7 @@ if ($_SESSION['role'] == 'editor') {
                         </td>
                     </tr>
                     <tr>
-                        <td>Transaction</td>
+                        <td>Opening Master</td>
                         <td><input type="checkbox" id="create-category-button" class="js-switch" checked>
                             <input type="hidden" id="is-create-category" name="is-create-category" value="1">
                         </td>
@@ -161,7 +161,7 @@ if ($_SESSION['role'] == 'editor') {
                         </td>
                     </tr>
                     <tr>
-                        <td>Sellers</td>
+                        <td>Daily transaction</td>
                         <td><input type="checkbox" id="create-seller-button" class="js-switch" checked>
                             <input type="hidden" id="is-create-seller" name="is-create-seller" value="1">
                         </td>
@@ -177,16 +177,63 @@ if ($_SESSION['role'] == 'editor') {
                     </tr>
  
                     <tr>
-                        <td>Reports</td>
-                        <td><input type="checkbox" id="create-report-button" class="js-switch" checked>
-                            <input type="hidden" id="is-create-report" name="is-create-report" value="1">
+                        <td>Transaction Register</td>
+                        <td><input type="checkbox" id="create-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-create-seller" name="is-create-seller" value="1">
                         </td>
-                        <td><input type="checkbox" id="read-report-button" class="js-switch" checked>
-                            <input type="hidden" id="is-read-report" name="is-read-report" value="1">
+                        <td><input type="checkbox" id="read-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-read-seller" name="is-read-seller" value="1">
                         </td>
-                        <td>-
+                        <td><input type="checkbox" id="update-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-update-seller" name="is-update-seller" value="1">
                         </td>
-                        <td>-
+                        <td><input type="checkbox" id="delete-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-delete-seller" name="is-delete-seller" value="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dealer Ledger Report</td>
+                        <td><input type="checkbox" id="create-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-create-seller" name="is-create-seller" value="1">
+                        </td>
+                        <td><input type="checkbox" id="read-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-read-seller" name="is-read-seller" value="1">
+                        </td>
+                        <td><input type="checkbox" id="update-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-update-seller" name="is-update-seller" value="1">
+                        </td>
+                        <td><input type="checkbox" id="delete-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-delete-seller" name="is-delete-seller" value="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Areawise Ledger Report</td>
+                        <td><input type="checkbox" id="create-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-create-seller" name="is-create-seller" value="1">
+                        </td>
+                        <td><input type="checkbox" id="read-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-read-seller" name="is-read-seller" value="1">
+                        </td>
+                        <td><input type="checkbox" id="update-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-update-seller" name="is-update-seller" value="1">
+                        </td>
+                        <td><input type="checkbox" id="delete-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-delete-seller" name="is-delete-seller" value="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Stock Report</td>
+                        <td><input type="checkbox" id="create-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-create-seller" name="is-create-seller" value="1">
+                        </td>
+                        <td><input type="checkbox" id="read-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-read-seller" name="is-read-seller" value="1">
+                        </td>
+                        <td><input type="checkbox" id="update-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-update-seller" name="is-update-seller" value="1">
+                        </td>
+                        <td><input type="checkbox" id="delete-seller-button" class="js-switch" checked>
+                            <input type="hidden" id="is-delete-seller" name="is-delete-seller" value="1">
                         </td>
                     </tr>
  

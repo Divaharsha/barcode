@@ -295,8 +295,15 @@ $res_logo = $db->getResult();
                                 </a>
                            </li> 
 
+
                     </ul>
+                    <li class="treeview">
+                                <a href="system-users.php">
+                                    <i class="fa fa-users" class="active"></i> <span>System Users</span>
+                                </a>
+                            </li>
                 </li>
+                
                 
             </ul>
             </section>
