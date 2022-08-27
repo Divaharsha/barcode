@@ -162,9 +162,9 @@ if (isset($_GET['table']) && $_GET['table'] == 'suspense_account') {
 
     foreach ($res as $row) {
         $id = $row['id'];
-        $operate = ' <a href="edit-suspense.php?name=' . $row['holder_name'] . '"><i class="fa fa-edit"></i>Edit</a>';
         
         if($type == 'Weight'){
+            $operate = ' <a href="edit-suspense.php?name=' . $row['holder_name'] . '"><i class="fa fa-edit"></i>Edit</a>';
             $sql = "SELECT SUM(weight) AS inwardtotal FROM suspense_account_variant WHERE suspense_account_id = '$id' AND method = 'Inward'";
             $db->sql($sql);
             $invardres = $db->getResult();
@@ -193,6 +193,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'suspense_account') {
 
         }
         else{
+            $operate = ' <a href="edit-suspense-cash.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
             $sql = "SELECT * FROM suspense_account_cash WHERE suspense_account_id = '$id'";
             $db->sql($sql);
             $res = $db->getResult();
@@ -476,7 +477,77 @@ if (isset($_GET['table']) && $_GET['table'] == 'daily_transaction') {
     $bulkData['rows'] = $rows;
     print_r(json_encode($bulkData));
 }
+if (isset($_GET['table']) && $_GET['table'] == 'dealer_daily_transaction') {
 
+    $offset = 0;
+    $limit = 10;
+    $where = '';
+    $sort = 'id';
+    $order = 'DESC';
+    if (isset($_GET['offset']))
+        $offset = $db->escapeString($_GET['offset']);
+    if (isset($_GET['limit']))
+        $limit = $db->escapeString($_GET['limit']);
+    if (isset($_GET['sort']))
+        $sort = $db->escapeString($_GET['sort']);
+    if (isset($_GET['order']))
+        $order = $db->escapeString($_GET['order']);
+
+    if (isset($_GET['goldsmith_master_id'])) {
+        $goldsmith_master_id = $db->escapeString($fn->xss_clean($_GET['goldsmith_master_id']));
+        $where .= " WHERE goldsmith_master_id = '$goldsmith_master_id' ";
+    }
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
+        $search = $db->escapeString($_GET['search']);
+        $where .= "AND type like '%" . $search . "%' OR category like '%" . $search . "%'";
+    }
+    if (isset($_GET['sort'])){
+        $sort = $db->escapeString($_GET['sort']);
+    }
+    if (isset($_GET['order'])){
+        $order = $db->escapeString($_GET['order']);
+    }
+
+    $sql = "SELECT COUNT(`id`) as total FROM `daily_transaction` ";
+    $db->sql($sql);
+    $res = $db->getResult();
+    foreach ($res as $row)
+        $total = $row['total'];
+   
+    $sql = "SELECT * FROM daily_transaction " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+    $db->sql($sql);
+    $res = $db->getResult();
+
+    $bulkData = array();
+    $bulkData['total'] = $total;
+    
+    $rows = array();
+    $tempRow = array();
+
+    foreach ($res as $row) {
+
+        $operate= '<a href="edit-dailytransaction.php?id=' . $row['id'] . '" ><i class="fa fa-edit" ></i>Edit</a>';
+        //$operate .= '<a href="view-daily_transaction.php?id=' . $row['id'] . '" class="btn btn-primary btn-xs" style="margin-left:5px;!important">View</a>';
+        $tempRow['id'] = $row['id'];
+        $tempRow['goldsmith_master_id'] = $row['goldsmith_master_id'];
+        $tempRow['date'] = $row['date'];
+        $tempRow['type'] = $row['type'];
+        $tempRow['category'] = $row['category'];
+        $tempRow['weight'] = $row['weight'];
+        $tempRow['stone_weight'] = $row['stone_weight'];
+        $tempRow['wastage'] = $row['wastage'];
+        $tempRow['touch'] = $row['touch'];
+        $tempRow['rate'] = $row['rate'];
+        $tempRow['gst'] = $row['gst'];
+        $tempRow['amount'] = $row['amount'];
+        $tempRow['mc'] = $row['mc'];
+        $tempRow['purity'] = $row['purity'];
+        $tempRow['operate'] = $operate;
+        $rows[] = $tempRow;
+    }
+    $bulkData['rows'] = $rows;
+    print_r(json_encode($bulkData));
+}
 
 //transactionregister table goes here
 if (isset($_GET['table']) && $_GET['table'] == 'transactionregister') {
@@ -579,10 +650,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'dealerledger') {
         $sundry = $db->escapeString($fn->xss_clean($_GET['sundry']));
         $where .= "WHERE sundry = '$sundry' ";
     }
-    // if (isset($_GET['name']) && $_GET['name'] != '') {
-    //     $name = $db->escapeString($fn->xss_clean($_GET['name']));
-    //     $where .= " AND name = '$name' ";
-    // }
+
      
 
 
@@ -604,6 +672,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'dealerledger') {
     $tempRow = array();
 
     foreach ($res as $row) {
+        $operate = '<a href="dealerdailytransactions.php?id=' . $row['id'] . '" class="btn btn-primary btn-xs" style="margin-left:5px;!important">View</a>';
+        
 
         
        
@@ -613,6 +683,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'dealerledger') {
         $tempRow['open_credit'] = $row['open_credit'];
         $tempRow['pure_debit'] = $row['pure_debit'];
         $tempRow['pure_credit'] = $row['pure_credit'];
+        $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
     }
     $bulkData['rows'] = $rows;
@@ -638,7 +709,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'areawiseledger') {
 
     if (isset($_GET['search']) && !empty($_GET['search'])) {
         $search = $db->escapeString($_GET['search']);
-        $where .= "WHERE place like '%" . $search . "%'";
+        $where .= "AND place like '%" . $search . "%'";
     }
     if (isset($_GET['sort'])){
         $sort = $db->escapeString($_GET['sort']);
@@ -653,7 +724,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'areawiseledger') {
     foreach ($res as $row)
         $total = $row['total'];
    
-    $sql = "SELECT * FROM goldsmith_master ". $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+    $sql = "SELECT * FROM goldsmith_master WHERE place != '' ". $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
     $db->sql($sql);
     $res = $db->getResult();
 

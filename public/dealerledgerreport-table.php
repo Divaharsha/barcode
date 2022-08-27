@@ -40,6 +40,7 @@ if ($permissions['dealerreport']['read'] == 1) {
                                     <th data-field="open_credit" data-sortable="true">Open Credit</th>
                                     <th data-field="pure_debit" data-sortable="true">Pure Debit</th>
                                     <th data-field="pure_credit" data-sortable="true">Pure Credit</th>
+                                    <th data-field="operate">Action</th>
                                 </tr>
                             </thead>
                         </table>

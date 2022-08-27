@@ -5,7 +5,6 @@
 	$expired = 3600;
 	
 	
-	
 	// if current time is more than session timeout back to login page
 	if($currentTime > $_SESSION['timeout']){
 		session_destroy();
@@ -19,7 +18,7 @@
 <?php include "header.php";?>
 <html>
 <head>
-<title>View Daily Transaction|- Dashboard</title>
+<title>Edit Cash | <?=$settings['app_name']?> - Dashboard</title>
 <style>
     .asterik {
     font-size: 20px;
@@ -31,7 +30,7 @@
 </body>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-        <?php include('public/view-daily_transaction-form.php'); ?>
+        <?php include('public/edit-suspense_account-form-cash.php'); ?>
       </div><!-- /.content-wrapper -->
   </body>
 </html>

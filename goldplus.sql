@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2022 at 01:05 AM
+-- Generation Time: Aug 27, 2022 at 04:41 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -45,9 +45,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `email`, `role`, `permissions`, `created_by`, `forgot_password_code`, `fcm_id`, `date_created`) VALUES
-(1, 'admin', '0192023a7bbd73250516f069df18b500', 'support@ekart.in', 'super admin', '{\"orders\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"categories\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"sellers\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"subcategories\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"products\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"products_order\":{\"read\":\"1\",\"update\":\"1\"},\"featured\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"customers\":{\"read\":\"1\"},\"payment\":{\"read\":\"1\",\"update\":\"1\"},\"notifications\":{\"create\":\"1\",\"read\":\"1\",\"delete\":\"1\"},\"transactions\":{\"read\":\"1\"},\"settings\":{\"read\":\"1\",\"update\":\"1\"},\"locations\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"reports\":{\"create\":\"1\",\"read\":\"1\"},\"faqs\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"home_sliders\":{\"create\":\"1\",\"read\":\"1\",\"delete\":\"1\"},\"new_offers\":{\"create\":\"1\",\"read\":\"1\",\"delete\":\"1\"},\"promo_codes\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"delivery_boys\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"return_requests\":{\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"}}', 0, '', 'cv7qKEjDS-uhwHzhFxCiwq:APA91bFzCRjuBWXM3lEM5rlxVrkXRMfAgPM4E6PTa7Q79bFgP9yMj5OI6eIG2O4koStpX97hHE8GyTN-453Fd4s9cDKtb6TiVj5103ORdAQlwPgyAIazDiUcYu-FS6COuRF0YIzJWQu0', '2020-06-22 16:48:25'),
-(128, 'sathish', '0051fc707936a675f81b4b6e91a98c39', 'blackkitegifts@gmail.com', 'admin', '{\"orders\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"categories\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"sellers\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"subcategories\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"products\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"products_order\":{\"read\":\"1\",\"update\":\"1\"},\"featured\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"customers\":{\"read\":\"1\",\"update\":\"1\"},\"payment\":{\"read\":\"1\",\"update\":\"1\"},\"notifications\":{\"create\":\"1\",\"read\":\"1\",\"delete\":\"1\"},\"transactions\":{\"read\":\"1\"},\"settings\":{\"read\":\"1\",\"update\":\"1\"},\"locations\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"reports\":{\"create\":\"1\",\"read\":\"1\"},\"faqs\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"home_sliders\":{\"create\":\"1\",\"read\":\"1\",\"delete\":\"1\"},\"new_offers\":{\"create\":\"1\",\"read\":\"1\",\"delete\":\"1\"},\"promo_codes\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"delivery_boys\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"return_requests\":{\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"fund_transfer_delivery_boy\":{\"read\":\"\"}}', 1, NULL, NULL, '2022-02-10 02:40:48'),
-(129, 'suryakumar.s', '8a8d0c0f444424aace1365ee1e4e2266', 'suryakumar.s2611@gmail.com', 'editor', '{\"orders\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"0\"},\"categories\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"sellers\":{\"create\":\"0\",\"read\":\"0\",\"update\":\"0\",\"delete\":\"0\"},\"subcategories\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"products\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"products_order\":{\"read\":\"1\",\"update\":\"1\"},\"featured\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"customers\":{\"read\":\"0\",\"update\":\"0\"},\"payment\":{\"read\":\"0\",\"update\":\"0\"},\"notifications\":{\"create\":\"0\",\"read\":\"0\",\"delete\":\"0\"},\"transactions\":{\"read\":\"1\"},\"settings\":{\"read\":\"0\",\"update\":\"0\"},\"locations\":{\"create\":\"0\",\"read\":\"0\",\"update\":\"0\",\"delete\":\"0\"},\"reports\":{\"create\":\"0\",\"read\":\"0\"},\"faqs\":{\"create\":\"0\",\"read\":\"0\",\"update\":\"0\",\"delete\":\"0\"},\"home_sliders\":{\"create\":\"1\",\"read\":\"1\",\"delete\":\"1\"},\"new_offers\":{\"create\":\"1\",\"read\":\"1\",\"delete\":\"1\"},\"promo_codes\":{\"create\":\"0\",\"read\":\"0\",\"update\":\"0\",\"delete\":\"0\"},\"delivery_boys\":{\"create\":\"0\",\"read\":\"0\",\"update\":\"0\",\"delete\":\"0\"},\"return_requests\":{\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"fund_transfer_delivery_boy\":{\"read\":\"\"}}', 128, NULL, NULL, '2022-02-16 07:04:06');
+(1, 'admin', '0192023a7bbd73250516f069df18b500', 'admin@gmail.com', 'super admin', '{\"goldsmithmaster\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"openmaster\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"dailytransaction\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"0\",\"delete\":\"1\"},\"transactionregister\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"suspenseaccount\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"dealerreport\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"areawisereport\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"stockreport\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"}}', 0, '', 'cv7qKEjDS-uhwHzhFxCiwq:APA91bFzCRjuBWXM3lEM5rlxVrkXRMfAgPM4E6PTa7Q79bFgP9yMj5OI6eIG2O4koStpX97hHE8GyTN-453Fd4s9cDKtb6TiVj5103ORdAQlwPgyAIazDiUcYu-FS6COuRF0YIzJWQu0', '2020-06-22 16:48:25'),
+(138, 'goldplus', '70e94d0bc90d4bae98d8267239d7f633', 'goldplus@gmail.com', 'admin', '{\"goldsmithmaster\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"openmaster\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"dailytransaction\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"0\",\"delete\":\"1\"},\"transactionregister\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"suspenseaccount\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"dealerreport\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"areawisereport\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"},\"stockreport\":{\"create\":\"1\",\"read\":\"1\",\"update\":\"1\",\"delete\":\"1\"}}', 1, NULL, NULL, '2022-08-26 16:44:31');
 
 -- --------------------------------------------------------
 
@@ -166,19 +165,20 @@ INSERT INTO `goldsmith_master` (`id`, `name`, `sundry`, `open_debit`, `open_cred
 
 CREATE TABLE `openingmaster` (
   `id` int(11) NOT NULL,
+  `admin_id` int(11) DEFAULT NULL,
   `kdm` float DEFAULT NULL,
   `metal` float DEFAULT NULL,
   `katcha` float DEFAULT NULL,
-  `cash_hand` float DEFAULT NULL,
-  `update` tinyint(4) NOT NULL DEFAULT 0
+  `cash_hand` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `openingmaster`
 --
 
-INSERT INTO `openingmaster` (`id`, `kdm`, `metal`, `katcha`, `cash_hand`, `update`) VALUES
-(1, 0, 0, 0, 0, 0);
+INSERT INTO `openingmaster` (`id`, `admin_id`, `kdm`, `metal`, `katcha`, `cash_hand`) VALUES
+(1, 1, 3, 34, 4, 34),
+(4, 138, 322, 3232, 323, 3232);
 
 -- --------------------------------------------------------
 
@@ -224,17 +224,39 @@ INSERT INTO `settings` (`id`, `variable`, `value`) VALUES
 
 CREATE TABLE `suspense_account` (
   `id` int(11) NOT NULL,
-  `name` text DEFAULT NULL,
-  `type` text DEFAULT NULL,
-  `method` text DEFAULT NULL
+  `holder_name` text DEFAULT NULL,
+  `type` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `suspense_account`
 --
 
-INSERT INTO `suspense_account` (`id`, `name`, `type`, `method`) VALUES
-(2, 'Divakar A', 'Weight', 'Inward');
+INSERT INTO `suspense_account` (`id`, `holder_name`, `type`) VALUES
+(12, 'prasad', 'Cash'),
+(13, 'Kumar', 'Weight'),
+(14, 'dfdf', 'Weight'),
+(15, 'bb', 'Weight');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suspense_account_cash`
+--
+
+CREATE TABLE `suspense_account_cash` (
+  `id` int(11) NOT NULL,
+  `suspense_account_id` int(11) DEFAULT NULL,
+  `inward` float DEFAULT NULL,
+  `outward` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `suspense_account_cash`
+--
+
+INSERT INTO `suspense_account_cash` (`id`, `suspense_account_id`, `inward`, `outward`) VALUES
+(1, 12, 12, 30);
 
 -- --------------------------------------------------------
 
@@ -246,16 +268,18 @@ CREATE TABLE `suspense_account_variant` (
   `id` int(11) NOT NULL,
   `suspense_account_id` int(11) DEFAULT NULL,
   `name` varchar(200) DEFAULT NULL,
-  `weight` float DEFAULT NULL
+  `weight` float DEFAULT NULL,
+  `method` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `suspense_account_variant`
 --
 
-INSERT INTO `suspense_account_variant` (`id`, `suspense_account_id`, `name`, `weight`) VALUES
-(1, 2, 'D', 45),
-(2, 2, 'D', 78);
+INSERT INTO `suspense_account_variant` (`id`, `suspense_account_id`, `name`, `weight`, `method`) VALUES
+(1, 13, 'ssds', 23, 'Inward'),
+(2, 14, 'swea', 34, 'Inward'),
+(3, 15, 'wew', 25, 'Inward');
 
 -- --------------------------------------------------------
 
@@ -379,6 +403,12 @@ ALTER TABLE `suspense_account`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `suspense_account_cash`
+--
+ALTER TABLE `suspense_account_cash`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `suspense_account_variant`
 --
 ALTER TABLE `suspense_account_variant`
@@ -410,7 +440,7 @@ ALTER TABLE `updates`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `brand`
@@ -446,7 +476,7 @@ ALTER TABLE `goldsmith_master`
 -- AUTO_INCREMENT for table `openingmaster`
 --
 ALTER TABLE `openingmaster`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -458,13 +488,19 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `suspense_account`
 --
 ALTER TABLE `suspense_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `suspense_account_cash`
+--
+ALTER TABLE `suspense_account_cash`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `suspense_account_variant`
 --
 ALTER TABLE `suspense_account_variant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `taxes`
