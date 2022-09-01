@@ -53,7 +53,7 @@ if (isset($_POST['btnAdd'])) {
                 }
 
             }else{
-                $error['add_menu'] = " <span class='label label-danger'>Staff Already Exists</span>";
+                $error['add_menu'] = " <span class='label label-danger'>Dealer Goldsmith Master Already Exists</span>";
 
             }
 
