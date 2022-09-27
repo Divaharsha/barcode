@@ -12,28 +12,28 @@ $id = $_SESSION['id'];
 if (isset($_POST['btnAdd'])) {
     if ($permissions['openmaster']['create'] == 1) {
             $error = array();
-            $kdm = $db->escapeString($fn->xss_clean($_POST['kdm']));
-            $metal = $db->escapeString($fn->xss_clean($_POST['metal']));
-            $katcha = $db->escapeString($fn->xss_clean($_POST['katcha']));
+            $ornament_stock = $db->escapeString($fn->xss_clean($_POST['ornament_stock']));
+            $pure = $db->escapeString($fn->xss_clean($_POST['pure']));
+            $digital_closing_stock = $db->escapeString($fn->xss_clean($_POST['digital_closing_stock']));
             $cash_hand = $db->escapeString($fn->xss_clean($_POST['cash_hand']));
             
-            if (empty($kdm)) {
-                $error['kdm'] = " <span class='label label-danger'>Required!</span>";
+            if (empty($ornament_stock)) {
+                $error['ornament_stock'] = " <span class='label label-danger'>Required!</span>";
             }
-            if (empty($metal)) {
-                $error['metal'] = " <span class='label label-danger'>Required!</span>";
+            if (empty($pure)) {
+                $error['pure'] = " <span class='label label-danger'>Required!</span>";
             }
-            if (empty($katcha)) {
-                $error['katcha'] = " <span class='label label-danger'>Required!</span>";
+            if (empty($digital_closing_stock)) {
+                $error['digital_closing_stock'] = " <span class='label label-danger'>Required!</span>";
             }
             if (empty($cash_hand)) {
                 $error['cash_hand'] = " <span class='label label-danger'>Required!</span>";
             }
         
 
-            if ( !empty($kdm) && !empty($metal) && !empty($katcha) && !empty($cash_hand))
+            if ( !empty($ornament_stock) && !empty($pure) && !empty($digital_closing_stock) && !empty($cash_hand))
             {
-                $sql = "INSERT INTO openingmaster (admin_id,kdm,metal,katcha,cash_hand) VALUES($id,'$kdm','$metal','$katcha','$cash_hand')";
+                $sql = "INSERT INTO openingmaster (admin_id,ornament_stock,pure,digital_closing_stock,cash_hand) VALUES($id,'$ornament_stock','$pure','$digital_closing_stock','$cash_hand')";
                     $db->sql($sql);
                     $openingmaster_result = $db->getResult();
                     if (!empty($openingmaster_result)) {
@@ -84,12 +84,12 @@ if (isset($_POST['btnAdd'])) {
                         <div class="row">
                             <div class="form-group">
                                 <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">916 KDM</label> <i class="text-danger asterik">*</i><?php echo isset($error['kdm']) ? $error['kdm'] : ''; ?>
-                                    <input type="number" class="form-control" name="kdm" value="<?php echo $res[0]['kdm'] ?>">
+                                    <label for="exampleInputEmail1">Ornament stock</label> <i class="text-danger asterik">*</i><?php echo isset($error['ornament_stock']) ? $error['ornament_stock'] : ''; ?>
+                                    <input type="number" class="form-control" name="ornament_stock" value="<?php echo $res[0]['ornament_stock'] ?>">
                                 </div>
                                 <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Metal</label> <i class="text-danger asterik">*</i><?php echo isset($error['metal']) ? $error['metal'] : ''; ?>
-                                    <input type="number" class="form-control" name="metal" value="<?php echo $res[0]['metal'] ?>">
+                                    <label for="exampleInputEmail1">pure</label> <i class="text-danger asterik">*</i><?php echo isset($error['pure']) ? $error['pure'] : ''; ?>
+                                    <input type="number" class="form-control" name="pure" value="<?php echo $res[0]['pure'] ?>">
                                     
                                 </div>
                             </div>
@@ -99,8 +99,8 @@ if (isset($_POST['btnAdd'])) {
                         <div class="row">
                             <div class="form-group">
                                 <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Katcha</label> <i class="text-danger asterik">*</i><?php echo isset($error['katcha']) ? $error['katcha'] : ''; ?>
-                                    <input type="number" class="form-control" name="katcha" value="<?php echo $res[0]['katcha'] ?>">
+                                    <label for="exampleInputEmail1">Digital Closing stock</label> <i class="text-danger asterik">*</i><?php echo isset($error['digital_closing_stock']) ? $error['digital_closing_stock'] : ''; ?>
+                                    <input type="number" class="form-control" name="digital_closing_stock" value="<?php echo $res[0]['digital_closing_stock'] ?>">
                                 </div>
                                 <div class='col-md-4'>
                                     <label for="exampleInputEmail1">Cash on Hand</label> <i class="text-danger asterik">*</i><?php echo isset($error['cash_hand']) ? $error['cash_hand'] : ''; ?>
@@ -137,9 +137,9 @@ if (isset($_POST['btnAdd'])) {
         ignore: [],
         debug: false,
         rules: {
-            kdm: "required",
-            metal: "required",
-            katcha: "required",
+            ornament_stock: "required",
+            pure: "required",
+            digital_closing_stock: "required",
             cash_hand: "required",
          }
     });

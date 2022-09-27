@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Aug 30, 2022 at 04:37 AM
--- Server version: 10.5.13-MariaDB-cll-lve
--- PHP Version: 7.2.34
+-- Host: 127.0.0.1
+-- Generation Time: Sep 27, 2022 at 12:11 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u743445510_gp`
+-- Database: `goldplus`
 --
 
 -- --------------------------------------------------------
@@ -64,10 +64,30 @@ CREATE TABLE `brand` (
 --
 
 INSERT INTO `brand` (`id`, `category`) VALUES
-(1, '916 KDM'),
-(2, 'Katcha'),
-(3, 'Pure'),
-(4, 'None');
+(1, 'Ornament stock'),
+(2, 'Pure'),
+(3, 'Digital closing stock'),
+(4, 'Cash on hand');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `name` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'Male'),
+(2, 'Female'),
+(3, 'Kids');
 
 -- --------------------------------------------------------
 
@@ -97,8 +117,8 @@ CREATE TABLE `daily_transaction` (
 --
 
 INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `category`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`) VALUES
-(1, 3, '2022-08-17', NULL, '916 KDM', 5, 6, 7, 5, 7, 6, 0, 0, 0),
-(2, 3, '2022-08-23', 'Credit Sales', '916 KDM', 5, 5, 6, 67, 12, 7, 0, 0, 0);
+(1, 1, '2022-09-08', 'Credit Sales', 'Ornament stock', 7, 8, 9, 1.987, 23, 1, 5017, 4300, 0),
+(2, 1, '2022-09-29', 'Metal Receipt', 'Digital closing stock', 90, 13, 88, 93, 98, 6, 9892, 240, 0);
 
 -- --------------------------------------------------------
 
@@ -135,27 +155,27 @@ CREATE TABLE `faqs` (
 CREATE TABLE `goldsmith_master` (
   `id` int(11) NOT NULL,
   `name` text DEFAULT NULL,
-  `sundry` text DEFAULT NULL,
-  `open_debit` float DEFAULT NULL,
-  `open_credit` float DEFAULT NULL,
-  `value` float DEFAULT NULL,
+  `mobile` text DEFAULT NULL,
+  `digital_signature_number` text DEFAULT NULL,
+  `gst_number` text DEFAULT NULL,
+  `pan_number` text DEFAULT NULL,
+  `category` text DEFAULT NULL,
+  `sub_category` text DEFAULT NULL,
+  `open_cash_debit` float DEFAULT NULL,
+  `open_cash_credit` float DEFAULT NULL,
+  `open_pure_debit` float DEFAULT NULL,
+  `open_pure_credit` float DEFAULT NULL,
+  `email` text DEFAULT NULL,
   `place` text DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `phone` float DEFAULT NULL,
-  `tngst` float DEFAULT NULL,
-  `pure_debit` float DEFAULT NULL,
-  `pure_credit` float DEFAULT NULL
+  `address` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `goldsmith_master`
 --
 
-INSERT INTO `goldsmith_master` (`id`, `name`, `sundry`, `open_debit`, `open_credit`, `value`, `place`, `address`, `phone`, `tngst`, `pure_debit`, `pure_credit`) VALUES
-(1, 'Divakar', 'Sundry Debitors', 600, 789, 56, 'India', '2/42, Chennai', 7358830000, 34567, 3, 78),
-(2, 'Sanjay', 'Sundry Creditors', 600, 789, 56, 'India', 'Karur', 9876570000, 34567, 3, 78),
-(3, 'prasad', 'Sundry Creditors', 50, 50, 500, 'kumbakonam', 'fdfdfd', 8778630000, 34, 34, 34),
-(4, 'Prasad', 'Sundry Creditors', 0, 0, 0, '', '', 0, 0, 0, 0);
+INSERT INTO `goldsmith_master` (`id`, `name`, `mobile`, `digital_signature_number`, `gst_number`, `pan_number`, `category`, `sub_category`, `open_cash_debit`, `open_cash_credit`, `open_pure_debit`, `open_pure_credit`, `email`, `place`, `address`) VALUES
+(1, 'Sanjay', '7474884949', '0987655', 'ggt56777hd', 'hsdt5668h', 'Male', 'subcategory1', 1, 3, 1, 8, 'sanjay12@gamil.com', 'trichy', 'Madurai,Tamilnadu');
 
 -- --------------------------------------------------------
 
@@ -166,9 +186,9 @@ INSERT INTO `goldsmith_master` (`id`, `name`, `sundry`, `open_debit`, `open_cred
 CREATE TABLE `openingmaster` (
   `id` int(11) NOT NULL,
   `admin_id` int(11) DEFAULT NULL,
-  `kdm` float DEFAULT NULL,
-  `metal` float DEFAULT NULL,
-  `katcha` float DEFAULT NULL,
+  `ornament_stock` float DEFAULT NULL,
+  `pure` float DEFAULT NULL,
+  `digital_closing_stock` float DEFAULT NULL,
   `cash_hand` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -176,9 +196,37 @@ CREATE TABLE `openingmaster` (
 -- Dumping data for table `openingmaster`
 --
 
-INSERT INTO `openingmaster` (`id`, `admin_id`, `kdm`, `metal`, `katcha`, `cash_hand`) VALUES
-(1, 1, 3, 34, 4, 34),
-(4, 138, 322, 3232, 323, 3232);
+INSERT INTO `openingmaster` (`id`, `admin_id`, `ornament_stock`, `pure`, `digital_closing_stock`, `cash_hand`) VALUES
+(1, 1, 45, 67, 6, 98);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `subcategory_id` int(11) DEFAULT NULL,
+  `goldsmith_id` int(11) DEFAULT NULL,
+  `huid_number` text DEFAULT NULL,
+  `gross_weight` float DEFAULT NULL,
+  `size` float DEFAULT NULL,
+  `stone_weight` float DEFAULT NULL,
+  `net_weight` float DEFAULT NULL,
+  `wastage` float DEFAULT NULL,
+  `cover_weight` float DEFAULT NULL,
+  `tag_weight` float DEFAULT NULL,
+  `image` text DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `subcategory_id`, `goldsmith_id`, `huid_number`, `gross_weight`, `size`, `stone_weight`, `net_weight`, `wastage`, `cover_weight`, `tag_weight`, `image`, `status`) VALUES
+(1, 3, 1, '899678', 7.976, 13.678, 34.98, 32.099, 1.544, 1.222, 2.876, 'upload/products/5975-2022-09-27.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -215,6 +263,27 @@ INSERT INTO `settings` (`id`, `variable`, `value`) VALUES
 (97, 'front_end_settings', '{\"front_end_settings\":\"1\",\"android_app_url\":\"https://play.google.com\",\"call_back_url\":\"http://ekart.local:8000/\",\"common_meta_keywords\":\"eCart,WebeCart,eCart Front,eCart Web,eCart Front End\",\"common_meta_description\":\"eCart Front End is Web Version of eCart - Grocery, Food Delivery, Fruits & Vegetable store, Web Version.\",\"favicon\":\"1609822161.5542.png\",\"web_logo\":\"1610961661.239.png\",\"screenshots\":\"1608552564.1753.png\",\"google_play\":\"1608552564.1758.png\"}'),
 (100, 'seller_privacy_policy', '<p>seller privacy &amp; policy</p>'),
 (101, 'seller_terms_conditions', '<p>seller terms &amp; condition</p>');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subcategories`
+--
+
+CREATE TABLE `subcategories` (
+  `id` int(11) NOT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `name` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `subcategories`
+--
+
+INSERT INTO `subcategories` (`id`, `category_id`, `name`) VALUES
+(1, 2, 'subcategory1'),
+(2, 1, 'subcategory2'),
+(3, 2, 'subcategory3');
 
 -- --------------------------------------------------------
 
@@ -361,6 +430,12 @@ ALTER TABLE `brand`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `daily_transaction`
 --
 ALTER TABLE `daily_transaction`
@@ -391,9 +466,21 @@ ALTER TABLE `openingmaster`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `subcategories`
+--
+ALTER TABLE `subcategories`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -449,10 +536,16 @@ ALTER TABLE `brand`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `daily_transaction`
 --
 ALTER TABLE `daily_transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `faq`
@@ -470,19 +563,31 @@ ALTER TABLE `faqs`
 -- AUTO_INCREMENT for table `goldsmith_master`
 --
 ALTER TABLE `goldsmith_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `openingmaster`
 --
 ALTER TABLE `openingmaster`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
+-- AUTO_INCREMENT for table `subcategories`
+--
+ALTER TABLE `subcategories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `suspense_account`

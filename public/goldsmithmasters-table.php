@@ -29,16 +29,19 @@ if ($permissions['goldsmithmaster']['read'] == 1) {
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
                                     <th data-field="name" data-sortable="true">Name</th>
-                                    <th data-field="sundry" data-sortable="true">Sundry</th>
-                                    <th data-field="open_debit" data-sortable="true">Open Debit</th>
-                                    <th data-field="open_credit" data-sortable="true">Open Credit</th>
-                                    <th data-field="value" data-sortable="true">Value</th>
-                                    <th data-field="place" data-sortable="true">Place</th>
+                                    <th data-field="mobile" data-sortable="true">Payment Mobile Number</th>
+                                    <th data-field="digital_signature_number" data-sortable="true">Digital sign number</th>
+                                    <th data-field="gst_number" data-sortable="true">GST Number</th>
+                                    <th data-field="pan_number" data-sortable="true">PAN Number</th>
+                                    <th data-field="category" data-sortable="true">Category</th>
+                                    <th data-field="sub_category" data-sortable="true">Sub-Category</th>
+                                    <th data-field="open_cash_debit" data-sortable="true">Cash Debit</th>
+                                    <th data-field="open_cash_credit" data-sortable="true">Cash Credit</th>
+                                    <th data-field="open_pure_debit" data-sortable="true">Pure Debit</th>
+                                    <th data-field="open_pure_credit" data-sortable="true">Pure Credit</th>
+                                    <th data-field="email" data-sortable="true">Email Id</th>
                                     <th data-field="address" data-sortable="true">Address</th>
-                                    <th data-field="phone" data-sortable="true">Phone</th>
-                                    <th data-field="tngst" data-sortable="true">Tngst</th>
-                                    <th data-field="pure_debit" data-sortable="true">Pure Debit</th>
-                                    <th data-field="pure_credit" data-sortable="true">Pure Credit</th>
+                                    <th data-field="place" data-sortable="true">Place</th>
                                     <th data-field="operate" data-events="actionEvents">Action</th>
              
                                 </tr>

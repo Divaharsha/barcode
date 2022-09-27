@@ -125,6 +125,17 @@ $res_logo = $db->getResult();
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css" integrity="sha256-tBxlolRHP9uMsEFKVk+hk//ekOlXOixLKvye5W2WR5c=" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js" integrity="sha256-CtKylYan+AJuoH8jrMht1+1PMhMqrKnB8K5g012WN5I=" crossorigin="anonymous"></script>
+
+
+    
+    <script src= "https://code.jquery.com/jquery-3.2.1.min.js"> </script>
+  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+      
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 
 <body class="hold-transition skin-blue fixed sidebar-mini">
@@ -295,8 +306,25 @@ $res_logo = $db->getResult();
                                 </a>
                            </li> 
 
-
                     </ul>
+                    <li class="treeview">
+                            <a href="categories.php">
+                                <i class="fa fa-bullseye"></i>
+                                <span>Categories</span>
+                            </a>
+                     </li> 
+                     <li class="treeview">
+                            <a href="sub_categories.php">
+                                <i class="fa fa-bullseye"></i>
+                                <span>Sub-Categories</span>
+                            </a>
+                     </li> 
+                     <li class="treeview">
+                            <a href="products.php">
+                                <i class="fa fa-cube"></i>
+                                    <span>Products</span>
+                            </a>
+                     </li> 
                     <?php
                 if ($role == 'super admin') {
                 ?>

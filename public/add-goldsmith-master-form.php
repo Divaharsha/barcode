@@ -16,26 +16,70 @@ if (isset($_POST['btnAdd'])) {
     if ($permissions['goldsmithmaster']['create'] == 1) {
         $error = array();
         $name = $db->escapeString($fn->xss_clean($_POST['name']));
-        $sundry = $db->escapeString($fn->xss_clean($_POST['sundry']));
-        $open_debit = $db->escapeString($fn->xss_clean($_POST['open_debit']));
-        $open_credit = $db->escapeString($fn->xss_clean($_POST['open_credit']));
-        $value =$db->escapeString($fn->xss_clean($_POST['value']));
-        $place = $db->escapeString($fn->xss_clean($_POST['place']));
-        $address = $db->escapeString($fn->xss_clean($_POST['address']));
-        $phone = $db->escapeString($fn->xss_clean($_POST['phone']));
-        $tngst = $db->escapeString($fn->xss_clean($_POST['tngst']));
-        $pure_debit=$db->escapeString($fn->xss_clean($_POST['pure_debit']));
-        $pure_credit=$db->escapeString($fn->xss_clean($_POST['pure_credit']));
+        $mobile = $db->escapeString($fn->xss_clean($_POST['mobile']));
+        $digital_signature_number = $db->escapeString($fn->xss_clean($_POST['digital_signature_number']));
+        $gst_number =$db->escapeString($fn->xss_clean($_POST['gst_number']));
+        $pan_number = $db->escapeString($fn->xss_clean($_POST['pan_number']));
+        $category = $db->escapeString($fn->xss_clean($_POST['category']));
+        $sub_category = $db->escapeString($fn->xss_clean($_POST['sub_category']));
+        $email = $db->escapeString($fn->xss_clean($_POST['email']));
+        $address=$db->escapeString($fn->xss_clean($_POST['address']));
+        $place=$db->escapeString($fn->xss_clean($_POST['place']));
+        $open_cash_debit=$db->escapeString($fn->xss_clean($_POST['open_cash_debit']));
+        $open_cash_credit=$db->escapeString($fn->xss_clean($_POST['open_cash_credit']));
+        $open_pure_debit=$db->escapeString($fn->xss_clean($_POST['open_pure_debit']));
+        $open_pure_credit=$db->escapeString($fn->xss_clean($_POST['open_pure_credit']));
 
         
         if (empty($name)) {
             $error['name'] = " <span class='label label-danger'>Required!</span>";
         }
+        if (empty($mobile)) {
+            $error['mobile'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($digital_signature_number)) {
+            $error['digital_signature_number'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($gst_number)) {
+            $error['gst_number'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($pan_number)) {
+            $error['pan_number'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($category)) {
+            $error['category'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($sub_category)) {
+            $error['sub_category'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($email)) {
+            $error['email'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($address)) {
+            $error['address'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($place)) {
+            $error['place'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($open_cash_debit)) {
+            $error['open_cash_debit'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($open_cash_credit)) {
+            $error['open_cash_credit'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($open_pure_debit)) {
+            $error['open_pure_debit'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($open_pure_credit)) {
+            $error['open_pure_credit'] = " <span class='label label-danger'>Required!</span>";
+        }
+       
+       
        
 
-        if ( !empty($name))
+        if ( !empty($name) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($category) && !empty($sub_category) && !empty($email) && !empty($address) && !empty($place) && !empty($open_cash_debit) && !empty($open_cash_credit) && !empty($open_pure_debit) && !empty($open_pure_credit))
         {
-                $sql = "INSERT INTO goldsmith_master (name,sundry,open_debit,open_credit,value,place,address,phone,tngst,pure_debit,pure_credit) VALUES('$name','$sundry','$open_debit','$open_credit','$value','$place','$address','$phone','$tngst','$pure_debit','$pure_credit')";
+                $sql = "INSERT INTO goldsmith_master (name,mobile,digital_signature_number,gst_number,pan_number,category,sub_category,email,address,place,open_cash_debit,open_cash_credit,open_pure_debit,open_pure_credit) VALUES('$name','$mobile','$digital_signature_number','$gst_number','$pan_number','$category','$sub_category','$email','$address','$place','$open_cash_debit','$open_cash_credit','$open_pure_debit','$open_pure_credit')";
                 $db->sql($sql);
                 $goldsmithmaster_result = $db->getResult();
                 if (!empty($goldsmithmaster_result)) {
@@ -91,85 +135,115 @@ if (isset($_POST['btnAdd'])) {
                     <div class="box-body">
                         <div class="row">
                             <div class="form-group">
-                                <div class='col-md-3'>
+                                <div class='col-md-4'>
                                     <label for="exampleInputEmail1"> Name</label> <i class="text-danger asterik">*</i><?php echo isset($error['name']) ? $error['name'] : ''; ?>
                                     <input type="text" class="form-control" name="name" required>
                                 </div>
-                                <div class='col-md-3'>
-                                    <label for="">Sundry</label> 
-                                    <select id="sundry" name="sundry" class="form-control">
-                                        <option value="Sundry Creditors">Sundry Creditors</option>
-                                        <option value="Sundry Debitors">Sundry Debitors</option>
-                                    </select>
+                               <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Payment Mobile Number</label> <i class="text-danger asterik">*</i><?php echo isset($error['mobile']) ? $error['mobile'] : ''; ?>
+                                    <input type="number" class="form-control" name="mobile" required>
                                 </div>
-                                <div class='col-md-3'>
-                                    <label for="exampleInputEmail1">Open Debit</label> 
-                                    <input type="number" class="form-control" name="open_debit" >
-                                </div>
-                                <div class='col-md-3'>
-                                    <label for="exampleInputEmail1">Open Credit</label> 
-                                    <input type="number" class="form-control" name="open_credit" >
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Digital Signature Number</label> <i class="text-danger asterik">*</i><?php echo isset($error['digital_signature_number']) ? $error['digital_signature_number'] : ''; ?>
+                                    <input type="number" class="form-control" name="digital_signature_number" required>
                                 </div>
                             </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class='col-md-5'>
+                                    <label for="exampleInputEmail1">GST Number</label> <i class="text-danger asterik">*</i><?php echo isset($error['gst_number']) ? $error['gst_number'] : ''; ?>
+                                    <input type="text" class="form-control" name="gst_number" required>
+                                </div>
+                                <div class='col-md-5'>
+                                    <label for="exampleInputEmail1">PAN Number</label> <i class="text-danger asterik">*</i><?php echo isset($error['pan_number']) ? $error['pan_number'] : ''; ?>
+                                    <input type="text" class="form-control" name="pan_number" required>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class='col-md-5'>
+                                    <label for="">Select Category</label> <i class="text-danger asterik">*</i>
+                                        <select id='category' name="category" class='form-control' required>
+                                            <option value="">--Select Category--</option>
+                                                <?php
+                                                $sql = "SELECT * FROM `categories`";
+                                                $db->sql($sql);
+                                                $result = $db->getResult();
+                                                foreach ($result as $value) {
+                                                ?>
+                                                    <option value='<?= $value['name'] ?>'><?= $value['name'] ?></option>
+                                            <?php } ?>
+                                        </select>
+                                </div>
+                                <div class='col-md-5'>
+                                <label for="">Select Sub-Category</label> <i class="text-danger asterik">*</i>
+                                        <select id='sub_category' name="sub_category" class='form-control' required>
+                                            <option value="">--Select sub-category--</option>
+                                                <?php
+                                                $sql = "SELECT * FROM `subcategories`";
+                                                $db->sql($sql);
+                                                $result = $db->getResult();
+                                                foreach ($result as $value) {
+                                                ?>
+                                                    <option value='<?= $value['name'] ?>'><?= $value['name'] ?></option>
+                                            <?php } ?>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class='col-md-3'>
+                                    <label for="exampleInputEmail1">Open Cash Debit</label> <i class="text-danger asterik">*</i><?php echo isset($error['open_cash_debit']) ? $error['open_cash_debit'] : ''; ?>
+                                    <input type="text" class="form-control" name="open_cash_debit" required>
+                                </div>
+                                <div class='col-md-3'>
+                                    <label for="exampleInputEmail1">Open Cash Debit</label> <i class="text-danger asterik">*</i><?php echo isset($error['open_cash_credit']) ? $error['open_cash_credit'] : ''; ?>
+                                    <input type="text" class="form-control" name="open_cash_credit" required>
+                                </div>
+                                <div class='col-md-3'>
+                                    <label for="exampleInputEmail1">Open Cash Debit</label> <i class="text-danger asterik">*</i><?php echo isset($error['open_pure_debit']) ? $error['open_pure_debit'] : ''; ?>
+                                    <input type="text" class="form-control" name="open_pure_debit" required>
+                                </div>
+                                <div class='col-md-3'>
+                                    <label for="exampleInputEmail1">Open Cash Debit</label> <i class="text-danger asterik">*</i><?php echo isset($error['open_pure_credit']) ? $error['open_pure_credit'] : ''; ?>
+                                    <input type="text" class="form-control" name="open_pure_credit" required>
+                                </div>
+                            </div>    
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Email Id</label> <i class="text-danger asterik">*</i><?php echo isset($error['email']) ? $error['email'] : ''; ?>
+                                    <input type="email" class="form-control" name="email" required>
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Address</label> <i class="text-danger asterik">*</i><?php echo isset($error['address']) ? $error['address'] : ''; ?>
+                                    <input type="text" class="form-control" name="address" required>
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Place</label> <i class="text-danger asterik">*</i><?php echo isset($error['place']) ? $error['place'] : ''; ?>
+                                    <input type="text" class="form-control" name="place" required>
+                                </div>
+                            </div>    
+                        </div>
 
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="form-group">
-                            <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Value</label> 
-                                    <input type="number" class="form-control" name="value" >
-                                </div>
-                                <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Place</label> 
-                                    <input type="text" class="form-control" name="place" >
-                                </div>
-                                <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Address</label> 
-                                    <input type="text" class="form-control" name="address" >
-                                </div>
-                            </div>
 
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="form-group">
-                                <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Phone Number</label> 
-                                    <input type="number" class="form-control" name="phone" >
-                                </div>
-                                <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Tngst</label> 
-                                    <input type="number" class="form-control" name="tngst" >
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="form-group">
-                                <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Pure Debit</label> 
-                                    <input type="number" class="form-control" name="pure_debit" >
-                                </div>
-                                <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Pure Credit</label> 
-                                    <input type="number" class="form-control" name="pure_credit" >
-                                </div>
-                            </div>
-                                
-                        </div>
-                        <hr>
-                        </div>
+                    </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
                         <input type="submit" class="btn-primary btn" value="Add Goldsmith Master" name="btnAdd" />&nbsp;
-                        <!-- <input type="reset" class="btn-danger btn" value="Clear" id="btnClear" /> -->
-                        <!--<div  id="res"></div>-->
+                        <input type="reset" class="btn-danger btn" value="Clear" id="btnClear" />
                     </div>
                 </form>
             </div>
-            <?php echo isset($error['check_permission']) ? $error['check_permission'] : ''; ?>
+            <!-- <?php echo isset($error['check_permission']) ? $error['check_permission'] : ''; ?> -->
             <!-- /.box -->
         </div>
     </div>
@@ -183,7 +257,20 @@ if (isset($_POST['btnAdd'])) {
         ignore: [],
         debug: false,
         rules: {
-            name: "required",
+            $name = "required",
+        $mobile = "required",
+        $digital_signature_number ="required",
+        $gst_number ="required",
+        $pan_number="required",
+        $category = "required",
+        $sub_category = "required",
+        $email = "required",
+        $address="required",
+        $place="required",
+        $open_cash_debit="required",
+        $open_cash_credit="required",
+        $open_pure_debit="required",
+        $open_pure_credit="required",
          }
     });
     $('#btnClear').on('click', function() {

@@ -96,16 +96,19 @@ if (isset($_GET['table']) && $_GET['table'] == 'goldsmith_master') {
         $operate = ' <a href="edit-goldsmithmaster.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
         $tempRow['id'] = $row['id'];
         $tempRow['name'] = $row['name'];
-        $tempRow['sundry'] = $row['sundry'];
-        $tempRow['open_debit'] = $row['open_debit'];
-        $tempRow['open_credit'] = $row['open_credit'];
-        $tempRow['value'] = $row['value'];
-        $tempRow['place'] = $row['place'];
+        $tempRow['mobile'] = $row['mobile'];
+        $tempRow['digital_signature_number'] = $row['digital_signature_number'];
+        $tempRow['gst_number'] = $row['gst_number'];
+        $tempRow['pan_number'] = $row['pan_number'];
+        $tempRow['category'] = $row['category'];
+        $tempRow['sub_category'] = $row['sub_category'];
+        $tempRow['open_cash_debit'] = $row['open_cash_debit'];
+        $tempRow['open_cash_credit'] = $row['open_cash_credit'];
+        $tempRow['open_pure_debit'] = $row['open_pure_debit'];
+        $tempRow['open_pure_credit'] = $row['open_pure_credit'];
+        $tempRow['email'] = $row['email'];
         $tempRow['address'] = $row['address'];
-        $tempRow['phone'] = $row['phone'];
-        $tempRow['tngst'] = $row['tngst'];
-        $tempRow['pure_debit'] = $row['pure_debit'];
-        $tempRow['pure_credit'] = $row['pure_credit'];
+        $tempRow['place'] = $row['place'];
         $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
     }
@@ -748,6 +751,192 @@ if (isset($_GET['table']) && $_GET['table'] == 'areawiseledger') {
     }
     $bulkData['rows'] = $rows;
     print_r(json_encode($bulkData));
+}
+
+//categories
+if (isset($_GET['table']) && $_GET['table'] == 'categories') {
+
+    $offset = 0;
+    $limit = 10;
+    $where = '';
+    $sort = 'id';
+    $order = 'DESC';
+    if (isset($_GET['offset']))
+    $offset = $db->escapeString($_GET['offset']);
+    if (isset($_GET['limit']))
+    $limit = $db->escapeString($_GET['limit']);
+    if (isset($_GET['sort']))
+    $sort = $db->escapeString($_GET['sort']);
+    if (isset($_GET['order']))
+    $order = $db->escapeString($_GET['order']);
+
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $search = $db->escapeString($_GET['search']);
+    $where .= "WHERE name like '%" . $search . "%' OR id like '%" . $search . "%'";
+    }
+    if (isset($_GET['sort'])){
+    $sort = $db->escapeString($_GET['sort']);
+    }
+    if (isset($_GET['order'])){
+    $order = $db->escapeString($_GET['order']);
+    }
+    $sql = "SELECT COUNT(`id`) as total FROM `categories` ";
+    $db->sql($sql);
+    $res = $db->getResult();
+    foreach ($res as $row)
+           $total = $row['total'];
+
+    $sql = "SELECT * FROM categories " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+    $db->sql($sql);
+    $res = $db->getResult();
+
+    $bulkData = array();
+    $bulkData['total'] = $total;
+
+    $rows = array();
+    $tempRow = array();
+
+   foreach ($res as $row) {
+
+
+        $operate = ' <a href="edit-category.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
+        $tempRow['id'] = $row['id'];
+        $tempRow['name'] = $row['name'];
+        $tempRow['operate'] = $operate;
+        $rows[] = $tempRow;
+        }
+        $bulkData['rows'] = $rows;
+        print_r(json_encode($bulkData));
+}
+
+//sub-categories
+if (isset($_GET['table']) && $_GET['table'] == 'sub_categories') {
+
+    $offset = 0;
+    $limit = 10;
+    $where = '';
+    $sort = 'id';
+    $order = 'DESC';
+    if (isset($_GET['offset']))
+    $offset = $db->escapeString($_GET['offset']);
+    if (isset($_GET['limit']))
+    $limit = $db->escapeString($_GET['limit']);
+    if (isset($_GET['sort']))
+    $sort = $db->escapeString($_GET['sort']);
+    if (isset($_GET['order']))
+    $order = $db->escapeString($_GET['order']);
+
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $search = $db->escapeString($_GET['search']);
+    $where .= "WHERE name like '%" . $search . "%' OR id like '%" . $search . "%' OR category_id like '%" . $search . "%'";
+    }
+    if (isset($_GET['sort'])){
+    $sort = $db->escapeString($_GET['sort']);
+    }
+    if (isset($_GET['order'])){
+    $order = $db->escapeString($_GET['order']);
+    }
+    $sql = "SELECT COUNT(`id`) as total FROM `subcategories` ";
+    $db->sql($sql);
+    $res = $db->getResult();
+    foreach ($res as $row)
+           $total = $row['total'];
+
+    $sql = "SELECT * FROM subcategories " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+    $db->sql($sql);
+    $res = $db->getResult();
+
+    $bulkData = array();
+    $bulkData['total'] = $total;
+
+    $rows = array();
+    $tempRow = array();
+
+   foreach ($res as $row) {
+
+
+        $operate = ' <a href="edit-sub_category.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
+        $tempRow['id'] = $row['id'];
+        $tempRow['category_id'] = $row['category_id'];
+        $tempRow['name'] = $row['name'];
+        $tempRow['operate'] = $operate;
+        $rows[] = $tempRow;
+        }
+        $bulkData['rows'] = $rows;
+        print_r(json_encode($bulkData));
+}
+
+//products
+if (isset($_GET['table']) && $_GET['table'] == 'products') {
+
+    $offset = 0;
+    $limit = 10;
+    $where = '';
+    $sort = 'id';
+    $order = 'DESC';
+    if (isset($_GET['offset']))
+    $offset = $db->escapeString($_GET['offset']);
+    if (isset($_GET['limit']))
+    $limit = $db->escapeString($_GET['limit']);
+    if (isset($_GET['sort']))
+    $sort = $db->escapeString($_GET['sort']);
+    if (isset($_GET['order']))
+    $order = $db->escapeString($_GET['order']);
+
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $search = $db->escapeString($_GET['search']);
+    $where .= "WHERE doldsmith_id like '%" . $search . "%' OR id like '%" . $search . "%' OR subcategory_id like '%" . $search . "%'  OR size like '%" . $search . "%'  OR huid_number like '%" . $search . "%'";
+    }
+    if (isset($_GET['sort'])){
+    $sort = $db->escapeString($_GET['sort']);
+    }
+    if (isset($_GET['order'])){
+    $order = $db->escapeString($_GET['order']);
+    }
+    $sql = "SELECT COUNT(`id`) as total FROM `products` ";
+    $db->sql($sql);
+    $res = $db->getResult();
+    foreach ($res as $row)
+           $total = $row['total'];
+
+    $sql = "SELECT * FROM products " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+    $db->sql($sql);
+    $res = $db->getResult();
+
+    $bulkData = array();
+    $bulkData['total'] = $total;
+
+    $rows = array();
+    $tempRow = array();
+
+   foreach ($res as $row) {
+
+
+        $update = ' <a href="edit-product.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
+        $operate = '<a href="view-product.php?id=' . $row['id'] . '" class="label label-primary" title="View">View</a>';
+        $tempRow['id'] = $row['id'];
+        $tempRow['subcategory_id'] = $row['subcategory_id'];
+        $tempRow['goldsmith_id'] = $row['goldsmith_id'];
+        $tempRow['huid_number'] = $row['huid_number'];
+        $tempRow['gross_weight'] = $row['gross_weight'];
+        $tempRow['size'] = $row['size'];
+        $tempRow['stone_weight'] = $row['stone_weight'];
+        $tempRow['net_weight'] = $row['net_weight'];
+        $tempRow['wastage'] = $row['wastage'];
+        $tempRow['cover_weight'] = $row['cover_weight'];
+        if(!empty($row['image'])){
+            $tempRow['image'] = "<a data-lightbox='category' href='" . $row['image'] . "' data-caption='" . $row['image'] . "'><img src='" . $row['image'] . "' title='" . $row['image'] . "' height='50' /></a>";
+
+        }else{
+            $tempRow['image'] = 'No Image';
+
+        }
+        $tempRow['operate'] = $operate;
+        $tempRow['update'] = $update;
+        $rows[] = $tempRow;
+        }
+        $bulkData['rows'] = $rows;
+        print_r(json_encode($bulkData));
 }
 
 $db->disconnect();
