@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2022 at 12:11 PM
+-- Generation Time: Oct 02, 2022 at 10:09 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -159,8 +159,8 @@ CREATE TABLE `goldsmith_master` (
   `digital_signature_number` text DEFAULT NULL,
   `gst_number` text DEFAULT NULL,
   `pan_number` text DEFAULT NULL,
-  `category` text DEFAULT NULL,
-  `sub_category` text DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `subcategory_id` int(11) DEFAULT NULL,
   `open_cash_debit` float DEFAULT NULL,
   `open_cash_credit` float DEFAULT NULL,
   `open_pure_debit` float DEFAULT NULL,
@@ -174,8 +174,8 @@ CREATE TABLE `goldsmith_master` (
 -- Dumping data for table `goldsmith_master`
 --
 
-INSERT INTO `goldsmith_master` (`id`, `name`, `mobile`, `digital_signature_number`, `gst_number`, `pan_number`, `category`, `sub_category`, `open_cash_debit`, `open_cash_credit`, `open_pure_debit`, `open_pure_credit`, `email`, `place`, `address`) VALUES
-(1, 'Sanjay', '7474884949', '0987655', 'ggt56777hd', 'hsdt5668h', 'Male', 'subcategory1', 1, 3, 1, 8, 'sanjay12@gamil.com', 'trichy', 'Madurai,Tamilnadu');
+INSERT INTO `goldsmith_master` (`id`, `name`, `mobile`, `digital_signature_number`, `gst_number`, `pan_number`, `category_id`, `subcategory_id`, `open_cash_debit`, `open_cash_credit`, `open_pure_debit`, `open_pure_credit`, `email`, `place`, `address`) VALUES
+(1, 'Sanjay', '7474884949', '0987655', 'ggt56777hd', 'hsdt5668h', 2, 3, 1, 3, 1, 8, 'sanjay12@gamil.com', 'trichy', 'Madurai,Tamilnadu');
 
 -- --------------------------------------------------------
 

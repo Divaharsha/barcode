@@ -100,8 +100,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'goldsmith_master') {
         $tempRow['digital_signature_number'] = $row['digital_signature_number'];
         $tempRow['gst_number'] = $row['gst_number'];
         $tempRow['pan_number'] = $row['pan_number'];
-        $tempRow['category'] = $row['category'];
-        $tempRow['sub_category'] = $row['sub_category'];
+        $tempRow['category_id'] = $row['category_id'];
+        $tempRow['subcategory_id'] = $row['subcategory_id'];
         $tempRow['open_cash_debit'] = $row['open_cash_debit'];
         $tempRow['open_cash_credit'] = $row['open_cash_credit'];
         $tempRow['open_pure_debit'] = $row['open_pure_debit'];
@@ -931,6 +931,10 @@ if (isset($_GET['table']) && $_GET['table'] == 'products') {
             $tempRow['image'] = 'No Image';
 
         }
+        if ($row['status'] == 1)
+        $tempRow['status'] = "<label class='label label-success'>Approved</label>";
+         else
+        $tempRow['status'] = "<label class='label label-danger'>Not-Approved</label>";
         $tempRow['operate'] = $operate;
         $tempRow['update'] = $update;
         $rows[] = $tempRow;

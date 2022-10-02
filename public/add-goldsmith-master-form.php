@@ -5,6 +5,8 @@ $function = new functions;
 include_once('includes/custom-functions.php');
 $fn = new custom_functions;
 
+$sql_query = "SELECT id, name FROM categories ORDER BY id ASC";
+$db->sql($sql_query);
 $res = $db->getResult();
 
 $sql_query = "SELECT value FROM settings WHERE variable = 'Currency'";
@@ -20,8 +22,8 @@ if (isset($_POST['btnAdd'])) {
         $digital_signature_number = $db->escapeString($fn->xss_clean($_POST['digital_signature_number']));
         $gst_number =$db->escapeString($fn->xss_clean($_POST['gst_number']));
         $pan_number = $db->escapeString($fn->xss_clean($_POST['pan_number']));
-        $category = $db->escapeString($fn->xss_clean($_POST['category']));
-        $sub_category = $db->escapeString($fn->xss_clean($_POST['sub_category']));
+        $category_id = $db->escapeString($fn->xss_clean($_POST['category_id']));
+        $subcategory_id = $db->escapeString($fn->xss_clean($_POST['subcategory_id']));
         $email = $db->escapeString($fn->xss_clean($_POST['email']));
         $address=$db->escapeString($fn->xss_clean($_POST['address']));
         $place=$db->escapeString($fn->xss_clean($_POST['place']));
@@ -46,11 +48,11 @@ if (isset($_POST['btnAdd'])) {
         if (empty($pan_number)) {
             $error['pan_number'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($category)) {
-            $error['category'] = " <span class='label label-danger'>Required!</span>";
+        if (empty($category_id)) {
+            $error['category_id'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($sub_category)) {
-            $error['sub_category'] = " <span class='label label-danger'>Required!</span>";
+        if (empty($subcategory_id)) {
+            $error['subcategory_id'] = " <span class='label label-danger'>Required!</span>";
         }
         if (empty($email)) {
             $error['email'] = " <span class='label label-danger'>Required!</span>";
@@ -77,9 +79,9 @@ if (isset($_POST['btnAdd'])) {
        
        
 
-        if ( !empty($name) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($category) && !empty($sub_category) && !empty($email) && !empty($address) && !empty($place) && !empty($open_cash_debit) && !empty($open_cash_credit) && !empty($open_pure_debit) && !empty($open_pure_credit))
+        if ( !empty($name) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($category_id) && !empty($subcategory_id) && !empty($email) && !empty($address) && !empty($place) && !empty($open_cash_debit) && !empty($open_cash_credit) && !empty($open_pure_debit) && !empty($open_pure_credit))
         {
-                $sql = "INSERT INTO goldsmith_master (name,mobile,digital_signature_number,gst_number,pan_number,category,sub_category,email,address,place,open_cash_debit,open_cash_credit,open_pure_debit,open_pure_credit) VALUES('$name','$mobile','$digital_signature_number','$gst_number','$pan_number','$category','$sub_category','$email','$address','$place','$open_cash_debit','$open_cash_credit','$open_pure_debit','$open_pure_credit')";
+                $sql = "INSERT INTO goldsmith_master (name,mobile,digital_signature_number,gst_number,pan_number,category_id,subcategory_id,email,address,place,open_cash_debit,open_cash_credit,open_pure_debit,open_pure_credit) VALUES('$name','$mobile','$digital_signature_number','$gst_number','$pan_number','$category_id','$subcategory_id','$email','$address','$place','$open_cash_debit','$open_cash_credit','$open_pure_debit','$open_pure_credit')";
                 $db->sql($sql);
                 $goldsmithmaster_result = $db->getResult();
                 if (!empty($goldsmithmaster_result)) {
@@ -166,8 +168,8 @@ if (isset($_POST['btnAdd'])) {
                         <div class="row">
                             <div class="form-group">
                                 <div class='col-md-5'>
-                                    <label for="">Select Category</label> <i class="text-danger asterik">*</i>
-                                        <select id='category' name="category" class='form-control' required>
+                                    <label for="">Select Category</label> <i class="text-danger asterik">*</i><?php echo isset($error['category_id']) ? $error['category_id'] : ''; ?>
+                                        <select id='category_id' name="category_id" class='form-control' required>
                                             <option value="">--Select Category--</option>
                                                 <?php
                                                 $sql = "SELECT * FROM `categories`";
@@ -175,22 +177,14 @@ if (isset($_POST['btnAdd'])) {
                                                 $result = $db->getResult();
                                                 foreach ($result as $value) {
                                                 ?>
-                                                    <option value='<?= $value['name'] ?>'><?= $value['name'] ?></option>
+                                                    <option value='<?= $value['id'] ?>'><?= $value['name'] ?></option>
                                             <?php } ?>
                                         </select>
                                 </div>
                                 <div class='col-md-5'>
-                                <label for="">Select Sub-Category</label> <i class="text-danger asterik">*</i>
-                                        <select id='sub_category' name="sub_category" class='form-control' required>
+                                <label for="">Select Sub-Category</label> <i class="text-danger asterik">*</i><?php echo isset($error['subcategory_id']) ? $error['subcategory_id'] : ''; ?>
+                                        <select id='subcategory_id' name="subcategory_id" class='form-control' required>
                                             <option value="">--Select sub-category--</option>
-                                                <?php
-                                                $sql = "SELECT * FROM `subcategories`";
-                                                $db->sql($sql);
-                                                $result = $db->getResult();
-                                                foreach ($result as $value) {
-                                                ?>
-                                                    <option value='<?= $value['name'] ?>'><?= $value['name'] ?></option>
-                                            <?php } ?>
                                         </select>
                                 </div>
                             </div>
@@ -203,15 +197,15 @@ if (isset($_POST['btnAdd'])) {
                                     <input type="text" class="form-control" name="open_cash_debit" required>
                                 </div>
                                 <div class='col-md-3'>
-                                    <label for="exampleInputEmail1">Open Cash Debit</label> <i class="text-danger asterik">*</i><?php echo isset($error['open_cash_credit']) ? $error['open_cash_credit'] : ''; ?>
+                                    <label for="exampleInputEmail1">Open Cash Credit</label> <i class="text-danger asterik">*</i><?php echo isset($error['open_cash_credit']) ? $error['open_cash_credit'] : ''; ?>
                                     <input type="text" class="form-control" name="open_cash_credit" required>
                                 </div>
                                 <div class='col-md-3'>
-                                    <label for="exampleInputEmail1">Open Cash Debit</label> <i class="text-danger asterik">*</i><?php echo isset($error['open_pure_debit']) ? $error['open_pure_debit'] : ''; ?>
+                                    <label for="exampleInputEmail1">Open Pure Debit</label> <i class="text-danger asterik">*</i><?php echo isset($error['open_pure_debit']) ? $error['open_pure_debit'] : ''; ?>
                                     <input type="text" class="form-control" name="open_pure_debit" required>
                                 </div>
                                 <div class='col-md-3'>
-                                    <label for="exampleInputEmail1">Open Cash Debit</label> <i class="text-danger asterik">*</i><?php echo isset($error['open_pure_credit']) ? $error['open_pure_credit'] : ''; ?>
+                                    <label for="exampleInputEmail1">Open Pure Credit</label> <i class="text-danger asterik">*</i><?php echo isset($error['open_pure_credit']) ? $error['open_pure_credit'] : ''; ?>
                                     <input type="text" class="form-control" name="open_pure_credit" required>
                                 </div>
                             </div>    
@@ -262,8 +256,8 @@ if (isset($_POST['btnAdd'])) {
         $digital_signature_number ="required",
         $gst_number ="required",
         $pan_number="required",
-        $category = "required",
-        $sub_category = "required",
+        $category_id = "required",
+        $subcategory_id = "required",
         $email = "required",
         $address="required",
         $place="required",
@@ -279,4 +273,16 @@ if (isset($_POST['btnAdd'])) {
         }
     });
 
+</script>
+<script>
+     $(document).on('change', '#category_id', function() {
+        $.ajax({
+            url: "public/db-operation.php",
+            data: "category_id=" + $('#category_id').val() + "&change_category=1",
+            method: "POST",
+            success: function(data) {
+                $('#subcategory_id').html("<option value=''>---Select Subcategory---</option>" + data);
+            }
+        });
+    });
 </script>
