@@ -12,12 +12,12 @@ if (isset($_POST['btnAdd'])) {
         $subcategory = $db->escapeString($fn->xss_clean($_POST['subcategory']));
         $goldsmith = $db->escapeString($fn->xss_clean($_POST['goldsmith']));
         $huid_number = $db->escapeString($fn->xss_clean($_POST['huid_number']));
-        $gross_weight = $db->escapeString($fn->xss_clean($_POST['gross_weight']));
-        $size = $db->escapeString($fn->xss_clean($_POST['size']));
-        $stone_weight = $db->escapeString($fn->xss_clean($_POST['stone_weight']));
-        $net_weight = $db->escapeString($fn->xss_clean($_POST['net_weight']));
-        $wastage = $db->escapeString($fn->xss_clean($_POST['wastage']));
-        $cover_weight = $db->escapeString($fn->xss_clean($_POST['cover_weight']));
+        $size = (isset($_POST['size']) && !empty($_POST['size'])) ? $db->escapeString($fn->xss_clean($_POST['size'])) : "0";
+        $gross_weight = (isset($_POST['gross_weight']) && !empty($_POST['gross_weight'])) ? $db->escapeString($fn->xss_clean($_POST['gross_weight'])) : "0";
+        $stone_weight = (isset($_POST['stone_weight']) && !empty($_POST['stone_weight'])) ? $db->escapeString($fn->xss_clean($_POST['stone_weight'])) : "0";        $size = $db->escapeString($fn->xss_clean($_POST['size']));
+        $net_weight = (isset($_POST['net_weight']) && !empty($_POST['net_weight'])) ? $db->escapeString($fn->xss_clean($_POST['net_weight'])) : "0";
+        $wastage = (isset($_POST['wastage']) && !empty($_POST['wastage'])) ? $db->escapeString($fn->xss_clean($_POST['wastage'])) : "0";
+        $cover_weight = (isset($_POST['cover_weight']) && !empty($_POST['cover_weight'])) ? $db->escapeString($fn->xss_clean($_POST['cover_weight'])) : "0";
 
         // get image info
         $menu_image = $db->escapeString($_FILES['product_image']['name']);
@@ -44,27 +44,9 @@ if (isset($_POST['btnAdd'])) {
         if (empty($huid_number)) {
             $error['huid_number'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($gross_weight)) {
-            $error['gross_weight'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($size)) {
-            $error['size'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($stone_weight)) {
-            $error['stone_weight'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($net_weight)) {
-            $error['net_weight'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($wastage)) {
-            $error['wastage'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($cover_weight)) {
-            $error['cover_weight'] = " <span class='label label-danger'>Required!</span>";
-        }
-       
+     
 
-        if (!empty($subcategory) && !empty($goldsmith) && !empty($huid_number) && !empty($gross_weight) && !empty($size) && !empty($stone_weight) && !empty($net_weight) && !empty($wastage) && !empty($cover_weight))
+        if (!empty($subcategory) && !empty($goldsmith) && !empty($huid_number))
         {
                         $result = $fn->validate_image($_FILES["product_image"]);
                         // create random image file name
@@ -211,7 +193,7 @@ if (isset($_POST['btnAdd'])) {
                             <div class="fom-group">
                                 <div class="col-md-6">
                                          <label for="exampleInputFile">Image</label> <i class="text-danger asterik">*</i><?php echo isset($error['product_image']) ? $error['product_image'] : ''; ?>
-                                        <input type="file" name="product_image" onchange="readURL(this);" accept="image/png,  image/jpeg" id="product_image" required/><br>
+                                        <input type="file" name="product_image" id="file-input" onchange="readURL(this);" accept="image/png,  image/jpeg" id="product_image" required/><br>
                                         <img id="blah" src="#" alt="" />
                                 </div>
                             </div>
@@ -241,11 +223,6 @@ if (isset($_POST['btnAdd'])) {
         rules: {
             subcategory: "required",
             goldsmith: "required",
-            size: "required",
-            stone_weight: "required",
-            net_weight: "required",
-            wastage: "required",
-            gross_weight: "required",
          }
     });
     $('#btnClear').on('click', function() {

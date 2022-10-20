@@ -29,12 +29,13 @@ if ($permissions['goldsmithmaster']['read'] == 1) {
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
                                     <th data-field="name" data-sortable="true">Name</th>
+                                    <th data-field="goldsmith_type" data-sortable="true">Goldsmith Type</th>
                                     <th data-field="mobile" data-sortable="true">Payment Mobile Number</th>
                                     <th data-field="digital_signature_number" data-sortable="true">Digital sign number</th>
                                     <th data-field="gst_number" data-sortable="true">GST Number</th>
                                     <th data-field="pan_number" data-sortable="true">PAN Number</th>
-                                    <th data-field="category_id" data-sortable="true">Category Id</th>
-                                    <th data-field="subcategory_id" data-sortable="true">Sub-Category Id</th>
+                                    <th data-field="category_name" data-sortable="true">Category Name</th>
+                                    <th data-field="touch" data-sortable="true">Touch</th>
                                     <th data-field="open_cash_debit" data-sortable="true">Cash Debit</th>
                                     <th data-field="open_cash_credit" data-sortable="true">Cash Credit</th>
                                     <th data-field="open_pure_debit" data-sortable="true">Pure Debit</th>

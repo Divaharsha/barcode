@@ -31,16 +31,18 @@ if (isset($_POST['btnEdit'])) {
             $date = $db->escapeString($fn->xss_clean($_POST['date']));
             $type = $db->escapeString($fn->xss_clean($_POST['type']));
             $category = $db->escapeString($fn->xss_clean($_POST['category'])); 
-            $weight = $db->escapeString($fn->xss_clean($_POST['weight']));
-            $stone_weight = $db->escapeString($fn->xss_clean($_POST['stone_weight']));
-            $wastage = $db->escapeString($fn->xss_clean($_POST['wastage']));
-            $touch = $db->escapeString($fn->xss_clean($_POST['touch']));
+            $weight = (isset($_POST['weight']) && !empty($_POST['weight'])) ? $db->escapeString($fn->xss_clean($_POST['weight'])) : "0";
+            $stone_weight = (isset($_POST['stone_weight']) && !empty($_POST['stone_weight'])) ? $db->escapeString($fn->xss_clean($_POST['stone_weight'])) : "0";
+            $wastage = (isset($_POST['wastage']) && !empty($_POST['wastage'])) ? $db->escapeString($fn->xss_clean($_POST['wastage'])) : "0";
+            $touch = (isset($_POST['touch']) && !empty($_POST['touch'])) ? $db->escapeString($fn->xss_clean($_POST['touch'])) : "0";
             $rate = $db->escapeString($fn->xss_clean($_POST['rate']));
             $gst = $db->escapeString($fn->xss_clean($_POST['gst']));
             $amount = $db->escapeString($fn->xss_clean($_POST['amount']));
             $mc = $db->escapeString($fn->xss_clean($_POST['mc']));
-            $purity = $db->escapeString($fn->xss_clean($_POST['purity']));
-            $sql = "UPDATE `daily_transaction` SET `date` = '$date', `type` = '$type', `category` = '$category', `weight` = '$weight', `stone_weight` = '$stone_weight', `wastage` = '$wastage', `touch` = '$touch', `rate` = '$rate', `gst` = '$gst', `amount` = '$amount', `mc` = '$mc', `purity` = '$purity' WHERE `daily_transaction`.`id` = $ID";
+            $purity = (isset($_POST['purity']) && !empty($_POST['purity'])) ? $db->escapeString($fn->xss_clean($_POST['purity'])) : "0";   
+            
+            
+            $sql = "UPDATE `daily_transaction` SET `goldsmith_master_id`='$name',`date` = '$date', `type` = '$type', `category` = '$category', `weight` = '$weight', `stone_weight` = '$stone_weight', `wastage` = '$wastage', `touch` = '$touch', `rate` = '$rate', `gst` = '$gst', `amount` = '$amount', `mc` = '$mc', `purity` = '$purity' WHERE `daily_transaction`.`id` = $ID";
             $db->sql($sql);
             $update_result = $db->getResult();
                  $update_result = $db->getResult();
@@ -60,8 +62,7 @@ if (isset($_POST['btnEdit'])) {
 
     }
 
-} 
-
+}
 
 // create array variable to store previous data
 $data = array();
@@ -104,8 +105,17 @@ if (isset($_POST['btnCancel'])) { ?>
 							    <div class="form-group">
                                     <div class="col-md-4">
 										<label for="exampleInputEmail1">Name</label><?php echo isset($error['name']) ? $error['name'] : ''; ?>
-										<input type="text" class="form-control" name="name" value="<?php echo $res[0]['name'] ?>" readonly>
-									 </div>
+                                        <select id='name' name="name" class='form-control' required>
+                                                <?php
+                                                $sql = "SELECT * FROM `goldsmith_master`";
+                                                $db->sql($sql);
+                                                $result = $db->getResult();
+                                                foreach ($result as $value) {
+                                                ?>
+												   <option value='<?= $value['id'] ?>' <?= $value['id']==$res[0]['goldsmith_master_id'] ? 'selected="selected"' : '';?>><?= $value['name'] ?></option>
+                                                <?php } ?>
+                                        </select>								
+                            	    </div>
 								</div>
 						   </div>
 						   <hr>

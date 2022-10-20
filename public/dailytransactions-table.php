@@ -28,7 +28,7 @@ if ($permissions['dailytransaction']['read'] == 1) {
                             <thead>
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
-                                    <th data-field="goldsmith_master_id" data-sortable="true">Goldsmith Master Id</th>
+                                    <th data-field="goldsmith_master_name" data-sortable="true">Goldsmith Master Name</th>
                                     <th data-field="date" data-sortable="true">Date</th>
                                     <th data-field="type" data-sortable="true">Type</th>
                                     <th data-field="category" data-sortable="true">Category</th>

@@ -16,6 +16,15 @@
             <!-- Left col -->
             <div class="col-md-12 col-xs-12">
                 <div class="box">
+                    <div class="box-header">
+                                <div class="form-group col-md-4">
+                                    <h4 class="box-title">Filter by Product Status </h4>
+                                    <select id='status' name="status" class='form-control'>
+                                            <option value="1">Approved</option>
+                                            <option value="0">Not-Approved</option>
+                                    </select>
+                                </div>
+                        </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive">
                         <table id='users_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=products" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="false" data-export-types='["txt","excel"]' data-export-options='{
@@ -25,8 +34,8 @@
                             <thead>
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
-                                    <th data-field="subcategory_id" data-sortable="true">Sub-Category Id</th>
-                                    <th data-field="goldsmith_id" data-sortable="true">Dealer Goldsmith Id</th>
+                                    <th data-field="subcategory_name" data-sortable="true">Sub-Category Name</th>
+                                    <th data-field="goldsmith_name" data-sortable="true">Dealer Goldsmith Name</th>
                                     <th data-field="huid_number" data-sortable="true">HUID Number</th>
                                     <th data-field="gross_weight" data-sortable="true">Gross Weight</th>
                                     <th data-field="size" data-sortable="true">Size</th>
@@ -53,18 +62,14 @@
         <!-- /.row (main row) -->
     </section>
 <script>
-    $('#seller_id').on('change', function() {
-        $('#products_table').bootstrapTable('refresh');
-    });
-    $('#community').on('change', function() {
+       $('#status').on('change', function() {
         $('#users_table').bootstrapTable('refresh');
     });
 
+
     function queryParams(p) {
         return {
-            "category_id": $('#category_id').val(),
-            "seller_id": $('#seller_id').val(),
-            "community": $('#community').val(),
+            "status": $('#status').val(),
             limit: p.limit,
             sort: p.sort,
             order: p.order,

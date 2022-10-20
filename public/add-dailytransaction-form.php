@@ -34,14 +34,14 @@ if (isset($_POST['btnAdd'])) {
                     $res = $db->getResult();
                     for ($i = 0; $i < count($_POST['date']); $i++) {
     
-                        $purity = $db->escapeString($fn->xss_clean($_POST['purity'][$i]));
+                        $purity = (isset($_POST['purity'][$i]) && !empty($_POST['purity'][$i])) ? $db->escapeString($fn->xss_clean($_POST['purity'][$i])) : "0";
+                        $weight = (isset($_POST['weight'][$i]) && !empty($_POST['weight'][$i])) ? $db->escapeString($fn->xss_clean($_POST['weight'][$i])) : "0";
+                        $stone_weight = (isset($_POST['stone_weight'][$i]) && !empty($_POST['stone_weight'][$i])) ? $db->escapeString($fn->xss_clean($_POST['stone_weight'][$i])) : "0";
+                        $wastage = (isset($_POST['wastage'][$i]) && !empty($_POST['wastage'][$i])) ? $db->escapeString($fn->xss_clean($_POST['wastage'][$i])) : "0";
+                        $touch = (isset($_POST['touch'][$i]) && !empty($_POST['touch'][$i])) ? $db->escapeString($fn->xss_clean($_POST['touch'][$i])) : "0";
                         $date = $db->escapeString($fn->xss_clean($_POST['date'][$i]));
                         $type = $db->escapeString($fn->xss_clean($_POST['type'][$i]));
                         $category = $db->escapeString($fn->xss_clean($_POST['category'][$i])); 
-                        $weight = $db->escapeString($fn->xss_clean($_POST['weight'][$i]));
-                        $stone_weight = $db->escapeString($fn->xss_clean($_POST['stone_weight'][$i]));
-                        $wastage = $db->escapeString($fn->xss_clean($_POST['wastage'][$i]));
-                        $touch = $db->escapeString($fn->xss_clean($_POST['touch'][$i]));
                         $rate = $db->escapeString($fn->xss_clean($_POST['rate'][$i]));
                         $gst = $db->escapeString($fn->xss_clean($_POST['gst'][$i]));
                         $amount = $db->escapeString($fn->xss_clean($_POST['amount'][$i]));

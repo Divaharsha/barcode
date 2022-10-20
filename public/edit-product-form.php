@@ -18,14 +18,15 @@ if (isset($_POST['btnUpdate'])) {
         $subcategory = $db->escapeString($fn->xss_clean($_POST['subcategory']));
         $goldsmith = $db->escapeString($fn->xss_clean($_POST['goldsmith']));
         $huid_number = $db->escapeString($fn->xss_clean($_POST['huid_number']));
-        $gross_weight = $db->escapeString($fn->xss_clean($_POST['gross_weight']));
-        $size = $db->escapeString($fn->xss_clean($_POST['size']));
-        $stone_weight = $db->escapeString($fn->xss_clean($_POST['stone_weight']));
-        $net_weight = $db->escapeString($fn->xss_clean($_POST['net_weight']));
-        $wastage = $db->escapeString($fn->xss_clean($_POST['wastage']));
-        $cover_weight = $db->escapeString($fn->xss_clean($_POST['cover_weight']));
-        $tag_weight = $db->escapeString($fn->xss_clean($_POST['tag_weight']));
-        $status = $db->escapeString($fn->xss_clean($_POST['status']));
+
+        $gross_weight = (isset($_POST['gross_weight']) && !empty($_POST['gross_weight'])) ? $db->escapeString($fn->xss_clean($_POST['gross_weight'])) : "0";  
+        $size = (isset($_POST['size']) && !empty($_POST['size'])) ? $db->escapeString($fn->xss_clean($_POST['size'])) : "0";
+        $stone_weight = (isset($_POST['stone_weight']) && !empty($_POST['stone_weight'])) ? $db->escapeString($fn->xss_clean($_POST['stone_weight'])) : "0";
+        $net_weight = (isset($_POST['net_weight']) && !empty($_POST['net_weight'])) ? $db->escapeString($fn->xss_clean($_POST['net_weight'])) : "0";
+        $wastage = (isset($_POST['wastage']) && !empty($_POST['wastage'])) ? $db->escapeString($fn->xss_clean($_POST['wastage'])) : "0";
+        $cover_weight = (isset($_POST['cover_weight']) && !empty($_POST['cover_weight'])) ? $db->escapeString($fn->xss_clean($_POST['cover_weight'])) : "0";
+        $tag_weight = (isset($_POST['tag_weight']) && !empty($_POST['tag_weight'])) ? $db->escapeString($fn->xss_clean($_POST['tag_weight'])) : "0";    
+         $status = $db->escapeString($fn->xss_clean($_POST['status']));
 
         
               
@@ -38,30 +39,12 @@ if (isset($_POST['btnUpdate'])) {
         if (empty($huid_number)) {
             $error['huid_number'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($gross_weight)) {
-            $error['gross_weight'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($size)) {
-            $error['sizq'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($stone_weight)) {
-            $error['stone_weight'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($net_weight)) {
-            $error['net_weight'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($wastage)) {
-            $error['wastage'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($cover_weight)) {
-            $error['cover_weight'] = " <span class='label label-danger'>Required!</span>";
-        }
         if (empty($tag_weight)) {
             $error['tag_weight'] = " <span class='label label-danger'>Required!</span>";
         }
        
 
-        if ( !empty($subcategory) && !empty($goldsmith) && !empty($huid_number) && !empty($gross_weight)&& !empty($size) && !empty($stone_weight) && !empty($net_weight) && !empty($wastage) && !empty($cover_weight) && !empty($tag_weight))
+        if ( !empty($subcategory) && !empty($goldsmith) && !empty($huid_number)  && !empty($tag_weight))
         {
 
             if ($_FILES['image']['size'] != 0 && $_FILES['image']['error'] == 0 && !empty($_FILES['image'])) {

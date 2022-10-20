@@ -115,7 +115,7 @@ $res = $db->getResult();
                                     <th style="width: 200px">Place</th>
                                     <td><?php echo $res[0]['place'] ?></td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th style="width: 200px">Open Cash Debit</th>
                                     <td><?php echo $res[0]['open_cash_debit'] ?></td>
                                 </tr>
@@ -130,7 +130,7 @@ $res = $db->getResult();
                                 <tr>
                                     <th style="width: 200px">Open Pure Credit</th>
                                     <td><?php echo $res[0]['open_pure_credit'] ?></td>
-                                </tr>
+                                </tr> -->
                             </table>
                          </div>
                        
