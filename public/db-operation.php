@@ -35,58 +35,71 @@ if (isset($_POST['delete_variant'])) {
     }
 }
 
-
-if (isset($_POST['change_category'])) {
-        if ($_POST['category_id'] == '') {
-            $sql = "SELECT * FROM subcategories";
-        } else {
-            $category_id = $db->escapeString($fn->xss_clean($_POST['category_id']));
-            $sql = "SELECT * FROM subcategories WHERE category_id=" . $category_id;
-        }
-
+//goldsmith master tab variant
+if (isset($_POST['delete_variant'])) {
+    $goldsmith_master_id = $db->escapeString(($_POST['id']));
+    $sql = "DELETE FROM goldsmith_master_variant WHERE id = $goldsmith_master_id";
     $db->sql($sql);
-    $res = $db->getResult();
-    if (!empty($res)) {
-        foreach ($res as $row) {
-            echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
-        }
+    $result = $db->getResult();
+    if ($result) {
+        echo 1;
     } else {
-        echo "<option value=''>--No Sub Category is added--</option>";
+        echo 0;
     }
 }
 
-if (isset($_POST['category'])) {
-        if ($_POST['category_id'] == '') {
-            $sql = "SELECT * FROM subcategories";
-        } else {
-            $category_id = $db->escapeString($fn->xss_clean($_POST['category_id']));
-            $sql = "SELECT * FROM subcategories WHERE category_id=" . $category_id;
-        }
 
-        $db->sql($sql);
-        $res = $db->getResult();
-        if (!empty($res)) {
-            foreach ($res as $row) {
-                echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
-            }
-        } else {
-            echo "<option value=''>--No Sub Category is added--</option>";
-        }
-    } 
+// if (isset($_POST['change_category'])) {
+//         if ($_POST['category_id'] == '') {
+//             $sql = "SELECT * FROM subcategories";
+//         } else {
+//             $category_id = $db->escapeString($fn->xss_clean($_POST['category_id']));
+//             $sql = "SELECT * FROM subcategories WHERE category_id=" . $category_id;
+//         }
 
-if (isset($_POST['find_subcategory'])) {
-    $category_id = $db->escapeString($fn->xss_clean($_POST['category_id']));
-    $sql = "SELECT * FROM subcategories WHERE category_id=" . $category_id;
-    $db->sql($sql);
-    $res = $db->getResult();
-    if (!empty($res)) {
-        foreach ($res as $row) {
-            echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
-        }
-    } else {
-        echo "<option value=''>--No Sub Category is added--</option>";
-    }
-}
+//     $db->sql($sql);
+//     $res = $db->getResult();
+//     if (!empty($res)) {
+//         foreach ($res as $row) {
+//             echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
+//         }
+//     } else {
+//         echo "<option value=''>--No Sub Category is added--</option>";
+//     }
+// }
+
+// if (isset($_POST['category'])) {
+//         if ($_POST['category_id'] == '') {
+//             $sql = "SELECT * FROM subcategories";
+//         } else {
+//             $category_id = $db->escapeString($fn->xss_clean($_POST['category_id']));
+//             $sql = "SELECT * FROM subcategories WHERE category_id=" . $category_id;
+//         }
+
+//         $db->sql($sql);
+//         $res = $db->getResult();
+//         if (!empty($res)) {
+//             foreach ($res as $row) {
+//                 echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
+//             }
+//         } else {
+//             echo "<option value=''>--No Sub Category is added--</option>";
+//         }
+//     } 
+
+// if (isset($_POST['find_subcategory'])) {
+//     $category_id = $db->escapeString($fn->xss_clean($_POST['category_id']));
+//     $sql = "SELECT * FROM subcategories WHERE category_id=" . $category_id;
+//     $db->sql($sql);
+//     $res = $db->getResult();
+//     if (!empty($res)) {
+//         foreach ($res as $row) {
+//             echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
+//         }
+//     } else {
+//         echo "<option value=''>--No Sub Category is added--</option>";
+//     }
+// }
 
 
 function checkadmin($auth_username)

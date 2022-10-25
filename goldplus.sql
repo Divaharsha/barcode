@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2022 at 12:59 PM
+-- Generation Time: Oct 25, 2022 at 10:27 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -117,8 +117,7 @@ CREATE TABLE `daily_transaction` (
 --
 
 INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `category`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`) VALUES
-(1, 1, '2022-09-08', 'Credit Sales', 'Ornament stock', 7, 8, 9, 0, 23, 1, 0, 0, 0),
-(2, 1, '2022-09-29', 'Metal Receipt', 'Digital closing stock', 90, 13, 88, 93, 98, 6, 9892, 240, 0);
+(1, 1, '2022-09-08', 'Credit Sales', 'Ornament stock', 7, 8, 9, 0, 23, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -160,9 +159,6 @@ CREATE TABLE `goldsmith_master` (
   `digital_signature_number` text DEFAULT NULL,
   `gst_number` text DEFAULT NULL,
   `pan_number` text DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL,
-  `subcategory_id` int(11) DEFAULT NULL,
-  `touch` float DEFAULT NULL,
   `open_cash_debit` float DEFAULT NULL,
   `open_cash_credit` float DEFAULT NULL,
   `open_pure_debit` float DEFAULT NULL,
@@ -176,9 +172,30 @@ CREATE TABLE `goldsmith_master` (
 -- Dumping data for table `goldsmith_master`
 --
 
-INSERT INTO `goldsmith_master` (`id`, `name`, `goldsmith_type`, `mobile`, `digital_signature_number`, `gst_number`, `pan_number`, `category_id`, `subcategory_id`, `touch`, `open_cash_debit`, `open_cash_credit`, `open_pure_debit`, `open_pure_credit`, `email`, `place`, `address`) VALUES
-(1, 'Sanjay', 'Both', '7474884949', '0987655', 'ggt56777hd', 'hsdt5668h', 2, 3, 0, 1, 3, 1, 8, 'sanjay12@gamil.com', 'trichy', 'Madurai,Tamilnadu'),
-(2, 'Divakar A', 'Buyer', '7358832695', '456789', 'ggt56777hd', 'SMD787R4G', 1, 2, 916, 65999, 76000, 65999, 90000, 'example@gmail.com', 'India', '2/42, Azhagapuri,R.T.Malai(Po)');
+INSERT INTO `goldsmith_master` (`id`, `name`, `goldsmith_type`, `mobile`, `digital_signature_number`, `gst_number`, `pan_number`, `open_cash_debit`, `open_cash_credit`, `open_pure_debit`, `open_pure_credit`, `email`, `place`, `address`) VALUES
+(1, 'Divakar A', 'Seller', '7358832695', '765432', 'ggt56777hd', 'SMD787R4G', 0, 0, 0, 0, 'dff@gmail.com', 'Karur', '2/42, Azhagapuri,R.T.Malai(Po)');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `goldsmith_master_variant`
+--
+
+CREATE TABLE `goldsmith_master_variant` (
+  `id` int(11) NOT NULL,
+  `goldsmith_master_id` int(11) DEFAULT NULL,
+  `subcategory_id` int(11) DEFAULT NULL,
+  `touch` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `goldsmith_master_variant`
+--
+
+INSERT INTO `goldsmith_master_variant` (`id`, `goldsmith_master_id`, `subcategory_id`, `touch`) VALUES
+(1, 1, 1, 9.883),
+(3, 1, 3, 43.754),
+(4, 1, 2, 90);
 
 -- --------------------------------------------------------
 
@@ -194,13 +211,6 @@ CREATE TABLE `openingmaster` (
   `digital_closing_stock` float DEFAULT NULL,
   `cash_hand` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `openingmaster`
---
-
-INSERT INTO `openingmaster` (`id`, `admin_id`, `ornament_stock`, `pure`, `digital_closing_stock`, `cash_hand`) VALUES
-(1, 1, 45, 67, 6, 98);
 
 -- --------------------------------------------------------
 
@@ -284,9 +294,9 @@ CREATE TABLE `subcategories` (
 --
 
 INSERT INTO `subcategories` (`id`, `category_id`, `name`) VALUES
-(1, 2, 'subcategory1'),
-(2, 1, 'subcategory2'),
-(3, 2, 'subcategory3');
+(1, 1, 'subcategory1'),
+(2, 2, 'Subcategory2'),
+(3, 3, 'subcategory3');
 
 -- --------------------------------------------------------
 
@@ -463,6 +473,12 @@ ALTER TABLE `goldsmith_master`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `goldsmith_master_variant`
+--
+ALTER TABLE `goldsmith_master_variant`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `openingmaster`
 --
 ALTER TABLE `openingmaster`
@@ -566,13 +582,19 @@ ALTER TABLE `faqs`
 -- AUTO_INCREMENT for table `goldsmith_master`
 --
 ALTER TABLE `goldsmith_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `goldsmith_master_variant`
+--
+ALTER TABLE `goldsmith_master_variant`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `openingmaster`
 --
 ALTER TABLE `openingmaster`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -590,7 +612,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `suspense_account`

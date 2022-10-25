@@ -66,7 +66,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'goldsmith_master') {
 
     if (isset($_GET['search']) && !empty($_GET['search'])) {
         $search = $db->escapeString($_GET['search']);
-        $where .= "WHERE gm.name like '%" . $search . "%' OR gm.id like '%" . $search . "%' OR gm.goldsmith_type like '%" . $search . "%' OR c.name like '%" . $search . "%' OR gm.place like '%" . $search . "%'";
+        $where .= "WHERE gm.name like '%" . $search . "%' OR gm.id like '%" . $search . "%' OR gm.goldsmith_type like '%" . $search . "%' OR gm.place like '%" . $search . "%'";
     }
     if (isset($_GET['sort'])){
         $sort = $db->escapeString($_GET['sort']);
@@ -74,15 +74,13 @@ if (isset($_GET['table']) && $_GET['table'] == 'goldsmith_master') {
     if (isset($_GET['order'])){
         $order = $db->escapeString($_GET['order']);
     }
-    $join = "LEFT JOIN `categories` c ON gm.category_id = c.id";
-
-    $sql = "SELECT COUNT(*) as total FROM `goldsmith_master` gm $join " . $where . "";
+    $sql = "SELECT COUNT(`id`) as total FROM `goldsmith_master` $where";
     $db->sql($sql);
     $res = $db->getResult();
     foreach ($res as $row)
         $total = $row['total'];
    
-    $sql = "SELECT gm.id AS id,gm.*,c.name AS category_name FROM `goldsmith_master` gm $join 
+    $sql = "SELECT * FROM `goldsmith_master`
     $where ORDER BY $sort $order LIMIT $offset, $limit";   
      $db->sql($sql);
     $res = $db->getResult();
@@ -104,8 +102,6 @@ if (isset($_GET['table']) && $_GET['table'] == 'goldsmith_master') {
         $tempRow['digital_signature_number'] = $row['digital_signature_number'];
         $tempRow['gst_number'] = $row['gst_number'];
         $tempRow['pan_number'] = $row['pan_number'];
-        $tempRow['category_name'] = $row['category_name'];
-        $tempRow['touch'] = $row['touch'];
         $tempRow['open_cash_debit'] = $row['open_cash_debit'];
         $tempRow['open_cash_credit'] = $row['open_cash_credit'];
         $tempRow['open_pure_debit'] = $row['open_pure_debit'];

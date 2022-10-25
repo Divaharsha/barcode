@@ -29,9 +29,6 @@ if (isset($_POST['btnUpdate'])) {
         $digital_signature_number = $db->escapeString($fn->xss_clean($_POST['digital_signature_number']));
         $gst_number =$db->escapeString($fn->xss_clean($_POST['gst_number']));
         $pan_number = $db->escapeString($fn->xss_clean($_POST['pan_number']));
-        $category_id = $db->escapeString($fn->xss_clean($_POST['category_id']));
-        $subcategory_id = $db->escapeString($fn->xss_clean($_POST['subcategory_id']));
-        $touch = (isset($_POST['touch']) && !empty($_POST['touch'])) ? $db->escapeString($fn->xss_clean($_POST['touch'])) : "0";
         $email = $db->escapeString($fn->xss_clean($_POST['email']));
         $address=$db->escapeString($fn->xss_clean($_POST['address']));
         $place=$db->escapeString($fn->xss_clean($_POST['place']));
@@ -59,12 +56,6 @@ if (isset($_POST['btnUpdate'])) {
         if (empty($pan_number)) {
             $error['pan_number'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($category_id)) {
-            $error['category_id'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($subcategory_id)) {
-            $error['subcategory_id'] = " <span class='label label-danger'>Required!</span>";
-        }
         if (empty($email)) {
             $error['email'] = " <span class='label label-danger'>Required!</span>";
         }
@@ -76,9 +67,9 @@ if (isset($_POST['btnUpdate'])) {
         }
    
 
-        if ( !empty($name) && !empty($goldsmith_type) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($category_id) && !empty($subcategory_id) && !empty($email) && !empty($address) && !empty($place))
+        if ( !empty($name) && !empty($goldsmith_type) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($email) && !empty($address) && !empty($place))
         {
-                $sql = "UPDATE goldsmith_master SET name='$name',goldsmith_type='$goldsmith_type',mobile='$mobile',digital_signature_number='$digital_signature_number',gst_number='$gst_number',pan_number='$pan_number',category_id='$category_id',subcategory_id='$subcategory_id',touch='$touch',open_cash_debit='$open_cash_debit',open_cash_credit='$open_cash_credit',open_pure_debit='$open_pure_debit',open_pure_credit='$open_pure_credit',email='$email',address='$address',place='$place' WHERE id='$ID'";
+                $sql = "UPDATE goldsmith_master SET name='$name',goldsmith_type='$goldsmith_type',mobile='$mobile',digital_signature_number='$digital_signature_number',gst_number='$gst_number',pan_number='$pan_number',open_cash_debit='$open_cash_debit',open_cash_credit='$open_cash_credit',open_pure_debit='$open_pure_debit',open_pure_credit='$open_pure_credit',email='$email',address='$address',place='$place' WHERE id='$ID'";
                 $db->sql($sql);
                 $goldsmithmaster_result = $db->getResult();
                 if (!empty($goldsmithmaster_result)) {
@@ -87,6 +78,28 @@ if (isset($_POST['btnUpdate'])) {
                     $goldsmithmaster_result = 1;
                 }
                 if ($goldsmithmaster_result == 1) {
+                    
+				for ($i = 0; $i < count($_POST['subcategory_id']); $i++) {
+					$goldsmith_master_id = $db->escapeString(($_POST['goldsmith_master_variant_id'][$i]));
+					$subcategory_id = $db->escapeString(($_POST['subcategory_id'][$i]));
+                    $touch = (isset($_POST['touch'][$i]) && !empty($_POST['touch'][$i])) ? $db->escapeString($fn->xss_clean($_POST['touch'][$i])) : "0";
+					$sql = "UPDATE goldsmith_master_variant SET subcategory_id='$subcategory_id',touch='$touch' WHERE id =$goldsmith_master_id";
+					$db->sql($sql);
+
+				}
+				if (
+					isset($_POST['insert_subcategory_id']) && isset($_POST['insert_touch'])
+				) {
+					for ($i = 0; $i < count($_POST['insert_subcategory_id']); $i++) {
+                        $subcategory_id = $db->escapeString(($_POST['insert_subcategory_id'][$i]));
+                        $touch = (isset($_POST['insert_touch'][$i]) && !empty($_POST['insert_touch'][$i])) ? $db->escapeString($fn->xss_clean($_POST['insert_touch'][$i])) : "0";
+						if (!empty($subcategory_id) && !empty($touch)) {
+							$sql = "INSERT INTO goldsmith_master_variant (goldsmith_master_id,subcategory_id,touch) VALUES('$ID','$subcategory_id','$touch')";
+							$db->sql($sql);
+
+						}
+					}
+				}
                     $error['add_menu'] = "<section class='content-header'>
                                                     <span class='label label-success'>Dealer Goldsmith Master Updated Successfully</span>
                                                     <h4><small><a  href='goldsmithmasters.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Goldsmith Master</a></small></h4>
@@ -107,6 +120,10 @@ $db->sql($sql_query);
 $res = $db->getResult();
 foreach ($res as $row)
 $data = $row;
+
+$sql_query = "SELECT * FROM goldsmith_master_variant WHERE goldsmith_master_id =" . $ID;
+$db->sql($sql_query);
+$resslot = $db->getResult();
 
 ?>
 <section class="content-header">
@@ -172,34 +189,51 @@ $data = $row;
                                     </div>
                                 </div>
                                 <br>
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class='col-md-4'>
-                                            <label for="">Select Category</label> <i class="text-danger asterik">*</i>
-                                                <select id='category_id' name="category_id" class='form-control' required>
-                                                <?php
-                                                foreach ($category_data as $row) { ?>
-                                                    <option value="<?php echo $row['id']; ?>" <?= ($row['id'] == $data['category_id']) ? "selected" : ""; ?>><?php echo $row['name']; ?></option>
-                                                <?php }
-                                            ?>
-                                                </select>
-                                        </div>
-                                        <div class='col-md-5'>
-                                               <label for="">Select Sub-Category</label> <i class="text-danger asterik">*</i>
-                                                <select id='subcategory_id' name="subcategory_id" class='form-control' required>
+                                <div id="variations">
+                                    <?php
+                                    $i=0;
+                                    foreach ($resslot as $row) {
+                                        ?>
+                                    <div id="packate_div">
+                                        <div class="row">
+                                        <input type="hidden" class="form-control" name="goldsmith_master_variant_id[]" id="goldsmith_master_variant_id" value='<?= $row['id']; ?>' />
+                                            <div class="col-md-6">
+                                                <div class="form-group packate_div">
+                                                    <label for="exampleInputEmail1">Model</label> <i class="text-danger asterik">*</i>
+                                                    <select id='subcategory_id' name="subcategory_id[]" class='form-control' required>
+                                                        <option value="">Select</option>
+                                                                <?php
+                                                                $sql = "SELECT * FROM `subcategories`";
+                                                                $db->sql($sql);
+                                                                $result = $db->getResult();
+                                                                foreach ($result as $value) {
+                                                                ?>
+                                                                <option value='<?= $value['id'] ?>' <?=$row['subcategory_id'] == $value['id'] ? ' selected="selected"' : '';?>><?= $value['name'] ?></option>
+                                                                <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group packate_div">
+                                                    <label for="exampleInputEmail1"> Touch</label> <i class="text-danger asterik">*</i>
+                                                    <input type="text" class="form-control" name="touch[]" value="<?php echo $row['touch'] ?>" required />
+                                                </div>
+                                            </div>
 
-                                                <?php foreach ($subcategory as $subcategories) { ?>
-                                                    <option value="<?= $subcategories['id']; ?>" <?= $res[0]['subcategory_id'] == $subcategories['id'] ? 'selected' : '' ?>><?= $subcategories['name']; ?></option>
-                                                <?php }
-                                                 ?>
-                                                </select>
-                                        </div>
-                                        <div class='col-md-3'>
-                                            <label for="exampleInputEmail1">Touch</label> <i class="text-danger asterik">*</i><?php echo isset($error['touch']) ? $error['touch'] : ''; ?>
-                                            <input type="number" class="form-control" name="touch" value="<?php echo $data['touch']?>">
+                                            <?php if ($i == 0) { ?>
+                                                    <div class='col-md-1'>
+                                                        <label>Tab</label>
+                                                        <a class="add_packate_variation" title="Add variation" style="cursor: pointer;color:white;"><button class="btn btn-warning">Add more</button></a>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="col-md-1" style="display: grid;">
+                                                        <label>Tab</label>
+                                                        <a class="remove_variation text-danger" data-id="data_delete" title="Remove variation of panchangam" style="cursor: pointer;color:white;"><button class="btn btn-danger">Remove</button></a>
+                                                    </div>
+                                                <?php } ?>
                                         </div>
                                     </div>
-                                </div>
+                                    <?php $i++; } ?> 
                                 <br>
                                 <div class="row">
                                     <div class="form-group">
@@ -253,17 +287,61 @@ $data = $row;
     </div>
 </section>
 <div class="separator"> </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-     $(document).on('change', '#category_id', function() {
-        $.ajax({
-            url: 'public/db-operation.php',
-            method: 'POST',
-            data: 'category_id=' + $('#category_id').val() + '&find_subcategory=1',
-            success: function(data) {
-                $('#subcategory_id').html("<option value=''>---Select Subcategory---</option>" + data);
+    $(document).ready(function () {
+        var max_fields = 7;
+        var wrapper = $("#packate_div");
+        var add_button = $(".add_packate_variation");
+
+        var x = 1;
+        $(add_button).click(function (e) {
+            e.preventDefault();
+            if (x < max_fields) {
+                x++;
+				$(wrapper).append('<div class="row"><div class="col-md-6"><div class="form-group"><label for="subcategory_id">Subcategory</label>' + '<select id=subcategory_id name="insert_subcategory_id[]" class="form-control" required><option value="">Select</option>'+
+																'<?php
+                                                                $sql = "SELECT * FROM `subcategories`";
+                                                                $db->sql($sql);
+                                                                $resslot = $db->getResult();
+																foreach ($resslot as  $row) {
+																	echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
+																}
+																?>' 
+															+'</select></div></div>'+'<div class="col-md-4"><div class="form-group"><label for="touch">Touch</label>'+'<input type="text" class="form-control" name="insert_touch[]" required /></div></div>'+'<div class="col-md-1" style="display:grid;"><label>Tab</label><a class="remove text-danger" style="cursor:pointer;color:white;"><button class="btn btn-danger">Remove</button></a></div>'+'</div>');
+            } else {
+                alert('You Reached the limits')
             }
         });
+
+
+        $(wrapper).on("click", ".remove", function (e) {
+            e.preventDefault();
+            $(this).closest('.row').remove();
+            x--;
+        })
+    });
+</script>
+<script>
+    $(document).on('click', '.remove_variation', function() {
+        if ($(this).data('id') == 'data_delete') {
+            if (confirm('Are you sure? Want to delete this row')) {
+                var id = $(this).closest('div.row').find("input[id='goldsmith_master_variant_id']").val();
+                $.ajax({
+                    url: 'public/db-operation.php',
+                    type: "post",
+                    data: 'id=' + id + '&delete_variant=1',
+                    success: function(result) {
+                        if (result) {
+                            location.reload();
+                        } else {
+                            alert("Variant not deleted!");
+                        }
+                    }
+                });
+            }
+        } else {
+            $(this).closest('.row').remove();
+        }
     });
 </script>

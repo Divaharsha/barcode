@@ -5,15 +5,13 @@ $function = new functions;
 include_once('includes/custom-functions.php');
 $fn = new custom_functions;
 
-$sql_query = "SELECT id, name FROM categories ORDER BY id ASC";
-$db->sql($sql_query);
-$res = $db->getResult();
 
 $sql_query = "SELECT value FROM settings WHERE variable = 'Currency'";
 $pincode_ids_exc = "";
 $db->sql($sql_query);
 $res_cur = $db->getResult();
-
+?>
+<?php
 if (isset($_POST['btnAdd'])) {
     if ($permissions['goldsmithmaster']['create'] == 1) {
         $error = array();
@@ -23,9 +21,6 @@ if (isset($_POST['btnAdd'])) {
         $digital_signature_number = $db->escapeString($fn->xss_clean($_POST['digital_signature_number']));
         $gst_number =$db->escapeString($fn->xss_clean($_POST['gst_number']));
         $pan_number = $db->escapeString($fn->xss_clean($_POST['pan_number']));
-        $category_id = $db->escapeString($fn->xss_clean($_POST['category_id']));
-        $subcategory_id = $db->escapeString($fn->xss_clean($_POST['subcategory_id']));
-        $touch = (isset($_POST['touch']) && !empty($_POST['touch'])) ? $db->escapeString($fn->xss_clean($_POST['touch'])) : "0";
         $email = $db->escapeString($fn->xss_clean($_POST['email']));
         $address=$db->escapeString($fn->xss_clean($_POST['address']));
         $place=$db->escapeString($fn->xss_clean($_POST['place']));
@@ -54,12 +49,6 @@ if (isset($_POST['btnAdd'])) {
         if (empty($pan_number)) {
             $error['pan_number'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($category_id)) {
-            $error['category_id'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($subcategory_id)) {
-            $error['subcategory_id'] = " <span class='label label-danger'>Required!</span>";
-        }
         if (empty($email)) {
             $error['email'] = " <span class='label label-danger'>Required!</span>";
         }
@@ -73,9 +62,9 @@ if (isset($_POST['btnAdd'])) {
        
        
 
-        if ( !empty($name) && !empty($goldsmith_type) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($category_id) && !empty($subcategory_id) && !empty($email) && !empty($address) && !empty($place))
+        if ( !empty($name) && !empty($goldsmith_type) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($email) && !empty($address) && !empty($place))
         {
-                $sql = "INSERT INTO goldsmith_master (name,goldsmith_type,mobile,digital_signature_number,gst_number,pan_number,category_id,subcategory_id,touch,email,address,place,open_cash_debit,open_cash_credit,open_pure_debit,open_pure_credit) VALUES('$name','$goldsmith_type','$mobile','$digital_signature_number','$gst_number','$pan_number','$category_id','$subcategory_id','$touch','$email','$address','$place','$open_cash_debit','$open_cash_credit','$open_pure_debit','$open_pure_credit')";
+                $sql = "INSERT INTO goldsmith_master (name,goldsmith_type,mobile,digital_signature_number,gst_number,pan_number,email,address,place,open_cash_debit,open_cash_credit,open_pure_debit,open_pure_credit) VALUES('$name','$goldsmith_type','$mobile','$digital_signature_number','$gst_number','$pan_number','$email','$address','$place','$open_cash_debit','$open_cash_credit','$open_pure_debit','$open_pure_credit')";
                 $db->sql($sql);
                 $goldsmithmaster_result = $db->getResult();
                 if (!empty($goldsmithmaster_result)) {
@@ -84,26 +73,40 @@ if (isset($_POST['btnAdd'])) {
                     $goldsmithmaster_result = 1;
                 }
                 if ($goldsmithmaster_result == 1) {
+                    $sql = "SELECT id FROM goldsmith_master ORDER BY id DESC LIMIT 1";
+                    $db->sql($sql);
+                    $res = $db->getResult();
+                    $goldsmith_master_id = $res[0]['id'];
+                    for ($i = 0; $i < count($_POST['subcategory_id']); $i++) {
+                        $subcategory_id = $db->escapeString(($_POST['subcategory_id'][$i]));
+                        $touch = (isset($_POST['touch'][$i]) && !empty($_POST['touch'][$i])) ? $db->escapeString($fn->xss_clean($_POST['touch'][$i])) : "0";
+                        $sql = "INSERT INTO goldsmith_master_variant (goldsmith_master_id,subcategory_id,touch) VALUES('$goldsmith_master_id','$subcategory_id','$touch')";
+                        $db->sql($sql);
+                        $tab_result = $db->getResult();
+                    }
+                    if (!empty($tab_result)) {
+                        $tab_result = 0;
+                    } else {
+                        $tab_result = 1;
+                    }
+
                     $error['add_menu'] = "<section class='content-header'>
-                                                    <span class='label label-success'>Dealer Goldsmith Master Added Successfully</span>
-                                                    <h4><small><a  href='goldsmithmasters.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Goldsmith Master</a></small></h4>
-                                                     </section>";
-                } else {
-                    $error['add_menu'] = " <span class='label label-danger'>Failed</span>";
+                    <span class='label label-success'>Dealer Goldsmith Master Added Successfully</span>
+                    <h4><small><a  href='goldsmithmasters.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Goldsmith Master</a></small></h4>
+                    </section>";
                 }
+                else {
+                    $error['add_menu'] = " <span class='label label-danger'>Failed</span>";
 
+                }
             }else{
-                $error['add_menu'] = " <span class='label label-danger'>Dealer Goldsmith Master Already Exists</span>";
+                    $error['add_menu'] = " <span class='label label-danger'>Dealer Goldsmith Master Already Exists</span>";
 
-            }
-
-
-        }
+                }
     }else{
         $error['check_permission'] = " <section class='content-header'><span class='label label-danger'>You have no permission to create gold smith master</span></section>";
-
     }
-
+}
 ?>
 <section class="content-header">
     <h1>Add Dealer Goldsmith Master</h1>
@@ -168,31 +171,35 @@ if (isset($_POST['btnAdd'])) {
                             </div>
                         </div>
                         <br>
-                        <div class="row">
-                            <div class="form-group">
-                                <div class='col-md-4'>
-                                    <label for="">Select Category</label> <i class="text-danger asterik">*</i><?php echo isset($error['category_id']) ? $error['category_id'] : ''; ?>
-                                        <select id='category_id' name="category_id" class='form-control' required>
-                                            <option value="">--Select Category--</option>
-                                                <?php
-                                                $sql = "SELECT * FROM `categories`";
-                                                $db->sql($sql);
-                                                $result = $db->getResult();
-                                                foreach ($result as $value) {
-                                                ?>
-                                                    <option value='<?= $value['id'] ?>'><?= $value['name'] ?></option>
-                                            <?php } ?>
-                                        </select>
+                        <div id="packate_div">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group packate_div">
+                                        <label for="exampleInputEmail1">Subcategory</label> <i class="text-danger asterik">*</i>
+                                            <select id='subcategory_id' name="subcategory_id[]" class='form-control' required>
+                                                <option value="">--Select Subcategory--</option>
+                                                    <?php
+                                                    $sql = "SELECT id,name FROM `subcategories`";
+                                                    $db->sql($sql);
+                                                    $result = $db->getResult();
+                                                    foreach ($result as $value) {
+                                                    ?>
+                                                        <option value='<?= $value['id'] ?>'><?= $value['name'] ?></option>
+                                                <?php } ?>
+                                            </select> 
+                                    </div>
                                 </div>
-                                <div class='col-md-5'>
-                                      <label for="">Select Sub-Category</label> <i class="text-danger asterik">*</i><?php echo isset($error['subcategory_id']) ? $error['subcategory_id'] : ''; ?>
-                                        <select id='subcategory_id' name="subcategory_id" class='form-control' required>
-                                            <option value="">--Select sub-category--</option>
-                                        </select>
+                                <div class="col-md-4">
+                                    <div class="form-group packate_div">
+                                        <label for="exampleInputEmail1">Touch</label> <i class="text-danger asterik">*</i>
+                                        <input type="text"  class="form-control" name="touch[]" required/>
+                                    </div>
                                 </div>
-                                <div class='col-md-3'>
-                                    <label for="exampleInputEmail1">Touch</label> <i class="text-danger asterik">*</i><?php echo isset($error['touch']) ? $error['touch'] : ''; ?>
-                                    <input type="number" class="form-control" name="touch">
+                                <div class="col-md-1">
+                                    <label>Tab</label>
+                                    <a class="add_packate_variation" title="Add variation" style="cursor: pointer;color:white;"><button class="btn btn-warning">Add more</button></a>
+                                </div>
+                                <div id="variations">
                                 </div>
                             </div>
                         </div>
@@ -244,7 +251,7 @@ if (isset($_POST['btnAdd'])) {
                     </div>
                 </form>
             </div>
-            <!-- <?php echo isset($error['check_permission']) ? $error['check_permission'] : ''; ?> -->
+            <?php echo isset($error['check_permission']) ? $error['check_permission'] : ''; ?>
             <!-- /.box -->
         </div>
     </div>
@@ -263,8 +270,6 @@ if (isset($_POST['btnAdd'])) {
         $digital_signature_number ="required",
         $gst_number ="required",
         $pan_number="required",
-        $category_id = "required",
-        $subcategory_id = "required",
         $email = "required",
         $address="required",
         $place="required",
@@ -277,15 +282,34 @@ if (isset($_POST['btnAdd'])) {
     });
 
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-     $(document).on('change', '#category_id', function() {
-        $.ajax({
-            url: "public/db-operation.php",
-            data: "category_id=" + $('#category_id').val() + "&change_category=1",
-            method: "POST",
-            success: function(data) {
-                $('#subcategory_id').html("<option value=''>---Select Subcategory---</option>" + data);
+    $(document).ready(function () {
+        var max_fields =8;
+        var wrapper = $("#packate_div");
+        var add_button = $(".add_packate_variation");
+
+        var x = 1;
+        $(add_button).click(function (e) {
+            e.preventDefault();
+            if (x < max_fields) {
+                x++;
+                $(wrapper).append('<div class="row"><div class="col-md-6"><div class="form-group"><label for="subcategory">Sub Category</label>' +'<select id=subcategory_id name="subcategory_id[]" class="form-control" required><option value="">Select</option><?php
+                                                            $sql = "SELECT id,name FROM `subcategories`";
+                                                            $db->sql($sql);
+                                                            $result = $db->getResult();
+                                                            foreach ($result as $value) {
+                                                            ?><option value="<?= $value['id'] ?>"><?= $value['name'] ?></option><?php } ?></select></div></div>'+ '<div class="col-md-4"><div class="form-group"><label for="touch">Touch</label>'+'<input number="text" class="form-control" name="touch[]" /></div></div>'+'<div class="col-md-1" style="display: grid;"><label>Tab</label><a class="remove" style="cursor:pointer;color:white;"><button class="btn btn-danger">Remove</button></a></div>'+'</div>');
+            }
+            else{
+                alert('You Reached the limits')
             }
         });
+
+        $(wrapper).on("click", ".remove", function (e) {
+            e.preventDefault();
+            $(this).closest('.row').remove();
+            x--;
+        })
     });
 </script>
