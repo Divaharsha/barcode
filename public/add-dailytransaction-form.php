@@ -295,7 +295,7 @@ if (isset($_POST['btnAdd'])) {
                                         <div class="col-md-2">
                                             <div class="form-group packate_div">
                                                 <label for="exampleInputEmail1">Touch</label> 
-                                                <input type="number" class="form-control" name="touch[]" required />
+                                                <input type="text" class="form-control" name="touch[]" required />
                                             </div>
                                         </div>
                                 </div>
@@ -405,13 +405,5 @@ if (isset($_POST['btnAdd'])) {
 <script>
     document.getElementById('date').valueAsDate = new Date();
 </script>
-<!-- <script>
-    $(document).on('input', '.weight', function(){
-        let weight = $('#weight').val();
-        $('#purity').val(weight);
-
-
-    });
-</script> -->
 
 <?php $db->disconnect(); ?>
