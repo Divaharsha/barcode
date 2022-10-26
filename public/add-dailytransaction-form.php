@@ -118,7 +118,7 @@ if (isset($_POST['btnAdd'])) {
                                         <div class="col-md-3">
                                             <div class="form-group packate_div">
                                                 <label for="exampleInputEmail1">Date</label> 
-                                                <input type="date" class="form-control" name="date[]" required />
+                                                <input type="date" id="date" class="form-control" name="date[]" required />
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -401,6 +401,9 @@ if (isset($_POST['btnAdd'])) {
     });
     });
 
+</script>
+<script>
+    document.getElementById('date').valueAsDate = new Date();
 </script>
 <!-- <script>
     $(document).on('input', '.weight', function(){
