@@ -73,23 +73,6 @@ if (isset($_POST['btnAdd'])) {
                     $goldsmithmaster_result = 1;
                 }
                 if ($goldsmithmaster_result == 1) {
-                    $sql = "SELECT id FROM goldsmith_master ORDER BY id DESC LIMIT 1";
-                    $db->sql($sql);
-                    $res = $db->getResult();
-                    $goldsmith_master_id = $res[0]['id'];
-                    for ($i = 0; $i < count($_POST['subcategory_id']); $i++) {
-                        $subcategory_id = $db->escapeString(($_POST['subcategory_id'][$i]));
-                        $touch = (isset($_POST['touch'][$i]) && !empty($_POST['touch'][$i])) ? $db->escapeString($fn->xss_clean($_POST['touch'][$i])) : "0";
-                        $sql = "INSERT INTO goldsmith_master_variant (goldsmith_master_id,subcategory_id,touch) VALUES('$goldsmith_master_id','$subcategory_id','$touch')";
-                        $db->sql($sql);
-                        $tab_result = $db->getResult();
-                    }
-                    if (!empty($tab_result)) {
-                        $tab_result = 0;
-                    } else {
-                        $tab_result = 1;
-                    }
-
                     $error['add_menu'] = "<section class='content-header'>
                     <span class='label label-success'>Dealer Goldsmith Master Added Successfully</span>
                     <h4><small><a  href='goldsmithmasters.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Goldsmith Master</a></small></h4>
@@ -171,39 +154,6 @@ if (isset($_POST['btnAdd'])) {
                             </div>
                         </div>
                         <br>
-                        <div id="packate_div">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group packate_div">
-                                        <label for="exampleInputEmail1">Subcategory</label> <i class="text-danger asterik">*</i>
-                                            <select id='subcategory_id' name="subcategory_id[]" class='form-control' required>
-                                                <option value="">--Select Subcategory--</option>
-                                                    <?php
-                                                    $sql = "SELECT id,name FROM `subcategories`";
-                                                    $db->sql($sql);
-                                                    $result = $db->getResult();
-                                                    foreach ($result as $value) {
-                                                    ?>
-                                                        <option value='<?= $value['id'] ?>'><?= $value['name'] ?></option>
-                                                <?php } ?>
-                                            </select> 
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group packate_div">
-                                        <label for="exampleInputEmail1">Touch</label> <i class="text-danger asterik">*</i>
-                                        <input type="text"  class="form-control" name="touch[]" required/>
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <label>Tab</label>
-                                    <a class="add_packate_variation" title="Add variation" style="cursor: pointer;color:white;"><button class="btn btn-warning">Add more</button></a>
-                                </div>
-                                <div id="variations">
-                                </div>
-                            </div>
-                        </div>
-                        <br>
                         <div class="row">
                             <div class="form-group">
                                 <div class='col-md-3'>
@@ -281,35 +231,4 @@ if (isset($_POST['btnAdd'])) {
         }
     });
 
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        var max_fields =8;
-        var wrapper = $("#packate_div");
-        var add_button = $(".add_packate_variation");
-
-        var x = 1;
-        $(add_button).click(function (e) {
-            e.preventDefault();
-            if (x < max_fields) {
-                x++;
-                $(wrapper).append('<div class="row"><div class="col-md-6"><div class="form-group"><label for="subcategory">Sub Category</label>' +'<select id=subcategory_id name="subcategory_id[]" class="form-control" required><option value="">Select</option><?php
-                                                            $sql = "SELECT id,name FROM `subcategories`";
-                                                            $db->sql($sql);
-                                                            $result = $db->getResult();
-                                                            foreach ($result as $value) {
-                                                            ?><option value="<?= $value['id'] ?>"><?= $value['name'] ?></option><?php } ?></select></div></div>'+ '<div class="col-md-4"><div class="form-group"><label for="touch">Touch</label>'+'<input number="text" class="form-control" name="touch[]" /></div></div>'+'<div class="col-md-1" style="display: grid;"><label>Tab</label><a class="remove" style="cursor:pointer;color:white;"><button class="btn btn-danger">Remove</button></a></div>'+'</div>');
-            }
-            else{
-                alert('You Reached the limits')
-            }
-        });
-
-        $(wrapper).on("click", ".remove", function (e) {
-            e.preventDefault();
-            $(this).closest('.row').remove();
-            x--;
-        })
-    });
 </script>

@@ -95,6 +95,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'goldsmith_master') {
 
         
         $operate = ' <a href="edit-goldsmithmaster.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
+        $update_touch = '<a href="update-touch.php?id=' . $row['id'] . '" class="label label-primary" title="View">Update Touch</a>';
         $tempRow['id'] = $row['id'];
         $tempRow['name'] = $row['name'];
         $tempRow['goldsmith_type'] = $row['goldsmith_type'];
@@ -110,6 +111,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'goldsmith_master') {
         $tempRow['address'] = $row['address'];
         $tempRow['place'] = $row['place'];
         $tempRow['operate'] = $operate;
+        $tempRow['update_touch'] = $update_touch;
         $rows[] = $tempRow;
     }
     $bulkData['rows'] = $rows;
