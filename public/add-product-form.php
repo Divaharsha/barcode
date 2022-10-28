@@ -61,7 +61,12 @@ if (isset($_POST['btnAdd'])) {
                         $upload_image = 'upload/products/' . $menu_image;
 
 
-                $sql = "INSERT INTO products (subcategory_id,goldsmith_id,huid_number,gross_weight,size,stone_weight,net_weight,wastage,cover_weight,tag_weight,image,status) VALUES('$subcategory','$goldsmith','$huid_number','$gross_weight','$size','$stone_weight','$net_weight','$wastage','$cover_weight',NULL,'$upload_image',0)";
+                $sql = "SELECT category_id FROM subcategories WHERE category_id='$subcategory'";
+                $db->sql($sql);
+                $res = $db->getResult();
+                $category_id = $res[0]['category_id'];
+
+                $sql = "INSERT INTO products (category_id,subcategory_id,goldsmith_id,huid_number,gross_weight,size,stone_weight,net_weight,wastage,cover_weight,tag_weight,image,status) VALUES('$category_id','$subcategory','$goldsmith','$huid_number','$gross_weight','$size','$stone_weight','$net_weight','$wastage','$cover_weight',NULL,'$upload_image',0)";
                 $db->sql($sql);
                 $product_result = $db->getResult();
                 if (!empty($product_result)) {

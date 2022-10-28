@@ -69,8 +69,12 @@ if (isset($_POST['btnUpdate'])) {
 				$sql = "UPDATE products SET `image`='" . $upload_image . "' WHERE `id`=" . $ID;
 				$db->sql($sql);
 			}
+            $sql = "SELECT category_id FROM subcategories WHERE category_id='$subcategory'";
+            $db->sql($sql);
+            $res = $db->getResult();
+            $category_id = $res[0]['category_id'];
 
-            $sql = "UPDATE products SET subcategory_id='$subcategory',goldsmith_id='$goldsmith',huid_number='$huid_number',gross_weight='$gross_weight',size='$size',stone_weight='$stone_weight',net_weight='$net_weight',wastage='$wastage',cover_weight='$cover_weight',tag_weight='$tag_weight',status='$status' WHERE id=$ID";
+            $sql = "UPDATE products SET category_id='$category_id',subcategory_id='$subcategory',goldsmith_id='$goldsmith',huid_number='$huid_number',gross_weight='$gross_weight',size='$size',stone_weight='$stone_weight',net_weight='$net_weight',wastage='$wastage',cover_weight='$cover_weight',tag_weight='$tag_weight',status='$status' WHERE id=$ID";
             $db->sql($sql);
             $product_result = $db->getResult();
             if (!empty($product_result)) {
