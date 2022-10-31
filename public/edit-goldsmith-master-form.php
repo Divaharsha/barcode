@@ -79,27 +79,6 @@ if (isset($_POST['btnUpdate'])) {
                 }
                 if ($goldsmithmaster_result == 1) {
                     
-				for ($i = 0; $i < count($_POST['subcategory_id']); $i++) {
-					$goldsmith_master_id = $db->escapeString(($_POST['goldsmith_master_variant_id'][$i]));
-					$subcategory_id = $db->escapeString(($_POST['subcategory_id'][$i]));
-                    $touch = (isset($_POST['touch'][$i]) && !empty($_POST['touch'][$i])) ? $db->escapeString($fn->xss_clean($_POST['touch'][$i])) : "0";
-					$sql = "UPDATE goldsmith_master_variant SET subcategory_id='$subcategory_id',touch='$touch' WHERE id =$goldsmith_master_id";
-					$db->sql($sql);
-
-				}
-				if (
-					isset($_POST['insert_subcategory_id']) && isset($_POST['insert_touch'])
-				) {
-					for ($i = 0; $i < count($_POST['insert_subcategory_id']); $i++) {
-                        $subcategory_id = $db->escapeString(($_POST['insert_subcategory_id'][$i]));
-                        $touch = (isset($_POST['insert_touch'][$i]) && !empty($_POST['insert_touch'][$i])) ? $db->escapeString($fn->xss_clean($_POST['insert_touch'][$i])) : "0";
-						if (!empty($subcategory_id) && !empty($touch)) {
-							$sql = "INSERT INTO goldsmith_master_variant (goldsmith_master_id,subcategory_id,touch) VALUES('$ID','$subcategory_id','$touch')";
-							$db->sql($sql);
-
-						}
-					}
-				}
                     $error['add_menu'] = "<section class='content-header'>
                                                     <span class='label label-success'>Dealer Goldsmith Master Updated Successfully</span>
                                                     <h4><small><a  href='goldsmithmasters.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Goldsmith Master</a></small></h4>
@@ -188,52 +167,6 @@ $resslot = $db->getResult();
                                         </div>
                                     </div>
                                 </div>
-                                <br>
-                                <div id="variations">
-                                    <?php
-                                    $i=0;
-                                    foreach ($resslot as $row) {
-                                        ?>
-                                    <div id="packate_div">
-                                        <div class="row">
-                                        <input type="hidden" class="form-control" name="goldsmith_master_variant_id[]" id="goldsmith_master_variant_id" value='<?= $row['id']; ?>' />
-                                            <div class="col-md-6">
-                                                <div class="form-group packate_div">
-                                                    <label for="exampleInputEmail1">Model</label> <i class="text-danger asterik">*</i>
-                                                    <select id='subcategory_id' name="subcategory_id[]" class='form-control' required>
-                                                        <option value="">Select</option>
-                                                                <?php
-                                                                $sql = "SELECT * FROM `subcategories`";
-                                                                $db->sql($sql);
-                                                                $result = $db->getResult();
-                                                                foreach ($result as $value) {
-                                                                ?>
-                                                                <option value='<?= $value['id'] ?>' <?=$row['subcategory_id'] == $value['id'] ? ' selected="selected"' : '';?>><?= $value['name'] ?></option>
-                                                                <?php } ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group packate_div">
-                                                    <label for="exampleInputEmail1"> Touch</label> <i class="text-danger asterik">*</i>
-                                                    <input type="text" class="form-control" name="touch[]" value="<?php echo $row['touch'] ?>" required />
-                                                </div>
-                                            </div>
-
-                                            <?php if ($i == 0) { ?>
-                                                    <div class='col-md-1'>
-                                                        <label>Tab</label>
-                                                        <a class="add_packate_variation" title="Add variation" style="cursor: pointer;color:white;"><button class="btn btn-warning">Add more</button></a>
-                                                    </div>
-                                                <?php } else { ?>
-                                                    <div class="col-md-1" style="display: grid;">
-                                                        <label>Tab</label>
-                                                        <a class="remove_variation text-danger" data-id="data_delete" title="Remove variation of panchangam" style="cursor: pointer;color:white;"><button class="btn btn-danger">Remove</button></a>
-                                                    </div>
-                                                <?php } ?>
-                                        </div>
-                                    </div>
-                                    <?php $i++; } ?> 
                                 <br>
                                 <div class="row">
                                     <div class="form-group">
