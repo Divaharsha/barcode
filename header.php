@@ -264,12 +264,12 @@ $res_logo = $db->getResult();
                                 </a>
                            </li>
                            
-                           <li class="treeview">
+                           <!-- <li class="treeview">
                                 <a href="suspense.php">
                                     <i class="fa fa-bullseye"></i>
                                     <span>Suspense Account</span>
                                 </a>
-                           </li>
+                           </li> -->
 
                     </ul>
                 </li>

@@ -82,7 +82,7 @@ $low_stock_limit = isset($config['low-stock-limit']) && (!empty($config['low-sto
                         <a href="dailytransactions.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-xs-6">
+                <!-- <div class="col-lg-4 col-xs-6">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <h3><?php                           
@@ -97,7 +97,7 @@ $low_stock_limit = isset($config['low-stock-limit']) && (!empty($config['low-sto
                         <div class="icon"></div>
                         <a href="suspense.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
+                </div> -->
                 
             </div>
             
