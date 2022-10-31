@@ -33,7 +33,7 @@ if (isset($_POST['btnAdd'])) {
 
             if ( !empty($ornament_stock) && !empty($pure) && !empty($digital_closing_stock) && !empty($cash_hand))
             {
-                $sql = "INSERT INTO openingmaster (admin_id,ornament_stock,pure,digital_closing_stock,cash_hand) VALUES($id,'$ornament_stock','$pure','$digital_closing_stock','$cash_hand')";
+                $sql = "UPDATE openingmaster SET admin_id='$id',ornament_stock='$ornament_stock',pure='$pure',digital_closing_stock='$digital_closing_stock',cash_hand='$cash_hand' WHERE admin_id=1";
                     $db->sql($sql);
                     $openingmaster_result = $db->getResult();
                     if (!empty($openingmaster_result)) {
@@ -43,7 +43,7 @@ if (isset($_POST['btnAdd'])) {
                     }
                     if ($openingmaster_result == 1) {
                         $error['add_menu'] = "<section class='content-header'>
-                                                        <span class='label label-success'>Opening Master Added Successfully</span>
+                                                        <span class='label label-success'>Opening Master Updated Successfully</span>
                                                         
                                                         </section>";
                     } else {
@@ -113,15 +113,9 @@ if (isset($_POST['btnAdd'])) {
                         <br>
                         
                         </div>
-                        <?php
-                        if($num == 0 ){
-                            ?>
-                            <div class="box-footer">
+                        <div class="box-footer">
                                 <button type="submit" name="btnAdd" class="btn btn-primary">Submit</button>
                             </div>
-                            <?php
-                        }
-                        ?>
                 </form>
             </div>
             <!-- /.box -->
