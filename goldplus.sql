@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2022 at 12:50 PM
+-- Generation Time: Nov 07, 2022 at 12:21 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -100,7 +100,7 @@ CREATE TABLE `daily_transaction` (
   `goldsmith_master_id` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `type` text DEFAULT NULL,
-  `category` text DEFAULT NULL,
+  `subcategory` text DEFAULT NULL,
   `weight` float DEFAULT NULL,
   `stone_weight` float DEFAULT NULL,
   `wastage` float DEFAULT NULL,
@@ -116,8 +116,8 @@ CREATE TABLE `daily_transaction` (
 -- Dumping data for table `daily_transaction`
 --
 
-INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `category`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`) VALUES
-(1, 1, '2022-09-08', 'Credit Sales', 'Ornament stock', 7, 8, 9, 0, 23, 1, 0, 0, 0);
+INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `subcategory`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`) VALUES
+(1, 1, '2022-09-08', 'Credit Sales', 'subcategory1', 7, 8, 9, 0, 23, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 

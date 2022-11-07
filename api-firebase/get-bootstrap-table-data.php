@@ -469,7 +469,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'daily_transaction') {
         $tempRow['goldsmith_master_name'] = $row['goldsmith_master_name'];
         $tempRow['date'] = $row['date'];
         $tempRow['type'] = $row['type'];
-        $tempRow['category'] = $row['category'];
+        $tempRow['subcategory'] = $row['subcategory'];
         $tempRow['weight'] = $row['weight'];
         $tempRow['stone_weight'] = $row['stone_weight'];
         $tempRow['wastage'] = $row['wastage'];

@@ -31,7 +31,7 @@ if ($permissions['dailytransaction']['read'] == 1) {
                                     <th data-field="goldsmith_master_name" data-sortable="true">Goldsmith Master Name</th>
                                     <th data-field="date" data-sortable="true">Date</th>
                                     <th data-field="type" data-sortable="true">Type</th>
-                                    <th data-field="category" data-sortable="true">Category</th>
+                                    <th data-field="subcategory" data-sortable="true">Subcategory</th>
                                     <th data-field="weight" data-sortable="true">Weight</th>
                                     <th data-field="stone_weight" data-sortable="true">Stone Weight</th>
                                     <th data-field="wastage" data-sortable="true">Wastage</th>
