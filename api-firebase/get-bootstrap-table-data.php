@@ -442,7 +442,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'daily_transaction') {
         $order = $db->escapeString($_GET['order']);
     }
 
-    $join = "LEFT JOIN `goldsmith_master` gm ON dt.goldsmith_master_id = gm.id";
+    $join = "LEFT JOIN `goldsmith_master` gm ON dt.goldsmith_master_id = gm.id LEFT JOIN `subcategories` s ON dt.subcategory_id = s.id";
 
     $sql = "SELECT COUNT(*) as total FROM `daily_transaction` dt  $join " . $where . "";
     $db->sql($sql);
@@ -450,7 +450,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'daily_transaction') {
     foreach ($res as $row)
         $total = $row['total'];
    
-    $sql = "SELECT dt.id AS id,dt.*,gm.name AS goldsmith_master_name FROM `daily_transaction` dt $join 
+    $sql = "SELECT dt.id AS id,dt.*,gm.name AS goldsmith_master_name,s.name AS subcategory FROM `daily_transaction` dt $join 
     $where ORDER BY $sort $order LIMIT $offset, $limit";  
     $db->sql($sql);
     $res = $db->getResult();

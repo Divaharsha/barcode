@@ -159,11 +159,11 @@ if (isset($_POST['btnAdd'])) {
                             <div class="form-group">
                                 <div class="col-md-5">
                                     <label for="exampleInputEmail1">Gross Weight</label> <i class="text-danger asterik">*</i><?php echo isset($error['gross_weight']) ? $error['gross_weight'] : ''; ?>
-                                    <input type="number" class="form-control" name="gross_weight" required>
+                                    <input type="number" class="form-control" name="gross_weight">
                                 </div>
                                 <div class='col-md-5'>
                                     <label for="exampleInputEmail1">Size</label> <i class="text-danger asterik">*</i><?php echo isset($error['size']) ? $error['size'] : ''; ?>
-                                    <input type="number" class="form-control" name="size" required>
+                                    <input type="number" class="form-control" name="size">
                                 </div>
                             </div>
                         </div>
@@ -172,11 +172,11 @@ if (isset($_POST['btnAdd'])) {
                             <div class="form-group">
                                 <div class="col-md-5">
                                     <label for="exampleInputEmail1">Stone Weight</label> <i class="text-danger asterik">*</i><?php echo isset($error['stone_weight']) ? $error['stone_weight'] : ''; ?>
-                                    <input type="number" class="form-control" name="stone_weight" required>
+                                    <input type="number" class="form-control" name="stone_weight">
                                 </div>
                                 <div class='col-md-5'>
                                     <label for="exampleInputEmail1">Net Weight</label> <i class="text-danger asterik">*</i><?php echo isset($error['net_weight']) ? $error['net_weight'] : ''; ?>
-                                    <input type="number" class="form-control" name="net_weight" required>
+                                    <input type="number" class="form-control" name="net_weight">
                                 </div>
                             </div>
                         </div>
@@ -185,11 +185,11 @@ if (isset($_POST['btnAdd'])) {
                             <div class="form-group">
                                 <div class="col-md-5">
                                     <label for="exampleInputEmail1">Wastage</label> <i class="text-danger asterik">*</i><?php echo isset($error['wastage']) ? $error['wastage'] : ''; ?>
-                                    <input type="number" class="form-control" name="wastage" required>
+                                    <input type="number" class="form-control" name="wastage">
                                 </div>
                                 <div class='col-md-5'>
                                     <label for="exampleInputEmail1">Cover Weight</label> <i class="text-danger asterik">*</i><?php echo isset($error['cover_weight']) ? $error['cover_weight'] : ''; ?>
-                                    <input type="number" class="form-control" name="cover_weight" required>
+                                    <input type="number" class="form-control" name="cover_weight">
                                 </div>
                             </div>
                         </div>

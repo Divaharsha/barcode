@@ -51,7 +51,7 @@ if (isset($_POST['btnAdd'])) {
                     }
             }
         }
-    }
+}
     $sql_query = "SELECT * FROM openingmaster WHERE admin_id = $id";
     $db->sql($sql_query);
     $res= $db->getResult();
@@ -88,7 +88,7 @@ if (isset($_POST['btnAdd'])) {
                                     <input type="number" class="form-control" name="ornament_stock" value="<?php echo $res[0]['ornament_stock'] ?>">
                                 </div>
                                 <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">pure</label> <i class="text-danger asterik">*</i><?php echo isset($error['pure']) ? $error['pure'] : ''; ?>
+                                    <label for="exampleInputEmail1">Metal Pure</label> <i class="text-danger asterik">*</i><?php echo isset($error['pure']) ? $error['pure'] : ''; ?>
                                     <input type="number" class="form-control" name="pure" value="<?php echo $res[0]['pure'] ?>">
                                     
                                 </div>

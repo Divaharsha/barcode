@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2022 at 12:21 PM
+-- Generation Time: Nov 08, 2022 at 09:49 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -100,7 +100,7 @@ CREATE TABLE `daily_transaction` (
   `goldsmith_master_id` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `type` text DEFAULT NULL,
-  `subcategory` text DEFAULT NULL,
+  `subcategory_id` int(11) DEFAULT 0,
   `weight` float DEFAULT NULL,
   `stone_weight` float DEFAULT NULL,
   `wastage` float DEFAULT NULL,
@@ -116,8 +116,8 @@ CREATE TABLE `daily_transaction` (
 -- Dumping data for table `daily_transaction`
 --
 
-INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `subcategory`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`) VALUES
-(1, 1, '2022-09-08', 'Credit Sales', 'subcategory1', 7, 8, 9, 0, 23, 1, 0, 0, 0);
+INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `subcategory_id`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`) VALUES
+(1, 1, '2022-11-08', 'Credit Purchase', 2, 45, 24, 90, 0, 45000, 24, 566778, 230, 0);
 
 -- --------------------------------------------------------
 
@@ -211,6 +211,13 @@ CREATE TABLE `openingmaster` (
   `digital_closing_stock` float DEFAULT NULL,
   `cash_hand` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `openingmaster`
+--
+
+INSERT INTO `openingmaster` (`id`, `admin_id`, `ornament_stock`, `pure`, `digital_closing_stock`, `cash_hand`) VALUES
+(1, 1, 89, 90, 900, 89);
 
 -- --------------------------------------------------------
 
@@ -566,7 +573,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `daily_transaction`
 --
 ALTER TABLE `daily_transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `faq`
@@ -596,13 +603,13 @@ ALTER TABLE `goldsmith_master_variant`
 -- AUTO_INCREMENT for table `openingmaster`
 --
 ALTER TABLE `openingmaster`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `settings`

@@ -31,9 +31,15 @@ if (isset($_POST['btnAdd'])) {
        
 
         if ( !empty($name))
-        {
-                $sql = "INSERT INTO daily_transaction (goldsmith_master_id,date,type,subcategory,weight,stone_weight,wastage,touch,rate,gst,amount,mc,purity) VALUES('$name','$date','$type','$subcategory_id','$weight','$stone_weight','$wastage','$touch','$rate','$gst','$amount','$mc','$purity')";
-                 $db->sql($sql);
+        {       
+            if($type=='Credit Sales' || $type=='Credit Purchase'){
+                $sql = "INSERT INTO daily_transaction (goldsmith_master_id,date,type,subcategory_id,weight,stone_weight,wastage,touch,rate,gst,amount,mc,purity) VALUES('$name','$date','$type','$subcategory_id','$weight','$stone_weight','$wastage','$touch','$rate','$gst','$amount','$mc','$purity')";
+                $db->sql($sql);
+             }
+             else {
+                $sql = "INSERT INTO daily_transaction (goldsmith_master_id,date,type,weight,stone_weight,wastage,rate,gst,amount,mc,purity) VALUES('$name','$date','$type','$weight','$stone_weight','$wastage','$rate','$gst','$amount','$mc','$purity')";
+                $db->sql($sql);
+             }
                 $users_result = $db->getResult();
                 if (!empty($users_result)) {
                     $users_result = 0;
@@ -109,7 +115,7 @@ if (isset($_POST['btnAdd'])) {
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Type</label> <i class="text-danger asterik">*</i>
                                         <select id='type' name="type" class='form-control' required>
-                                        <option value="">Select</option>
+                                           <option value="none">Select</option>
                                                     <?php
                                                     $sql = "SELECT * FROM `types`";
                                                     $db->sql($sql);
@@ -122,10 +128,12 @@ if (isset($_POST['btnAdd'])) {
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
+                        </div>
+                        <div class="row">
+                               <div class="col-md-4">
+                                    <div class="form-group" id="subcategories" style="display:none">
                                         <label for="exampleInputEmail1">Subcategory</label> <i class="text-danger asterik">*</i>
-                                        <select id='subcategory_id' name="subcategory_id" class='form-control' required>
+                                        <select id='subcategory_id' name="subcategory_id" class='form-control'>
                                                     <?php
                                                     $sql = "SELECT id,name FROM `subcategories`";
                                                     $db->sql($sql);
@@ -138,30 +146,30 @@ if (isset($_POST['btnAdd'])) {
                                         </select>
                                     </div>
                                 </div>
-                        </div>
-                        <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Weight</label> <i class="text-danger asterik">*</i><?php echo isset($error['weight']) ? $error['weight'] : ''; ?>
-                                        <input type="number" class="form-control weight" name="weight" id = "weight" required />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Stone Weight</label> <i class="text-danger asterik">*</i><?php echo isset($error['stone_weight']) ? $error['stone_weight'] : ''; ?>
-                                        <input type="number" class="form-control" name="stone_weight" required />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Wastage</label><i class="text-danger asterik">*</i><?php echo isset($error['wastage']) ? $error['wastage'] : ''; ?>
-                                        <input type="number" class="form-control" name="wastage" required />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
+                                <div class="col-md-4">
+                                    <div class="form-group" id="touchname" style="display:none">
                                         <label for="exampleInputEmail1">Touch</label><i class="text-danger asterik">*</i>
                                         <input type="number" class="form-control" name="touch" id="touch" readonly />
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Weight</label> <i class="text-danger asterik">*</i>
+                                        <input type="number" class="form-control weight" name="weight" id = "weight" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Stone Weight</label> <i class="text-danger asterik">*</i>
+                                        <input type="number" class="form-control" name="stone_weight" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Wastage</label><i class="text-danger asterik">*</i>
+                                        <input type="number" class="form-control" name="wastage" />
                                     </div>
                                 </div>
                         </div>
@@ -229,11 +237,6 @@ if (isset($_POST['btnAdd'])) {
             name: "required",
             date: "required",
             type: "required",
-            category: "required",
-            weight: "required",
-            stone_weight: "required",
-            wastage: "required",
-            touch: "required",
             rate: "required",
 
         }
@@ -258,9 +261,58 @@ if (isset($_POST['btnAdd'])) {
     document.getElementById('date').valueAsDate = new Date();
 </script>
 <script>
-    $(document).on('change', '#subcategory_id', function() {
-        var parentid = $(this).parent().parent().parent( ".row" ).attr( "id");
-        $("#touch").val("25");
+    $("#type").change(function() {
+        type = $("#type").val();
+        if(type == "Credit Purchase"){
+            $("#subcategories").show();
+            $("#touchname").show();
+
+        }
+        if(type == "Credit Sales"){
+            $("#subcategories").show();
+            $("#touchname").show();
+        }
+        if(type == "Metal Issue"){
+            $("#subcategories").hide();
+            $("#touchname").hide();
+
+        }
+        if(type == "Metal Receipt"){
+            $("#subcategories").hide();
+            $("#touchname").hide();
+        } 
+          if(type == "Cash Credit"){
+            $("#subcategories").hide();
+            $("#touchname").hide();
+
+        }
+        if(type == "Cash Debit"){
+            $("#subcategories").hide();
+            $("#touchname").hide();
+        }
+        if(type == "none"){
+            $("#subcategories").hide();
+            $("#touchname").hide();
+        }
     });
 </script>
+<!-- <script>
+    $(document).on('change', '#subcategory_id', function() {
+        console.log($("#subcategory_id").val() + " - " + $("#name").val())
+        
+    });
+</script> -->
+<script>
+      $(document).on('change', '#subcategory_id','#name',function() {
+        $.ajax({
+            url: "public/db-operation.php",
+            data: "subcategory_id=" + $('#subcategory_id').val() + "name=" + $('#name').val() + "&get_touch=1",
+            method: "POST",
+            success: function(data) {
+                $('#touch').val("" + data);
+            }
+        });
+    });
+</script>
+
 <?php $db->disconnect(); ?>

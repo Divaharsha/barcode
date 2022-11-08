@@ -74,12 +74,12 @@ if ($permissions['stockreport']['read'] == 1) {
                     <a href="">
                         <div class="small-box">
                             <div class="inner">
-                            <h2 class="text-center">916 Closing</h2>
+                            <h2 class="text-center">Ornament Stock</h2>
                                 <h3 class="text text-success text-center"> &#8377;<?php
-                                $sql = "SELECT kdm FROM openingmaster";
+                                $sql = "SELECT ornament_stock FROM openingmaster";
                                 $db->sql($sql);
                                 $res = $db->getResult();
-                                echo $res[0]['kdm'];
+                                echo $res[0]['ornament_stock'];
                                 ?></h3>
                             </div>
                         </div>
@@ -89,12 +89,12 @@ if ($permissions['stockreport']['read'] == 1) {
                     <a href="">
                         <div class="small-box">
                             <div class="inner">
-                            <h2 class="text-center">Metal Closing</h2>
+                            <h2 class="text-center">Metal Pure</h2>
                                 <h3 class="text text-success text-center"> &#8377;<?php
-                                $sql = "SELECT metal FROM openingmaster";
+                                $sql = "SELECT pure FROM openingmaster";
                                 $db->sql($sql);
                                 $res = $db->getResult();
-                                echo $res[0]['metal'];
+                                echo $res[0]['pure'];
                                 ?></h3>
                             </div>
                         </div>
@@ -106,12 +106,12 @@ if ($permissions['stockreport']['read'] == 1) {
                     <a href="">
                         <div class="small-box">
                             <div class="inner">
-                            <h2 class="text-center">Katcha Closing</h2>
+                            <h2 class="text-center">Digital Closing Stock</h2>
                                 <h3 class="text text-success text-center"> &#8377;<?php
-                                $sql = "SELECT katcha FROM openingmaster";
+                                $sql = "SELECT digital_closing_stock FROM openingmaster";
                                 $db->sql($sql);
                                 $res = $db->getResult();
-                                echo $res[0]['katcha'];
+                                echo $res[0]['digital_closing_stock'];
                                 ?></h3>
                             </div>
                         </div>
@@ -133,7 +133,7 @@ if ($permissions['stockreport']['read'] == 1) {
                     </a>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-4 col-xs-6">
                     <a href="">
                         <div class="small-box" >
@@ -164,7 +164,7 @@ if ($permissions['stockreport']['read'] == 1) {
                         </div>
                     </a>
                 </div>
-            </div>
+            </div> -->
                 
         </section>
         <?php } else { ?>
