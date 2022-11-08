@@ -90,6 +90,7 @@ if (isset($_POST['btnAdd'])) {
                                 <div class='col-md-4'>
                                     <label for="exampleInputEmail1"> Name</label> <i class="text-danger asterik">*</i><?php echo isset($error['name']) ? $error['name'] : ''; ?>
                                     <select id='name' name="name" class='form-control' required>
+
                                         <?php
                                         $sql = "SELECT * FROM `goldsmith_master`";
                                         $db->sql($sql);
@@ -134,6 +135,7 @@ if (isset($_POST['btnAdd'])) {
                                     <div class="form-group" id="subcategories" style="display:none">
                                         <label for="exampleInputEmail1">Subcategory</label> <i class="text-danger asterik">*</i>
                                         <select id='subcategory_id' name="subcategory_id" class='form-control'>
+                                        <option value=''>SELECT</option>
                                                     <?php
                                                     $sql = "SELECT id,name FROM `subcategories`";
                                                     $db->sql($sql);
@@ -149,7 +151,7 @@ if (isset($_POST['btnAdd'])) {
                                 <div class="col-md-4">
                                     <div class="form-group" id="touchname" style="display:none">
                                         <label for="exampleInputEmail1">Touch</label><i class="text-danger asterik">*</i>
-                                        <input type="number" class="form-control" name="touch" id="touch" readonly />
+                                        <input type="text" class="form-control" name="touch" id="touch" readonly />
                                     </div>
                                 </div>
                         </div>
@@ -220,13 +222,7 @@ if (isset($_POST['btnAdd'])) {
 </section>
 <div class="separator"> </div>
 
-<script>
-    $(document).on('change', '#subcategory_id', function() {
-        var parentid = $(this).parent().parent().parent( ".row" ).attr( "id");
-        $("#touch").val("25");
-        //$("#"+parentid+ " .touchname").val("25");
-    });
-</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script>
     $('#add_dailytransaction_form').validate({
@@ -303,16 +299,27 @@ if (isset($_POST['btnAdd'])) {
     });
 </script> -->
 <script>
-      $(document).on('change', '#subcategory_id','#name',function() {
+      $(document).on('change', '#subcategory_id',function() {
         $.ajax({
             url: "public/db-operation.php",
-            data: "subcategory_id=" + $('#subcategory_id').val() + "name=" + $('#name').val() + "&get_touch=1",
+            data: "subcategory_id=" + $('#subcategory_id').val() + "&name=" + $('#name').val() + "&get_touch=1",
             method: "POST",
             success: function(data) {
-                $('#touch').val("" + data);
+                $('#touch').val(""+data);
             }
         });
     });
 </script>
-
+<script>
+      $(document).on('change', '#name',function() {
+        $.ajax({
+            url: "public/db-operation.php",
+            data: "subcategory_id=" + $('#subcategory_id').val() + "&name=" + $('#name').val() + "&get_touch=1",
+            method: "POST",
+            success: function(data) {
+                $('#touch').val(""+data);
+            }
+        });
+    });
+</script>
 <?php $db->disconnect(); ?>

@@ -325,6 +325,41 @@ if (isset($_POST['btnCancel'])) { ?>
 </script>
 <?php $db->disconnect(); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+
+<script>
+      $(document).on('change', '#subcategory_id',function() {
+        $.ajax({
+            url: "public/db-operation.php",
+            data: "subcategory_id=" + $('#subcategory_id').val() + "&name=" + $('#name').val() + "&get_touch=1",
+            method: "POST",
+            success: function(data) {
+                $('#touch').val(""+data);
+            }
+        });
+    });
+</script>
+<script>
+      $(document).on('change', '#name',function() {
+        $.ajax({
+            url: "public/db-operation.php",
+            data: "subcategory_id=" + $('#subcategory_id').val() + "&name=" + $('#name').val() + "&get_touch=1",
+            method: "POST",
+            success: function(data) {
+                $('#touch').val(""+data);
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#name').select2({
+        width: 'element',
+        placeholder: 'Type in name to search',
+
+    });
+    });
+
+</script>
 <!-- <script>
     $(document).ready(function () {
         $('#name').select2({

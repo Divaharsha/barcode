@@ -55,46 +55,14 @@ if (isset($_POST['get_touch'])) {
             $sql = "SELECT * FROM `goldsmith_master_variant` WHERE subcategory_id='$subcategory_id' AND goldsmith_master_id='$name'";
             $db->sql($sql);
             $res = $db->getResult();
-    if (!empty($res)) {
-            echo "$res[0]['touch']";
-        
-    } else {
-        echo "";
-    }
+            $touch = $res[0]['touch'];
+            if (!empty($res)) {
+                    echo $touch;
+                
+            } else {
+                echo "0";
+            }
 }
-
-// if (isset($_POST['category'])) {
-//         if ($_POST['category_id'] == '') {
-//             $sql = "SELECT * FROM subcategories";
-//         } else {
-//             $category_id = $db->escapeString($fn->xss_clean($_POST['category_id']));
-//             $sql = "SELECT * FROM subcategories WHERE category_id=" . $category_id;
-//         }
-
-//         $db->sql($sql);
-//         $res = $db->getResult();
-//         if (!empty($res)) {
-//             foreach ($res as $row) {
-//                 echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
-//             }
-//         } else {
-//             echo "<option value=''>--No Sub Category is added--</option>";
-//         }
-//     } 
-
-// if (isset($_POST['find_subcategory'])) {
-//     $category_id = $db->escapeString($fn->xss_clean($_POST['category_id']));
-//     $sql = "SELECT * FROM subcategories WHERE category_id=" . $category_id;
-//     $db->sql($sql);
-//     $res = $db->getResult();
-//     if (!empty($res)) {
-//         foreach ($res as $row) {
-//             echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
-//         }
-//     } else {
-//         echo "<option value=''>--No Sub Category is added--</option>";
-//     }
-// }
 
 
 function checkadmin($auth_username)
