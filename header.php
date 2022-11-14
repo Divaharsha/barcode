@@ -233,13 +233,13 @@ $res_logo = $db->getResult();
                         <li class="treeview">
                             <a href="goldsmithmasters.php">
                                 <i class="fa fa-user"></i>
-                                <span>Dealer Goldsmith Master</span>
+                                <span>Master Buyer/Seller</span>
                             </a>
                         </li>
                         <li class="treeview">
                             <a href="openingmaster.php">
                                 <i class="fa fa-opera"></i>
-                                <span>Opening Master</span>
+                                <span> Master Stock</span>
                             </a>
                         </li>
                     </ul>

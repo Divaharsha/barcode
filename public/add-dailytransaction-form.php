@@ -292,12 +292,6 @@ if (isset($_POST['btnAdd'])) {
         }
     });
 </script>
-<!-- <script>
-    $(document).on('change', '#subcategory_id', function() {
-        console.log($("#subcategory_id").val() + " - " + $("#name").val())
-        
-    });
-</script> -->
 <script>
       $(document).on('change', '#subcategory_id',function() {
         $.ajax({

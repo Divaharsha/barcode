@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2022 at 09:49 AM
+-- Generation Time: Nov 14, 2022 at 12:28 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -117,7 +117,7 @@ CREATE TABLE `daily_transaction` (
 --
 
 INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `subcategory_id`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`) VALUES
-(1, 1, '2022-11-08', 'Credit Purchase', 2, 45, 24, 90, 0, 45000, 24, 566778, 230, 0);
+(1, 1, '2022-11-08', 'Credit Purchase', 2, 45, 24, 23, 90, 45000, 24, 566778, 230, 0);
 
 -- --------------------------------------------------------
 
@@ -591,7 +591,7 @@ ALTER TABLE `faqs`
 -- AUTO_INCREMENT for table `goldsmith_master`
 --
 ALTER TABLE `goldsmith_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `goldsmith_master_variant`
@@ -609,7 +609,7 @@ ALTER TABLE `openingmaster`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `settings`

@@ -157,16 +157,17 @@ if (isset($_POST['btnCancel'])) { ?>
                                         if($res[0]['type']=='Credit Purchase' || $res[0]['type']=='Credit Sales'){
                                             ?>
                                         <label for="exampleInputEmail1">Subcategory</label> 
-                                        <select id='subcategory_id' name="subcategory_id" class='form-control' required>
-                                                    <?php
-                                                    $sql = "SELECT id,name FROM `subcategories`";
-                                                    $db->sql($sql);
-                                                    $result = $db->getResult();
-                                                    foreach ($result as $value) {
-                                                    ?>
-                                                        <option value='<?= $value['id'] ?>' <?=$res[0]['subcategory_id'] == $value['id'] ? ' selected="selected"' : '';?>><?= $value['name'] ?></option>
-                                                    <?php } ?>
-                                        </select>
+                                            <select id='subcategory_id' name="subcategory_id" class='form-control' required>
+                                                   <option value=''>SELECT</option>
+                                                      <?php
+                                                        $sql = "SELECT id,name FROM `subcategories`";
+                                                        $db->sql($sql);
+                                                        $result = $db->getResult();
+                                                        foreach ($result as $value) {
+                                                        ?>
+                                                            <option value='<?= $value['id'] ?>' <?=$res[0]['subcategory_id'] == $value['id'] ? ' selected="selected"' : '';?>><?= $value['name'] ?></option>
+                                                        <?php } ?>
+                                            </select>
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -181,7 +182,7 @@ if (isset($_POST['btnCancel'])) { ?>
                                         <?php } ?>
                                 </div>
                             </div>
-                            <div class="row">
+                            <!-- <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group" id="subcategories" style="display:none">
                                             <label for="exampleInputEmail1">Subcategory</label> <i class="text-danger asterik">*</i>
@@ -204,7 +205,7 @@ if (isset($_POST['btnCancel'])) { ?>
                                             <input type="number" class="form-control" name="touch" id="touch" readonly />
                                         </div>
                                     </div>
-                            </div>
+                            </div> -->
                             <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
