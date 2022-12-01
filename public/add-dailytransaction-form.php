@@ -325,6 +325,7 @@ if (isset($_POST['btnAdd'])) {
         });
     });
 </script>
+
 <!--calculate purity--->
 <script type="text/javascript">
   var input1 = document.getElementById('touch');
