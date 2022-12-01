@@ -176,12 +176,18 @@ if (isset($_POST['btnAdd'])) {
                                 </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                               <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Purity(gram)</label><i class="text-danger asterik">*</i>
                                         <input type="number" class="form-control" value="0" name="purity" id="purity" readonly />
                                     </div>
                                 </div>
+                              <!-- <div class="col-md-4">
+                                    <div class="form-group" id="inputtouch" style="display:none">
+                                        <label for="exampleInputEmail1">Touch</label><i class="text-danger asterik">*</i>
+                                        <input type="number" class="form-control" value="0" name="touch" id="touch" />
+                                    </div>
+                                </div> -->
                         </div>
                         <div class="row">
                                 <div class="col-md-3">
@@ -280,11 +286,14 @@ if (isset($_POST['btnAdd'])) {
           if(type == "Cash Credit"){
             $("#subcategories").hide();
             $("#touchname").hide();
+            // $("#inputtouch").show();
 
         }
         if(type == "Cash Debit"){
             $("#subcategories").hide();
             $("#touchname").hide();
+            // $("#inputtouch").show();
+
         }
         if(type == "none"){
             $("#subcategories").hide();
@@ -315,5 +324,15 @@ if (isset($_POST['btnAdd'])) {
             }
         });
     });
+</script>
+<!--calculate purity--->
+<script type="text/javascript">
+  var input1 = document.getElementById('touch');
+  var input2 = document.getElementById('weight');
+  var input3 = document.getElementById('purity');
+
+  input2.addEventListener('change',function() {
+    input3.value = input1.value *input2.value ;
+  });
 </script>
 <?php $db->disconnect(); ?>
