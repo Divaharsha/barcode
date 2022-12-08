@@ -65,7 +65,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'goldsmith_master') {
 
     if (isset($_GET['search']) && !empty($_GET['search'])) {
         $search = $db->escapeString($_GET['search']);
-        $where .= "WHERE gm.name like '%" . $search . "%' OR gm.id like '%" . $search . "%' OR gm.goldsmith_type like '%" . $search . "%' OR gm.place like '%" . $search . "%'";
+        $where .= "WHERE gm.name like '%" . $search . "%' OR gm.id like '%" . $search . "%' OR gm.goldsmith_type like '%" . $search . "%' OR gm.place like '%" . $search . "%' OR gm.shop_type like '%" . $search . "%'";
     }
     if (isset($_GET['sort'])){
         $sort = $db->escapeString($_GET['sort']);
@@ -109,6 +109,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'goldsmith_master') {
         $tempRow['email'] = $row['email'];
         $tempRow['address'] = $row['address'];
         $tempRow['place'] = $row['place'];
+        $tempRow['shop_type'] = $row['shop_type'];
         $tempRow['operate'] = $operate;
         $tempRow['update_touch'] = $update_touch;
         $rows[] = $tempRow;

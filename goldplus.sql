@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 12:28 PM
+-- Generation Time: Dec 08, 2022 at 11:33 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -165,15 +165,27 @@ CREATE TABLE `goldsmith_master` (
   `open_pure_credit` float DEFAULT NULL,
   `email` text DEFAULT NULL,
   `place` text DEFAULT NULL,
-  `address` text DEFAULT NULL
+  `address` text DEFAULT NULL,
+  `weight_method` text DEFAULT NULL,
+  `display_subcategory` text DEFAULT NULL,
+  `rate_method` text DEFAULT NULL,
+  `credit_note` int(11) DEFAULT 0,
+  `debit_note` int(11) DEFAULT 0,
+  `huid_charge` text DEFAULT NULL,
+  `credit_limit` int(200) DEFAULT 0,
+  `activate_stone_pieces` text DEFAULT NULL,
+  `stone_weight` float DEFAULT 0,
+  `stone_charges` text DEFAULT NULL,
+  `shop_type` text DEFAULT NULL,
+  `corporate_type` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `goldsmith_master`
 --
 
-INSERT INTO `goldsmith_master` (`id`, `name`, `goldsmith_type`, `mobile`, `digital_signature_number`, `gst_number`, `pan_number`, `open_cash_debit`, `open_cash_credit`, `open_pure_debit`, `open_pure_credit`, `email`, `place`, `address`) VALUES
-(1, 'Divakar A', 'Seller', '7358832695', '765432', 'ggt56777hd', 'SMD787R4G', 0, 0, 0, 0, 'dff@gmail.com', 'Karur', '2/42, Azhagapuri,R.T.Malai(Po)');
+INSERT INTO `goldsmith_master` (`id`, `name`, `goldsmith_type`, `mobile`, `digital_signature_number`, `gst_number`, `pan_number`, `open_cash_debit`, `open_cash_credit`, `open_pure_debit`, `open_pure_credit`, `email`, `place`, `address`, `weight_method`, `display_subcategory`, `rate_method`, `credit_note`, `debit_note`, `huid_charge`, `credit_limit`, `activate_stone_pieces`, `stone_weight`, `stone_charges`, `shop_type`, `corporate_type`) VALUES
+(1, 'Sanjay', 'Seller', '8428225519', '9876543210', 'ggt56777hd', 'SMD787R4G', 0, 0, 0, 0, 'example@gmail.com', 'Uppidapalayam', 'Thanajvur', 'Approximate Weight', 'No', 'TCS', 0, 0, '346', 100, 'No', 10.8, '5646', 'Single Shop', '');
 
 -- --------------------------------------------------------
 
@@ -591,7 +603,7 @@ ALTER TABLE `faqs`
 -- AUTO_INCREMENT for table `goldsmith_master`
 --
 ALTER TABLE `goldsmith_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `goldsmith_master_variant`

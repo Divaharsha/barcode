@@ -41,6 +41,7 @@ if ($permissions['goldsmithmaster']['read'] == 1) {
                                     <th data-field="email" data-sortable="true">Email Id</th>
                                     <th data-field="address" data-sortable="true">Address</th>
                                     <th data-field="place" data-sortable="true">Place</th>
+                                    <th data-field="shop_type" data-sortable="true">Shop Type</th>
                                     <th data-field="operate" data-events="actionEvents">Action</th>
                                     <th data-field="update_touch" data-events="actionEvents">Update Touch</th>
              
