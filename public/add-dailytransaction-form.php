@@ -28,16 +28,37 @@ if (isset($_POST['btnAdd'])) {
         $gst = $db->escapeString($fn->xss_clean($_POST['gst']));
         $amount = $db->escapeString($fn->xss_clean($_POST['amount']));
         $mc = $db->escapeString($fn->xss_clean($_POST['mc']));
-       
+        $rate_method = $db->escapeString($fn->xss_clean($_POST['rate_method']));
+        $huid_charge = $db->escapeString($fn->xss_clean($_POST['huid_charge']));
+   
+
+        if (empty($name)) {
+            $error['name'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($date)) {
+            $error['date'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($rate)) {
+            $error['rate'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($gst)) {
+            $error['gst'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($amount)) {
+            $error['amount'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($rate_method)) {
+            $error['rate_method'] = " <span class='label label-danger'>Required!</span>";
+        }
 
         if ( !empty($name))
         {       
             if($type=='Credit Sales' || $type=='Credit Purchase'){
-                $sql = "INSERT INTO daily_transaction (goldsmith_master_id,date,type,subcategory_id,weight,stone_weight,wastage,touch,rate,gst,amount,mc,purity) VALUES('$name','$date','$type','$subcategory_id','$weight','$stone_weight','$wastage','$touch','$rate','$gst','$amount','$mc','$purity')";
+                $sql = "INSERT INTO daily_transaction (goldsmith_master_id,date,type,subcategory_id,weight,stone_weight,wastage,touch,rate,gst,amount,mc,purity,rate_method,huid_charge) VALUES('$name','$date','$type','$subcategory_id','$weight','$stone_weight','$wastage','$touch','$rate','$gst','$amount','$mc','$purity','$rate_method','$huid_charge')";
                 $db->sql($sql);
              }
              else {
-                $sql = "INSERT INTO daily_transaction (goldsmith_master_id,date,type,weight,stone_weight,wastage,rate,gst,amount,mc,purity) VALUES('$name','$date','$type','$weight','$stone_weight','$wastage','$rate','$gst','$amount','$mc','$purity')";
+                $sql = "INSERT INTO daily_transaction (goldsmith_master_id,date,type,weight,stone_weight,wastage,rate,gst,amount,mc,purity,rate_method,huid_charge) VALUES('$name','$date','$type','$weight','$stone_weight','$wastage','$rate','$gst','$amount','$mc','$purity','$rate_method','$huid_charge')";
                 $db->sql($sql);
              }
                 $users_result = $db->getResult();
@@ -210,10 +231,27 @@ if (isset($_POST['btnAdd'])) {
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group packate_div">
-                                        <label for="exampleInputEmail1">MC</label><i class="text-danger asterik">*</i><?php echo isset($error['mc']) ? $error['mc'] : ''; ?>
+                                        <label for="exampleInputEmail1">Making Charges</label><i class="text-danger asterik">*</i><?php echo isset($error['mc']) ? $error['mc'] : ''; ?>
                                         <input type="number" class="form-control" name="mc" required />
                                     </div>
                                 </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-4">
+                                  <div class="form-group">
+                                        <label for="exampleInputEmail1">HUID Charge</label> <i class="text-danger asterik">*</i>
+                                        <input type="number" class="form-control weight" name="huid_charge" required/>
+                                    </div>
+                            </div> 
+                            <div class='form-group col-md-4'>
+                                        <label for="">Rate Cut Method</label> <i class="text-danger asterik">*</i> <?php echo isset($error['rate_method']) ? $error['rate_method'] : ''; ?><br>
+                                        <select id="rate_method" name="rate_method" class="form-control" required>
+                                            <option value="">--select--</option>
+                                            <option value="TDS">TDS Rate</option>
+                                            <option value="TCS">TCS Rate</option>
+                                        </select>
+                            </div>
                         </div>
                     </div><!-- /.box-body -->
                     <div class="box-footer">

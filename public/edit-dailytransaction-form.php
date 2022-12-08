@@ -29,6 +29,8 @@ if (isset($_POST['btnEdit'])) {
         $amount = $db->escapeString($fn->xss_clean($_POST['amount']));
         $mc = $db->escapeString($fn->xss_clean($_POST['mc']));
         $purity = (isset($_POST['purity']) && !empty($_POST['purity'])) ? $db->escapeString($fn->xss_clean($_POST['purity'])) : "0";   
+        $rate_method = $db->escapeString($fn->xss_clean($_POST['rate_method']));
+        $huid_charge = $db->escapeString($fn->xss_clean($_POST['huid_charge']));
         $error = array();
     
         
@@ -41,11 +43,11 @@ if (isset($_POST['btnEdit'])) {
         if ( !empty($name))
         {            
             if($type=='Credit Sales'){
-                $sql = "UPDATE `daily_transaction` SET `goldsmith_master_id`='$name',`date` = '$date', `type` = '$type', `subcategory_id` = '$subcategory_id', `weight` = '$weight', `stone_weight` = '$stone_weight', `wastage` = '$wastage', `touch` = '$touch', `rate` = '$rate', `gst` = '$gst', `amount` = '$amount', `mc` = '$mc', `purity` = '$purity' WHERE `daily_transaction`.`id` = $ID";
+                $sql = "UPDATE `daily_transaction` SET `goldsmith_master_id`='$name',`date` = '$date', `type` = '$type', `subcategory_id` = '$subcategory_id', `weight` = '$weight', `stone_weight` = '$stone_weight', `wastage` = '$wastage', `touch` = '$touch', `rate` = '$rate', `gst` = '$gst', `amount` = '$amount', `mc` = '$mc', `purity` = '$purity',`rate_method`='$rate_method',`huid_charge`='$huid_charge' WHERE `daily_transaction`.`id` = $ID";
                 $db->sql($sql);
             }
             elseif($type=='Credit Purchase'){
-                $sql = "UPDATE `daily_transaction` SET `goldsmith_master_id`='$name',`date` = '$date', `type` = '$type', `subcategory_id` = '$subcategory_id', `weight` = '$weight', `stone_weight` = '$stone_weight', `wastage` = '$wastage', `touch` = '$touch', `rate` = '$rate', `gst` = '$gst', `amount` = '$amount', `mc` = '$mc', `purity` = '$purity' WHERE `daily_transaction`.`id` = $ID";
+                $sql = "UPDATE `daily_transaction` SET `goldsmith_master_id`='$name',`date` = '$date', `type` = '$type', `subcategory_id` = '$subcategory_id', `weight` = '$weight', `stone_weight` = '$stone_weight', `wastage` = '$wastage', `touch` = '$touch', `rate` = '$rate', `gst` = '$gst', `amount` = '$amount', `mc` = '$mc', `purity` = '$purity',`rate_method`='$rate_method',`huid_charge`='$huid_charge' WHERE `daily_transaction`.`id` = $ID";
                 $db->sql($sql);
             }
             else{
@@ -182,7 +184,7 @@ if (isset($_POST['btnCancel'])) { ?>
                                         <?php } ?>
                                 </div>
                             </div>
-                            <!-- <div class="row">
+                            <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group" id="subcategories" style="display:none">
                                             <label for="exampleInputEmail1">Subcategory</label> <i class="text-danger asterik">*</i>
@@ -205,7 +207,7 @@ if (isset($_POST['btnCancel'])) { ?>
                                             <input type="number" class="form-control" name="touch" id="touch" readonly />
                                         </div>
                                     </div>
-                            </div> -->
+                            </div>
                             <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -259,6 +261,23 @@ if (isset($_POST['btnCancel'])) { ?>
                                         <input type="number" class="form-control" name="mc" value="<?php echo $res[0]['mc'] ?>" />
                                     </div>
                                 </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                                <label for="exampleInputEmail1">HUID Charge</label> <i class="text-danger asterik">*</i>
+                                                <input type="number" class="form-control weight" name="huid_charge" value="<?php echo $res[0]['huid_charge'] ?>" />
+                                            </div>
+                                    </div> 
+                                    <div class='form-group col-md-4'>
+                                                <label for="">Rate Cut Method</label> <i class="text-danger asterik">*</i> <?php echo isset($error['rate_method']) ? $error['rate_method'] : ''; ?><br>
+                                                <select id="rate_method" name="rate_method" class="form-control">
+                                                    <option value="">--select--</option>
+                                                    <option value="TDS"<?=$res[0]['rate_method'] == 'TDS' ? ' selected="selected"' : '';?>>TDS Rate</option>
+                                                    <option value="TCS"<?=$res[0]['rate_method'] == 'TCS' ? ' selected="selected"' : '';?>>TCS Rate</option>
+                                                </select>
+                                    </div>
                             </div>
 	
                             </div><!-- /.box-body -->
