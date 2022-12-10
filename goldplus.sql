@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2022 at 11:33 AM
+-- Generation Time: Dec 10, 2022 at 07:59 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -243,6 +243,7 @@ CREATE TABLE `products` (
   `subcategory_id` int(11) DEFAULT NULL,
   `goldsmith_id` int(11) DEFAULT NULL,
   `huid_number` text DEFAULT NULL,
+  `entry_type` text DEFAULT NULL,
   `gross_weight` float DEFAULT NULL,
   `size` float DEFAULT NULL,
   `stone_weight` float DEFAULT NULL,
@@ -258,9 +259,9 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `category_id`, `subcategory_id`, `goldsmith_id`, `huid_number`, `gross_weight`, `size`, `stone_weight`, `net_weight`, `wastage`, `cover_weight`, `tag_weight`, `image`, `status`) VALUES
-(1, 2, 2, 1, '899678', 568, 8.98, 2.34, 5.43, 12, 65, NULL, 'upload/products/8344-2022-10-28.jpg', 0),
-(2, 3, 3, 1, 'HTEE998', 879, 90, 12, 43, 45, 98, 2.876, 'upload/products/8446-2022-10-28.jpg', 1);
+INSERT INTO `products` (`id`, `category_id`, `subcategory_id`, `goldsmith_id`, `huid_number`, `entry_type`, `gross_weight`, `size`, `stone_weight`, `net_weight`, `wastage`, `cover_weight`, `tag_weight`, `image`, `status`) VALUES
+(1, 2, 2, 1, '899678', 'Lot Entry', 568, 8.98, 2.34, 5.43, 12, 65, NULL, 'upload/products/8344-2022-10-28.jpg', 0),
+(2, 3, 3, 1, 'HTEE998', 'Order Entry', 879, 90, 12, 43, 45, 98, 2.876, 'upload/products/8446-2022-10-28.jpg', 1);
 
 -- --------------------------------------------------------
 

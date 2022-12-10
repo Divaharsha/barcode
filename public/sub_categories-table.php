@@ -25,7 +25,7 @@
                             <thead>
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
-                                    <th data-field="category_id" data-sortable="true">Category Id</th>
+                                    <th data-field="category_name" data-sortable="true">Category</th>
                                     <th data-field="name" data-sortable="true">Name</th>
                                     <th data-field="operate" data-events="actionEvents">Action</th>
              

@@ -63,7 +63,7 @@
     </section>
 <script>
        $('#status').on('change', function() {
-        $('#users_table').bootstrapTable('refresh');
+        $('#products_table').bootstrapTable('refresh');
     });
 
 

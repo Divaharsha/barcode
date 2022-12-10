@@ -12,6 +12,7 @@ if (isset($_POST['btnAdd'])) {
         $subcategory = $db->escapeString($fn->xss_clean($_POST['subcategory']));
         $goldsmith = $db->escapeString($fn->xss_clean($_POST['goldsmith']));
         $huid_number = $db->escapeString($fn->xss_clean($_POST['huid_number']));
+        $entry_type = $db->escapeString($fn->xss_clean($_POST['entry_type']));
         $size = (isset($_POST['size']) && !empty($_POST['size'])) ? $db->escapeString($fn->xss_clean($_POST['size'])) : "0";
         $gross_weight = (isset($_POST['gross_weight']) && !empty($_POST['gross_weight'])) ? $db->escapeString($fn->xss_clean($_POST['gross_weight'])) : "0";
         $stone_weight = (isset($_POST['stone_weight']) && !empty($_POST['stone_weight'])) ? $db->escapeString($fn->xss_clean($_POST['stone_weight'])) : "0";        $size = $db->escapeString($fn->xss_clean($_POST['size']));
@@ -44,7 +45,9 @@ if (isset($_POST['btnAdd'])) {
         if (empty($huid_number)) {
             $error['huid_number'] = " <span class='label label-danger'>Required!</span>";
         }
-     
+        if (empty($entry_type)) {
+            $error['entry_type'] = " <span class='label label-danger'>Required!</span>";
+        }
 
         if (!empty($subcategory) && !empty($goldsmith) && !empty($huid_number))
         {
@@ -66,7 +69,7 @@ if (isset($_POST['btnAdd'])) {
                 $res = $db->getResult();
                 $category_id = $res[0]['category_id'];
 
-                $sql = "INSERT INTO products (category_id,subcategory_id,goldsmith_id,huid_number,gross_weight,size,stone_weight,net_weight,wastage,cover_weight,tag_weight,image,status) VALUES('$category_id','$subcategory','$goldsmith','$huid_number','$gross_weight','$size','$stone_weight','$net_weight','$wastage','$cover_weight',NULL,'$upload_image',0)";
+                $sql = "INSERT INTO products (category_id,subcategory_id,goldsmith_id,huid_number,entry_type,gross_weight,size,stone_weight,net_weight,wastage,cover_weight,tag_weight,image,status) VALUES('$category_id','$subcategory','$goldsmith','$huid_number','$entry_type','$gross_weight','$size','$stone_weight','$net_weight','$wastage','$cover_weight',NULL,'$upload_image',0)";
                 $db->sql($sql);
                 $product_result = $db->getResult();
                 if (!empty($product_result)) {
@@ -134,7 +137,7 @@ if (isset($_POST['btnAdd'])) {
                         <br>
                         <div class="row">
                             <div class="form-group">
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                    <label for="">Select Dealer Goldsmith</label> <i class="text-danger asterik">*</i>
                                         <select id='goldsmith' name="goldsmith" class='form-control' required>
                                             <option value="">Select</option>
@@ -148,9 +151,16 @@ if (isset($_POST['btnAdd'])) {
                                             <?php } ?>
                                         </select>
                                 </div>
-                                <div class='col-md-5'>
+                                <div class='col-md-4'>
                                     <label for="exampleInputEmail1"> HUID Number</label> <i class="text-danger asterik">*</i><?php echo isset($error['huid_number']) ? $error['huid_number'] : ''; ?>
                                     <input type="text" class="form-control" name="huid_number" required>
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Entry Type</label> <i class="text-danger asterik">*</i><?php echo isset($error['entry_type']) ? $error['entry_type'] : ''; ?>
+                                    <select id="entry_type" name="entry_type" class="form-control">
+                                            <option value="Lot Entry">Lot Entry</option>
+                                            <option value="Order Entry">Order Entry</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

@@ -835,7 +835,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'sub_categories') {
 
     if (isset($_GET['search']) && !empty($_GET['search'])) {
     $search = $db->escapeString($_GET['search']);
-    $where .= "WHERE name like '%" . $search . "%' OR id like '%" . $search . "%' OR category_id like '%" . $search . "%'";
+    $where .= "AND s.name like '%" . $search . "%' OR s.id like '%" . $search . "%' OR c.name like '%" . $search . "%' ";
     }
     if (isset($_GET['sort'])){
     $sort = $db->escapeString($_GET['sort']);
@@ -843,13 +843,13 @@ if (isset($_GET['table']) && $_GET['table'] == 'sub_categories') {
     if (isset($_GET['order'])){
     $order = $db->escapeString($_GET['order']);
     }
-    $sql = "SELECT COUNT(`id`) as total FROM `subcategories` ";
+    $sql = "SELECT COUNT(s.id) as total FROM `subcategories` s " . $where . "";
     $db->sql($sql);
     $res = $db->getResult();
     foreach ($res as $row)
            $total = $row['total'];
 
-    $sql = "SELECT * FROM subcategories " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+    $sql = "SELECT s.*,s.id AS id,c.name AS category_name FROM `subcategories` s,`categories` c  WHERE s.category_id=c.id" . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
     $db->sql($sql);
     $res = $db->getResult();
 
@@ -864,7 +864,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'sub_categories') {
 
         $operate = ' <a href="edit-sub_category.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
         $tempRow['id'] = $row['id'];
-        $tempRow['category_id'] = $row['category_id'];
+        $tempRow['category_name'] = $row['category_name'];
         $tempRow['name'] = $row['name'];
         $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
@@ -881,6 +881,10 @@ if (isset($_GET['table']) && $_GET['table'] == 'products') {
     $order = 'DESC';
     $where = '';
 
+    if (isset($_GET['status']) && $_GET['status'] != '') {
+        $status = $db->escapeString($fn->xss_clean($_GET['status']));
+        $where .= "AND p.status = '$status' ";
+    }
     if (isset($_GET['offset']))
     $offset = $db->escapeString($_GET['offset']);
     if (isset($_GET['limit']))
@@ -890,17 +894,19 @@ if (isset($_GET['table']) && $_GET['table'] == 'products') {
     if (isset($_GET['order']))
     $order = $db->escapeString($_GET['order']);
 
-    if (isset($_GET['status']) && $_GET['status'] != '') {
-        $status = $db->escapeString($fn->xss_clean($_GET['status']));
-        $where .= " WHERE status = '$status' ";
-    }
-
     if (isset($_GET['search']) && !empty($_GET['search'])) {
     $search = $db->escapeString($_GET['search']);
-    $where .= "WHERE p.id like '%" . $search . "%' OR g.name like '%" . $search . "%' OR s.name like '%" . $search . "%'  OR p.size like '%" . $search . "%'  OR p.huid_number like '%" . $search . "%'";
+    $where .= "AND p.id like '%" . $search . "%' OR g.name like '%" . $search . "%' OR s.name like '%" . $search . "%'  OR p.size like '%" . $search . "%'  OR p.huid_number like '%" . $search . "%' ";
     }
 
-    $join = "LEFT JOIN `subcategories` s ON p.subcategory_id = s.id LEFT JOIN `goldsmith_master` g ON g.id = p.goldsmith_id";
+    if (isset($_GET['sort'])) {
+        $sort = $db->escapeString($_GET['sort']);
+    }
+    if (isset($_GET['order'])) {
+        $order = $db->escapeString($_GET['order']);
+    }
+    
+    $join = "LEFT JOIN `subcategories` s ON p.subcategory_id = s.id LEFT JOIN `goldsmith_master` g ON g.id = p.goldsmith_id WHERE p.id IS NOT NULL ";
 
     $sql = "SELECT COUNT(p.id) as `total` FROM `products` p $join " . $where . "";
     $db->sql($sql);

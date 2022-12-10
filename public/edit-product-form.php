@@ -18,6 +18,7 @@ if (isset($_POST['btnUpdate'])) {
         $subcategory = $db->escapeString($fn->xss_clean($_POST['subcategory']));
         $goldsmith = $db->escapeString($fn->xss_clean($_POST['goldsmith']));
         $huid_number = $db->escapeString($fn->xss_clean($_POST['huid_number']));
+        $entry_type = $db->escapeString($fn->xss_clean($_POST['entry_type']));
 
         $gross_weight = (isset($_POST['gross_weight']) && !empty($_POST['gross_weight'])) ? $db->escapeString($fn->xss_clean($_POST['gross_weight'])) : "0";  
         $size = (isset($_POST['size']) && !empty($_POST['size'])) ? $db->escapeString($fn->xss_clean($_POST['size'])) : "0";
@@ -74,7 +75,7 @@ if (isset($_POST['btnUpdate'])) {
             $res = $db->getResult();
             $category_id = $res[0]['category_id'];
 
-            $sql = "UPDATE products SET category_id='$category_id',subcategory_id='$subcategory',goldsmith_id='$goldsmith',huid_number='$huid_number',gross_weight='$gross_weight',size='$size',stone_weight='$stone_weight',net_weight='$net_weight',wastage='$wastage',cover_weight='$cover_weight',tag_weight='$tag_weight',status='$status' WHERE id=$ID";
+            $sql = "UPDATE products SET category_id='$category_id',subcategory_id='$subcategory',goldsmith_id='$goldsmith',huid_number='$huid_number',entry_type='$entry_type',gross_weight='$gross_weight',size='$size',stone_weight='$stone_weight',net_weight='$net_weight',wastage='$wastage',cover_weight='$cover_weight',tag_weight='$tag_weight',status='$status' WHERE id=$ID";
             $db->sql($sql);
             $product_result = $db->getResult();
             if (!empty($product_result)) {
@@ -145,7 +146,7 @@ $res = $db->getResult();
                         <br>
                         <div class="row">
                             <div class="form-group">
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                    <label for="">Select Dealer Goldsmith</label> <i class="text-danger asterik">*</i>
                                         <select id='goldsmith' name="goldsmith" class='form-control' required>
                                             <option value="">Select</option>
@@ -159,9 +160,16 @@ $res = $db->getResult();
                                             <?php } ?>
                                         </select>
                                 </div>
-                                <div class='col-md-5'>
+                                <div class='col-md-4'>
                                     <label for="exampleInputEmail1"> HUID Number</label> <i class="text-danger asterik">*</i><?php echo isset($error['huid_number']) ? $error['huid_number'] : ''; ?>
                                     <input type="text" class="form-control" name="huid_number" value="<?php echo $res[0]['huid_number']; ?>">
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Entry Type</label> <i class="text-danger asterik">*</i><?php echo isset($error['entry_type']) ? $error['entry_type'] : ''; ?>
+                                    <select id="entry_type" name="entry_type" class="form-control">
+                                        <option value="Lot Entry"<?=$res[0]['entry_type'] == 'Lot Entry' ? ' selected="selected"' : '';?>>Lot Entry</option>
+                                        <option value="Order Entry"<?=$res[0]['entry_type'] == 'Order Entry' ? ' selected="selected"' : '';?>>Order Entry</option>
+                                    </select>   
                                 </div>
                             </div>
                         </div>
