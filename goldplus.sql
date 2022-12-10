@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2022 at 07:59 AM
+-- Generation Time: Dec 10, 2022 at 01:13 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -208,6 +208,32 @@ INSERT INTO `goldsmith_master_variant` (`id`, `goldsmith_master_id`, `subcategor
 (1, 1, 1, 9.883),
 (3, 1, 3, 43.754),
 (4, 1, 2, 90);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `master_weight`
+--
+
+CREATE TABLE `master_weight` (
+  `id` int(11) NOT NULL,
+  `from_weight` float DEFAULT NULL,
+  `to_weight` float DEFAULT NULL,
+  `weight` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `master_weight`
+--
+
+INSERT INTO `master_weight` (`id`, `from_weight`, `to_weight`, `weight`) VALUES
+(1, 0.01, 0.62, 0.5),
+(2, 0.63, 0.87, 0.75),
+(3, 0.88, 1.25, 1),
+(4, 1.26, 1.75, 1.5),
+(5, 1.76, 2.25, 2),
+(6, 2.76, 3.25, 3),
+(7, 3.76, 4.25, 4);
 
 -- --------------------------------------------------------
 
@@ -501,6 +527,12 @@ ALTER TABLE `goldsmith_master_variant`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `master_weight`
+--
+ALTER TABLE `master_weight`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `openingmaster`
 --
 ALTER TABLE `openingmaster`
@@ -611,6 +643,12 @@ ALTER TABLE `goldsmith_master`
 --
 ALTER TABLE `goldsmith_master_variant`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `master_weight`
+--
+ALTER TABLE `master_weight`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `openingmaster`

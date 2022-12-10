@@ -320,6 +320,12 @@ $res_logo = $db->getResult();
                                     <span>Products</span>
                             </a>
                      </li> 
+                     <li class="treeview">
+                            <a href="master_weight.php">
+                                <i class="fa fa-circle"></i>
+                                    <span>Master weight</span>
+                            </a>
+                     </li> 
                     <?php
                 if ($role == 'super admin') {
                 ?>
