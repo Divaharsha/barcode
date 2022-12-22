@@ -186,7 +186,7 @@ if (isset($_POST['btnAdd'])) {
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Stone Weight</label> <i class="text-danger asterik">*</i>
-                                        <input type="number" class="form-control" name="stone_weight" />
+                                        <input type="number" class="form-control" id="stone_weight" name="stone_weight" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -214,7 +214,7 @@ if (isset($_POST['btnAdd'])) {
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Rate</label><i class="text-danger asterik">*</i><?php echo isset($error['rate']) ? $error['rate'] : ''; ?>
-                                        <input type="number" class="form-control" name="rate" required />
+                                        <input type="number" class="form-control" name="rate" id="rate" required />
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -226,7 +226,7 @@ if (isset($_POST['btnAdd'])) {
                                 <div class="col-md-3">
                                     <div class="form-group packate_div">
                                         <label for="exampleInputEmail1">Amount</label><i class="text-danger asterik">*</i><?php echo isset($error['amount']) ? $error['amount'] : ''; ?> 
-                                        <input type="number" class="form-control" name="amount" required />
+                                        <input type="number" class="form-control" name="amount" id="amount" required />
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -364,14 +364,52 @@ if (isset($_POST['btnAdd'])) {
     });
 </script>
 
-<!--calculate purity--->
-<script type="text/javascript">
-  var input1 = document.getElementById('touch');
-  var input2 = document.getElementById('weight');
-  var input3 = document.getElementById('purity');
 
-  input2.addEventListener('change',function() {
-    input3.value = input1.value *input2.value ;
-  });
+
+<!--calculate purity using jquery--->
+<script>
+$(document).ready(function () {
+    $("#weight, #stone_weight,#touch,#purity,#rate").change(function () {
+    $("#purity").val(($("#weight").val()-$("#stone_weight").val()) * ($("#touch").val()/100));
+    $("#amount").val((($("#weight").val()-$("#stone_weight").val()) * ($("#touch").val()/100)) *$("#rate").val());
+    });
+});
+</script>
+
+
+
+
+
+<!-- <script type="text/javascript">
+            var input1 = document.getElementById('touch');
+            var input2 = document.getElementById('weight');
+            var input3 = document.getElementById('stone_weight');
+            var input4 = document.getElementById('purity'); 
+
+            input3.addEventListener('change',function() {
+                input4.value =(input2.value-input3.value)*(input1.value/100);
+            });
+
+
+            var input5 = document.getElementById('rate'); 
+            var input6 = document.getElementById('amount'); 
+
+
+            input5.addEventListener('change',function() {
+                input6.value =input4.value*input5.value;
+            });
+
+</script> -->
+
+
+
+
+<script>
+$(document).ready(function () {
+    $("#weight, #stone_weight,#touch,#purity,#rate").change(function () {
+    $("#purity").val(($("#weight").val()-$("#stone_weight").val()) * ($("#touch").val()/100));
+    $("#amount").val((($("#weight").val()-$("#stone_weight").val()) * ($("#touch").val()/100)) *$("#rate").val());
+    });
+});
 </script>
 <?php $db->disconnect(); ?>

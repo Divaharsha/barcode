@@ -19,6 +19,8 @@
 <html>
 <head>
 <title>Add Daily Transaction | <?=$settings['app_name']?> - Dashboard</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 <style>
     .asterik {
     font-size: 20px;

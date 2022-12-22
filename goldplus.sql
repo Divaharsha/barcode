@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2022 at 01:13 PM
+-- Generation Time: Dec 22, 2022 at 09:03 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -109,15 +109,17 @@ CREATE TABLE `daily_transaction` (
   `gst` float DEFAULT NULL,
   `amount` float DEFAULT NULL,
   `mc` float DEFAULT NULL,
-  `purity` float DEFAULT NULL
+  `purity` float DEFAULT NULL,
+  `huid_charge` int(200) DEFAULT NULL,
+  `rate_method` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `daily_transaction`
 --
 
-INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `subcategory_id`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`) VALUES
-(1, 1, '2022-11-08', 'Credit Purchase', 2, 45, 24, 23, 90, 45000, 24, 566778, 230, 0);
+INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `subcategory_id`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`, `huid_charge`, `rate_method`) VALUES
+(1, 1, '2022-11-08', 'Credit Purchase', 1, 45, 24, 23, 0, 45000, 24, 566778, 230, 0, 600, 'TDS');
 
 -- --------------------------------------------------------
 
