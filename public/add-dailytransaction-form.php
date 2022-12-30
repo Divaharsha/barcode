@@ -21,6 +21,7 @@ if (isset($_POST['btnAdd'])) {
         $stone_weight = (isset($_POST['stone_weight']) && !empty($_POST['stone_weight'])) ? $db->escapeString($fn->xss_clean($_POST['stone_weight'])) : "0";
         $wastage = (isset($_POST['wastage']) && !empty($_POST['wastage'])) ? $db->escapeString($fn->xss_clean($_POST['wastage'])) : "0";
         $touch = (isset($_POST['touch']) && !empty($_POST['touch'])) ? $db->escapeString($fn->xss_clean($_POST['touch'])) : "0";
+        $man_touch = (isset($_POST['man_touch']) && !empty($_POST['man_touch'])) ? $db->escapeString($fn->xss_clean($_POST['man_touch'])) : "0";
         $date = $db->escapeString($fn->xss_clean($_POST['date']));
         $type = $db->escapeString($fn->xss_clean($_POST['type']));
         $subcategory_id = $db->escapeString($fn->xss_clean($_POST['subcategory_id'])); 
@@ -28,9 +29,9 @@ if (isset($_POST['btnAdd'])) {
         $gst = $db->escapeString($fn->xss_clean($_POST['gst']));
         $amount = $db->escapeString($fn->xss_clean($_POST['amount']));
         $mc = $db->escapeString($fn->xss_clean($_POST['mc']));
-        $rate_method = $db->escapeString($fn->xss_clean($_POST['rate_method']));
+        $tds = $db->escapeString($fn->xss_clean($_POST['tds']));
         $huid_charge = $db->escapeString($fn->xss_clean($_POST['huid_charge']));
-   
+        $wastage_touch = $db->escapeString($fn->xss_clean($_POST['wastage_touch']));
 
         if (empty($name)) {
             $error['name'] = " <span class='label label-danger'>Required!</span>";
@@ -47,18 +48,21 @@ if (isset($_POST['btnAdd'])) {
         if (empty($amount)) {
             $error['amount'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($rate_method)) {
-            $error['rate_method'] = " <span class='label label-danger'>Required!</span>";
+        if (empty($tds)) {
+            $error['tds'] = " <span class='label label-danger'>Required!</span>";
+        }
+        if (empty($wastage_touch)) {
+            $error['wastage_touch'] = " <span class='label label-danger'>Required!</span>";
         }
 
         if ( !empty($name))
         {       
             if($type=='Credit Sales' || $type=='Credit Purchase'){
-                $sql = "INSERT INTO daily_transaction (goldsmith_master_id,date,type,subcategory_id,weight,stone_weight,wastage,touch,rate,gst,amount,mc,purity,rate_method,huid_charge) VALUES('$name','$date','$type','$subcategory_id','$weight','$stone_weight','$wastage','$touch','$rate','$gst','$amount','$mc','$purity','$rate_method','$huid_charge')";
+                $sql = "INSERT INTO daily_transaction (goldsmith_master_id,date,type,subcategory_id,weight,stone_weight,wastage,touch,rate,gst,amount,mc,purity,`tds/tcs`,huid_charge,wastage_touch) VALUES('$name','$date','$type','$subcategory_id','$weight','$stone_weight','$wastage','$touch','$rate','$gst','$amount','$mc','$purity','$tds','$huid_charge','$wastage_touch')";
                 $db->sql($sql);
              }
              else {
-                $sql = "INSERT INTO daily_transaction (goldsmith_master_id,date,type,weight,stone_weight,wastage,rate,gst,amount,mc,purity,rate_method,huid_charge) VALUES('$name','$date','$type','$weight','$stone_weight','$wastage','$rate','$gst','$amount','$mc','$purity','$rate_method','$huid_charge')";
+                $sql = "INSERT INTO daily_transaction (goldsmith_master_id,date,type,weight,stone_weight,wastage,touch,rate,gst,amount,mc,purity,`tds/tcs`,huid_charge,wastage_touch) VALUES('$name','$date','$type','$weight','$stone_weight','$wastage','$man_touch','$rate','$gst','$amount','$mc','$purity','$tds','$huid_charge','$wastage_touch')";
                 $db->sql($sql);
              }
                 $users_result = $db->getResult();
@@ -150,6 +154,12 @@ if (isset($_POST['btnAdd'])) {
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group" id="toucher" style="display:none">
+                                        <label for="exampleInputEmail1">Touch</label><i class="text-danger asterik">*</i>
+                                        <input type="text" class="form-control" name="man_touch" id="touches" />
+                                    </div>
+                                </div>
                         </div>
                         <div class="row">
                                <div class="col-md-4">
@@ -203,12 +213,6 @@ if (isset($_POST['btnAdd'])) {
                                         <input type="number" class="form-control" value="0" name="purity" id="purity" readonly />
                                     </div>
                                 </div>
-                              <!-- <div class="col-md-4">
-                                    <div class="form-group" id="inputtouch" style="display:none">
-                                        <label for="exampleInputEmail1">Touch</label><i class="text-danger asterik">*</i>
-                                        <input type="number" class="form-control" value="0" name="touch" id="touch" />
-                                    </div>
-                                </div> -->
                         </div>
                         <div class="row">
                                 <div class="col-md-3">
@@ -230,27 +234,29 @@ if (isset($_POST['btnAdd'])) {
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group packate_div">
-                                        <label for="exampleInputEmail1">Making Charges</label><i class="text-danger asterik">*</i><?php echo isset($error['mc']) ? $error['mc'] : ''; ?>
-                                        <input type="number" class="form-control" name="mc" required />
+                                     <div class="form-group packate_div">
+                                        <label for="exampleInputEmail1">HUID Charge</label> <i class="text-danger asterik">*</i>
+                                        <input type="number" class="form-control" name="huid_charge" required/>
                                     </div>
-                                </div>
+                                </div> 
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-md-4">
                                   <div class="form-group">
-                                        <label for="exampleInputEmail1">HUID Charge</label> <i class="text-danger asterik">*</i>
-                                        <input type="number" class="form-control weight" name="huid_charge" required/>
+                                        <label for="exampleInputEmail1">Wastage Touch</label> <i class="text-danger asterik">*</i>
+                                        <input type="number" class="form-control" name="wastage_touch" id="wastage_touch" required/>
                                     </div>
                             </div> 
+                            <div class="col-md-4">
+                                   <div class="form-group">
+                                        <label for="exampleInputEmail1">Making Charges</label><i class="text-danger asterik">*</i><?php echo isset($error['mc']) ? $error['mc'] : ''; ?>
+                                        <input type="number" class="form-control" name="mc" id="mc" required />
+                                    </div>
+                                </div>
                             <div class='form-group col-md-4'>
-                                        <label for="">Rate Cut Method</label> <i class="text-danger asterik">*</i> <?php echo isset($error['rate_method']) ? $error['rate_method'] : ''; ?><br>
-                                        <select id="rate_method" name="rate_method" class="form-control" required>
-                                            <option value="">--select--</option>
-                                            <option value="TDS">TDS Rate</option>
-                                            <option value="TCS">TCS Rate</option>
-                                        </select>
+                                       <label for="exampleInputEmail1">TDS/TCS</label> <i class="text-danger asterik">*</i> <?php echo isset($error['tds']) ? $error['tds'] : ''; ?><br>
+                                       <input type="number" class="form-control weight" name="tds"  id="tds" required/>
                             </div>
                         </div>
                     </div><!-- /.box-body -->
@@ -306,36 +312,43 @@ if (isset($_POST['btnAdd'])) {
         if(type == "Credit Purchase"){
             $("#subcategories").show();
             $("#touchname").show();
+            $("#toucher").hide();
 
         }
         if(type == "Credit Sales"){
             $("#subcategories").show();
             $("#touchname").show();
+            $("#toucher").hide();
         }
         if(type == "Metal Issue"){
             $("#subcategories").hide();
             $("#touchname").hide();
+            $("#toucher").show();
 
         }
         if(type == "Metal Receipt"){
             $("#subcategories").hide();
             $("#touchname").hide();
+            $("#toucher").show();
+
         } 
           if(type == "Cash Credit"){
             $("#subcategories").hide();
             $("#touchname").hide();
-            // $("#inputtouch").show();
+            $("#toucher").show();
 
         }
         if(type == "Cash Debit"){
             $("#subcategories").hide();
             $("#touchname").hide();
-            // $("#inputtouch").show();
+            $("#toucher").show();
 
         }
         if(type == "none"){
             $("#subcategories").hide();
             $("#touchname").hide();
+            $("#toucher").hide();
+
         }
     });
 </script>
@@ -368,48 +381,28 @@ if (isset($_POST['btnAdd'])) {
 
 <!--calculate purity using jquery--->
 <script>
-$(document).ready(function () {
-    $("#weight, #stone_weight,#touch,#purity,#rate").change(function () {
-    $("#purity").val(($("#weight").val()-$("#stone_weight").val()) * ($("#touch").val()/100));
-    $("#amount").val((($("#weight").val()-$("#stone_weight").val()) * ($("#touch").val()/100)) *$("#rate").val());
-    });
-});
-</script>
-
-
-
-
-
-<!-- <script type="text/javascript">
-            var input1 = document.getElementById('touch');
-            var input2 = document.getElementById('weight');
-            var input3 = document.getElementById('stone_weight');
-            var input4 = document.getElementById('purity'); 
-
-            input3.addEventListener('change',function() {
-                input4.value =(input2.value-input3.value)*(input1.value/100);
+    $("#type").change(function() {
+        type = $("#type").val();
+        if(type == "Credit Purchase" || type =="Credit Sales"  ){
+            $(document).ready(function () {
+                    $("#weight, #stone_weight,#touch,#purity,#rate,#wastage_touch,#mc").change(function () {
+                    $("#purity").val(Math.round(($("#weight").val()-$("#stone_weight").val()) * ($("#touch").val()/100)*1000)/1000);
+                    $("#amount").val(Math.round((($("#weight").val()-$("#stone_weight").val()) * ($("#touch").val()/100)) *$("#rate").val()));
+                    $("#mc").val(($("#wastage_touch").val()*$("#rate").val()));
+                    $("#tds").val(($("#mc").val()*(0.1/100)));
+                    });
             });
-
-
-            var input5 = document.getElementById('rate'); 
-            var input6 = document.getElementById('amount'); 
-
-
-            input5.addEventListener('change',function() {
-                input6.value =input4.value*input5.value;
+        }
+        else{
+            $(document).ready(function () {
+            $("#weight, #stone_weight,#touches,#purity,#rate,#wastage_touch,#mc").change(function () {
+            $("#purity").val(Math.round(($("#weight").val()-$("#stone_weight").val()) * ($("#touches").val()/100)*1000)/1000);
+            $("#amount").val(Math.round((($("#weight").val()-$("#stone_weight").val()) * ($("#touches").val()/100)) *$("#rate").val()));
+            $("#mc").val(($("#wastage_touch").val()*$("#rate").val()));
+            $("#tds").val(($("#mc").val()*(0.1/100)));
             });
-
-</script> -->
-
-
-
-
-<script>
-$(document).ready(function () {
-    $("#weight, #stone_weight,#touch,#purity,#rate").change(function () {
-    $("#purity").val(($("#weight").val()-$("#stone_weight").val()) * ($("#touch").val()/100));
-    $("#amount").val((($("#weight").val()-$("#stone_weight").val()) * ($("#touch").val()/100)) *$("#rate").val());
+        });
+        }
     });
-});
 </script>
 <?php $db->disconnect(); ?>

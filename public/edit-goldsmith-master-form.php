@@ -48,6 +48,12 @@ if (isset($_POST['btnUpdate'])) {
         $stone_charges = (isset($_POST['stone_charges']) && !empty($_POST['stone_charges'])) ? $db->escapeString($fn->xss_clean($_POST['stone_charges'])) : "0";
         $shop_type=$db->escapeString($fn->xss_clean($_POST['shop_type']));
         $corporate_type=$db->escapeString($fn->xss_clean($_POST['corporate_type']));
+        $subcat_id = (isset($_POST['subcat_ids'])) ? $fn->xss_clean_array($_POST['subcat_ids']) : "";
+        $subcat_ids = "";
+        if (!empty($subcat_id)) {
+            $subcat_ids = implode(",", $subcat_id);
+            $subcat_ids = $db->escapeString($subcat_ids);
+        }
 
         
         if (empty($name)) {
@@ -83,11 +89,11 @@ if (isset($_POST['btnUpdate'])) {
         if ( !empty($name) && !empty($goldsmith_type) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($email) && !empty($address) && !empty($place)  && !empty($display_subcategory)  && !empty($weight_method) && !empty($rate_method) && !empty($huid_charge)  && !empty($credit_limit)  && !empty($activate_stone_pieces)  && !empty($shop_type))
         {
                 if($shop_type=='Single Shop'){
-                    $sql = "UPDATE goldsmith_master SET name='$name',goldsmith_type='$goldsmith_type',mobile='$mobile',digital_signature_number='$digital_signature_number',gst_number='$gst_number',pan_number='$pan_number',open_cash_debit='$open_cash_debit',open_cash_credit='$open_cash_credit',open_pure_debit='$open_pure_debit',open_pure_credit='$open_pure_credit',email='$email',address='$address',place='$place',weight_method='$weight_method',display_subcategory='$display_subcategory',rate_method='$rate_method',credit_note='$credit_note',debit_note='$debit_note',huid_charge='$huid_charge',credit_limit='$credit_limit',activate_stone_pieces='$activate_stone_pieces',stone_weight='$stone_weight',stone_charges='$stone_charges',shop_type='$shop_type',corporate_type='' WHERE id='$ID'";
+                    $sql = "UPDATE goldsmith_master SET name='$name',goldsmith_type='$goldsmith_type',mobile='$mobile',digital_signature_number='$digital_signature_number',gst_number='$gst_number',pan_number='$pan_number',open_cash_debit='$open_cash_debit',open_cash_credit='$open_cash_credit',open_pure_debit='$open_pure_debit',open_pure_credit='$open_pure_credit',email='$email',address='$address',place='$place',weight_method='$weight_method',display_subcategory='$display_subcategory',subcategories='$subcat_ids',rate_method='$rate_method',credit_note='$credit_note',debit_note='$debit_note',huid_charge='$huid_charge',credit_limit='$credit_limit',activate_stone_pieces='$activate_stone_pieces',stone_weight='$stone_weight',stone_charges='$stone_charges',shop_type='$shop_type',corporate_type='' WHERE id='$ID'";
                     $db->sql($sql);
                 }
                 else{
-                    $sql = "UPDATE goldsmith_master SET name='$name',goldsmith_type='$goldsmith_type',mobile='$mobile',digital_signature_number='$digital_signature_number',gst_number='$gst_number',pan_number='$pan_number',open_cash_debit='$open_cash_debit',open_cash_credit='$open_cash_credit',open_pure_debit='$open_pure_debit',open_pure_credit='$open_pure_credit',email='$email',address='$address',place='$place',weight_method='$weight_method',display_subcategory='$display_subcategory',rate_method='$rate_method',credit_note='$credit_note',debit_note='$debit_note',huid_charge='$huid_charge',credit_limit='$credit_limit',activate_stone_pieces='$activate_stone_pieces',stone_weight='$stone_weight',stone_charges='$stone_charges',shop_type='$shop_type',corporate_type='$corporate_type' WHERE id='$ID'";
+                    $sql = "UPDATE goldsmith_master SET name='$name',goldsmith_type='$goldsmith_type',mobile='$mobile',digital_signature_number='$digital_signature_number',gst_number='$gst_number',pan_number='$pan_number',open_cash_debit='$open_cash_debit',open_cash_credit='$open_cash_credit',open_pure_debit='$open_pure_debit',open_pure_credit='$open_pure_credit',email='$email',address='$address',place='$place',weight_method='$weight_method',display_subcategory='$display_subcategory',subcategories='$subcat_ids',rate_method='$rate_method',credit_note='$credit_note',debit_note='$debit_note',huid_charge='$huid_charge',credit_limit='$credit_limit',activate_stone_pieces='$activate_stone_pieces',stone_weight='$stone_weight',stone_charges='$stone_charges',shop_type='$shop_type',corporate_type='$corporate_type' WHERE id='$ID'";
                     $db->sql($sql);
                 }
                 $goldsmithmaster_result = $db->getResult();
@@ -189,6 +195,23 @@ $resslot = $db->getResult();
                                 <br>
                                 <div class="row">
                                     <div class="form-group">
+                                        <div class='col-md-4'>
+                                            <label for="exampleInputEmail1">Email Id</label> <i class="text-danger asterik">*</i><?php echo isset($error['email']) ? $error['email'] : ''; ?>
+                                            <input type="email" class="form-control" name="email" value="<?php echo $data['email']?>">
+                                        </div>
+                                        <div class='col-md-4'>
+                                            <label for="exampleInputEmail1">Address</label> <i class="text-danger asterik">*</i><?php echo isset($error['address']) ? $error['address'] : ''; ?>
+                                            <input type="text" class="form-control" name="address" value="<?php echo $data['address']?>">
+                                        </div>
+                                        <div class='col-md-4'>
+                                            <label for="exampleInputEmail1">Place</label> <i class="text-danger asterik">*</i><?php echo isset($error['place']) ? $error['place'] : ''; ?>
+                                            <input type="text" class="form-control" name="place" value="<?php echo $data['place']?>">
+                                        </div>
+                                    </div>    
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="form-group">
                                         <div class='col-md-3'>
                                             <label for="exampleInputEmail1">Open Cash Debit</label> <i class="text-danger asterik">*</i><?php echo isset($error['open_cash_debit']) ? $error['open_cash_debit'] : ''; ?>
                                             <input type="number" class="form-control" name="open_cash_debit" value="<?php echo $data['open_pure_debit']?>">
@@ -209,35 +232,11 @@ $resslot = $db->getResult();
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="form-group">
-                                        <div class='col-md-4'>
-                                            <label for="exampleInputEmail1">Email Id</label> <i class="text-danger asterik">*</i><?php echo isset($error['email']) ? $error['email'] : ''; ?>
-                                            <input type="email" class="form-control" name="email" value="<?php echo $data['email']?>">
-                                        </div>
-                                        <div class='col-md-4'>
-                                            <label for="exampleInputEmail1">Address</label> <i class="text-danger asterik">*</i><?php echo isset($error['address']) ? $error['address'] : ''; ?>
-                                            <input type="text" class="form-control" name="address" value="<?php echo $data['address']?>">
-                                        </div>
-                                        <div class='col-md-4'>
-                                            <label for="exampleInputEmail1">Place</label> <i class="text-danger asterik">*</i><?php echo isset($error['place']) ? $error['place'] : ''; ?>
-                                            <input type="text" class="form-control" name="place" value="<?php echo $data['place']?>">
-                                        </div>
-                                    </div>    
-                                </div>
-                                <br>
-                                <div class="row">
                                         <div class='form-group col-md-4'>
                                                 <label for="">Weight Method</label> <i class="text-danger asterik">*</i> <?php echo isset($error['weight_method']) ? $error['weight_method'] : ''; ?><br>
                                                 <select id="weight_method" name="weight_method" class="form-control">
                                                     <option value="Accurate Weight"<?=$data['weight_method'] == 'Accurate Weight' ? ' selected="selected"' : '';?>>Accurate Weight</option>
                                                     <option value="Approximate Weight"<?=$data['weight_method'] == 'Approximate Weight' ? ' selected="selected"' : '';?> >Approximate Weight</option>
-                                                </select>
-                                        </div>
-                                        <div class='form-group col-md-4'>
-                                                <label for="">Display Sub Category</label> <i class="text-danger asterik">*</i> <?php echo isset($error['display_subcategory']) ? $error['display_subcategory'] : ''; ?><br>
-                                                <select id="display_subcategory" name="display_subcategory" class="form-control">
-                                                    <option value="Yes"<?=$data['display_subcategory'] == 'Yes' ? ' selected="selected"' : '';?>>Yes</option>
-                                                    <option value="No"<?=$data['display_subcategory'] == 'No' ? ' selected="selected"' : '';?>>No</option>
                                                 </select>
                                         </div>
                                         <div class='form-group col-md-4'>
@@ -247,6 +246,34 @@ $resslot = $db->getResult();
                                                     <option value="TCS"<?=$data['rate_method'] == 'TCS' ? ' selected="selected"' : '';?> >TCS Rate</option>
                                                 </select>
                                         </div>
+                                        <div class='form-group col-md-4'>
+                                                <label for="">Display Sub Category</label> <i class="text-danger asterik">*</i> <?php echo isset($error['display_subcategory']) ? $error['display_subcategory'] : ''; ?><br>
+                                                <select id="display_subcategory" name="display_subcategory" class="form-control">
+                                                    <option value="Yes"<?=$data['display_subcategory'] == 'Yes' ? ' selected="selected"' : '';?>>Yes</option>
+                                                    <option value="No"<?=$data['display_subcategory'] == 'No' ? ' selected="selected"' : '';?>>No</option>
+                                                </select>
+                                        </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="subcat_id" class="form-group" >
+                                            <label for='subcat_id'>Subcategories</label>
+                                            <select name='subcat_ids[]' id='subcat_ids' class='form-control' multiple="multiple">
+                                                <?php 
+                                                $sql = 'select id,name from `subcategories`  order by id desc';
+                                                $db->sql($sql);
+                                                $result = $db->getResult();
+                                                foreach ($result as $value) {
+                                                    $subcategories = explode(',', $res[0]['subcategories']);
+                                                    $selected = in_array($value['id'], $subcategories) ? 'selected' : '';
+                                                ?>
+                                                    <option value='<?= $value['id'] ?>' <?= $selected ?>><?= $value['name'] ?></option>
+                                                <?php } ?>
+
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
@@ -279,13 +306,13 @@ $resslot = $db->getResult();
                                                     <option value="No"<?=$data['activate_stone_pieces'] == 'No' ? ' selected="selected"' : '';?>>No</option>
                                                 </select>
                                         </div>
-                                        <div class='form-group col-md-3' id="stone_weight">
+                                        <div class='form-group col-md-3' id="weights">
                                             <label for="exampleInputEmail1">Stone Weight/piece</label> <i class="text-danger asterik">*</i>
-                                            <input type="text" class="form-control" name="stone_weight" value="<?php echo $data['stone_weight']?>">
+                                            <input type="text" class="form-control" name="stone_weight" id="stone_weight" value="<?php echo $data['stone_weight']?>">
                                         </div>
-                                        <div class='form-group col-md-3' id="stone_charges">
+                                        <div class='form-group col-md-3' id="charges">
                                             <label for="exampleInputEmail1">Stone Charges</label> <i class="text-danger asterik">*</i>
-                                            <input type="number" class="form-control" name="stone_charges" value="<?php echo $data['stone_charges']?>">
+                                            <input type="number" class="form-control" name="stone_charges" id="stone_charges" value="<?php echo $data['stone_charges']?>">
                                         </div>
                                 </div>
                                 <br>
@@ -303,6 +330,7 @@ $resslot = $db->getResult();
                                                 ?>
                                                 <label for="">Corporate Type</label> <i class="text-danger asterik">*</i>
                                                 <select  name="corporate_type" class="form-control">
+                                                   <option value="">select</option>
                                                     <option value="Head Office"<?=$data['corporate_type'] == 'Head Office' ? ' selected="selected"' : '';?>>Head Office</option>
                                                     <option value="Branch"<?=$data['corporate_type'] == 'Branch' ? ' selected="selected"' : '';?>>Branch</option>
                                                     <option value="Delivery"<?=$data['corporate_type'] == 'Delivery' ? ' selected="selected"' : '';?>>Delivery</option>
@@ -310,9 +338,10 @@ $resslot = $db->getResult();
                                            <?php  } ?>
                                                
                                         </div>
-                                        <div class='form-group col-md-4' id="corporate_type" style="display:none">
+                                        <div class='form-group col-md-4' id="corporates" style="display:none">
                                                 <label for="">Corporate Type</label> <i class="text-danger asterik">*</i>
-                                                <select  name="corporate_type" class="form-control">
+                                                <select  id="corporate_type" name="corporate_type" class="form-control">
+                                                    <option value="">Select</option>
                                                     <option value="Head Office">Head Office</option>
                                                     <option value="Branch">Branch</option>
                                                     <option value="Delivery">Delivery</option>
@@ -334,20 +363,45 @@ $resslot = $db->getResult();
 <div class="separator"> </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+       $(document).ready(function () {
+        $('#subcat_ids').select2({
+        width: '100%',
+        placeholder: 'Type in name to search',
+
+    });
+    });
+</script>
+<script>
+    $("#display_subcategory").change(function() {
+        display_subcategory = $("#display_subcategory").val();
+        if(display_subcategory == "No"){
+            $("#subcat_id").show();
+        }
+        else{
+            $("#subcat_id").hide();
+            $("#subcat_ids").val("");
+        }
+    });
+</script>
+<script>
     $("#activate_stone_pieces").change(function() {
         activate_stone_pieces = $("#activate_stone_pieces").val();
         if(activate_stone_pieces == "Yes"){
-            $("#stone_weight").show();
-            $("#stone_charges").show();
+            $("#weights").show();
+            $("#charges").show();
 
         }
         if(activate_stone_pieces == "No"){
-            $("#stone_weight").hide();
-            $("#stone_charges").hide();
+            $("#weights").hide();
+            $("#charges").hide();
+            $("#stone_weight").val('');
+            $("#stone_charges").val('');
         }
         if(activate_stone_pieces == ""){
-            $("#stone_weight").hide();
-            $("#stone_charges").hide();
+            $("#weights").hide();
+            $("#charges").hide();
+            $("#stone_weight").val('');
+            $("#stone_charges").val('');
         }
     });
 </script>
@@ -358,9 +412,10 @@ $resslot = $db->getResult();
         shop_type = $("#shop_type").val();
         if(shop_type == "Single Shop"){
             $("#old_corporate_type").hide();
+            $("#corporate_type").val('');
         }
         if(shop_type == "Corporate"){
-            $("#corporate_type").show();
+            $("#corporates").show();
         }
     });
 </script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2022 at 09:03 AM
+-- Generation Time: Dec 30, 2022 at 01:04 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -111,15 +111,17 @@ CREATE TABLE `daily_transaction` (
   `mc` float DEFAULT NULL,
   `purity` float DEFAULT NULL,
   `huid_charge` int(200) DEFAULT NULL,
-  `rate_method` text DEFAULT NULL
+  `tds/tcs` float DEFAULT NULL,
+  `wastage_touch` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `daily_transaction`
 --
 
-INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `subcategory_id`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`, `huid_charge`, `rate_method`) VALUES
-(1, 1, '2022-11-08', 'Credit Purchase', 1, 45, 24, 23, 0, 45000, 24, 566778, 230, 0, 600, 'TDS');
+INSERT INTO `daily_transaction` (`id`, `goldsmith_master_id`, `date`, `type`, `subcategory_id`, `weight`, `stone_weight`, `wastage`, `touch`, `rate`, `gst`, `amount`, `mc`, `purity`, `huid_charge`, `tds/tcs`, `wastage_touch`) VALUES
+(1, 1, '2022-12-30', 'Metal Issue', 0, 56, 24, 456, 12, 5434, 56, 20867, 2461600, 3.84, 653, 2461.6, 453),
+(2, 1, '2022-12-30', 'Credit Purchase', 1, 56, 12, 34, 9.883, 567, 888, 2466, 25515, 4.349, 346, 25.515, 45);
 
 -- --------------------------------------------------------
 
@@ -170,6 +172,7 @@ CREATE TABLE `goldsmith_master` (
   `address` text DEFAULT NULL,
   `weight_method` text DEFAULT NULL,
   `display_subcategory` text DEFAULT NULL,
+  `subcategories` text DEFAULT NULL,
   `rate_method` text DEFAULT NULL,
   `credit_note` int(11) DEFAULT 0,
   `debit_note` int(11) DEFAULT 0,
@@ -186,8 +189,8 @@ CREATE TABLE `goldsmith_master` (
 -- Dumping data for table `goldsmith_master`
 --
 
-INSERT INTO `goldsmith_master` (`id`, `name`, `goldsmith_type`, `mobile`, `digital_signature_number`, `gst_number`, `pan_number`, `open_cash_debit`, `open_cash_credit`, `open_pure_debit`, `open_pure_credit`, `email`, `place`, `address`, `weight_method`, `display_subcategory`, `rate_method`, `credit_note`, `debit_note`, `huid_charge`, `credit_limit`, `activate_stone_pieces`, `stone_weight`, `stone_charges`, `shop_type`, `corporate_type`) VALUES
-(1, 'Sanjay', 'Seller', '8428225519', '9876543210', 'ggt56777hd', 'SMD787R4G', 0, 0, 0, 0, 'example@gmail.com', 'Uppidapalayam', 'Thanajvur', 'Approximate Weight', 'No', 'TCS', 0, 0, '346', 100, 'No', 10.8, '5646', 'Single Shop', '');
+INSERT INTO `goldsmith_master` (`id`, `name`, `goldsmith_type`, `mobile`, `digital_signature_number`, `gst_number`, `pan_number`, `open_cash_debit`, `open_cash_credit`, `open_pure_debit`, `open_pure_credit`, `email`, `place`, `address`, `weight_method`, `display_subcategory`, `subcategories`, `rate_method`, `credit_note`, `debit_note`, `huid_charge`, `credit_limit`, `activate_stone_pieces`, `stone_weight`, `stone_charges`, `shop_type`, `corporate_type`) VALUES
+(1, 'Karthikeyan', 'Seller', '8599032127', '8599032127', 'Ghrdt5677', 'GNQPD45567', 65000, 6790, 65000, 89000, 'kathirsar78@gmail.com', 'Kannada', 'Kunnur,Uppidapalayam', 'Approximate Weight', 'Yes', '', 'TCS', 780, 34500, '346', 100, 'No', 0, '0', 'Single Shop', '');
 
 -- --------------------------------------------------------
 
@@ -272,14 +275,20 @@ CREATE TABLE `products` (
   `goldsmith_id` int(11) DEFAULT NULL,
   `huid_number` text DEFAULT NULL,
   `entry_type` text DEFAULT NULL,
+  `sellers` text DEFAULT NULL,
+  `date` text DEFAULT NULL,
   `gross_weight` float DEFAULT NULL,
-  `size` float DEFAULT NULL,
   `stone_weight` float DEFAULT NULL,
   `net_weight` float DEFAULT NULL,
+  `size` float DEFAULT NULL,
   `wastage` float DEFAULT NULL,
+  `stone_pieces` float DEFAULT NULL,
+  `stone_charges` float DEFAULT NULL,
   `cover_weight` float DEFAULT NULL,
   `tag_weight` float DEFAULT NULL,
   `image` text DEFAULT NULL,
+  `pair` text DEFAULT NULL,
+  `pair_size` float DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -287,9 +296,9 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `category_id`, `subcategory_id`, `goldsmith_id`, `huid_number`, `entry_type`, `gross_weight`, `size`, `stone_weight`, `net_weight`, `wastage`, `cover_weight`, `tag_weight`, `image`, `status`) VALUES
-(1, 2, 2, 1, '899678', 'Lot Entry', 568, 8.98, 2.34, 5.43, 12, 65, NULL, 'upload/products/8344-2022-10-28.jpg', 0),
-(2, 3, 3, 1, 'HTEE998', 'Order Entry', 879, 90, 12, 43, 45, 98, 2.876, 'upload/products/8446-2022-10-28.jpg', 1);
+INSERT INTO `products` (`id`, `category_id`, `subcategory_id`, `goldsmith_id`, `huid_number`, `entry_type`, `sellers`, `date`, `gross_weight`, `stone_weight`, `net_weight`, `size`, `wastage`, `stone_pieces`, `stone_charges`, `cover_weight`, `tag_weight`, `image`, `pair`, `pair_size`, `status`) VALUES
+(1, 1, 1, 1, 'hfft4567', 'Lot Entry', '1', '2022-12-30 17:33:12', 45, 34, 11, 20, 133, 23, 45, 21, 2.876, 'upload/products/3106-2022-12-30.jpg', 'Yes', 0, 1),
+(2, 1, 1, 1, 'dwdwjidwd', 'Lot Entry', NULL, '2022-12-30 12:38:30', 67, 23, 44, 20, 56, 56, 5667, 67, NULL, 'upload/products/5266-2022-12-30.jpg', 'Yes', 20, 0);
 
 -- --------------------------------------------------------
 
@@ -346,7 +355,7 @@ CREATE TABLE `subcategories` (
 INSERT INTO `subcategories` (`id`, `category_id`, `name`) VALUES
 (1, 1, 'subcategory1'),
 (2, 2, 'Subcategory2'),
-(3, 3, 'subcategory3');
+(3, 2, 'subcategory3');
 
 -- --------------------------------------------------------
 
@@ -620,7 +629,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `daily_transaction`
 --
 ALTER TABLE `daily_transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `faq`
@@ -662,7 +671,7 @@ ALTER TABLE `openingmaster`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -674,7 +683,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `suspense_account`

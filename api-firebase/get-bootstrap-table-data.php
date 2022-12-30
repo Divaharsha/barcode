@@ -480,7 +480,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'daily_transaction') {
         $tempRow['amount'] = $row['amount'];
         $tempRow['mc'] = $row['mc'];
         $tempRow['purity'] = $row['purity'];
-        $tempRow['rate_method'] = $row['rate_method'];
+        $tempRow['tds'] = $row['tds/tcs'];
         $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
     }

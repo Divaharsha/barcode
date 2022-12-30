@@ -39,10 +39,15 @@ if (isset($_POST['btnAdd'])) {
         $stone_weight = (isset($_POST['stone_weight']) && !empty($_POST['stone_weight'])) ? $db->escapeString($fn->xss_clean($_POST['stone_weight'])) : "0";
         $stone_charges = (isset($_POST['stone_charges']) && !empty($_POST['stone_charges'])) ? $db->escapeString($fn->xss_clean($_POST['stone_charges'])) : "0";
         $shop_type=$db->escapeString($fn->xss_clean($_POST['shop_type']));
-        $corporate_type=$db->escapeString($fn->xss_clean($_POST['corporate_type']));
+        $corporate_type = (isset($_POST['corporate_type']) && !empty($_POST['corporate_type'])) ? $db->escapeString($fn->xss_clean($_POST['corporate_type'])) : "";
+
+        $subcat_id = (isset($_POST['subcat_ids'])) ? $fn->xss_clean_array($_POST['subcat_ids']) : "";
+        if (!empty($subcat_id)) {
+            $subcat_ids = implode(",", $subcat_id);
+            $subcat_ids = $db->escapeString($subcat_ids);
+        }
 
 
-        
         if (empty($name)) {
             $error['name'] = " <span class='label label-danger'>Required!</span>";
         }
@@ -77,9 +82,6 @@ if (isset($_POST['btnAdd'])) {
         if (empty($weight_method)) {
             $error['weight_method'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($rate_method)) {
-            $error['rate_method'] = " <span class='label label-danger'>Required!</span>";
-        }
         if (empty($huid_charge)) {
             $error['huid_charge'] = " <span class='label label-danger'>Required!</span>";
         }
@@ -92,14 +94,11 @@ if (isset($_POST['btnAdd'])) {
         if (empty($shop_type)) {
             $error['shop_type'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($corporate_type)) {
-            $error['corporate_type'] = " <span class='label label-danger'>Required!</span>";
-        }
        
 
-        if ( !empty($name) && !empty($goldsmith_type) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($email) && !empty($address) && !empty($place)  && !empty($display_subcategory)  && !empty($weight_method) && !empty($rate_method) && !empty($huid_charge)  && !empty($credit_limit)  && !empty($activate_stone_pieces)  && !empty($shop_type)  && !empty($corporate_type))
+        if ( !empty($name) && !empty($goldsmith_type) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($email) && !empty($address) && !empty($place)  && !empty($display_subcategory)  && !empty($weight_method) && !empty($huid_charge)  && !empty($credit_limit)  && !empty($activate_stone_pieces)  && !empty($shop_type))
         {
-                $sql = "INSERT INTO goldsmith_master (name,goldsmith_type,mobile,digital_signature_number,gst_number,pan_number,email,address,place,open_cash_debit,open_cash_credit,open_pure_debit,open_pure_credit,weight_method,display_subcategory,rate_method,credit_note,debit_note,huid_charge,credit_limit,activate_stone_pieces,stone_weight,stone_charges,shop_type,corporate_type) VALUES('$name','$goldsmith_type','$mobile','$digital_signature_number','$gst_number','$pan_number','$email','$address','$place','$open_cash_debit','$open_cash_credit','$open_pure_debit','$open_pure_credit','$weight_method','$display_subcategory','$rate_method','$credit_note','$debit_note','$huid_charge','$credit_limit','$activate_stone_pieces','$stone_weight','$stone_charges','$shop_type','$corporate_type')";
+                $sql = "INSERT INTO goldsmith_master (name,goldsmith_type,mobile,digital_signature_number,gst_number,pan_number,email,address,place,open_cash_debit,open_cash_credit,open_pure_debit,open_pure_credit,weight_method,display_subcategory,rate_method,subcategories,credit_note,debit_note,huid_charge,credit_limit,activate_stone_pieces,stone_weight,stone_charges,shop_type,corporate_type) VALUES('$name','$goldsmith_type','$mobile','$digital_signature_number','$gst_number','$pan_number','$email','$address','$place','$open_cash_debit','$open_cash_credit','$open_pure_debit','$open_pure_credit','$weight_method','$display_subcategory','$rate_method','$subcat_ids','$credit_note','$debit_note','$huid_charge','$credit_limit','$activate_stone_pieces','$stone_weight','$stone_charges','$shop_type','$corporate_type')";
                 $db->sql($sql);
                 $goldsmithmaster_result = $db->getResult();
                 if (!empty($goldsmithmaster_result)) {
@@ -148,7 +147,7 @@ if (isset($_POST['btnAdd'])) {
 
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form id='add_goldsmith_master_form' method="post" enctype="multipart/form-data">
+                <form id='add_master_form' method="post" enctype="multipart/form-data">
                     <div class="box-body">
                         <div class="row">
                             <div class="form-group">
@@ -191,6 +190,23 @@ if (isset($_POST['btnAdd'])) {
                         <br>
                         <div class="row">
                             <div class="form-group">
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Email Id</label> <i class="text-danger asterik">*</i><?php echo isset($error['email']) ? $error['email'] : ''; ?>
+                                    <input type="email" class="form-control" name="email" required>
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Address</label> <i class="text-danger asterik">*</i><?php echo isset($error['address']) ? $error['address'] : ''; ?>
+                                    <input type="text" class="form-control" name="address" required>
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Place</label> <i class="text-danger asterik">*</i><?php echo isset($error['place']) ? $error['place'] : ''; ?>
+                                    <input type="text" class="form-control" name="place" required>
+                                </div>
+                            </div>    
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="form-group">
                                 <div class='col-md-3'>
                                     <label for="exampleInputEmail1">Open Cash Debit</label> <i class="text-danger asterik">*</i><?php echo isset($error['open_cash_debit']) ? $error['open_cash_debit'] : ''; ?>
                                     <input type="text" class="form-control" name="open_cash_debit">
@@ -213,42 +229,48 @@ if (isset($_POST['btnAdd'])) {
                         <div class="row">
                             <div class="form-group">
                                 <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Email Id</label> <i class="text-danger asterik">*</i><?php echo isset($error['email']) ? $error['email'] : ''; ?>
-                                    <input type="email" class="form-control" name="email" required>
-                                </div>
-                                <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Address</label> <i class="text-danger asterik">*</i><?php echo isset($error['address']) ? $error['address'] : ''; ?>
-                                    <input type="text" class="form-control" name="address" required>
-                                </div>
-                                <div class='col-md-4'>
-                                    <label for="exampleInputEmail1">Place</label> <i class="text-danger asterik">*</i><?php echo isset($error['place']) ? $error['place'] : ''; ?>
-                                    <input type="text" class="form-control" name="place" required>
-                                </div>
-                            </div>    
-                        </div>
-                        <br>
-                        <div class="row">
-                                <div class='form-group col-md-4'>
                                         <label for="">Weight Method</label> <i class="text-danger asterik">*</i> <?php echo isset($error['weight_method']) ? $error['weight_method'] : ''; ?><br>
                                         <select id="weight_method" name="weight_method" class="form-control">
                                             <option value="Accurate Weight">Accurate Weight</option>
                                             <option value="Approximate Weight">Approximate Weight</option>
                                         </select>
                                  </div>
-                                 <div class='form-group col-md-4'>
+                                 <div class='col-md-4'>
+                                        <label for="">Rate Cut Method</label> <i class="text-danger asterik">*</i> <?php echo isset($error['rate_method']) ? $error['rate_method'] : ''; ?>
+                                        <select id="rate_method" name="rate_method" class="form-control">
+                                           <option value="">select</option>
+                                            <option value="TDS">TDS Rate</option>
+                                            <option value="TCS">TcS Rate</option>
+                                        </select>
+                                 </div>
+                                 <div class='col-md-4'>
                                         <label for="">Display Sub Category</label> <i class="text-danger asterik">*</i> <?php echo isset($error['display_subcategory']) ? $error['display_subcategory'] : ''; ?><br>
                                         <select id="display_subcategory" name="display_subcategory" class="form-control">
                                             <option value="Yes">Yes</option>
                                             <option value="No">No</option>
                                         </select>
                                  </div>
-                                 <div class='form-group col-md-4'>
-                                        <label for="">Rate Cut Method</label> <i class="text-danger asterik">*</i> <?php echo isset($error['rate_method']) ? $error['rate_method'] : ''; ?><br>
-                                        <select id="rate_method" name="rate_method" class="form-control">
-                                            <option value="TDS">TDS Rate</option>
-                                            <option value="TCS">TCS Rate</option>
-                                        </select>
-                                 </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="subcat_id" class="form-group" style="display:none;">
+                                    <label for="exampleInputEmail1">Select subcategories</label> <i class="text-danger asterik">*</i><br>
+                                    <select id='subcat_ids' name="subcat_ids[]" multiple>
+                                    <option value=''>Select</option>
+                                            <?php
+                                            $sql = "SELECT id,name FROM `subcategories`";
+                                            $db->sql($sql);
+
+                                            $result = $db->getResult();
+                                            foreach ($result as $value) {
+                                            ?>
+                                                <option value='<?= $value['id'] ?>'><?= $value['name'] ?></option>
+                                            <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <br>
                         <div class="row">
@@ -302,6 +324,7 @@ if (isset($_POST['btnAdd'])) {
                                  <div class='form-group col-md-4' id="corporate_type" style="display:none">
                                         <label for="">Corporate Type</label> <i class="text-danger asterik">*</i>
                                         <select  name="corporate_type" class="form-control">
+                                           <option value="">select</option>
                                             <option value="Head Office">Head Office</option>
                                             <option value="Branch">Branch</option>
                                             <option value="Delivery">Delivery</option>
@@ -323,22 +346,21 @@ if (isset($_POST['btnAdd'])) {
     </div>
 </section>
 <div class="separator"> </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script>
-    $('#add_goldsmith_master_form').validate({
+    $('#add_master_form').validate({
 
         ignore: [],
         debug: false,
         rules: {
-            $name = "required",
-        $mobile = "required",
-        $digital_signature_number ="required",
-        $gst_number ="required",
-        $pan_number="required",
-        $email = "required",
-        $address="required",
-        $place="required",
+            name: "required",
+            mobile: "required",
+            digital_signature_number: "required",
+            gst_number ="required",
+            pan_number :"required",
+            email: "required",
+            address: "required",
+            place: "required",
          }
     });
     $('#btnClear').on('click', function() {
@@ -346,7 +368,26 @@ if (isset($_POST['btnAdd'])) {
             CKEDITOR.instances[instance].setData('');
         }
     });
+</script>
+<script>
+       $(document).ready(function () {
+        $('#subcat_ids').select2({
+        width: '100%',
+        placeholder: 'Type in name to search',
 
+    });
+    });
+</script>
+<script>
+    $("#display_subcategory").change(function() {
+        display_subcategory = $("#display_subcategory").val();
+        if(display_subcategory == "No"){
+            $("#subcat_id").show();
+        }
+        else{
+            $("#subcat_id").hide();
+        }
+    });
 </script>
 <script>
     $("#activate_stone_pieces").change(function() {
@@ -380,3 +421,7 @@ if (isset($_POST['btnAdd'])) {
         }
     });
 </script>
+
+
+<?php $db->disconnect(); ?>
+

@@ -41,7 +41,7 @@ if ($permissions['dailytransaction']['read'] == 1) {
                                     <th data-field="amount" data-sortable="true">Amount</th>
                                     <th data-field="mc" data-sortable="true">MC</th>
                                     <th data-field="purity" data-sortable="true">Purity</th>
-                                    <th data-field="rate_method" data-sortable="true">Rate Cut Method</th>
+                                    <th data-field="tds" data-sortable="true">TDS/TCS</th>
                                     <th data-field="operate" data-events="actionEvents">Action</th>
                                 </tr>
                             </thead>
