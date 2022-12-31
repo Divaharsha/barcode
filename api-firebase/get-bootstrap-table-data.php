@@ -896,7 +896,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'products') {
 
     if (isset($_GET['search']) && !empty($_GET['search'])) {
     $search = $db->escapeString($_GET['search']);
-    $where .= "AND p.id like '%" . $search . "%' OR g.name like '%" . $search . "%' OR s.name like '%" . $search . "%'  OR p.size like '%" . $search . "%'  OR p.huid_number like '%" . $search . "%' ";
+    $where .= "AND p.id like '%" . $search . "%' OR g.name like '%" . $search . "%' OR s.name like '%" . $search . "%'  OR p.entry_type like '%" . $search . "%'  OR p.huid_number like '%" . $search . "%' ";
     }
 
     if (isset($_GET['sort'])) {
@@ -935,7 +935,9 @@ if (isset($_GET['table']) && $_GET['table'] == 'products') {
         $tempRow['goldsmith_name'] = $row['goldsmith_name'];
         $tempRow['huid_number'] = $row['huid_number'];
         $tempRow['gross_weight'] = $row['gross_weight'];
-        $tempRow['size'] = $row['size'];
+        $tempRow['entry_type'] = $row['entry_type'];
+        $tempRow['date'] = $row['date'];
+        $tempRow['sellers'] = $row['sellers'];
         $tempRow['stone_weight'] = $row['stone_weight'];
         $tempRow['net_weight'] = $row['net_weight'];
         $tempRow['wastage'] = $row['wastage'];

@@ -32,6 +32,7 @@ if (isset($_POST['btnUpdate'])) {
         $stone_charges = (isset($_POST['stone_charges']) && !empty($_POST['stone_charges'])) ? $db->escapeString($fn->xss_clean($_POST['stone_charges'])) : "0";
         $status = $db->escapeString($fn->xss_clean($_POST['status']));
         $pair = $db->escapeString($fn->xss_clean($_POST['pair']));
+        $new_pair_size = $db->escapeString($fn->xss_clean($_POST['new_pair_size']));
         $pair_size = (isset($_POST['pair_size']) && !empty($_POST['pair_size'])) ? $db->escapeString($fn->xss_clean($_POST['pair_size'])) : "0";    
         $seller_id = (isset($_POST['seller_ids'])) ? $fn->xss_clean_array($_POST['seller_ids']) : "";
         $seller_ids = "";
@@ -86,7 +87,6 @@ if (isset($_POST['btnUpdate'])) {
             $res = $db->getResult();
             $category_id = $res[0]['category_id'];
 
-
             if($entry_type=='Order Entry'){
                         $sql = "UPDATE products SET category_id='$category_id',subcategory_id='$subcategory',goldsmith_id='$goldsmith',huid_number='$huid_number',entry_type='$entry_type',sellers='$seller_ids',gross_weight='$gross_weight',size='$size',stone_weight='$stone_weight',net_weight='$net_weight',wastage='$wastage',cover_weight='$cover_weight',tag_weight='$tag_weight',stone_pieces='$stone_pieces',stone_charges='$stone_charges',date=NULL,pair='$pair',pair_size='$pair_size',status='$status' WHERE id=$ID";
                         $db->sql($sql);
@@ -95,6 +95,11 @@ if (isset($_POST['btnUpdate'])) {
                 $sql = "UPDATE products SET category_id='$category_id',subcategory_id='$subcategory',goldsmith_id='$goldsmith',huid_number='$huid_number',entry_type='$entry_type',sellers='$seller_ids',gross_weight='$gross_weight',size='$size',stone_weight='$stone_weight',net_weight='$net_weight',wastage='$wastage',cover_weight='$cover_weight',tag_weight='$tag_weight',stone_pieces='$stone_pieces',stone_charges='$stone_charges',date='$date',pair='$pair',pair_size='$pair_size',status='$status' WHERE id=$ID";
                 $db->sql($sql);
             }
+            if(!empty($new_pair_size)){
+                $sql = "UPDATE products SET pair_size='$new_pair_size' WHERE id=$ID";
+                $db->sql($sql);
+            }
+
             $product_result = $db->getResult();
             if (!empty($product_result)) {
                 $product_result = 0;
@@ -194,7 +199,7 @@ $res = $db->getResult();
                         <br>
                         <div class="row">
                             <div class="col-md-12">
-                                <div id="seller_id" class="form-group" >
+                                <div id="seller_id" class="form-group" style="display:none">
                                     <label for='seller_id'>Select Seller/Buyer</label>
                                     <select name='seller_ids[]' id='seller_ids' class='form-control' multiple="multiple">
                                         <?php 
@@ -278,7 +283,7 @@ $res = $db->getResult();
                             <div class="form-group">
                                <div class='col-md-4' id="new_size" style="display:none;">
                                     <label for="exampleInputEmail1">Pair Size</label> <i class="text-danger asterik">*</i><?php echo isset($error['new_pair_size']) ? $error['new_pair_size'] : ''; ?>
-                                    <input type="number" class="form-control" name="new_pair_size">
+                                    <input type="number" class="form-control" name="new_pair_size" id="new_pair_size">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="exampleInputEmail1">Tag Weight</label> <i class="text-danger asterik">*</i><?php echo isset($error['tag_weight']) ? $error['tag_weight'] : ''; ?>
@@ -359,12 +364,11 @@ $res = $db->getResult();
         pair = $("#pair").val();
         if(pair == "Yes"){
             $("#new_size").show();
-            $("#old_size").hide();
-            $("#pair_size").val('#pair_size');
 
         }
         else{
             $("#new_size").hide();
+            $("#old_size").hide();
             $("#pair_size").val('');
         }
     });

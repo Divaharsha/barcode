@@ -36,9 +36,11 @@
                                     <th data-field="id" data-sortable="true">ID</th>
                                     <th data-field="subcategory_name" data-sortable="true">Sub-Category Name</th>
                                     <th data-field="goldsmith_name" data-sortable="true">Dealer Goldsmith Name</th>
+                                    <th data-field="entry_type" data-sortable="true">Entry Type</th>
+                                    <th data-field="date" data-sortable="true">Date</th>
+                                    <th data-field="sellers" data-sortable="true">Seller ID's</th>
                                     <th data-field="huid_number" data-sortable="true">HUID Number</th>
                                     <th data-field="gross_weight" data-sortable="true">Gross Weight</th>
-                                    <th data-field="size" data-sortable="true">Size</th>
                                     <th data-field="stone_weight" data-sortable="true">Stone Weight</th>
                                     <th data-field="net_weight" data-sortable="true">Net Weight</th>
                                     <th data-field="wastage" data-sortable="true">Wastage</th>
