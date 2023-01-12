@@ -260,10 +260,10 @@ if (isset($_POST['btnAdd'])) {
                         <br>
                         <div class="row">
                             <div class="fom-group">
-                                <div class="col-md-6">
-                                         <label for="exampleInputFile">Image</label> <i class="text-danger asterik">*</i><?php echo isset($error['product_image']) ? $error['product_image'] : ''; ?>
-                                        <input type="file" name="product_image" id="file-input" onchange="readURL(this);" accept="image/png,  image/jpeg" id="product_image" required/><br>
-                                        <img id="blah" src="#" alt="" />
+                                <div class="col-md-4">
+                                    <label for="">Image</label><i class="text-danger asterik">*</i><?php echo isset($error['product_image']) ? $error['product_image'] : ''; ?>
+                                         <label for="cropzee-input" class="image-previewer" data-cropzee="cropzee-input"></label>
+                                        <input type="file" name="product_image" id="cropzee-input" accept="image/png,  image/jpeg" id="product_image" required/><br>
                                 </div>
                             </div>
                         </div>
@@ -283,6 +283,7 @@ if (isset($_POST['btnAdd'])) {
     </div>
 </section>
 <div class="separator"> </div>
+<script defer src="https://cdn.crop.guide/loader/l.js?c=123ABC"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script>
     $('#add_product_form').validate({
@@ -338,21 +339,10 @@ if (isset($_POST['btnAdd'])) {
         });
  </script>
 <script>
-    function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#blah')
-                        .attr('src', e.target.result)
-                        .width(400)
-                        .height(250);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-</script>
+		$(document).ready(function(){
+			$("#cropzee-input").cropzee({startSize: [85, 85, '%'],});
+		});
+	</script>
 
 <!--code for page clear-->
 <script>

@@ -63,6 +63,20 @@ if (isset($_POST['get_touch'])) {
                 echo "0";
             }
 }
+if (isset($_POST['get_wastage_touch'])) {
+    $name = $db->escapeString($fn->xss_clean($_POST['name']));
+    $subcategory_id = $db->escapeString($fn->xss_clean($_POST['subcategory_id']));
+    $sql = "SELECT * FROM `goldsmith_master_variant` WHERE subcategory_id='$subcategory_id' AND goldsmith_master_id='$name'";
+    $db->sql($sql);
+    $result = $db->getResult();
+    $wastage_touch = $result[0]['wastage_touch'];
+    if (!empty($result)) {
+            echo $wastage_touch;
+        
+    } else {
+        echo "0";
+    }
+}
 
 
 function checkadmin($auth_username)

@@ -41,8 +41,8 @@ if (isset($_POST['btnUpdate'])) {
         $rate_method=$db->escapeString($fn->xss_clean($_POST['rate_method']));
         $credit_note = (isset($_POST['credit_note']) && !empty($_POST['credit_note'])) ? $db->escapeString($fn->xss_clean($_POST['credit_note'])) : "0";
         $debit_note = (isset($_POST['debit_note']) && !empty($_POST['debit_note'])) ? $db->escapeString($fn->xss_clean($_POST['debit_note'])) : "0";
-        $huid_charge=$db->escapeString($fn->xss_clean($_POST['huid_charge']));
-        $credit_limit=$db->escapeString($fn->xss_clean($_POST['credit_limit']));
+        $huid_charge = (isset($_POST['huid_charge']) && !empty($_POST['huid_charge'])) ? $db->escapeString($fn->xss_clean($_POST['huid_charge'])) : "0";
+        $credit_limit = (isset($_POST['credit_limit']) && !empty($_POST['credit_limit'])) ? $db->escapeString($fn->xss_clean($_POST['credit_limit'])) : "0";
         $activate_stone_pieces=$db->escapeString($fn->xss_clean($_POST['activate_stone_pieces']));
         $stone_weight = (isset($_POST['stone_weight']) && !empty($_POST['stone_weight'])) ? $db->escapeString($fn->xss_clean($_POST['stone_weight'])) : "0";
         $stone_charges = (isset($_POST['stone_charges']) && !empty($_POST['stone_charges'])) ? $db->escapeString($fn->xss_clean($_POST['stone_charges'])) : "0";
@@ -86,7 +86,7 @@ if (isset($_POST['btnUpdate'])) {
    
 
        
-        if ( !empty($name) && !empty($goldsmith_type) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($email) && !empty($address) && !empty($place)  && !empty($display_subcategory)  && !empty($weight_method) && !empty($rate_method) && !empty($huid_charge)  && !empty($credit_limit)  && !empty($activate_stone_pieces)  && !empty($shop_type))
+        if ( !empty($name) && !empty($goldsmith_type) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($email) && !empty($address) && !empty($place)  && !empty($display_subcategory)  && !empty($weight_method) && !empty($rate_method)  && !empty($activate_stone_pieces)  && !empty($shop_type))
         {
                 if($shop_type=='Single Shop'){
                     $sql = "UPDATE goldsmith_master SET name='$name',goldsmith_type='$goldsmith_type',mobile='$mobile',digital_signature_number='$digital_signature_number',gst_number='$gst_number',pan_number='$pan_number',open_cash_debit='$open_cash_debit',open_cash_credit='$open_cash_credit',open_pure_debit='$open_pure_debit',open_pure_credit='$open_pure_credit',email='$email',address='$address',place='$place',weight_method='$weight_method',display_subcategory='$display_subcategory',subcategories='$subcat_ids',rate_method='$rate_method',credit_note='$credit_note',debit_note='$debit_note',huid_charge='$huid_charge',credit_limit='$credit_limit',activate_stone_pieces='$activate_stone_pieces',stone_weight='$stone_weight',stone_charges='$stone_charges',shop_type='$shop_type',corporate_type='' WHERE id='$ID'";

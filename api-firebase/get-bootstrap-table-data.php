@@ -930,6 +930,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'products') {
         $update = ' <a href="edit-product.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
         $update .= '<a  href="delete-product.php?id=' . $row['id'] . '" <i class="fa fa-trash text text-danger"></i>Delete</a>';
         $operate = '<a href="view-product.php?id=' . $row['id'] . '" class="label label-primary" title="View">View</a>';
+        $qrcode = '<a href="barcode.php?id=' . $row['id'] . '" title="Edit"><p class="text-primary">Barcode</p></a>';
         $tempRow['id'] = $row['id'];
         $tempRow['subcategory_name'] = $row['subcategory_name'];
         $tempRow['goldsmith_name'] = $row['goldsmith_name'];
@@ -953,6 +954,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'products') {
         $tempRow['status'] = "<label class='label label-success'>Approved</label>";
          else
         $tempRow['status'] = "<label class='label label-danger'>Not-Approved</label>";
+        $tempRow['qrcode'] = $qrcode;
         $tempRow['operate'] = $operate;
         $tempRow['update'] = $update;
         $rows[] = $tempRow;

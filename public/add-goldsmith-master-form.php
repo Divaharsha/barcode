@@ -33,8 +33,8 @@ if (isset($_POST['btnAdd'])) {
         $rate_method=$db->escapeString($fn->xss_clean($_POST['rate_method']));
         $credit_note = (isset($_POST['credit_note']) && !empty($_POST['credit_note'])) ? $db->escapeString($fn->xss_clean($_POST['credit_note'])) : "0";
         $debit_note = (isset($_POST['debit_note']) && !empty($_POST['debit_note'])) ? $db->escapeString($fn->xss_clean($_POST['debit_note'])) : "0";
-        $huid_charge=$db->escapeString($fn->xss_clean($_POST['huid_charge']));
-        $credit_limit=$db->escapeString($fn->xss_clean($_POST['credit_limit']));
+        $huid_charge = (isset($_POST['huid_charge']) && !empty($_POST['huid_charge'])) ? $db->escapeString($fn->xss_clean($_POST['huid_charge'])) : "0";
+        $credit_limit = (isset($_POST['credit_limit']) && !empty($_POST['credit_limit'])) ? $db->escapeString($fn->xss_clean($_POST['credit_limit'])) : "0";
         $activate_stone_pieces=$db->escapeString($fn->xss_clean($_POST['activate_stone_pieces']));
         $stone_weight = (isset($_POST['stone_weight']) && !empty($_POST['stone_weight'])) ? $db->escapeString($fn->xss_clean($_POST['stone_weight'])) : "0";
         $stone_charges = (isset($_POST['stone_charges']) && !empty($_POST['stone_charges'])) ? $db->escapeString($fn->xss_clean($_POST['stone_charges'])) : "0";
@@ -82,12 +82,6 @@ if (isset($_POST['btnAdd'])) {
         if (empty($weight_method)) {
             $error['weight_method'] = " <span class='label label-danger'>Required!</span>";
         }
-        if (empty($huid_charge)) {
-            $error['huid_charge'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($credit_limit)) {
-            $error['credit_limit'] = " <span class='label label-danger'>Required!</span>";
-        }
         if (empty($activate_stone_pieces)) {
             $error['activate_stone_pieces'] = " <span class='label label-danger'>Required!</span>";
         }
@@ -96,7 +90,7 @@ if (isset($_POST['btnAdd'])) {
         }
        
 
-        if ( !empty($name) && !empty($goldsmith_type) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($email) && !empty($address) && !empty($place)  && !empty($display_subcategory)  && !empty($weight_method) && !empty($huid_charge)  && !empty($credit_limit)  && !empty($activate_stone_pieces)  && !empty($shop_type))
+        if ( !empty($name) && !empty($goldsmith_type) && !empty($mobile) && !empty($digital_signature_number) && !empty($gst_number) && !empty($pan_number) && !empty($email) && !empty($address) && !empty($place)  && !empty($display_subcategory)  && !empty($weight_method)  && !empty($activate_stone_pieces)  && !empty($shop_type))
         {
                 $sql = "INSERT INTO goldsmith_master (name,goldsmith_type,mobile,digital_signature_number,gst_number,pan_number,email,address,place,open_cash_debit,open_cash_credit,open_pure_debit,open_pure_credit,weight_method,display_subcategory,rate_method,subcategories,credit_note,debit_note,huid_charge,credit_limit,activate_stone_pieces,stone_weight,stone_charges,shop_type,corporate_type) VALUES('$name','$goldsmith_type','$mobile','$digital_signature_number','$gst_number','$pan_number','$email','$address','$place','$open_cash_debit','$open_cash_credit','$open_pure_debit','$open_pure_credit','$weight_method','$display_subcategory','$rate_method','$subcat_ids','$credit_note','$debit_note','$huid_charge','$credit_limit','$activate_stone_pieces','$stone_weight','$stone_charges','$shop_type','$corporate_type')";
                 $db->sql($sql);

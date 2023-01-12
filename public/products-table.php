@@ -47,6 +47,7 @@
                                     <th data-field="cover_weight" data-sortable="true">Cover Weight</th>
                                     <th data-field="image">Image</th>
                                     <th data-field="status" data-sortable="true">Status</th>
+                                    <th data-field="qrcode">Barcode</th>
                                     <th data-field="operate" data-events="actionEvents">Action</th>
                                     <th data-field="update" data-events="actionEvents">Update</th>
 

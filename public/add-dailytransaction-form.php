@@ -31,7 +31,7 @@ if (isset($_POST['btnAdd'])) {
         $mc = $db->escapeString($fn->xss_clean($_POST['mc']));
         $tds = $db->escapeString($fn->xss_clean($_POST['tds']));
         $huid_charge = $db->escapeString($fn->xss_clean($_POST['huid_charge']));
-        $wastage_touch = $db->escapeString($fn->xss_clean($_POST['wastage_touch']));
+        $wastage_touch = (isset($_POST['wastage_touch']) && !empty($_POST['wastage_touch'])) ? $db->escapeString($fn->xss_clean($_POST['wastage_touch'])) : "0";
 
         if (empty($name)) {
             $error['name'] = " <span class='label label-danger'>Required!</span>";
@@ -50,9 +50,6 @@ if (isset($_POST['btnAdd'])) {
         }
         if (empty($tds)) {
             $error['tds'] = " <span class='label label-danger'>Required!</span>";
-        }
-        if (empty($wastage_touch)) {
-            $error['wastage_touch'] = " <span class='label label-danger'>Required!</span>";
         }
 
         if ( !empty($name))
@@ -245,7 +242,7 @@ if (isset($_POST['btnAdd'])) {
                             <div class="col-md-4">
                                   <div class="form-group">
                                         <label for="exampleInputEmail1">Wastage Touch</label> <i class="text-danger asterik">*</i>
-                                        <input type="number" class="form-control" name="wastage_touch" id="wastage_touch" required/>
+                                        <input type="number" class="form-control" name="wastage_touch" id="wastage_touch" readonly/>
                                     </div>
                             </div> 
                             <div class="col-md-4">
@@ -376,6 +373,30 @@ if (isset($_POST['btnAdd'])) {
         });
     });
 </script>
+<script>
+      $(document).on('change', '#subcategory_id',function() {
+        $.ajax({
+            url: "public/db-operation.php",
+            data: "subcategory_id=" + $('#subcategory_id').val() + "&name=" + $('#name').val() + "&get_wastage_touch=1",
+            method: "POST",
+            success: function(data) {
+                $('#wastage_touch').val(""+data);
+            }
+        });
+    });
+</script>
+<script>
+      $(document).on('change', '#name',function() {
+        $.ajax({
+            url: "public/db-operation.php",
+            data: "subcategory_id=" + $('#subcategory_id').val() + "&name=" + $('#name').val() + "&get_wastage_touch=1",
+            method: "POST",
+            success: function(data) {
+                $('#wastage_touch').val(""+data);
+            }
+        });
+    });
+</script>
 
 
 
@@ -389,7 +410,7 @@ if (isset($_POST['btnAdd'])) {
                     $("#purity").val(Math.round(($("#weight").val()-$("#stone_weight").val()) * ($("#touch").val()/100)*1000)/1000);
                     $("#amount").val(Math.round((($("#weight").val()-$("#stone_weight").val()) * ($("#touch").val()/100)) *$("#rate").val()));
                     $("#mc").val(($("#wastage_touch").val()*$("#rate").val()));
-                    $("#tds").val(($("#mc").val()*(0.1/100)));
+                    $("#tds").val(Math.round($("#mc").val()*(0.1/100)));
                     });
             });
         }
@@ -399,7 +420,7 @@ if (isset($_POST['btnAdd'])) {
             $("#purity").val(Math.round(($("#weight").val()-$("#stone_weight").val()) * ($("#touches").val()/100)*1000)/1000);
             $("#amount").val(Math.round((($("#weight").val()-$("#stone_weight").val()) * ($("#touches").val()/100)) *$("#rate").val()));
             $("#mc").val(($("#wastage_touch").val()*$("#rate").val()));
-            $("#tds").val(($("#mc").val()*(0.1/100)));
+            $("#tds").val(Math.round($("#mc").val()*(0.1/100)));
             });
         });
         }

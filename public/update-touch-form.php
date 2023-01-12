@@ -17,18 +17,19 @@ if (isset($_POST['btnAdd'])) {
             $subcategory_id = $db->escapeString(($_POST['subcategory_id'][$i]));
             $gmv_id = $db->escapeString(($_POST['gmv_id'][$i]));
             $touch = (isset($_POST['touch'][$i]) && !empty($_POST['touch'][$i])) ? $db->escapeString($fn->xss_clean($_POST['touch'][$i])) : "0";
+            $wastage_touch = (isset($_POST['wastage_touch'][$i]) && !empty($_POST['wastage_touch'][$i])) ? $db->escapeString($fn->xss_clean($_POST['wastage_touch'][$i])) : "0";
             $sql = "SELECT id FROM goldsmith_master_variant WHERE id = '$gmv_id'";
             $db->sql($sql);
             $res = $db->getResult();
             $num = $db->numRows($res);
             if ($num >= 1) {
-                $sql = "UPDATE `goldsmith_master_variant` SET `touch`='$touch' WHERE `id` = $gmv_id";
+                $sql = "UPDATE `goldsmith_master_variant` SET `touch`='$touch',wastage_touch='$wastage_touch' WHERE `id` = $gmv_id";
                 $db->sql($sql);
                 $tab_result = $db->getResult();
 
 
             }else{
-                $sql = "INSERT INTO goldsmith_master_variant (goldsmith_master_id,subcategory_id,touch) VALUES('$ID','$subcategory_id','$touch')";
+                $sql = "INSERT INTO goldsmith_master_variant (goldsmith_master_id,subcategory_id,touch,wastage_touch) VALUES('$ID','$subcategory_id','$touch','$wastage_touch')";
                 $db->sql($sql);
                 $tab_result = $db->getResult();
 
@@ -55,7 +56,7 @@ $res = $db->getResult();
 </section>
 <section class="content">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="box box-primary">
                 <div class="box-header with-border">
                 </div>
@@ -79,17 +80,23 @@ $res = $db->getResult();
 
                         <div class="row">
                             <div class="form-group">
-                                <div class='col-md-6'>
+                                <div class='col-md-4'>
                                     <label for="exampleInputEmail1"> Subcategory</label> <i class="text-danger asterik">*</i><?php echo isset($error['name']) ? $error['name'] : ''; ?>
                                     <input type="text" class="form-control" value="<?php echo $result[$i]['name']?>" readonly>
                                     
                                 </div>
-                                <div class='col-md-6'>
-                                    <label for="exampleInputEmail1"> Touch</label> <i class="text-danger asterik">*</i><?php echo isset($error['name']) ? $error['name'] : ''; ?>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1"> Touch</label> <i class="text-danger asterik">*</i>
                                     <input type="text" class="form-control" name="touch[]" value="<?php echo (isset($res[$i]['touch'])) ? ($res[$i]['touch']) : 0;?>"  required>
+                                </div>
+                                <div class='col-md-4'>
+                                    <label for="exampleInputEmail1">Wastage Touch</label> <i class="text-danger asterik">*</i>
+                                    <input type="text" class="form-control" name="wastage_touch[]" value="<?php echo (isset($res[$i]['wastage_touch'])) ? ($res[$i]['wastage_touch']) : 0;?>"  required>
                                 </div>
                             </div>
                         </div>
+                        <br>
+
                         <?php } ?>
                         
                      </div><!-- /.box-body -->

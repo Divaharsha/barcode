@@ -4,6 +4,7 @@ date_default_timezone_set('Asia/Kolkata');
 $function = new functions;
 include_once('includes/custom-functions.php');
 $fn = new custom_functions;
+require_once('path/to/library/barcode.php');
 // session_start();
 $product_id = $_GET['id'];
 $sql = "SELECT *,products.id AS id,categories.name AS category_name,subcategories.name AS subcategory_name,goldsmith_master.name AS goldsmith_name FROM products,subcategories,goldsmith_master,categories WHERE products.subcategory_id=subcategories.id AND subcategories.category_id=categories.id AND products.goldsmith_id=goldsmith_master.id  AND products.id = $product_id";

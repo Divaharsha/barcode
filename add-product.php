@@ -26,6 +26,20 @@
     vertical-align: middle;
 }
 </style>
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- cropzee.js -->
+	<script src="cropzee.js" defer></script>
+	<!--  -->
+	<style>
+		.image-previewer {
+			height: 300px;
+			width: 300px;
+			display: flex;
+			border-radius: 10px;
+			border: 1px solid lightgrey;
+		}
+	</style>
 </head>
 </body>
       <!-- Content Wrapper. Contains page content -->

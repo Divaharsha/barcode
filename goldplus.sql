@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2022 at 01:04 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Jan 12, 2023 at 08:09 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -190,7 +190,9 @@ CREATE TABLE `goldsmith_master` (
 --
 
 INSERT INTO `goldsmith_master` (`id`, `name`, `goldsmith_type`, `mobile`, `digital_signature_number`, `gst_number`, `pan_number`, `open_cash_debit`, `open_cash_credit`, `open_pure_debit`, `open_pure_credit`, `email`, `place`, `address`, `weight_method`, `display_subcategory`, `subcategories`, `rate_method`, `credit_note`, `debit_note`, `huid_charge`, `credit_limit`, `activate_stone_pieces`, `stone_weight`, `stone_charges`, `shop_type`, `corporate_type`) VALUES
-(1, 'Karthikeyan', 'Seller', '8599032127', '8599032127', 'Ghrdt5677', 'GNQPD45567', 65000, 6790, 65000, 89000, 'kathirsar78@gmail.com', 'Kannada', 'Kunnur,Uppidapalayam', 'Approximate Weight', 'Yes', '', 'TCS', 780, 34500, '346', 100, 'No', 0, '0', 'Single Shop', '');
+(1, 'Karthikeyan', 'Seller', '8599032127', '8599032127', 'Ghrdt5677', 'GNQPD45567', 65000, 6790, 65000, 89000, 'kathirsar78@gmail.com', 'Kannada', 'Kunnur,Uppidapalayam', 'Approximate Weight', 'Yes', '', 'TCS', 780, 34500, '346', 100, 'No', 0, '0', 'Single Shop', ''),
+(2, 'Divakar A', 'Both', '07358832695', '07358832695', '134567', 'SMD787R4G', 0, 0, 0, 0, 'jeyarani@care.ac.in', 'trichy', '2/42, Azhagapuri,R.T.Malai(Po)', 'Approximate Weight', 'No', '2', 'TCS', 56, 78, '88', 100, 'Yes', 10.8, '67', 'Corporate', 'Branch'),
+(3, 'sampr', 'Seller', '8978887899', '8978887899', '134567', 'GNQPD45567', 0, 0, 0, 0, 'admin@gmail.com', 'Madurai', '2/42, Azhagapuri,East street', 'Approximate Weight', 'Yes', '', 'TCS', 56, 78, '98', 100, 'No', 0, '0', 'Single Shop', '');
 
 -- --------------------------------------------------------
 
@@ -202,17 +204,18 @@ CREATE TABLE `goldsmith_master_variant` (
   `id` int(11) NOT NULL,
   `goldsmith_master_id` int(11) DEFAULT NULL,
   `subcategory_id` int(11) DEFAULT NULL,
-  `touch` float DEFAULT NULL
+  `touch` float DEFAULT NULL,
+  `wastage_touch` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `goldsmith_master_variant`
 --
 
-INSERT INTO `goldsmith_master_variant` (`id`, `goldsmith_master_id`, `subcategory_id`, `touch`) VALUES
-(1, 1, 1, 9.883),
-(3, 1, 3, 43.754),
-(4, 1, 2, 90);
+INSERT INTO `goldsmith_master_variant` (`id`, `goldsmith_master_id`, `subcategory_id`, `touch`, `wastage_touch`) VALUES
+(1, 1, 1, 9.883, 70),
+(3, 1, 3, 43.754, 0),
+(4, 1, 2, 90, 3);
 
 -- --------------------------------------------------------
 
@@ -647,7 +650,7 @@ ALTER TABLE `faqs`
 -- AUTO_INCREMENT for table `goldsmith_master`
 --
 ALTER TABLE `goldsmith_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `goldsmith_master_variant`
@@ -671,7 +674,7 @@ ALTER TABLE `openingmaster`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `settings`
