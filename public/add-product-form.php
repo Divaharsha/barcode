@@ -29,9 +29,9 @@ if (isset($_POST['btnAdd'])) {
         $seller_ids = implode(",", $seller_id);
 
         // get image info
-        $menu_image = $db->escapeString($_FILES['product_image']['name']);
-        $image_error = $db->escapeString($_FILES['product_image']['error']);
-        $image_type = $db->escapeString($_FILES['product_image']['type']);
+        $menu_image = $db->escapeString($_FILES['cropzee-input']['name']);
+        $image_error = $db->escapeString($_FILES['cropzee-input']['error']);
+        $image_type = $db->escapeString($_FILES['cropzee-input']['type']);
 
         // create array variable to handle error
         $error = array();
@@ -40,7 +40,7 @@ if (isset($_POST['btnAdd'])) {
 
         // get image file extension
         error_reporting(E_ERROR | E_PARSE);
-        $extension = end(explode(".", $_FILES["product_image"]["name"]));
+        $extension = end(explode(".", $_FILES["cropzee-input"]["name"]));
           
 
         
@@ -59,14 +59,14 @@ if (isset($_POST['btnAdd'])) {
 
         if (!empty($subcategory) && !empty($goldsmith) && !empty($huid_number))
         {
-                        $result = $fn->validate_image($_FILES["product_image"]);
+                        $result = $fn->validate_image($_FILES["cropzee-input"]);
                         // create random image file name
                         $string = '0123456789';
-                        $file = preg_replace("/\s+/", "_", $_FILES['product_image']['name']);
+                        $file = preg_replace("/\s+/", "_", $_FILES['cropzee-input']['name']);
                         $menu_image = $function->get_random_string($string, 4) . "-" . date("Y-m-d") . "." . $extension;
                 
                         // upload new image
-                        $upload = move_uploaded_file($_FILES['product_image']['tmp_name'], 'upload/products/' . $menu_image);
+                        $upload = move_uploaded_file($_FILES['cropzee-input']['tmp_name'], 'upload/products/' . $menu_image);
                 
                         // insert new data to menu table
                         $upload_image = 'upload/products/' . $menu_image;
@@ -261,9 +261,9 @@ if (isset($_POST['btnAdd'])) {
                         <div class="row">
                             <div class="fom-group">
                                 <div class="col-md-4">
-                                    <label for="">Image</label><i class="text-danger asterik">*</i><?php echo isset($error['product_image']) ? $error['product_image'] : ''; ?>
+                                    <label for="">Image</label><i class="text-danger asterik">*</i><?php echo isset($error['cropzee-input']) ? $error['cropzee-input'] : ''; ?>
                                          <label for="cropzee-input" class="image-previewer" data-cropzee="cropzee-input"></label>
-                                        <input type="file" name="product_image" id="cropzee-input" accept="image/png,  image/jpeg" id="product_image" required/><br>
+                                        <input type="file" name="cropzee-input" id="cropzee-input" accept="image/png,  image/jpeg" required/><br>
                                 </div>
                             </div>
                         </div>
@@ -342,7 +342,7 @@ if (isset($_POST['btnAdd'])) {
 		$(document).ready(function(){
 			$("#cropzee-input").cropzee({startSize: [85, 85, '%'],});
 		});
-	</script>
+</script>
 
 <!--code for page clear-->
 <script>
